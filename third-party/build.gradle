@@ -1,0 +1,191 @@
+import java.util.jar.JarFile
+
+plugins {
+    id 'library.deps-conventions'
+    id 'library.java-conventions'
+
+    // The following plugin is used to build the OSGI bundle
+    id 'biz.aQute.bnd.builder' version '6.4.0'
+}
+
+configurations {
+    hecdll
+}
+
+dependencies {
+    api libs.antlr
+    api libs.antlr.runtime
+    api libs.commons.io
+    api libs.jfreechart
+    api libs.osgi.core
+    api libs.osgi.compendium
+    api libs.obgenesis
+    api libs.slf4jnop
+    api libs.hec.cwms.ratings.core
+    api libs.hec.monolith
+    api libs.hec.nucleus.metadata
+    api libs.dssgui
+    api libs.jdom
+    api libs.kryo
+    api libs.guice
+    api libs.commons.cli
+    api libs.log4j
+    api libs.icu4j
+    api libs.guava
+
+    //x64 jars
+    api(":antlr-generator-3.2.0")
+    api(":coinor") //coinor solver jar, unavailable in maven central
+    api(":com.google.ortools.linearsolver") //linear solver jar, unavailable in maven central
+    api(":COM") //Provides ibm.netrexx.process package, unavailable in maven central
+    api(":dsm2-input-model") //dms2 input model jar, developed by DWR
+    api(":iText") //provides com.lowagie.text package, matching version unavailable in maven central
+    api(":jnios") //unavialable in maven central
+    api(":jpy") //matching jar unavilable in maven central
+    api(":jpython") //matching jar unavilable in maven central
+    api(":misc-1.2") //custom collection of miscellenious packages. Developed by DWR.
+    api(":sqljdbc4-2.0") //matching jar unavilable in maven central. Newer version available
+    api(":swixml") //local jar contains additional classes compared to 1.5.144 jar on maven central
+    api(":vista") //developed by DWR. Unavailable on maven central
+    api(":JDiagram") //custom collection of JDiagram packages. Developed by DWR.
+    api(":calsurrogate") //developed by DWR. Unavailable on maven central
+    api(":XAOptimizer")
+    api(":gurobi")
+
+    //Directly adding exact jars used by previous WRIMS for HDF to resolve runtime HDF errors.
+    api(":jarh5obj")
+    api(":jarhdf5-2.10.0")
+    api(":jarhdf-2.10.0")
+    api(":jarhdfobj")
+
+    //additional dependencies
+    hecdll("mil.army.usace.hec:javaHeclib:${libs.versions.heclib.get()}@zip")
+}
+
+configurations.configureEach {
+    exclude group: "org.xml.sax", module: "sax"
+    exclude group: "xml-apis", module: "xml-apis"
+    exclude group: "mil.army.usace.hec", module: "hec-db-core"
+    exclude group: "mil.army.usace.hec", module: "hec-isocline-paint"
+    exclude group: "mil.army.usace.hec", module: "hec-isocline-g2d-plot"
+    exclude group: "mil.army.usace.hec", module: "service-annotations"
+    exclude group: "mil.army.usace.hec", module: "callback-services"
+    exclude group: "mil.army.usace.hec", module: "hec-server-suite"
+    exclude group: "mil.army.usace.hec", module: "hec-server-suite-ui"
+    exclude group: "mil.army.usace.hec", module: "radar-server-suite"
+    exclude group: "mil.army.usace.hec", module: "vrt"
+    exclude group: "mil.army.usace.hec.swingx", module: "swingx-core"
+    exclude group: "javax.xml.bind", module: "jaxb-api"
+    exclude group: "com.sun.xml.bind", module: "jaxb-impl"
+    exclude group: "com.sun.xml.bind", module: "jaxb-core"
+    exclude group: "org.bouncycastle", module: "bcprov-jdk15on"
+    exclude group: "org.bouncycastle", module: "bcpkix-jdk15on"
+    exclude group: "com.mrsid", module: "mrsidreader"
+    exclude group: "org.apache.poi", module: "poi"
+    exclude group: "org.apache.poi", module: "poi-ooxml"
+    exclude group: "org.apache.poi", module: "poi-ooxml-schemas"
+    exclude group: "com.oracle.database.jdbc", module: "jmscommon"
+    exclude group: "org.apache.xmlbeans", module: "xmlbeans"
+    exclude group: "dom4j", module: "dom4j"
+    exclude group: "net.java.dev.jna", module: "jna"
+    exclude group: "com.fifesoft", module: "rstaui"
+    exclude group: "org.python", module: "jython-standalone"
+    exclude group: "org.osgi", module: "org.osgi.compendium"
+    exclude group: "org.osgi", module: "org.osgi.core"
+    exclude group: "org.xml.sax", module: "sax"
+    exclude group: "xml-apis", module: "xml-apis"
+}
+
+tasks.register('copyHeclib', Sync) { syncTask ->
+    from {
+        configurations.hecdll.collect { zipTree(it) }
+    }
+    into file("build/tmp/dll/heclib")
+}
+
+tasks.register('prepareBndFile') {
+    dependsOn(tasks.named("copyDependencies"))
+    dependsOn(tasks.named("copyHeclib"))
+
+    def bndFile = file('build/bnd/bnd.bnd')
+    outputs.file(bndFile)
+    def bndTemplateFile = file('src/main/bnd/bnd.bnd.template')
+    inputs.file(bndTemplateFile)
+    def libsDir = file('build/tmp/libs')
+    def packageSet = new LinkedHashSet<String>()
+    def includeResourceSet = new LinkedHashSet<String>()
+
+    doFirst {
+        logger.debug("Running prepareBndFile task...")
+
+        if (!bndFile.parentFile.exists()) {
+            bndFile.parentFile.mkdirs();
+        }
+
+        // Delete bnd.bnd if it exists
+        if (bndFile.exists()) {
+            bndFile.delete()
+            logger.debug("Deleted existing bnd.bnd file.")
+        } else {
+            // Create the bnd.bnd file if it does not exist
+            logger.debug("Creating empty bnd.bnd file.")
+            bndFile.createNewFile()
+        }
+
+        // Copy bnd.bnd.template to bnd.bnd
+        bndFile.text = bndTemplateFile.text
+        logger.debug("Copied bnd.bnd.template to bnd.bnd.")
+
+        // Collect package names from JAR files
+        libsDir.eachFileRecurse { file ->
+            if (file.name.endsWith('.jar')) {
+                includeResourceSet.add("lib_x64/${file.name}=${file.path.replace('\\', '/')};lib:=true")
+                JarFile jar = new JarFile(file)
+                jar.entries().each { entry ->
+                    if (entry.name.endsWith('.class')) {
+                        def packageName = entry.name.replaceAll('/[^/]+$', '').replace('/', '.')
+                        // Excluding libs conflicting with packages provided by eclipse jars.
+                        if (!packageName.startsWith('Lib.') &&
+                                !packageName.startsWith('org.osgi') &&
+                                !packageName.startsWith('org.slf4j') &&
+                                !packageName.startsWith('org.w3c.dom') &&
+                                !packageName.startsWith('javax.xml') &&
+                                !packageName.startsWith('javax.annotation') &&
+                                !packageName.startsWith('org.apache') &&
+                                !packageName.startsWith('org.jdom') &&
+                                !packageName.startsWith('org.xml')) {
+                            packageSet.add(packageName)
+                        }
+                    }
+                }
+            }
+        }
+
+        //Explicitly adding the org.apache.commons.io package to the export package list that is required by wrims-ide
+        //all other org.apache packages are still excluded
+        packageSet.add("org.apache.commons.io")
+
+        // Add Include-Resource contents to the end of bnd.bnd
+        def includeResourceContents = includeResourceSet.collect { it + ',\\' }.join('\n    ')
+        includeResourceContents += "icons = icons,\\\n" +
+                "    lib_x64/jep.dll=libs/win-x64/jep.dll,\\\n" +
+                "    lib_x64/jhdf.dll=libs/win-x64/jhdf.dll,\\\n" +
+                "    lib_x64/jhdf5.dll=libs/win-x64/jhdf5.dll,\\\n" +
+                "    heclib=build/tmp/dll/heclib,\\\n" +
+                "    lib_x64/cb.dll=libs/win-x64/cb.dll"
+        bndFile.append("\n-includeresource: \\\n    ${includeResourceContents}\n")
+        logger.debug("Added Include-Resource contents to bnd.bnd.")
+
+        // Add Export-Package contents to the end of bnd.bnd
+        def exportContents = packageSet.collect { it + ',\\' }.join('\n    ')
+        bndFile.append("\n-exportcontents: \\\n    ${exportContents}\n")
+        logger.debug("Added Export-Package contents to bnd.bnd.")
+    }
+}
+
+jar {
+    dependsOn tasks.named('prepareBndFile')
+    bundle {
+        bndfile = tasks.named('prepareBndFile').get().outputs.files.first()
+    }
+}

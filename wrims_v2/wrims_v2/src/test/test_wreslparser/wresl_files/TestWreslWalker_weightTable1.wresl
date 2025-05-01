@@ -1,0 +1,40 @@
+SEQUENCE CYCLE1 {
+    model   first
+    order   1
+    }
+
+SEQUENCE CYCLE2 {
+    model   second
+    order   2
+    }
+
+SEQUENCE CYCLE3 {
+    model   third
+    order   3
+    }
+	
+MODEL first { 
+
+  include 'moreWreslFiles\weight-table.wresl' 
+  define S_TRNTY_1 { std kind 'FLOW-CHANNEL' units 'CFS'}  
+  define S_TRNTY_2 { std kind 'FLOW-CHANNEL' units 'CFS'}   
+  define errpos_shsta { std kind 'FLOW-CHANNEL' units 'CFS'} 
+  define errneg_wkytn { std kind 'FLOW-CHANNEL' units 'CFS'} 
+}
+
+MODEL second { 
+
+  define[local] x { std kind 'FLOW-CHANNEL' units 'CFS'}
+  define[local] y { std kind 'FLOW-CHANNEL' units 'CFS'}
+  define[local] z { std kind 'FLOW-CHANNEL' units 'CFS'}
+  
+  Objective        obj = {[x, 100] }
+  Objective[local] obj = {[y, 100], [z, 100]}
+
+}
+
+MODEL third { 
+
+  define x { value 99 }
+
+}

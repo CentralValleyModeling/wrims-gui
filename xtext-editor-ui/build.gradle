@@ -1,0 +1,27 @@
+plugins{
+    id 'library.deps-conventions'
+    id 'library.java-conventions'
+
+    // The following plugin is used to build the OSGI bundle
+    id 'biz.aQute.bnd.builder' version '6.4.0'
+
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', 'src/main/src-gen']
+        }
+    }
+}
+
+dependencies {
+    //module dependencies
+    implementation project(':wrims-ide')
+    implementation project(':third-party')
+    implementation project(':xtext-editor')
+
+    //eclipse libs
+    compileOnly fileTree(dir: '../eclipse-luna-libs', include: ['*.jar'])
+}
+

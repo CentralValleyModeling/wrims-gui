@@ -1,0 +1,60 @@
+// This is the root build.gradle, which defines a few project-wide properties.
+// Notably, this project sets the version of all projects, as well as the group name.
+
+plugins {
+    id "com.palantir.git-version" version "3.0.0"
+    id 'base'
+    id 'eclipse'
+}
+
+allprojects {
+    apply plugin: 'eclipse'
+}
+
+// This utilizes Git Tag based versioning to set the version of the project based on the current Git Branch or Tag.
+// If a tag is checked out, the version will be the name of the most recent tag on this commit.
+// Otherwise, the version will be last version suffixed with a +
+def versionLabel(gitInfo) {
+    def branch = gitInfo.branchName // all branches are snapshots, only tags get released
+    def tag = gitInfo.lastTag
+    // tag is returned as is. Branch may need cleanup
+    return branch == null ? tag : gitInfo.lastTag + ".9999"
+}
+
+allprojects {
+    group = 'gov.ca.dwr'
+    version = versionLabel(versionDetails())
+}
+
+subprojects {
+    plugins.withType(JavaPlugin) {
+        configurations {
+            tattletale
+        }
+
+        dependencies {
+            tattletale libs.tattletale
+        }
+
+        tasks.register('copyDependencies', Copy) {
+            from(configurations.runtimeClasspath) {
+                exclude '**/org.eclipse*.jar'
+            }
+            into 'build/tmp/libs'
+            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        }
+
+        tasks.register('tattletaleReport', JavaExec) {
+            dependsOn copyDependencies
+            group = 'verification'
+            description = "Generates a JBoss Tattletale report for ${project.name}."
+            classpath = configurations.tattletale
+            mainClass = 'org.jboss.tattletale.Main'
+
+            args = [
+                    "${layout.buildDirectory.asFile.get()}/tmp/libs#${layout.buildDirectory.asFile.get()}/libs",
+                    "${layout.buildDirectory.asFile.get()}/reports/tattletale"
+            ]
+        }
+    }
+}

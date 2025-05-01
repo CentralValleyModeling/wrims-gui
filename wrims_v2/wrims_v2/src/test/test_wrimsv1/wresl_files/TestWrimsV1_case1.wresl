@@ -1,0 +1,23 @@
+! local dvar in first cycle is leaked into the second cycle.
+
+SEQUENCE CYCLE1 {
+    model   first
+    order   1
+    }
+
+SEQUENCE CYCLE2 {
+    model   second
+    order   2
+    }	
+	
+MODEL first { 
+
+	define[local] x { std kind 'cycle1_local' units 'CFS' } 
+	
+}
+
+MODEL second { 
+
+	goal goal_1 { x < 99 }
+
+}
