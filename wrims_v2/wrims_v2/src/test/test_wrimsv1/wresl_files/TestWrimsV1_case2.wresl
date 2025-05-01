@@ -1,0 +1,27 @@
+! Local dvar in the first cycle is leaked into the second cycle. 
+! integer type and range are also carried into second cycle 
+
+SEQUENCE CYCLE1 {
+    model   first
+    order   1
+    }
+
+SEQUENCE CYCLE2 {
+    model   second
+    order   2
+    }	
+	
+MODEL first { 
+
+	define[local] x {INTEGER lower 3 upper 9 KIND 'INTEGER' UNITS 'NONE'}
+
+}
+
+MODEL second { 
+
+	goal goal_1 { x < 8 }
+	
+	Objective obj = {
+		[x, 100]
+	}
+}

@@ -1,0 +1,22 @@
+Bundle-SymbolicName: third-party;singleton:=true
+Bundle-Name: third-party
+Bundle-Version: 1.0.0.0
+Bundle-ManifestVersion: 2.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+
+Import-Package: \
+    !*, *
+
+Public-Package: \
+    icons,lib_x64,heclib
+
+Bundle-NativeCode: \
+    /heclib/javaHeclib.dll; processor=x86_64, \
+    /lib_x64/cb.dll; processor=x86_64, \
+    /lib_x64/jhdf.dll; processor=x86_64, \
+    /lib_x64/jhdf5.dll; processor=x86_64, \
+    /lib_x64/jep.dll; processor=x86_64
+
+-noee true
+

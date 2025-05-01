@@ -1,0 +1,97 @@
+SEQUENCE CYCLE1 {
+    model   first
+    order   1
+    }
+
+MODEL first { 
+
+
+goal Goal_1 {
+
+    lhs     x
+    rhs     y + z
+    lhs>rhs     constrain
+    lhs<rhs     penalty 500.0 
+
+}
+
+goal Goal_2 {
+
+    lhs     x
+    rhs     y + z
+    lhs<rhs     penalty 600.0 
+    lhs>rhs     constrain
+}
+
+goal Goal_3 {
+
+    lhs     x
+    rhs     y + z
+    lhs>rhs     penalty 66.0 
+	lhs<rhs     penalty 55 
+}	
+
+goal Goal_4 {
+
+    lhs     x
+    rhs     y + z
+    lhs>rhs     penalty 99.0 
+	lhs<rhs     penalty 0 
+}	
+
+goal Goal_4_2 {
+
+    lhs     x
+    rhs     y + z
+    lhs>rhs     penalty 0 
+	lhs<rhs     penalty 99. 
+}	
+
+goal Goal_5 {  # x > y+z
+
+    lhs     x
+    rhs     y + z
+    lhs>rhs     penalty 0
+
+}	
+
+goal Goal_6 {
+
+    lhs     x
+    rhs     y + z
+    lhs>rhs     penalty 99
+
+}
+
+goal Goal_7 {  # x < y+z
+
+    lhs     x
+    rhs     y + z
+    lhs<rhs     penalty 0
+
+}
+
+goal Goal_8 { # x = y+z
+
+    lhs     x
+    rhs     y + z
+    lhs>rhs     constrain
+}
+
+goal Goal_9 {  # x = y+z
+
+    lhs     x
+    rhs     y + z
+    lhs<rhs     constrain
+}
+
+	
+}	
+
+
+	
+
+	 
+
+
+ 
