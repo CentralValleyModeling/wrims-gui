@@ -58,6 +58,7 @@ component jpy as "jpy.jar" #lightblue
 component jpython as "jpython.jar" #lightblue
 component jsr305
 component jts
+component junit_5
 component kryo
 component libtensorflow
 component log4j
@@ -66,6 +67,8 @@ component lpsolve55j as "lpsolve55j.jar" #lightblue
 component minlog
 component misc as "misc-1.2.jar" #lightblue
 component objenesis
+component osgi_core as "osgi-core"
+component osgi_compendium as "osgi-compendium"
 component slf4j_api as "slf4j-api"
 component slf4j_nop as "slf4j-nop"
 component sqljdbc4 as "sqljdbc4-2.0.jar" #lightblue
@@ -108,13 +111,16 @@ third_party                   -[#000082,plain]->  jepDLL
 third_party                   -[#000082,plain]->  jfreechart              
 third_party                   -[#000082,plain]->  jnios                   
 third_party                   -[#000082,plain]->  jpy                     
-third_party                   -[#000082,plain]->  jpython                 
+third_party                   -[#000082,plain]->  jpython
+third_party                   -[#000082,plain]->  junit_5
 third_party                   -[#000082,plain]->  kryo
 third_party                   -[#000082,plain]->  libtensorflow
 third_party                   -[#000082,plain]->  log4j
 third_party                   -[#000082,plain]->  lpsolve55j
 third_party                   -[#000082,plain]->  misc                  
-third_party                   -[#000082,plain]->  objenesis               
+third_party                   -[#000082,plain]->  objenesis
+third_party                   -[#000082,plain]->  osgi_core
+third_party                   -[#000082,plain]->  osgi_compendium
 third_party                   -[#000082,plain]->  slf4j_nop                  
 third_party                   -[#000082,plain]->  sqljdbc4                  
 third_party                   -[#000082,plain]->  swixml
