@@ -18,7 +18,7 @@ A concise description of the bug encountered.
 Describe the expected behavior.
 
 **WRIMS Version used:**
-Note the build version used when the issue was encountered.
+Note the build version used when the bug was encountered.
 
 **Study used:**
-Note the study used when the issue was encountered.
+Note the study used when the bug was encountered.
