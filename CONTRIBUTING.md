@@ -90,15 +90,15 @@ Avoid the use of [namespace packages](https://docs.python.org/3/glossary.html#te
 ### Branching
 
 - All branches should have a known goal and lifecycle.
-- The branch name should summarize its goal and be appended by:
-    - ```devops/``` - branches with changes that do not actually affect source code
+- The branch name should summarize its goal and inlcude one of these prefixes:
+    - ```devops/``` - branches that change the CI/CD process, and similar activities.
     - ```feature/``` - branches with new features
     - ```bugfix/``` - branches with bug fixes
     - ```docs/``` - for branches only containing documentation addition or edits
 - Branches should be lightweight according to the goal and lifecycle.
 - **Main branch must remain deployable at all times.**
-    - No pull request should be maid to ```main``` with partially completed work (unless coordinated beforehand).
-    - Deployable means:
+    - No pull request should be made to `main` with partially completed work (with very limited exceptions which need to be coordinated before opening the pull request).
+    - "Deployable" means:
         - Developer tested
         - Automated tests are passing
         - Feature complete
@@ -114,7 +114,7 @@ Avoid the use of [namespace packages](https://docs.python.org/3/glossary.html#te
   - Do not leave feature branches laying around.
 - **Avoid Git Force Pushes** 
   - See [below](#use-the-force) sections below for details on when `--force` is okay.
-  - When possible, avoid the use of ```git push --force```. If the option is available, use ```git push --force-with-lease``` (or the equivalent option in the application in use). ```--force``` performs a blind overwrite of the branch on the server, which may sometimes undesirably blast away changes. ```--force-with-lease``` checks the status of the branch on the server first, and if it has changed sinc the last ```fetch``` or ```pull```, will fail the ```push```.
+  - When possible, avoid the use of ```git push --force```. If the option is available, use ```git push --force-with-lease``` (or the equivalent option in the application in use). ```--force``` performs a blind overwrite of the branch on the server, which may sometimes undesirably blast away changes. ```--force-with-lease``` checks the status of the branch on the server first, and if it has changed since the last ```fetch``` or ```pull```, will fail the ```push```.
 
 ### Commits
 
@@ -156,7 +156,7 @@ Avoid the use of [namespace packages](https://docs.python.org/3/glossary.html#te
 
 #### Start of work:
 - A pull request should be created as soon as possible within reason to allow others to understand, review, and collaborate on the change.
-    - Pull request should include the Jira ticket numbers (note that multiple tickets can be referenced).
+    - Pull request should include the GitHub ticket numbers (note that multiple tickets can be referenced).
     - The pull request name should summarize the work being done similar to the branch name.
  -  A pull request should be small, concise, easier to review, and understand.
  -  Multiple pull requests can be made from a given branch to meet the above statement.
@@ -172,7 +172,7 @@ Avoid the use of [namespace packages](https://docs.python.org/3/glossary.html#te
     - If you want a specific reviewer, add them to the list instead of replacing the list.
     - If your PR is a draft or wip, it is acceptable to clear the field. In other cases it is not.  
 - Further commits, squashes, ad rebases should be coordinated with active revieweers.
-- Once the PR is actively being revieewed, do not rewrite history (squash, rebase, etc.) until the PR is complete and approved.
+- Once the PR is actively being reviewed, do not rewrite history (squash, rebase, etc.) until the PR is complete and approved.
 - Ideally, do not push any new commits until the reviewer has marked the PR citing they have finished reviewing.
 - Respond to every comment and task made by reviewers.
 - Task authors should be responsible for clearing tasks, not PR authors.
