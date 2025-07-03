@@ -6,7 +6,7 @@ labels:
 assignees:
 ---
 
-**Describe the bug**
+**Describe the bug:**
 A concise description of the bug encountered.
 
 **Steps to reproduce the bug:**
