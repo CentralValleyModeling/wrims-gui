@@ -107,7 +107,6 @@ third_party                   -[#000082,plain]->  javatuples
 third_party                   -[#000082,plain]->  java_object_diff
 third_party                   -[#000082,plain]->  jdom
 third_party                   -[#000082,plain]->  jep
-third_party                   -[#000082,plain]->  jepDLL
 third_party                   -[#000082,plain]->  jfreechart              
 third_party                   -[#000082,plain]->  jnios                   
 third_party                   -[#000082,plain]->  jpy                     
@@ -162,6 +161,7 @@ jfreechart               -[#000082,plain]->  jcommon
 kryo                     -[#000082,plain]->  minlog                  
 kryo                     -[#000082,plain]->  objenesis               
 slf4j_nop                   -[#000082,plain]->  slf4j_api
+jep                      -[#000082,plain]->  jepDLL
 
 footer "green components indicate the primary module being represented \n blue components indicate locally-stored third-party jars"
 
