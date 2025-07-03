@@ -1,6 +1,6 @@
 <!--- Provide a general summary of your changes in the Title above -->
 
-## Notees for Reviewers
+## Notes for Reviewers
 Please consider the following when reviewing this PR:
 - **Correctness:** Does the code do what it claims? Are edge cases handled appropriately?
 - **Clarity:** Is the code readable, maintainable and aligned with **SOLID** design principles?
