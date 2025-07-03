@@ -7,23 +7,39 @@ To keep things smooth and maintain high quality, please follow the rules and bes
 - Follow the Code of Conduct at all times.
 - All code must be reviewed and approved via a Pull Request (PR)
 - Write clear, concise commit messages and PR descriptions.
-- Keep the ```main``` branch production-ready. Do not push directly to it.
+- The ```main``` branch is protected and always production-ready. All changes must be made via pull requests.
 
 ## Developer Workflow Overview
 
-- Assign an issue to a resource
-- Create a new branch to address the assigned issue
-- Address the issue
-- Commit changes
-- Open a pull request
-- Have a peer review the pull request
-    - A pull request may require revisions from the reviewer before being approved 
-- Merge approved pull request into the main branch
-- Delete the working branch if no longer needed
+> [!IMPORTANT]  
+> This repository has restricted the permissions for contributing to the repository. If you are unsure about your permissions, ask about it the [Developer Permissions](https://github.com/CentralValleyModeling/wrims-engine/discussions/44) discussion.
+
+1. [Create an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue)
+2. Assign the issue to yourself
+3. [Create a new branch from ```main```](#branching-strategies) to address the assigned issue
+   - If creating a patch release, branch from a release branch
+4. [Open a pull request](#pull-requests)
+5. Address the issue
+6. [Commit changes](#commits)
+7. Have a maintainer review the pull request
+    - A pull request may require revisions from the reviewer before being approved.
+8. Squash commits before merging the pull request
+9. Merge approved pull request into the main branch
+10. Delete the working branch if no longer needed
+
+> [!NOTE]
+> Creating and assigning an issue will only work for members of the development team.
+
+The following links reference workflows that closely model the developer workflow for this repository:
+- [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow)
+- [Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
 ## Coding Standards and Style Guides
 
 ### General Principles (All Languages)
+
+- Follow [**SOLID** design principles](https://en.wikipedia.org/wiki/SOLID)
+- Follow the code style for the context (language, file purpose, etc)
 - Write clear, readable, and self-explanatory code.
 - Use consistent indentation.
 - Use meaningful names for variables, functions, and classes.
@@ -33,87 +49,41 @@ To keep things smooth and maintain high quality, please follow the rules and bes
 
 ### Fortran
 
-#### File Naming
-- Use ```.f90``` for modern Fortran source files.
-- Lowercase file names with underscores: ```calculate_area.f90```
-
 #### Style
+
 - Use ```implicit none``` to avoid undeclared variables.
-- Group related code into modules and subroutines.
+- Follow the [Fortran Standard Library Style Guide](https://stdlib.fortran-lang.org/page/contributing/StyleGuide.html).
  
-#### Naming
-- Use ```snake_case``` for variables and subroutines.
-- Modules: ```module_name```
-- Constants:```ALL_CAPS```
-
-#### Example
-```
-module circle_utils
-  implicit none
-  real, parameter :: PI = 3.14
-contains
-  function calculate_area(radius) result(area)
-    real, intent(in) :: radius
-    real :: area
-    area = PI * radius * radius
-  end function calculate_area
-end module circle_utils
-```
-
 ### Java
 
-#### File Naming
-- Each class should go in its own ```.java``` file named after the class.
-
 #### Style
+
 - Follow the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
 
-#### Naming
-- Classes: ```PascalCase```
-- Methods and variables: ```camelCase```
-- Constants: ```UPPER_SNAKE_CASE``` (with ```static final```)
-
-#### Example
-```
-public class Circle {
-    public static final double PI = 3.14;
-
-    public double calculateArea(double radius) {
-        return PI * radius * radius;
-    }
-}
-```
 ### Python
 
-#### File Naming
-- Use ```snake_case.py``` for file names.
+The short answer: [PEP 8](https://peps.python.org/pep-0008/). It's encouraged to use a code formatter like `autopep8`, or `black`. As long as it's PEP 8 compliant, it's fine.
 
-#### Style
-- Follow guidelines in the [PEP 8](https://peps.python.org/pep-0008/).
-- Use 4-space indentation.
-- Limit lines to 79 characters.
+#### Scripts
 
-#### Naming
-- Variables and functions: ```snake_case```
-- Classes: ```PascalCase```
-- Constants: ```UPPER_SNAKE_CASE```
+Python scripts should provide a [CLI](https://docs.python.org/3/library/argparse.html) entry point so other users don't need to change source code in order to run the script with new inputs.
 
-#### Example
-```
-def calculate_area(radius):
-    """Calculate area of a circle."""
-    pi = 3.14
-    return pi*radius**2
-```
+Limit the use of `jupyter` notebooks for scripts that others might use for production or development activities. Notebooks are fine for documentation, tutorials, and the like.
+
+#### Modules & Packages
+
+Under most circumstances, Python modules shouldn't cause side effects upon `import`, they should not use `global`, and should not use `print` when `logging` is more appropriate.
+
+Avoid the use of [namespace packages](https://docs.python.org/3/glossary.html#term-namespace-package).
 
 ## Branching Strategies
 
 ### ```main``` Branch
-- Keep ```main``` always **stable and production-ready**.
+
+- The ```main``` branch is protected and always production ready. All changes must be made via pull requests.
 - Support **collaborative development**.
 - Ensure features and fixes are tested before release.
-- Require PR reviews.
-- Disallow direct pushes.
+- PR reviews are **required**.
 
 ## Git Operations and Pull Requests Guidelines
 
@@ -121,13 +91,13 @@ def calculate_area(radius):
 
 - All branches should have a known goal and lifecycle.
 - The branch name should summarize its goal and be appended by:
-    - devops/ - branches with changes that do not actually affect source code
-    - feature/ - branches with new features
-    - bugfix/ - branches with bug fixes
-    - docs/ - for branches only containing documentation addition or edits
+    - ```devops/``` - branches with changes that do not actually affect source code
+    - ```feature/``` - branches with new features
+    - ```bugfix/``` - branches with bug fixes
+    - ```docs/``` - for branches only containing documentation addition or edits
 - Branches should be lightweight according to the goal and lifecycle.
 - **Main branch must remain deployable at all times.**
-    - No pull request should be maid to main with partially completed work (unless coordinated beforehand).
+    - No pull request should be maid to ```main``` with partially completed work (unless coordinated beforehand).
     - Deployable means:
         - Developer tested
         - Automated tests are passing
@@ -136,27 +106,32 @@ def calculate_area(radius):
         - Static analysis completed
         - Test coverage metrics goal met
 - **Other people's branches:**
-  1. Do not push commits to someone else's feature branch; at least not without coordinating with them first.
-     1. It is somewhat rude.
-     2. There could be local changes that the originator has not pushed up yet that you are missing.
-  2. Instead submit a PR to that branch if you feel you have a constructive change for it.
+ - Do not push commits to someone else's feature branch; at least not without coordinating with them first.
+    - It is somewhat rude.
+    - There could be local changes that the originator has not pushed up yet that you are missing.
+  - Instead submit a PR to the developer's branch if you feel you have a constructive change for it.
 - **Branches in general**
-    - Do not leave feature branches laying around.
-- **Avoid Git Force Pushes**
-    - When possible, avoid the use of ```git push --force```. If the option is available, use ```git push --force-with-lease``` (or the equivalent option in the application in use). ```--force``` performs a blind overwrite of the branch on the server, which may sometimes undesirably blast away changes. ```--force-with-lease``` checks the status of the branch on the server first, and if it has changed sinc the last ```fetch``` or ```pull```, will fail the ```push```.
+  - Do not leave feature branches laying around.
+- **Avoid Git Force Pushes** 
+  - See [below](#use-the-force) sections below for details on when `--force` is okay.
+  - When possible, avoid the use of ```git push --force```. If the option is available, use ```git push --force-with-lease``` (or the equivalent option in the application in use). ```--force``` performs a blind overwrite of the branch on the server, which may sometimes undesirably blast away changes. ```--force-with-lease``` checks the status of the branch on the server first, and if it has changed sinc the last ```fetch``` or ```pull```, will fail the ```push```.
 
 ### Commits
+
 - The primary rule is "be clear about what this commit is doing."
 - [How to Write a Git Commit Message](https://cbea.ms/git-commit/)
 - If you cannot open the above guide, the format for a commit is:
-    - first 60 characters, short summary
-    - blank line
-    - more detailed description
+  - first 60 characters, short summary
+  - blank line
+  - more detailed description
 - If work is done for a ticket, the GitHub ID should be referenced. This allows GitHub/GitHub issues to link together and cross-reference. 
 - Try to group related changes in a single commit.
+
+#### Use the Force?
+
 - It is okay to rewrite your local feature branch history so that it is simpler and more clear
-    - UNTIL you push the branch and share it
-    - Though it may still be okay, coordinate with the team.
+  - UNTIL you push the branch and share it
+  - Though it may still be okay, coordinate with the team.
   
 ### Pull Requests
 - The lifecycle of a pull request is the developer's responsibility.
@@ -188,7 +163,7 @@ def calculate_area(radius):
 
 #### During work:
 - The developer will push small commits during the development.
-- Commits should be squashed and rebased as necessary for clearer commit history. This should occur while work is progressing and not just once at the end.
+- **Commits should be squashed and rebased as necessary for clearer commit history. This should occur while work is progressing and not just once at the end.**
 
 #### End of Work:
 - Before a pull request is merged, changes should be tested by the developer thorugh both automated and manual exercise of the changed code. 
