@@ -1,0 +1,56 @@
+@startuml
+
+!theme plain
+left to right direction
+skinparam linetype ortho
+
+rectangle WRIMS {
+    component wrims-ide as "WRIMS IDE" #orange {
+        package wrimsv2_plugin {
+            package reporttool #lightgreen
+            package tools
+            package debugger
+        }
+    }
+
+    rectangle third-party as "Third Party" #orange {
+        component javaHeclib {
+            package hec.heclib.dss
+            package hec.heclib.util
+        }
+        component hec.monolith as "hec-monolith" {
+            package hec.io
+            package hec.hecmath
+            package hec.gfx2d
+            package hec.data
+        }
+        component dsm2 as "dsm2-input-model.jar" #lightblue {
+            package gov.ca.dsm2.input
+        }
+        component jfreechart {
+            package org.jfree
+        }
+        component iText.jar #lightblue {
+            package com.lowagie
+        }
+    }
+
+    folder luna_libs as "directory '../eclipse-luna-libs'" #orange
+}
+
+reporttool -> luna_libs
+reporttool --> hec.data
+reporttool --> hec.heclib.dss
+reporttool --> hec.heclib.util
+reporttool --> hec.io
+reporttool --> hec.hecmath
+reporttool --> debugger #firebrick
+reporttool -up-> tools
+reporttool --> gov.ca.dsm2.input
+reporttool --> org.jfree
+reporttool --> com.lowagie
+
+debugger -> reporttool #firebrick
+
+footer "green components indicate the primary module being represented \n orange components indicate key local modules \n blue components indicate locally-stored third-party jars \n red lines represent circular dependencies"
+@enduml
