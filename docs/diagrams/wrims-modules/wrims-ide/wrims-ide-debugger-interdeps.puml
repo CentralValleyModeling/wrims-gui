@@ -1,0 +1,165 @@
+@startuml
+left to right direction
+skinparam linetype ortho
+
+component WRIMS-IDE {
+    package debugger #lightgreen {
+        package breakpoint
+        package commanditem
+        package console
+        package core
+        package dialog
+        package exception
+        package goal
+        package launcher
+        package listener
+        package menuitem
+        package model
+        package msr
+        package pa
+        package sourcelookup
+        package toolbaritem
+        package ui #pink
+        package view
+    }
+    package tools #lightblue
+    package batchrun #lightblue
+    package sensitivity #lightblue
+    package calsimhydro #lightblue
+    package reporttool #lightblue
+    package editor #lightblue
+    package perspective #lightblue
+    package presentation #lightblue
+}
+component WRIMS_Core as "WRIMS-Core" #orange
+
+view -down-> tools #blue
+view -down-> core #grey
+view -> dialog  #firebrick
+view -> exception #firebrick
+view -> listener #grey
+view -u-> model #firebrick
+
+editor -> core #grey
+editor -> exception #grey
+editor -> model #grey
+editor -> breakpoint #grey
+
+perspective -> core #grey
+
+batchrun -> core #grey
+batchrun -> tools #blue
+batchrun -> exception #grey
+batchrun -> dialog #firebrick
+batchrun -> msr #grey
+batchrun -> pa #firebrick
+
+presentation -> model #grey
+presentation -> core #grey
+presentation -> exception #grey
+presentation -> breakpoint #grey
+
+reporttool -> exception #grey
+reporttool -> tools #blue
+
+sensitivity -> exception #grey
+sensitivity -> tools #blue
+sensitivity -> core #grey
+
+tools -> core #firebrick
+tools -> exception #grey
+tools -> model #firebrick
+tools -> WRIMS_Core #blue
+
+calsimhydro -> core #firebrick
+calsimhydro -> exception #grey
+calsimhydro -> tools #blue
+
+toolbaritem -> exception #grey
+toolbaritem -u-> view #grey
+toolbaritem -> core #firebrick
+toolbaritem -> dialog #firebrick
+toolbaritem -> menuitem #firebrick
+
+sourcelookup -> model #grey
+sourcelookup -> core #grey
+
+pa -down-> tools #blue
+pa -down-> batchrun #firebrick
+pa -u-> core #grey
+pa -> exception #grey
+
+msr -> tools #blue
+msr -> core #grey
+msr -> exception #grey
+
+model -l-> tools #firebrick
+model -r-> core #firebrick
+model -> view #firebrick
+model -> breakpoint #firebrick
+model -> exception #grey
+model -> menuitem #grey
+model -> toolbaritem #grey
+
+menuitem -> dialog #firebrick
+menuitem -> core #firebrick
+menuitem -> exception #grey
+menuitem -> toolbaritem #firebrick
+
+listener -> core #firebrick
+
+launcher -down-> sensitivity #blue
+launcher -down-> calsimhydro #blue
+launcher -> tools #blue
+launcher -> core #grey
+launcher -> exception #grey
+launcher -> dialog #firebrick
+launcher -> menuitem #grey
+launcher -> toolbaritem #grey
+launcher -> model #grey
+launcher -> msr #grey
+launcher -> pa #grey
+
+exception -> core #firebrick
+exception -> view #firebrick
+
+dialog -> batchrun #firebrick
+dialog -> tools #blue
+dialog -down-> reporttool #blue
+dialog -down-> WRIMS_Core #blue
+dialog -> core #grey
+dialog -> exception #grey
+dialog -> model #grey
+dialog -> view #firebrick
+dialog -> goal #grey
+dialog -> listener #grey
+dialog -> launcher #firebrick
+dialog -> menuitem #firebrick
+dialog -> toolbaritem #firebrick
+
+core -> tools  #firebrick
+core -> calsimhydro #firebrick
+core -> model #firebrick
+core -> toolbaritem #firebrick
+core -> exception #firebrick
+core -> menuitem #firebrick
+core -> listener #firebrick
+
+console -> toolbaritem #grey
+console --> core #grey
+console -> exception #grey
+
+commanditem -down-> WRIMS_Core #blue
+commanditem -> tools #blue
+commanditem -> core #grey
+commanditem -> dialog #grey
+commanditem -> exception #grey
+commanditem -> model #grey
+commanditem -> view #grey
+
+breakpoint -> core #grey
+breakpoint -> exception #grey
+breakpoint -> model #firebrick
+
+footer "light blue components indicate modules outside the the debugger package \n blue lines represent dependencies of 'debugger' on other packages \n pink components represent unused modules \n orange components represent modules that are outside of WRIMS-IDE \n red lines represent circular dependencies \n grey lines represent non-circular dependencies on 'debugger'"
+@enduml
