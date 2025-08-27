@@ -1,0 +1,99 @@
+name: Java CI
+
+on:
+  pull_request:
+    types:
+      - synchronize
+  push:
+    tags:
+      - '*'
+
+jobs:
+
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Verify token access to wrims-engine-dependencies
+        shell: bash
+        run: |
+          curl --fail -i -u "dwr-wrims-build:${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}" \
+            https://maven.pkg.github.com/CentralValleyModeling/wrims-engine-dependencies/com.google.ortools/linearsolver/2013-01-10/linearsolver-2013-01-10.jar
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Build with Gradle
+        run: |
+          ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
+          ./gradlew build -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
+
+      - name: Upload Core jar
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: wrims-core
+          path: |
+            ./wrims-core/build/libs/*.jar
+
+      - name: Upload Wrims-IDE jar
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: wrims-ide
+          path: |
+            ./wrims-ide/build/libs/*.jar
+
+      - name: Upload third-party jar
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: third-party
+          path: |
+            ./third-party/build/libs/*.jar
+
+      - name: Upload dwr-hecdssvue jar
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: dwr-hecdssvue
+          path: |
+            ./dwr-hecdssvue/build/libs/*.jar
+
+      - name: Upload jdiagram jar
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: jdiagram
+          path: |
+            ./jdiagram/build/libs/*.jar
+
+      - name: Upload xtext-editor jar
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: xtext-editor
+          path: |
+            ./xtext-editor/build/libs/*.jar
+
+      - name: Upload xtext-editor-ui jar
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: xtext-editor-ui
+          path: |
+            ./xtext-editor-ui/build/libs/*.jar
+
+      - name: Generate tattletale-reports
+        env:
+          PKG_USERNAME: ${{ github.actor }}
+          PKG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./gradlew clean
+          ./gradlew tattletaleReport
+
+      - name: Upload Reports
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: reports
+          path: |
+            ./*/build/reports/**
