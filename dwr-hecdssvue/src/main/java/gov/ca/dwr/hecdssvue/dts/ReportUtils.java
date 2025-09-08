@@ -187,7 +187,7 @@ public class ReportUtils {
      *
      */
     static void initProps() {
-        DEFAULT_FONT_SIZE = new Integer(AppProps.getProperty("ReportUtils.DEFAULT_FONT_SIZE"));
+        DEFAULT_FONT_SIZE = Integer.valueOf(AppProps.getProperty("ReportUtils.DEFAULT_FONT_SIZE"));
         HEADER_COLOR = vista.graph.GraphUtils.parseColorProperty
             (AppProps.getProperty("ReportUtils.HEADER_COLOR"));
         MIN_ITEM_COLOR = vista.graph.GraphUtils.parseColorProperty
@@ -199,11 +199,11 @@ public class ReportUtils {
         // customize formatter for numbers
         _numberFormat.setGroupingUsed(Boolean.valueOf(AppProps.getProperty("ReportUtils.groupingUsed")));
         _numberFormat.setMinimumFractionDigits
-            (new Integer(AppProps.getProperty("ReportUtils.minimumFractionDigits")));
+            (Integer.valueOf(AppProps.getProperty("ReportUtils.minimumFractionDigits")));
         _numberFormat.setMinimumIntegerDigits
-            (new Integer(AppProps.getProperty("ReportUtils.minimumIntegerDigits")));
+            (Integer.valueOf(AppProps.getProperty("ReportUtils.minimumIntegerDigits")));
         _numberFormat.setMaximumFractionDigits
-            (new Integer(AppProps.getProperty("ReportUtils.maximumFractionDigits")));
+            (Integer.valueOf(AppProps.getProperty("ReportUtils.maximumFractionDigits")));
     }
 
     /**

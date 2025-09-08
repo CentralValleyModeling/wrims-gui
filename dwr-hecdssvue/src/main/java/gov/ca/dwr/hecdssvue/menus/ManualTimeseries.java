@@ -9,10 +9,11 @@ import javax.swing.SwingUtilities;
 import gov.ca.dwr.hecdssvue.DssPluginCore;
 import gov.ca.dwr.hecdssvue.components.CatalogListSelection;
 import gov.ca.dwr.hecdssvue.views.DSSCatalogView;
-import hec.heclib.dss.CombinedDataManager;
+import hec.heclib.dss.DssDataManager;
 import hec.dssgui.TimeSeriesDataEntry;
 import hec.heclib.dss.HecDss;
 
+import hec.heclib.dss.LocalDssDataManager;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TableViewer;
@@ -39,7 +40,7 @@ public class ManualTimeseries implements IWorkbenchWindowActionDelegate{
 				CatalogListSelection ls = new CatalogListSelection();
 				for (int i=0; i<3; i++){
 					if (DebugCorePlugin.selectedStudies[i]){
-						CombinedDataManager dm = new CombinedDataManager(false);
+						DssDataManager dm = new LocalDssDataManager();
 						HecDss svFile = DebugCorePlugin.svDss[i];
 						if (svFile !=null){
 							dm = svFile.getDataManager();

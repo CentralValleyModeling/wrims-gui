@@ -1,9 +1,17 @@
 // This file provides a set of defaults for defining the `repositories` block for subprojects within this build.
 // This ensures that all subprojects use the same repositories and credentials.
 
+def checkForGHCredentials() {
+    if (!project.hasProperty('cvmUserId')) {
+        println('Please set the cvmUserId property in the GRADLE_USER_HOME ($userHome/.gradle/gradle.properties) file or via -PcvmUserId= .')
+    }
+    if (!project.hasProperty('cvmPassword')) {
+        println('Please set the cvmPassword property in the GRADLE_USER_HOME ($userHome/.gradle/gradle.properties) file or via -PcvmPassword= .')
+    }
+}
+
 // Define a standard set of repositories, a specific library may need to customize this list and add or remove some items
 repositories {
-    flatDir dirs: "${rootProject.projectDir}/third-party/libs"
 
     maven {
         // The HEC Public repository where a lot of base dependencies are stored like hec-monolith
@@ -15,7 +23,16 @@ repositories {
         url 'https://cogcomp.seas.upenn.edu/m2repo/'
     }
 
-    //provider for the wrims-install template
+    maven {
+        url = 'https://maven.pkg.github.com/CentralValleyModeling/wrims-engine-dependencies'
+        credentials {
+            checkForGHCredentials()
+            username = "$cvmUserId"
+            password = "$cvmPassword"
+        }
+    }
+
+    //provider for refactored libs
     maven {
         name = "GitHubPackages"
         url = uri("https://maven.pkg.github.com/CentralValleyModeling/wrims")
@@ -24,6 +41,16 @@ repositories {
             password = project.findProperty('cvmPassword') ?: System.getenv('PKG_TOKEN')
         }
 
+    }
+
+    // wrims-core artifacts are published under a separate repository
+    maven {
+        name = "GitHubPackages-wrims-core"
+        url = uri("https://maven.pkg.github.com/CentralValleyModeling/wrims-core")
+        credentials {
+            username = project.findProperty('cvmUserId') ?: System.getenv('PKG_USERNAME')
+            password = project.findProperty('cvmPassword') ?: System.getenv('PKG_TOKEN')
+        }
     }
 
     // Use Maven Central for resolving dependencies.

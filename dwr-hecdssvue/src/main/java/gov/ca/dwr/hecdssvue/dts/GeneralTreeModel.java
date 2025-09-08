@@ -298,7 +298,7 @@ public class GeneralTreeModel extends DefaultTreeModel implements Serializable {
                     name = (String) node.getUserObject();
                     name1 = (String) child.getUserObject();
                     if (name.equals(child.getUserObject())) {
-                        Integer j = new Integer(paste);
+                        Integer j = Integer.valueOf(paste);
                         name1 = "Copy of" + j + " " + name;
                         child = new DefaultMutableTreeNode(name1);
                         int children1 = node.getChildCount();
@@ -463,7 +463,7 @@ public class GeneralTreeModel extends DefaultTreeModel implements Serializable {
             name = curel.getAttribute("name");
             curnode = new DefaultMutableTreeNode(name);
             curnode.setAllowsChildren(getAllowChildren(name));
-            lvl = new Integer(curel.getAttribute("level"));
+            lvl = Integer.valueOf(curel.getAttribute("level"));
             curlvl = lvl.intValue();
             nodes[curlvl] = curnode;
             parentnode.add(curnode);
@@ -477,7 +477,7 @@ public class GeneralTreeModel extends DefaultTreeModel implements Serializable {
                 name = curel.getAttribute("name");
                 curnode = new DefaultMutableTreeNode(name);
                 curnode.setAllowsChildren(getAllowChildren(name));
-                lvl = new Integer(curel.getAttribute("level"));
+                lvl = Integer.valueOf(curel.getAttribute("level"));
                 curlvl = lvl.intValue();
                 if (curlvl == prvlvl) {
                     parentnode.add(curnode);
