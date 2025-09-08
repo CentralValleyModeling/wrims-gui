@@ -10,12 +10,23 @@ configurations {
     windows_x64
 }
 
+def osgiPlatform = 'win32.win32.x86_64'
+
 dependencies {
     api platform(libs.wrims.engine.bom)
     api libs.wrims.core
-    implementation project(':third-party')
 
-    compileOnly fileTree(dir: '../eclipse-luna-libs', include: ['*.jar'])
+    implementation libs.eclipse.core.runtime
+    implementation libs.eclipse.debug.core
+    implementation(libs.eclipse.swt) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+    implementation(libs.eclipse.debug.ui) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+    implementation libs.eclipse.datatools.connectivity
+
+    implementation project(':third-party')
 
     windows_x64(libs.javaHeclib){artifact {type = 'zip'}}
     testImplementation(libs.bundles.junit5)

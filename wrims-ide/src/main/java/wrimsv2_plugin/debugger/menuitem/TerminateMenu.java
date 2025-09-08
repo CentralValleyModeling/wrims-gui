@@ -1,25 +1,10 @@
 package wrimsv2_plugin.debugger.menuitem;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.debug.core.DebugException;
-import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
-import org.eclipse.jface.action.ICoolBarManager;
-import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.action.SubContributionItem;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.commands.AbstractHandler;
-import org.eclipse.ui.commands.ExecutionException;
-import org.eclipse.ui.internal.ActionSetMenuManager;
-import org.eclipse.ui.internal.Workbench;
-import org.eclipse.ui.internal.WorkbenchWindow;
 
 import wrimsv2_plugin.debugger.core.DebugCorePlugin;
 import wrimsv2_plugin.debugger.exception.WPPException;

@@ -1,38 +1,26 @@
 package wrimsv2_plugin.debugger.view;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.IDebugElement;
 import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IValue;
 import org.eclipse.debug.ui.AbstractDebugView;
-import org.eclipse.debug.ui.DebugUITools;
-import org.eclipse.debug.ui.IDebugModelPresentation;
 import org.eclipse.debug.ui.IDebugUIConstants;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.StructuredViewer;
-import org.eclipse.jface.viewers.TableTreeViewer;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.TableTree;
-import org.eclipse.swt.custom.TableTreeItem;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -45,14 +33,10 @@ import org.eclipse.ui.PlatformUI;
 import wrimsv2_plugin.debugger.core.DebugCorePlugin;
 import wrimsv2_plugin.debugger.exception.WPPException;
 import wrimsv2_plugin.debugger.listener.TableCopyListener;
-import wrimsv2_plugin.debugger.model.IWPPEventListener;
 import wrimsv2_plugin.debugger.model.WPPDebugTarget;
 import wrimsv2_plugin.debugger.model.WPPValue;
-import wrimsv2_plugin.debugger.view.WPPAllGoalView.ViewLabelProvider;
-import wrimsv2_plugin.debugger.view.WPPAllVariableView.WPPComparator;
 import wrimsv2_plugin.tools.ProcImage;
 import wrimsv2_plugin.tools.ProcWatchItem;
-import wrimsv2_plugin.tools.SearchTable;
 import wrimsv2_plugin.tools.SetSelectionInTable;
 
 public class WPPWatchView extends AbstractDebugView implements ISelectionListener { 
