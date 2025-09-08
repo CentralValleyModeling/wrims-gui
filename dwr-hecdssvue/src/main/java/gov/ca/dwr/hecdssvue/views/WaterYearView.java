@@ -505,7 +505,7 @@ public class WaterYearView extends ViewPart {
 		int year=hecTime.year();
 		for (int i=0; i<values.length; i++){
 			if (month==5){
-				Long wytl=new Long(Math.round(values[i]));
+				Long wytl=Long.valueOf(Math.round(values[i]));
 				int wyti=wytl.intValue();
 				if (wyt.containsKey(wyti)){
 					wyt.get(wyti).add(year);

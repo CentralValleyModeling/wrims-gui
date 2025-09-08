@@ -111,15 +111,15 @@ import hec.io.TimeSeriesContainer;
  *	    JFrame frame = new JFrame();
  *	    Object[][] data = {
  *              {"Mary", "Campione",
- *               "Snowboarding", new Integer(5), new Boolean(false)},
+ *               "Snowboarding", Integer.valueOf(5), Boolean.FALSE},
  *              {"Alison", "Huml",
- *               "Rowing", new Integer(3), new Boolean(true)},
+ *               "Rowing", Integer.valueOf(3), new Boolean(true)},
  *              {"Kathy", "Walrath",
- *               "Chasing toddlers", new Integer(2), new Boolean(false)},
+ *               "Chasing toddlers", Integer.valueOf(2), Boolean.FALSE},
  *              {"Mark", "Andrews",
- *               "Speed reading", new Integer(20), new Boolean(true)},
+ *               "Speed reading", Integer.valueOf(20), new Boolean(true)},
  *              {"Angela", "Lih",
- *               "Teaching high school", new Integer(4), new Boolean(false)}
+ *               "Teaching high school", Integer.valueOf(4), Boolean.FALSE}
  *          };
  *
  *          String[] columnNames = {"First\nName",
@@ -480,14 +480,14 @@ public class MonthlyTable extends JTable
 					continue;
 				}
 
-				_parameterScaleTable.put(new Integer(i), new ParameterScale(paramId, scaleFactor));
+				_parameterScaleTable.put(Integer.valueOf(i), new ParameterScale(paramId, scaleFactor));
 			}
 		}
 
 //		ColumnGroup cg = null;
 		for (int i = 0; i < tcm.getColumnCount(); i++)
 		{
-			ParameterScale ps = (ParameterScale) _parameterScaleTable.get(new Integer(convertColumnIndexToModel(i)));
+			ParameterScale ps = (ParameterScale) _parameterScaleTable.get(Integer.valueOf(convertColumnIndexToModel(i)));
 			if (ps == null)
 			{
 				continue;
@@ -709,7 +709,7 @@ public class MonthlyTable extends JTable
 			String label = hec.data.Parameter.getUnitsStringForSystem(paramId, system);
 			if (paramId == hec.data.Parameter.PARAMID_CURENCY)
 			{
-				ParameterScale ps = (ParameterScale) _parameterScaleTable.get(new Integer(column));
+				ParameterScale ps = (ParameterScale) _parameterScaleTable.get(Integer.valueOf(column));
 				if (ps == null)
 				{
 					label += "1";
@@ -1863,7 +1863,7 @@ public class MonthlyTable extends JTable
 			double d2;
 			try
 			{
-				d1 = new Double(sNewVal).doubleValue();
+				d1 = Double.valueOf(sNewVal);
 			}
 			catch (NumberFormatException nfe)
 			{
@@ -1871,7 +1871,7 @@ public class MonthlyTable extends JTable
 			}
 			try
 			{
-				d2 = new Double(sOldVal).doubleValue();
+				d2 = Double.valueOf(sOldVal);
 			}
 			catch (NumberFormatException nfe)
 			{
@@ -1929,8 +1929,8 @@ public class MonthlyTable extends JTable
 		}
 		else if (type == getClassForName("java.lang.Boolean"))
 		{
-			boolean b1 = new Boolean(sNewVal).booleanValue();
-			boolean b2 = new Boolean(sOldVal).booleanValue();
+			boolean b1 = Boolean.valueOf(sNewVal);
+			boolean b2 = Boolean.valueOf(sOldVal);
 
 			if (b1 == b2)
 			{
@@ -2477,7 +2477,7 @@ public class MonthlyTable extends JTable
 		Color color = this.getBackground();
 		for (int i = 0; i < getModel().getRowCount(); i++)
 		{
-			_rowBackground.put(new Integer(i), color);
+			_rowBackground.put(Integer.valueOf(i), color);
 		}
 	}
 
@@ -2489,7 +2489,7 @@ public class MonthlyTable extends JTable
 		Color color = this.getForeground();
 		for (int i = 0; i < getModel().getRowCount(); i++)
 		{
-			_rowForeground.put(new Integer(i), color);
+			_rowForeground.put(Integer.valueOf(i), color);
 		}
 	}
 
@@ -2503,10 +2503,10 @@ public class MonthlyTable extends JTable
 	{
 		if (rfColor == null)
 		{
-			_rowForeground.remove(new Integer(rowNum));
+			_rowForeground.remove(Integer.valueOf(rowNum));
 			return;
 		}
-		_rowForeground.put(new Integer(rowNum), rfColor);
+		_rowForeground.put(Integer.valueOf(rowNum), rfColor);
 	}
 
 	/**
@@ -2519,10 +2519,10 @@ public class MonthlyTable extends JTable
 	{
 		if (rbColor == null)
 		{
-			_rowBackground.remove(new Integer(rowNum));
+			_rowBackground.remove(Integer.valueOf(rowNum));
 			return;
 		}
-		_rowBackground.put(new Integer(rowNum), rbColor);
+		_rowBackground.put(Integer.valueOf(rowNum), rbColor);
 	}
 
 	/**
@@ -2541,7 +2541,7 @@ public class MonthlyTable extends JTable
 	 */
 	public Color getRowBackground(int rowNum)
 	{
-		Color color = (Color) _rowBackground.get(new Integer(rowNum));
+		Color color = (Color) _rowBackground.get(Integer.valueOf(rowNum));
 		if (color == null)
 		{
 			return this.getBackground();
@@ -2558,7 +2558,7 @@ public class MonthlyTable extends JTable
 	 */
 	public Color getRowBackground(int rowNum, int colNum)
 	{
-		Color color = (Color) _rowBackground.get(new Integer(rowNum));
+		Color color = (Color) _rowBackground.get(Integer.valueOf(rowNum));
 		if (color == null)
 		{
 			return getColumnBackground(colNum);
@@ -2567,7 +2567,7 @@ public class MonthlyTable extends JTable
 		/*
 		 *  if ( getModel().isCellEditable(rowNum, colNum))
 		 *  {
-		 *  Color color =  (Color)_rowBackground.get(new Integer(rowNum));
+		 *  Color color =  (Color)_rowBackground.get(Integer.valueOf(rowNum));
 		 *  if ( color == null )
 		 *  return getColumnBackground(colNum);
 		 *  return color;
@@ -2587,7 +2587,7 @@ public class MonthlyTable extends JTable
 	 */
 	public void setColumnBackground(int colNum, Color color)
 	{
-		_columnBackground.put(new Integer(colNum), color);
+		_columnBackground.put(Integer.valueOf(colNum), color);
 	}
 
 	/**
@@ -2598,7 +2598,7 @@ public class MonthlyTable extends JTable
 	 */
 	public void setColumnForeground(int colNum, Color color)
 	{
-		_columnForeground.put(new Integer(colNum), color);
+		_columnForeground.put(Integer.valueOf(colNum), color);
 	}
 
 	/**
@@ -2609,7 +2609,7 @@ public class MonthlyTable extends JTable
 	 */
 	public Color getColumnBackground(int colNum)
 	{
-		Color color = (Color) _columnBackground.get(new Integer(colNum));
+		Color color = (Color) _columnBackground.get(Integer.valueOf(colNum));
 		if (color == null)
 		{
 			return getBackground();
@@ -2625,7 +2625,7 @@ public class MonthlyTable extends JTable
 	 */
 	public Color getColumnForeground(int colNum)
 	{
-		Color color = (Color) _columnForeground.get(new Integer(colNum));
+		Color color = (Color) _columnForeground.get(Integer.valueOf(colNum));
 		if (color == null)
 		{
 			return super.getForeground();
@@ -2775,7 +2775,7 @@ public class MonthlyTable extends JTable
 	 */
 	public Color getRowForeground(int rowNum)
 	{
-		Color color = (Color) _rowForeground.get(new Integer(rowNum));
+		Color color = (Color) _rowForeground.get(Integer.valueOf(rowNum));
 
 		if (color == null)
 		{
@@ -2791,7 +2791,7 @@ public class MonthlyTable extends JTable
 	 */
 	public Color getRowForeground(int rowNum, int colNum)
 	{
-		Color color = (Color) _rowForeground.get(new Integer(rowNum));
+		Color color = (Color) _rowForeground.get(Integer.valueOf(rowNum));
 
 		if (color == null)
 		{
@@ -3163,7 +3163,7 @@ public class MonthlyTable extends JTable
 			Class cls = getModel().getColumnClass(tcmColNum);
 			_rmaCellRend.setDisplayUnitsSystem(getDisplayUnitSystem());
 
-			ParameterScale ps = (ParameterScale) _parameterScaleTable.get(new Integer(tcmColNum));
+			ParameterScale ps = (ParameterScale) _parameterScaleTable.get(Integer.valueOf(tcmColNum));
 			if (ps != null)
 			{
 				_rmaCellRend.setDisplayScaleFactor(tcmColNum, ps.paramId, ps.scale);
@@ -3289,7 +3289,7 @@ public class MonthlyTable extends JTable
 				continue;
 			}
 
-			ParameterScale ps = (ParameterScale) _parameterScaleTable.get(new Integer(this.convertColumnIndexToModel(i)));
+			ParameterScale ps = (ParameterScale) _parameterScaleTable.get(Integer.valueOf(this.convertColumnIndexToModel(i)));
 			if (ps != null)
 			{
 				rtcr.setDisplayScaleFactor(i, ps.paramId, ps.scale);
@@ -3322,7 +3322,7 @@ public class MonthlyTable extends JTable
 			return;
 		}
 
-		ParameterScale ps = (ParameterScale) _parameterScaleTable.get(new Integer(this.convertColumnIndexToModel(col)));
+		ParameterScale ps = (ParameterScale) _parameterScaleTable.get(Integer.valueOf(this.convertColumnIndexToModel(col)));
 		if (ps != null)
 		{
 			rtcr.setDisplayScaleFactor(col, ps.paramId, ps.scale);
@@ -3488,7 +3488,7 @@ public class MonthlyTable extends JTable
 	 *  set the cell editor for all the columns to be a RMADecimalField specifying
 	 *  whether to show commas.
 	 *
-	 *@param  showFormatting  The new DoubleCellEditor value
+	 *@param  showFormatting  The Double.valueOfCellEditor value
 	 */
 	public void setDoubleCellEditor(boolean showFormatting)
 	{
@@ -3502,8 +3502,8 @@ public class MonthlyTable extends JTable
 	/**
 	 *  set the cell editor from beginCol to EndCol to be a RMADecimalField
 	 *
-	 *@param  beginCol  The new DoubleCellEditor value
-	 *@param  endCol    The new DoubleCellEditor value
+	 *@param  beginCol  The Double.valueOfCellEditor value
+	 *@param  endCol    The Double.valueOfCellEditor value
 	 */
 	public void setDoubleCellEditor(int beginCol, int endCol)
 	{
@@ -3514,9 +3514,9 @@ public class MonthlyTable extends JTable
 	 *  set the double cell editor from beginCol to endCol to be a RMADecimalField
 	 *  if showFormatting is true then show with embedded commas.
 	 *
-	 *@param  beginCol        The new DoubleCellEditor value
-	 *@param  endCol          The new DoubleCellEditor value
-	 *@param  showFormatting  The new DoubleCellEditor value
+	 *@param  beginCol        The Double.valueOfCellEditor value
+	 *@param  endCol          The Double.valueOfCellEditor value
+	 *@param  showFormatting  The Double.valueOfCellEditor value
 	 */
 	public void setDoubleCellEditor(int beginCol, int endCol, boolean showFormatting)
 	{
@@ -3531,7 +3531,7 @@ public class MonthlyTable extends JTable
 	/**
 	 *  set a cell editor for column col to be a RMADecimalField
 	 *
-	 *@param  col  The new DoubleCellEditor value
+	 *@param  col  The Double.valueOfCellEditor value
 	 *@return      Description
 	 */
 	public RmaJDecimalField setDoubleCellEditor(int col)
@@ -3542,8 +3542,8 @@ public class MonthlyTable extends JTable
 	/**
 	 *  set a cell editor for column col to be a RMADecimalField
 	 *
-	 *@param  col             The new DoubleCellEditor value
-	 *@param  showFormatting  The new DoubleCellEditor value
+	 *@param  col             The Double.valueOfCellEditor value
+	 *@param  showFormatting  The Double.valueOfCellEditor value
 	 *@return                 Description
 	 */
 	public RmaJDecimalField setDoubleCellEditor(int col, boolean showFormatting)
@@ -3572,7 +3572,7 @@ public class MonthlyTable extends JTable
 		df.addMouseListener(this);
 		RmaCellEditor dcf = new RmaCellEditor(df);
 		dcf.setDisplayUnitSystem(getDisplayUnitSystem());
-		ParameterScale ps = (ParameterScale) _parameterScaleTable.get(new Integer(convertColumnIndexToModel(col)));
+		ParameterScale ps = (ParameterScale) _parameterScaleTable.get(Integer.valueOf(convertColumnIndexToModel(col)));
 		if (ps != null)
 		{
 			dcf.setDisplayScaleFactor(ps.paramId, ps.scale);
@@ -3616,7 +3616,7 @@ public class MonthlyTable extends JTable
 		df.addMouseListener(this);
 		RmaCellEditor dcf = new RmaCellEditor(df);
 		dcf.setDisplayUnitSystem(getDisplayUnitSystem());
-		ParameterScale ps = (ParameterScale) _parameterScaleTable.get(new Integer(convertColumnIndexToModel(col)));
+		ParameterScale ps = (ParameterScale) _parameterScaleTable.get(Integer.valueOf(convertColumnIndexToModel(col)));
 		if (ps != null)
 		{
 			dcf.setDisplayScaleFactor(ps.paramId, ps.scale);
@@ -4108,7 +4108,7 @@ public class MonthlyTable extends JTable
 	 *  sets a checkbox editor for column number col
 	 *
 	 *@param  col  The new CheckBoxCellEditor value
-	 *@param  useSelectionForegroun true for the CellRenderer to render the selection background when the cell is selection
+	 *@param  useSelectionBackground true for the CellRenderer to render the selection background when the cell is selection
 	 *@return      Description
 	 */
 	public JCheckBox setCheckBoxCellEditor(int col, boolean useSelectionBackground)
@@ -5263,7 +5263,7 @@ public class MonthlyTable extends JTable
 
 		try
 		{
-			new Double(text);
+			Double.valueOf(text);
 		}
 		catch (NumberFormatException efmt)
 		{
@@ -5289,7 +5289,7 @@ public class MonthlyTable extends JTable
 
 		try
 		{
-			new Float(text);
+			Float.valueOf(text);
 		}
 		catch (NumberFormatException efmt)
 		{
@@ -5306,7 +5306,7 @@ public class MonthlyTable extends JTable
 	{
 		try
 		{
-			new Integer(text);
+			Integer.valueOf(text);
 		}
 		catch (NumberFormatException efmt)
 		{
@@ -5412,7 +5412,7 @@ public class MonthlyTable extends JTable
 			{
 				return;
 			}
-			setValueAt(new Integer(values[i]), i, col);
+			setValueAt(Integer.valueOf(values[i]), i, col);
 		}
 	}
 
@@ -5669,7 +5669,7 @@ System.out.println("linearFill: "+nfe);
 						//if ( endVal < startVal )
 						value = startVal + (stepValue * j);
 						//else
-						//    value = new Double(stepValue*j);
+						//    value = Double.valueOf(stepValue*j);
 						TableColumn tc = getColumnModel().getColumn(c);
 						TableCellEditor tce = tc.getCellEditor();
 						if (tce instanceof RmaCellEditor)
@@ -5694,16 +5694,16 @@ System.out.println("linearFill: "+nfe);
 								}
 								else
 								{
-									setValueAt(new Double(RMAIO.setPrecision2(value, _precision)), startRow + j, c);
+									setValueAt(Double.valueOf(RMAIO.setPrecision2(value, _precision)), startRow + j, c);
 								}
 							}
 							else if (cmp instanceof RmaJIntegerField)
 							{
-								setValueAt(new Integer(RMAIO.setPrecision2(value, 0)), startRow + j, c);
+								setValueAt(Integer.valueOf(RMAIO.setPrecision2(value, 0)), startRow + j, c);
 							}
 							else
 							{
-								setValueAt(new Double(RMAIO.setPrecision2(value, _precision)), startRow + j, c);
+								setValueAt(Double.valueOf(RMAIO.setPrecision2(value, _precision)), startRow + j, c);
 							}
 						}
 						else
@@ -5822,11 +5822,11 @@ System.out.println("linearFill: "+nfe);
 							Double nd;
 							if (addIt)
 							{
-								nd = new Double(((Double) value).doubleValue() + fillValue);
+								nd = Double.valueOf(((Double) value).doubleValue() + fillValue);
 							}
 							else
 							{
-								nd = new Double(((Double) value).doubleValue() * fillValue);
+								nd = Double.valueOf(((Double) value).doubleValue() * fillValue);
 							}
 							setValueAt(nd, r, c);
 						}
@@ -6441,7 +6441,7 @@ System.out.println("linearFill: "+nfe);
 			if (paramId != hec.data.Parameter.UNDEF_PARAMETER_ID)
 			{
 
-				ParameterScale scale = (ParameterScale) _parameterScaleTable.get(new Integer(modelCol));
+				ParameterScale scale = (ParameterScale) _parameterScaleTable.get(Integer.valueOf(modelCol));
 				//assume the data being pasted is in the display unit system
 				hec.data.ParamDouble pd = new hec.data.ParamDouble();
 				pd.setValue(str);
@@ -8611,7 +8611,7 @@ System.out.println("linearFill: "+nfe);
 				double d2;
 				try
 				{
-					d1 = new Double(sNewVal).doubleValue();
+					d1 = Double.valueOf(sNewVal).doubleValue();
 				}
 				catch (NumberFormatException nfe)
 				{
@@ -8619,7 +8619,7 @@ System.out.println("linearFill: "+nfe);
 				}
 				try
 				{
-					d2 = new Double(sOldVal).doubleValue();
+					d2 = Double.valueOf(sOldVal).doubleValue();
 				}
 				catch (NumberFormatException nfe)
 				{
@@ -8677,8 +8677,8 @@ System.out.println("linearFill: "+nfe);
 			}
 			else if (type == getClassForName("java.lang.Boolean"))
 			{
-				boolean b1 = new Boolean(sNewVal).booleanValue();
-				boolean b2 = new Boolean(sOldVal).booleanValue();
+				boolean b1 = Boolean.parseBoolean(sNewVal);
+				boolean b2 = Boolean.parseBoolean(sOldVal);
 
 				if (b1 == b2)
 				{
@@ -9686,64 +9686,64 @@ System.out.println("linearFill: "+nfe);
 		};
 		Object[][] data = {
 //				{"Mary\nMay\nBeth", "Campione",
-//				"Snowboarding", new Integer(5), new Boolean(false), "4.50"},
+//				"Snowboarding", Integer.valueOf(5), Boolean.FALSE, "4.50"},
 //				{"Mary\nMay\nBeth", "Campione",
-//				"Snowboarding", new Integer(5), new Boolean(false), "4.50"},
+//				"Snowboarding", Integer.valueOf(5), Boolean.FALSE, "4.50"},
 //				{"Alison", "Huml",
-//				"Rowing", new Integer(3), new Boolean(true), "5.50"},
+//				"Rowing", Integer.valueOf(3), new Boolean(true), "5.50"},
 //				{"Mary\nMay\nBeth", "Campione",
-//				"Snowboarding", new Integer(5), new Boolean(false), "4.50"},
+//				"Snowboarding", Integer.valueOf(5), Boolean.FALSE, "4.50"},
 //				{"Kathy", "Walrath",
-//				"Chasing toddlers", new Integer(2), new Boolean(false),"12.42"},
+//				"Chasing toddlers", Integer.valueOf(2), Boolean.FALSE,"12.42"},
 //				{"Mark", "Andrews",
-//				"Speed reading", new Integer(20), new Boolean(true),"1002.65"},
+//				"Speed reading", Integer.valueOf(20), new Boolean(true),"1002.65"},
 //				{"Mary\nMay\nBeth", "Campione",
-//				"Snowboarding", new Integer(5), new Boolean(false), "4.50"},
+//				"Snowboarding", Integer.valueOf(5), Boolean.FALSE, "4.50"},
 //				{"Angela", "Lih",
-//				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+//				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 //                {"Angela", "Lih",
-//				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+//				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 //                {"Alison", "Huml",
-//				"Rowing", new Integer(3), new Boolean(true), "5.50"},
+//				"Rowing", Integer.valueOf(3), new Boolean(true), "5.50"},
 //				{"Kathy", "Walrath",
-//				"Chasing toddlers", new Integer(2), new Boolean(false),"12.42"},
+//				"Chasing toddlers", Integer.valueOf(2), Boolean.FALSE,"12.42"},
 //                {"Alison", "Huml",
-//				"Rowing", new Integer(3), new Boolean(true), "5.50"},
+//				"Rowing", Integer.valueOf(3), new Boolean(true), "5.50"},
 				{"Kathy", "Walrath",
-				"Chasing toddlers", new Integer(2), new Boolean(false),"12.42"},
+				"Chasing toddlers", Integer.valueOf(2), Boolean.FALSE,"12.42"},
 				{"Alison", "Huml",
-				"Rowing", new Integer(3), new Boolean(true), "5.50"},
+				"Rowing", Integer.valueOf(3), Boolean.TRUE, "5.50"},
 				{"Kathy", "Walrath",
-				"Chasing toddlers", new Integer(2), new Boolean(false),"12.42"},
+				"Chasing toddlers", Integer.valueOf(2), Boolean.FALSE,"12.42"},
 
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"},
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"},
 				{"Angela", "Lih",
-				"Teaching high school", new Integer(4), new Boolean(false),"112.42"}
+				"Teaching high school", Integer.valueOf(4), Boolean.FALSE,"112.42"}
 				};
 
 		String[] columnNames = {"First\nName",

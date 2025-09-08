@@ -19,47 +19,45 @@ dependencies {
     api libs.jfreechart
     api libs.osgi.core
     api libs.osgi.compendium
-    api libs.obgenesis
     api libs.slf4jnop
-    api libs.hec.cwms.ratings.core
     api libs.hec.monolith
-    api libs.hec.nucleus.metadata
     api libs.dssgui
-    api libs.jdom
     api libs.kryo
     api libs.guice
-    api libs.commons.cli
     api libs.log4j
-    api libs.icu4j
     api libs.guava
+    api libs.mssql.jdbc
+    api libs.itext
+    api libs.antlr.generator
+    api libs.coinor
+    api libs.linearsolver
+    api libs.dsm2.input.model
+    api libs.jpy
+    api libs.jpython
+    api libs.mssql.jdbc
+    api libs.swixml
+    api libs.jdiagram
+    api libs.calsurrogate
+    api libs.xaoptimizer
+    api libs.gurobi
 
-    //x64 jars
-    api(":antlr-generator-3.2.0")
-    api(":coinor") //coinor solver jar, unavailable in maven central
-    api(":com.google.ortools.linearsolver") //linear solver jar, unavailable in maven central
-    api(":COM") //Provides ibm.netrexx.process package, unavailable in maven central
-    api(":dsm2-input-model") //dms2 input model jar, developed by DWR
-    api(":iText") //provides com.lowagie.text package, matching version unavailable in maven central
-    api(":jnios") //unavialable in maven central
-    api(":jpy") //matching jar unavilable in maven central
-    api(":jpython") //matching jar unavilable in maven central
-    api(":misc-1.2") //custom collection of miscellenious packages. Developed by DWR.
-    api(":sqljdbc4-2.0") //matching jar unavilable in maven central. Newer version available
-    api(":swixml") //local jar contains additional classes compared to 1.5.144 jar on maven central
-    api(":vista") //developed by DWR. Unavailable on maven central
-    api(":JDiagram") //custom collection of JDiagram packages. Developed by DWR.
-    api(":calsurrogate") //developed by DWR. Unavailable on maven central
-    api(":XAOptimizer")
-    api(":gurobi")
+    //flagged for removal
+    api libs.vista
 
     //Directly adding exact jars used by previous WRIMS for HDF to resolve runtime HDF errors.
-    api(":jarh5obj")
-    api(":jarhdf5-2.10.0")
-    api(":jarhdf-2.10.0")
-    api(":jarhdfobj")
+    api libs.jarhdf5
+    api libs.jarh5obj
+    api libs.jarhdf
+    api libs.jarhdfobj
+
+    //win-x64 native dlls
+    implementation libs.cb.dll
+    implementation libs.jep.dll
+    implementation libs.jhdf.dll
+    implementation libs.jhdf5.dll
 
     //additional dependencies
-    hecdll("mil.army.usace.hec:javaHeclib:${libs.versions.heclib.get()}@zip")
+    hecdll(libs.javaHeclib){artifact {type = 'zip'}}
 }
 
 configurations.configureEach {
@@ -142,6 +140,11 @@ tasks.register('prepareBndFile') {
                 includeResourceSet.add("lib_x64/${file.name}=${file.path.replace('\\', '/')};lib:=true")
                 JarFile jar = new JarFile(file)
                 jar.entries().each { entry ->
+                    // Skip multi-release metadata and module descriptors
+                    if (entry.isDirectory()) return
+                    if (entry.name.startsWith('META-INF/')) return
+                    if (entry.name.endsWith('module-info.class')) return
+
                     if (entry.name.endsWith('.class')) {
                         def packageName = entry.name.replaceAll('/[^/]+$', '').replace('/', '.')
                         // Excluding libs conflicting with packages provided by eclipse jars.
@@ -168,13 +171,16 @@ tasks.register('prepareBndFile') {
         // Add Include-Resource contents to the end of bnd.bnd
         def includeResourceContents = includeResourceSet.collect { it + ',\\' }.join('\n    ')
         includeResourceContents += "icons = icons,\\\n" +
-                "    lib_x64/jep.dll=libs/win-x64/jep.dll,\\\n" +
-                "    lib_x64/jhdf.dll=libs/win-x64/jhdf.dll,\\\n" +
-                "    lib_x64/jhdf5.dll=libs/win-x64/jhdf5.dll,\\\n" +
+                "    lib_x64/jep.dll=build/tmp/libs/jep-2.2.0.dll,\\\n" +
+                "    lib_x64/jhdf.dll=build/tmp/libs/jhdf-2.2.0.dll,\\\n" +
+                "    lib_x64/jhdf5.dll=build/tmp/libs/jhdf5-2.2.0.dll,\\\n" +
                 "    heclib=build/tmp/dll/heclib,\\\n" +
-                "    lib_x64/cb.dll=libs/win-x64/cb.dll"
+                "    lib_x64/cb.dll=build/tmp/libs/cb-2.2.0.dll"
         bndFile.append("\n-includeresource: \\\n    ${includeResourceContents}\n")
         logger.debug("Added Include-Resource contents to bnd.bnd.")
+
+        // Add this to handle"Classes found in the wrong directory"
+        bndFile.append("\n-fixupmessages \"Classes found in the wrong directory\"; restrict:=error; is:=warning")
 
         // Add Export-Package contents to the end of bnd.bnd
         def exportContents = packageSet.collect { it + ',\\' }.join('\n    ')
@@ -185,6 +191,7 @@ tasks.register('prepareBndFile') {
 
 jar {
     dependsOn tasks.named('prepareBndFile')
+    exclude('META-INF/versions/**/module-info.class')
     bundle {
         bndfile = tasks.named('prepareBndFile').get().outputs.files.first()
     }

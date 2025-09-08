@@ -313,16 +313,16 @@ public class DebugSet extends WorkbenchWindowControlContribution{
 	
 	private void adjustDayCombo(){
 		////_day.removeSelectionListener(dl);
-		_intMonth = new Integer(_month.getText());
-		_intYear = new Integer(_year.getText());
-		int day=new Integer(_day.getText());
+		_intMonth = Integer.valueOf(_month.getText());
+		_intYear = Integer.valueOf(_year.getText());
+		int day=Integer.valueOf(_day.getText());
 		int maxDay=TimeOperation.numberOfDays(
 				_intMonth, _intYear);
 		for (int d = _day.getItemCount(); d >maxDay ; d--) {
 			_day.remove(d - 1);
 		}
 		for (int d = _day.getItemCount(); d < maxDay; d++) {
-			_day.add(new Integer(d + 1).toString());
+			_day.add(Integer.valueOf(d + 1).toString());
 		}
 		if (day>maxDay){
 			_day.select(maxDay-1);
@@ -335,7 +335,7 @@ public class DebugSet extends WorkbenchWindowControlContribution{
 
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			_intDay = new Integer(_day.getText()).intValue();
+			_intDay = Integer.valueOf(_day.getText()).intValue();
 			updateDebugTimeSet();
 		}
 

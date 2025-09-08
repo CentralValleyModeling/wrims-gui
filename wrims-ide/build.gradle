@@ -11,21 +11,35 @@ configurations {
 }
 
 dependencies {
-    api(project(':wrims-core'))
+    api platform(libs.wrims.engine.bom)
+    api libs.wrims.core
     implementation project(':third-party')
 
     compileOnly fileTree(dir: '../eclipse-luna-libs', include: ['*.jar'])
 
-    windows_x64("mil.army.usace.hec:javaHeclib:${libs.versions.heclib.get()}@zip")
+    windows_x64(libs.javaHeclib){artifact {type = 'zip'}}
     testImplementation(libs.bundles.junit5)
 }
 
+tasks.register('prepareWrimsCoreJar', Copy) {
+    dependsOn configurations.runtimeClasspath
+    from({
+        // Locate the wrims-core jar from the resolved runtime classpath
+        def files = configurations.runtimeClasspath.resolve()
+        def core = files.find { it.name.startsWith('wrims-core-') && it.name.endsWith('.jar') }
+        if (core == null) {
+            throw new GradleException("wrims-core jar not found on runtimeClasspath")
+        }
+        core
+    })
+    into layout.buildDirectory.dir('tmp/wrims-core')
+    rename { String fileName -> 'wrims-core.jar' }
+}
+
 jar {
+    dependsOn tasks.named('prepareWrimsCoreJar')
     bundle {
-        // Bundle plugin does not properly declare dependency on Java configurations,
-        // so other projects do not generate jars before the bundle plugin tries to read them.
-        // The bundle plugin cannot read non-existent jars, so force an explicit dependency here
-        // so that the jars will be built before the Bundle process tries to read them.
+        // Ensure classpath is ready before bundling
         dependsOn(configurations.runtimeClasspath)
     }
 }

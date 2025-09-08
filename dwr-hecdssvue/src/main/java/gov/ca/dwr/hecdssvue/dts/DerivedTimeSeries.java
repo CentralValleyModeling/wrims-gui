@@ -342,7 +342,7 @@ public class DerivedTimeSeries extends DataReference implements Serializable {
     private void expandTo(int i) {
         _modified = true;
         while (_dtsNames.size() - 1 < i) {
-            _opIds.addElement(new Integer(0));
+            _opIds.addElement(Integer.valueOf(0));
             _dtsNames.addElement("");
             _varTypes.addElement(AppUtils.DVAR);
             _bparts.addElement(DEFAULT_B_PART);
@@ -360,7 +360,7 @@ public class DerivedTimeSeries extends DataReference implements Serializable {
         if (i < 0) {
             return;
         }
-        _opIds.insertElementAt(new Integer(0), i);
+        _opIds.insertElementAt(Integer.valueOf(0), i);
         _dtsNames.insertElementAt("", i);
         _varTypes.insertElementAt("", i);
         _bparts.insertElementAt("", i);
@@ -465,7 +465,7 @@ public class DerivedTimeSeries extends DataReference implements Serializable {
      */
     public void setOperationIdAt(int i, int opId) {
         expandTo(i);
-        _opIds.setElementAt(new Integer(opId), i);
+        _opIds.setElementAt(Integer.valueOf(opId), i);
     }
 
     /**
