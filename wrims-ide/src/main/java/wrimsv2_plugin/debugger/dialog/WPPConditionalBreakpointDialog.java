@@ -1,49 +1,20 @@
 package wrimsv2_plugin.debugger.dialog;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.eclipse.debug.core.DebugException;
-import org.eclipse.jface.dialogs.PopupDialog;
-import org.eclipse.jface.viewers.TableTreeViewer;
-import org.eclipse.jface.viewers.CellEditor.LayoutData;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.TableTree;
-import org.eclipse.swt.custom.TableTreeItem;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Dialog;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
 
 import wrimsv2_plugin.debugger.core.DebugCorePlugin;
 import wrimsv2_plugin.debugger.exception.WPPException;
-import wrimsv2_plugin.debugger.menuitem.EnableMenus;
-import wrimsv2_plugin.debugger.view.WPPAllGoalView;
-import wrimsv2_plugin.debugger.view.WPPAllVariableView;
-import wrimsv2_plugin.debugger.view.WPPGoalView;
-import wrimsv2_plugin.debugger.view.WPPVarDetailView;
-import wrimsv2_plugin.debugger.view.WPPVariableView;
-import wrimsv2_plugin.tools.SearchTable;
 
 public class WPPConditionalBreakpointDialog extends Dialog {
 	
