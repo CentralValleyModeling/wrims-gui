@@ -22,6 +22,41 @@ dependencies {
     implementation project(':xtext-editor')
 
     //eclipse libs
-    compileOnly fileTree(dir: '../eclipse-luna-libs', include: ['*.jar'])
+    implementation libs.eclipse.xtext
+    implementation libs.eclipse.emf.ecore
+    implementation libs.eclipse.emf.edit
+    implementation libs.eclipse.emf.edit.ui
+    implementation libs.eclipse.xtext.ui
+    implementation libs.eclipse.xtext.ui.shared
+    implementation libs.eclipse.xtext.ui.codetemplates
+    implementation libs.eclipse.xtext.ui.codetemplates.ui
+    implementation libs.eclipse.xtext.common.types
+    implementation libs.eclipse.xtext.common.types.ui
+    implementation libs.eclipse.xtext.builder
+    implementation libs.eclipse.debug.core
+    implementation libs.eclipse.ltk.core.refactoring
+
+    implementation(libs.eclipse.compare) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+
+    implementation(libs.eclipse.ui) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+
+    implementation(libs.eclipse.debug.ui) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+
+    implementation(libs.eclipse.jface.text) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+
+    implementation(libs.eclipse.swt) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+    implementation(libs.eclipse.jface) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
 }
 
