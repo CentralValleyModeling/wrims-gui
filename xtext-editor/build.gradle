@@ -21,7 +21,8 @@ dependencies {
     implementation project(':third-party')
 
     //eclipse libs
-    implementation fileTree(dir: '../eclipse-luna-libs', include: ['*.jar'])
+    implementation libs.eclipse.xtext
+    implementation libs.eclipse.xtext.common.types
 }
 
 //NOTE: The following runMwe2 task was used to manually trigger the antlr generation.
