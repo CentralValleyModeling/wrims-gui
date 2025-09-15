@@ -75,19 +75,3 @@ jobs:
           name: xtext-editor-ui
           path: |
             ./xtext-editor-ui/build/libs/*.jar
-
-      - name: Generate reports (Tattletale + Java 21 compatibility)
-        env:
-          PKG_USERNAME: ${{ github.actor }}
-          PKG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
-          ./gradlew tattletaleReport -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
-          ./gradlew java21CompatibilityReport -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"                
-
-      - name: Upload Reports
-        uses: actions/upload-artifact@v4.0.0
-        with:
-          name: reports
-          path: |
-            ./*/build/reports/**
