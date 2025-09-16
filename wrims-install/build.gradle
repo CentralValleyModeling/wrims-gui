@@ -33,7 +33,8 @@ tasks.register('unzipThirdPartyLibs', Copy) {
 //download the latest WRIMS GUI installer from DWR
 tasks.register('downloadWrimsGuiInstaller', Download) {
     dependsOn unzipThirdPartyLibs
-    src 'https://data.cnra.ca.gov/dataset/0f6b03b4-7de8-4579-8aa0-60f73d9d21fb/resource/89f60e4a-c0c2-4ca2-acac-beb6bdb5d69e/download/wrims2_gui_x64_20240129.zip'
+//    src 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2025-06/R/eclipse-rcp-2025-06-R-win32-x86_64.zip'
+    src 'https://mirror.cs.odu.edu/eclipse/technology/epp/downloads/release/2025-06/R/eclipse-rcp-2025-06-R-win32-x86_64.zip'
     dest new File(wrimsGuiDownload)
     onlyIfModified true
 }
@@ -134,7 +135,9 @@ tasks.register('copyThirdPartyToLib', Copy) {
 //Copies all updated resource files into the installer
 tasks.register('copyResources', Copy) {
     dependsOn copyThirdPartyToLib
-    from("src/main/resources/installer")
+    from("src/main/resources/installer") {
+        exclude "WRIMS2_GUI_Update_and_Start.bat"
+    }
     into("${buildDir}/installer/${wrimsGuiFolder}")
     filter { line ->
         line.replace('${WRIMS_VERSION}', version)
@@ -261,7 +264,9 @@ tasks.register('copyThirdPartyToPatchLib', Copy) {
 //Copies all updated resource files into the installer
 tasks.register('copyResourcesToPatch', Copy) {
     dependsOn copyThirdPartyToPatchLib
-    from("src/main/resources/installer")
+    from("src/main/resources/installer") {
+        exclude "WRIMS2_GUI_Update_and_Start.bat"
+    }
     into("${buildDir}/patch/${wrimsPatchFolder}")
     filter { line ->
         line.replace('${WRIMS_VERSION}', version)
