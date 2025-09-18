@@ -10,7 +10,7 @@ configurations{
 
 dependencies {
     windows_x64 "gov.ca.dwr:run-libs:+"
-    implementation("gov.ca.dwr:wrims-core:a133997")
+    implementation libs.wrims.core
 }
 
 def date = new Date()
