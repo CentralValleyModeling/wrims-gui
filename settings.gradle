@@ -1,7 +1,5 @@
-rootProject.name = 'cvm-wrims'
-include 'wrims-core'
+rootProject.name = 'wrims-gui'
 include 'third-party'
-include 'wrims-comparison-test'
 include 'wrims-ide'
 include 'dwr-hecdssvue'
 include 'jdiagram'
@@ -18,4 +16,3 @@ if (!file('gradle.properties').exists()) {
         rename("gradle.properties.template", "gradle.properties")
     }
 }
-

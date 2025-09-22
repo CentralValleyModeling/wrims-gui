@@ -1338,7 +1338,7 @@ public class AppUtils {
                     continue;
                 }
                 try {
-                    Integer year = new Integer(st.nextToken());
+                    Integer year = Integer.valueOf(st.nextToken());
                     yearArray.addElement(year);
                 } catch (Exception e) {
                     continue;

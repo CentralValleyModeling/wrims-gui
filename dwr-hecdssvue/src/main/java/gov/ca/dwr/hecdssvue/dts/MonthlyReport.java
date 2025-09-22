@@ -285,7 +285,7 @@ public class MonthlyReport {
                 month_avgs[i] /= month_cnt[i];
             }
         }
-        Integer monthI = new Integer(totalMonths);
+        Integer monthI = Integer.valueOf(totalMonths);
         double monthf = monthI.floatValue();
         double yearf = monthf / 12.0f;
         month_avgs[12] = totval / yearf;

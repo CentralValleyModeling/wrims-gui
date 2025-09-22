@@ -381,7 +381,7 @@ public class DtsTreeModel extends GeneralTreeModel {
                         if (copiedNodeChanged(newname)) {
                             paste = 0;
                         }
-                        Integer j = new Integer(paste);
+                        Integer j = Integer.valueOf(paste);
                         name1 = "Copy (" + j + ") of " + " " + name;
                         child.setUserObject(name1);
 //          int children1 = node.getChildCount();
@@ -451,14 +451,14 @@ public class DtsTreeModel extends GeneralTreeModel {
 
 
     public String getDTSLeafName() {
-        Integer i = new Integer(newfile);
+        Integer i = Integer.valueOf(newfile);
         String name = "NEW-FILE" + i + ".DTS";
         newfile++;
         return name;
     }
 
     public String getMTSLeafName() {
-        Integer i = new Integer(newfile);
+        Integer i = Integer.valueOf(newfile);
         String name = "NEW-FILE" + i + ".MTS";
         newfile++;
         return name;
@@ -929,7 +929,7 @@ public class DtsTreeModel extends GeneralTreeModel {
                 name = curel.getAttribute("name");
                 curnode = new DefaultMutableTreeNode(name);
                 curnode.setAllowsChildren(getAllowChildren(name));
-                lvl = new Integer(curel.getAttribute("level"));
+                lvl = Integer.valueOf(curel.getAttribute("level"));
                 curlvl = lvl.intValue();
                 nodes[curlvl] = curnode;
                 parentnode.add(curnode);
@@ -944,7 +944,7 @@ public class DtsTreeModel extends GeneralTreeModel {
                 name = curel.getAttribute("name");
                 curnode = new DefaultMutableTreeNode(name);
                 curnode.setAllowsChildren(getAllowChildren(name));
-                lvl = new Integer(curel.getAttribute("level"));
+                lvl = Integer.valueOf(curel.getAttribute("level"));
                 curlvl = lvl.intValue();
                 nodes[curlvl] = curnode;
                 root.add(curnode);
@@ -961,7 +961,7 @@ public class DtsTreeModel extends GeneralTreeModel {
                 name = curel.getAttribute("name");
                 curnode = new DefaultMutableTreeNode(name);
                 curnode.setAllowsChildren(getAllowChildren(name));
-                lvl = new Integer(curel.getAttribute("level"));
+                lvl = Integer.valueOf(curel.getAttribute("level"));
                 curlvl = lvl.intValue();
                 if (curlvl == prvlvl) {
                     parentnode.add(curnode);

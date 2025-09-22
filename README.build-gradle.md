@@ -15,7 +15,7 @@ The Gradle integration involved refactoring the primary modules into the these r
 
 # WRIMS Developer Build Setup - Using Gradle:
 PREREQUISITES:
-- Java 8
+- Java 21 (Temurin or equivalent)
 - Git
 - IDE (IntelliJ, Eclipse, etc.)
 - \<USER-DIR\>\\.gradle\Gradle.properties configured with token for access to the CentralValleyModeling GitHub repository
@@ -160,6 +160,27 @@ If the checked out commit is a tag then only the tag name will be used.
 > (e.g. 20250101, 2.2.0, 2.2.0.1)
  
 ## TattleTale Report
-The JBoss TattleTale Report can be generated with the `./gradlew tattletaleReport` task. 
-The report runs a details analysis of jar, package, and class dependencies and can help
+The JBoss TattleTale Report can be generated with the `./gradlew tattletaleReport` task.
+The report runs a detailed analysis of jar, package, and class dependencies and can help
 identify cyclic, duplicated, or unused class references.
+
+## Java 21 Compatibility Report (jdeps)
+Use the `./gradlew java21CompatibilityReport` task to analyze all Java subprojects and their runtime dependencies for Java 21 compatibility using the JDK `jdeps` tool.
+- Requires JDK 21 to be on PATH (CI does this automatically).
+- Outputs per-project reports under `<module>/build/reports/jdeps`:
+  - `jdeps-summary.txt` — summary of detected usages (including JDK internals)
+  - `jdeps-summary.err` — any errors from jdeps (ignored for build failure)
+
+Typical usage:
+```
+# Linux/macOS
+./gradlew java21CompatibilityReport
+
+# Windows
+gradlew.bat java21CompatibilityReport
+```
+
+Interpretation tips:
+- Look for `JDK internal API` entries; these indicate dependencies using internal or removed APIs that may not be supported on Java 21.
+- Combine with `tattletaleReport` to pinpoint which jars bring those packages.
+- Open an issue for any flagged libraries; consider upgrading or replacing them.

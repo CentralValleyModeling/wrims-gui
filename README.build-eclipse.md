@@ -15,8 +15,8 @@ The Gradle integration involved refactoring the primary modules into the these r
 
 # WRIMS Developer Build Setup - Using Gradle:
 PREREQUISITES:
-- Java JDK 1.8 installed (https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html)
-- JAVA_HOME environment variable set to installed JDK 1.8 (optional)
+- Java JDK 21 installed (e.g., Temurin https://adoptium.net/)
+- JAVA_HOME environment variable set to installed JDK 21 (optional)
   - This is only required to build the project from the command line. 
 - Git
   - https://github.com/git-guides/install-git
@@ -79,13 +79,13 @@ Open the Preferences window from the menu bar: Window->Preferences
 
 ![](./README_images/eclipse_perferences.png)
 
-Set Gradle > "Java Home" to an appropriate JDK (1.8) </br>
+Set Gradle > "Java Home" to an appropriate JDK (21) </br>
 Click Apply.
 
 ![](./README_images/eclipse_configure_workspace_settings.png)
 
 Open the Java > Installed JRES </br>
-Add and select the same Java 1.8 version that was set as the Gradle Java Home. </br>
+Add and select the same Java 21 version that was set as the Gradle Java Home. </br>
 Click Apply.
 
 ![](./README_images/eclipse_jre.png)
@@ -107,7 +107,7 @@ Select the wrims project directory and click next.
 ![](./README_images/eclipse_import_project_directory.png)
 
 Complete the import with default settings. </br>
-Verify that the Java home directory shows a version 1.8 JDK. </br>
+Verify that the Java home directory shows a version 21 JDK. </br>
 Click Finish to import.
 
 ![](./README_images/eclipse_import_project_final.png)
