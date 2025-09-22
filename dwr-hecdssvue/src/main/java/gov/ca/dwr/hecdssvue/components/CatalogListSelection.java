@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
+import hec.heclib.dss.*;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -18,14 +19,8 @@ import rma.util.RMAIO;
 import wrimsv2_plugin.debugger.core.DebugCorePlugin;
 import gov.ca.dwr.hecdssvue.DssPluginCore;
 import gov.ca.dwr.hecdssvue.views.DSSCatalogView;
-import hec.heclib.dss.CombinedDataManager;
-import hec.heclib.dss.DataReference;
-import hec.heclib.dss.DataReferenceSet;
 import hec.dssgui.DssVueProgressBar;
 import hec.dssgui.ListSelection;
-import hec.heclib.dss.DSSPathname;
-import hec.heclib.dss.HecDataManager;
-import hec.heclib.dss.HecDss;
 import hec.heclib.util.HecTime;
 import hec.heclib.util.Heclib;
 import hec.heclib.util.stringContainer;
@@ -239,7 +234,7 @@ public class CatalogListSelection extends ListSelection {
 			   boolean remote, boolean mustExist){
 		if (remote)
 			miImportShef.setVisible(false);
-		CombinedDataManager dataManager = createDataManager(remote);
+		DssDataManager dataManager = createDataManager(remote);
 		stringContainer cleanName = new stringContainer();
 		dataManager.cleanDSSFileName(DSSFileName, cleanName);
 		DSSFileName = cleanName.string;
@@ -339,7 +334,7 @@ public class CatalogListSelection extends ListSelection {
 		return true;
 	}
 
-	public void checkOverwriteRecords(final String operationType, final CombinedDataManager dataManager,
+	public void checkOverwriteRecords(final String operationType, final DssDataManager dataManager,
 			 final DataReferenceSet pathnames, final Vector newPathnames){
 		setCursorWait("Checking if records exist in " + dataManager.DSSFileName());
 		// exists = dataManager.recordsExist(newPathnames);
@@ -472,8 +467,8 @@ public class CatalogListSelection extends ListSelection {
 			if (useTimeWindow) {
 					timeSeries.add(dr);
 					String fileName = dr.getFilename();
-					//CombinedDataManager dataManager = _selectionAndFilterPanel.getDataManager(fileName);
-					CombinedDataManager dataManager = new CombinedDataManager(false);
+					//DssDataManager dataManager = _selectionAndFilterPanel.getDataManager(fileName);
+					DssDataManager dataManager = new LocalDssDataManager();
 					dataManager.setDSSFileName(fileName);
 					tsDataManagers.add(dataManager);
 			}
@@ -486,8 +481,8 @@ public class CatalogListSelection extends ListSelection {
 		final Vector dataManagers = new Vector(filenames.size());
 		for (int i=0; i<filenames.size(); i++) {
 			String name = filenames.elementAt(i).toString();
-			//CombinedDataManager dataManager = _selectionAndFilterPanel.getDataManager(name);
-			CombinedDataManager dataManager = new CombinedDataManager(false);
+			//DssDataManager dataManager = _selectionAndFilterPanel.getDataManager(name);
+			DssDataManager dataManager = new LocalDssDataManager();
 			dataManager.setDSSFileName(name);
 			dataManagers.add(dataManager);
 		}
@@ -503,16 +498,16 @@ public class CatalogListSelection extends ListSelection {
 			{
 				Thread.currentThread().setPriority(Thread.NORM_PRIORITY - 1);
 				for (int i = 0; i < dataManagers.size(); i++){
-					CombinedDataManager dataManager = (CombinedDataManager)dataManagers.elementAt(i);
+					DssDataManager dataManager = (DssDataManager)dataManagers.elementAt(i);
 					int stat = dataManager.copyRecordsFrom(_secondDataManager,
 														   _secondDataManagerName,
 														   (Vector)pathnames.elementAt(i));
 					if (stat < 0)
-						return new Integer(stat);
+						return Integer.valueOf(stat);
 				}
                 for(int i = 0; i < timeSeries.size(); i++) {
 					DataReference dr = timeSeries.get(i);
-					CombinedDataManager dataManager = (CombinedDataManager)tsDataManagers.elementAt(i);
+					DssDataManager dataManager = (DssDataManager)tsDataManagers.elementAt(i);
 					TimeSeriesContainer tsc = new TimeSeriesContainer();
 					int istat = dataManager.readData(dr, tsc, false);
 					tsc.fileName = "";
@@ -535,13 +530,13 @@ public class CatalogListSelection extends ListSelection {
 					if (istat >= -1){
 						int stat = _secondDataManager.writeData(tsc);
 						if (stat < 0)
-							return new Integer(stat);
+							return Integer.valueOf(stat);
 					}
 					else {
 						timeSeriesErrors.add(dr);
 					}
 				}
-				return new Integer(0);
+				return Integer.valueOf(0);
 			}
 
 			protected void done()

@@ -10,8 +10,8 @@ compileJava {
     // to the version of Java you have installed. This format requires at least Java 9, but will work with any release
     // after that. Specifying the release with the `options.release` format enables compiling targeting a previous JDK
     // when only a more recent JDK is available (for example, compile for Java 11 with Java 17 or 21).
-    sourceCompatibility = '1.8'
-    targetCompatibility = '1.8'
+    sourceCompatibility = '21'
+    targetCompatibility = '21'
     options.debug = true
     options.compilerArgs = ['-g']
     //the debug options and compiler args were added to enable debugging in the jar file from the WRIMS GUI application.

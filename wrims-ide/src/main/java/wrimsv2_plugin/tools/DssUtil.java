@@ -28,7 +28,7 @@ public final class DssUtil {
      * @return condensed catalog
      */
     public static Vector<CondensedReference> getCondensedReferences(HecDss hecDss) {
-        HecDSSUtilities dataManager = hecDss.getDataManager().getLocalDataManager();
+        HecDSSUtilities dataManager = (HecDSSUtilities) hecDss.getDataManager().dataManager();
         String[] sortedCatalog = dataManager.getCatalog(true, null);
         boolean queryTimes = dataManager.getDssFileVersion() == 7 || sortedCatalog.length < 5000;
         return dataManager.getCondensedCatalog(sortedCatalog, queryTimes);

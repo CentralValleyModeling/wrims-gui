@@ -10,6 +10,7 @@ configurations{
 
 dependencies {
     windows_x64 "gov.ca.dwr:run-libs:+"
+    implementation libs.wrims.core
 }
 
 def date = new Date()
@@ -110,7 +111,15 @@ tasks.register('getNatives', Sync) { syncTask ->
 // Task to copy JARs to dropins folder
 tasks.register('copyWrimsCoreToLib', Copy) {
     dependsOn getNatives
-    from(project(':wrims-core').tasks.named('jar').get().archiveFile)
+    dependsOn configurations.runtimeClasspath
+    from({
+        def files = configurations.runtimeClasspath.resolve()
+        def core = files.find { it.name.startsWith('wrims-core-') && it.name.endsWith('.jar') }
+        if (core == null) {
+            throw new GradleException("wrims-core jar not found on runtimeClasspath")
+        }
+        core
+    })
     into("${buildDir}/installer/${wrimsGuiFolder}/lib")
 }
 
@@ -228,7 +237,15 @@ tasks.register('getNativesForPatch', Sync) { syncTask ->
 // Task to copy JARs to dropins folder
 tasks.register('copyWrimsCoreToPatchLib', Copy) {
     dependsOn  getNativesForPatch
-    from(project(':wrims-core').tasks.named('jar').get().archiveFile)
+    dependsOn configurations.runtimeClasspath
+    from({
+        def files = configurations.runtimeClasspath.resolve()
+        def core = files.find { it.name.startsWith('wrims-core-') && it.name.endsWith('.jar') }
+        if (core == null) {
+            throw new GradleException("wrims-core jar not found on runtimeClasspath")
+        }
+        core
+    })
     into("${buildDir}/patch/${wrimsPatchFolder}/lib")
 }
 

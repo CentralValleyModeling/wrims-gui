@@ -112,13 +112,13 @@ public class LaunchConfigInfo {
 	protected void setIntegerAttribute(Element element) {
 		String key = getKeyAttribute(element);
 		String value = getValueAttribute(element);
-		setAttribute(key, new Integer(value));
+		setAttribute(key, Integer.valueOf(value));
 	}
 	
 	protected void setBooleanAttribute(Element element) {
 		String key = getKeyAttribute(element);
 		String value = getValueAttribute(element);
-		setAttribute(key, new Boolean(value));
+		setAttribute(key, Boolean.valueOf(value));
 	}
 	
 	protected void setListAttribute(Element element) {

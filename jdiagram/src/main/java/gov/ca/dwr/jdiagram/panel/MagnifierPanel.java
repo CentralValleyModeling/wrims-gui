@@ -93,7 +93,7 @@ public class MagnifierPanel extends JPanel {
 			pane.setBorder(BorderFactory.createRaisedBevelBorder());
 		}
 		if (showing) {
-			layeredPane.add(pane, new Integer(1), 0);
+			layeredPane.add(pane, Integer.valueOf(1), 0);
 			layeredPane.moveToFront(pane);
 		} else {
 			layeredPane.remove(pane);

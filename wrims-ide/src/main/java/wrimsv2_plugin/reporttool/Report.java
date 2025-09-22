@@ -206,7 +206,6 @@ public class Report {
 			return;}
 		String baseAPart = basePaths[0].split("/")[1];
 		String baseFPart = basePaths[0].split("/")[6];
-		DSSPathname.setDefaultDPart(basePaths[0].split("/")[4]);
 
 		HecTimeSeries htsAlt = new HecTimeSeries(scalars.get("FILE_ALT"));
 		htsAlt.setRetrieveAllTimes(true);
