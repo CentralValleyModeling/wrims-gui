@@ -1,6 +1,6 @@
 [versions]
 wrims-engine = "3.0.0-alpha.1.2.1-RC-demo"
-guava = "33.4.8-jre"
+guava = "33.5.0-jre"
 commons-io = "2.20.0"
 junit_5 = "5.11.3"
 antlr = "3.5.2"
