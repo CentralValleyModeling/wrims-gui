@@ -2,7 +2,7 @@
 wrims-engine = "3.0.0-alpha.1.2.1-RC-demo"
 guava = "33.4.8-jre"
 commons-io = "2.20.0"
-junit_5 = "5.11.3"
+junit_5 = "5.13.4"
 antlr = "3.5.2"
 itext = "2009.09.21"
 jfreechart = "1.5.6"
