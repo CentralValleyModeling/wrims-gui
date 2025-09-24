@@ -4,6 +4,8 @@ on:
   pull_request:
     types:
       - synchronize
+      - opened
+      - reopened
   push:
     tags:
       - '*'
@@ -35,6 +37,7 @@ jobs:
           ./gradlew build -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
 
       - name: Upload Wrims-IDE jar
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v4.0.0
         with:
           name: wrims-ide
@@ -42,6 +45,7 @@ jobs:
             ./wrims-ide/build/libs/*.jar
 
       - name: Upload third-party jar
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v4.0.0
         with:
           name: third-party
@@ -49,6 +53,7 @@ jobs:
             ./third-party/build/libs/*.jar
 
       - name: Upload dwr-hecdssvue jar
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v4.0.0
         with:
           name: dwr-hecdssvue
@@ -56,6 +61,7 @@ jobs:
             ./dwr-hecdssvue/build/libs/*.jar
 
       - name: Upload jdiagram jar
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v4.0.0
         with:
           name: jdiagram
@@ -63,6 +69,7 @@ jobs:
             ./jdiagram/build/libs/*.jar
 
       - name: Upload xtext-editor jar
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v4.0.0
         with:
           name: xtext-editor
@@ -70,6 +77,7 @@ jobs:
             ./xtext-editor/build/libs/*.jar
 
       - name: Upload xtext-editor-ui jar
+        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v4.0.0
         with:
           name: xtext-editor-ui
