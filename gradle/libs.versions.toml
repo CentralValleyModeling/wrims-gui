@@ -11,6 +11,8 @@ slf4jnop = "2.0.17"
 guice = "7.0.0"
 log4j = "1.2.17"
 mssql_jdbc = "12.10.1.jre11"
+#kryo = "5.6.2"
+kryo = "2.24.0"
 hec-monolith = "6.0.0"
 dssgui = "3.4.18"
 javaHeclib = "7-IU-4-win-x86_64"
@@ -45,6 +47,11 @@ eclipse-emf-edit = "2.23.0"
 eclipse-emf-edit-ui = "2.26.0"
 eclipse-ltk-core-refactoring = "3.15.0"
 
+jaxb-api = "2.3.1"
+jaxb-core = "2.3.0.1"
+jaxb-impl = "2.3.2"
+javax-activation = "1.1.1"
+
 [libraries]
 wrims-core = { module = "gov.ca.dwr:wrims-core", version.ref = "wrims-engine" }
 wrims-engine-bom = { module = "gov.ca.dwr:wrims-engine-bom", version.ref = "wrims-engine" }
@@ -52,6 +59,8 @@ hec-monolith = { module = "mil.army.usace.hec:hec-monolith", version.ref = "hec-
 hec-monolith-bom = { module = "mil.army.usace.hec:hec-monolith-bom", version.ref = "hec-monolith" }
 dssgui = { module = "mil.army.usace.hec:dssgui", version.ref = "dssgui" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
+#kryo = { module = "com.esotericsoftware:kryo", version.ref = "kryo" }
+kryo = { module = "com.esotericsoftware.kryo:kryo", version.ref = "kryo" }
 junit-5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit_5" }
 junit-5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit_5" }
 junit-5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit_5" }
@@ -110,6 +119,11 @@ eclipse-emf-edit = { module = "org.eclipse.emf:org.eclipse.emf.edit", version.re
 eclipse-emf-edit-ui = { module = "org.eclipse:org.eclipse.emf.edit.ui", version.ref = "eclipse-emf-edit-ui" }
 eclipse-xtext-ui = { module = "org.eclipse.xtext:org.eclipse.xtext.ui", version.ref = "eclipse-xtext-ui" }
 eclipse-ltk-core-refactoring = { module = "org.eclipse.platform:org.eclipse.ltk.core.refactoring", version.ref = "eclipse-ltk-core-refactoring" }
+
+jaxb-api = { module = 'javax.xml.bind:jaxb-api', version.ref = "jaxb-api" }
+jaxb-core = { module = 'com.sun.xml.bind:jaxb-core', version.ref = "jaxb-core" }
+jaxb-impl = { module = 'com.sun.xml.bind:jaxb-impl', version.ref = "jaxb-impl" }
+javax-activation = { module = 'javax.activation:activation', version.ref = "javax-activation" }
 
 [bundles]
 junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params" ]

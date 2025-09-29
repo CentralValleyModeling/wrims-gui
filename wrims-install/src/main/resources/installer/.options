@@ -1,0 +1,3 @@
+org.eclipse.equinox.p2.core/debug=true
+org.eclipse.equinox.p2.core/reconciler=true
+org.eclipse.equinox.simpleconfigurator.manipulator/debug=true

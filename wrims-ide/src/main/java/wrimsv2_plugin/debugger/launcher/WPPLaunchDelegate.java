@@ -36,6 +36,7 @@ import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
 
+import wrimsv2_plugin.batchrun.EclipseUtil;
 import wrimsv2_plugin.calsimhydro.CalSimHydro;
 import wrimsv2_plugin.debugger.core.CBCSetting;
 import wrimsv2_plugin.debugger.core.DebugCorePlugin;
@@ -541,7 +542,8 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		out.println("@echo off");
 		out.println();
 		out.println("set path=" + externalPath + ";"+"lib;%path%");
-		out.println("set temp_wrims2=jre\\bin");
+        String tempWrims2 = "set temp_wrims2="+ EclipseUtil.getJreRelativePath()+"\\bin";
+		out.println(tempWrims2);
 		out.println("set TF_CPP_MIN_LOG_LEVEL=2");
 		out.println();
 		/*
@@ -550,17 +552,18 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 			xmx="4096m";
 		}
 		*/
+        String javaPath = EclipseUtil.getJreRelativePath()+"\\bin\\java";
 		if (compileOnly.equalsIgnoreCase("no")){
 			if (mode.equals("debug")){
-				out.println("jre\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.DebugInterface "+requestPort+" "+eventPort+" "+"-config="+configFilePath);
+				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.DebugInterface "+requestPort+" "+eventPort+" "+"-config="+configFilePath);
 			}else{
-				out.println("jre\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-config="+configFilePath);
+				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-config="+configFilePath);
 			}
 		}else{
 			if (wreslPlus.equalsIgnoreCase("no")){
-				out.println("jre\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-mainwresl="+mainFileAbsPath);
+				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-mainwresl="+mainFileAbsPath);
 			}else{
-				out.println("jre\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-mainwreslplus="+mainFileAbsPath);
+				out.println(javaPath + " -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-mainwreslplus="+mainFileAbsPath);
 			}
 		}
 		out.close();
