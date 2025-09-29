@@ -1,0 +1,8 @@
+cbcTolerancePrimal: 1e-9
+cbcTolerancePrimalRelax: 1e-7
+cbcToleranceWarmPrimal: 1e-9
+cbcToleranceInteger: 1e-9
+cbcToleranceIntegerCheck: 1e-8
+cbcToleranceZero: 1e-11
+cbcHintRelaxPenalty:9000
+cbcHintTimeMax:100
