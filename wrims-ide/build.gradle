@@ -1,6 +1,7 @@
 plugins{
     id 'library.deps-conventions'
     id 'library.java-conventions'
+    id 'library.jdeps-conventions'
 
     // The following plugin is used to build the OSGI bundle
     id 'biz.aQute.bnd.builder' version '6.4.0'
@@ -8,13 +9,15 @@ plugins{
 
 configurations {
     windows_x64
+    wrimsCore
+    api.extendsFrom(wrimsCore)
 }
 
 def osgiPlatform = 'win32.win32.x86_64'
 
 dependencies {
     api platform(libs.wrims.engine.bom)
-    api libs.wrims.core
+    wrimsCore libs.wrims.core
 
     implementation libs.eclipse.core.runtime
     implementation libs.eclipse.debug.core
@@ -32,35 +35,17 @@ dependencies {
     testImplementation(libs.bundles.junit5)
 }
 
-tasks.register('prepareWrimsCoreJar', Copy) {
-    dependsOn configurations.runtimeClasspath
-    from({
-        // Locate the wrims-core jar from the resolved runtime classpath
-        def files = configurations.runtimeClasspath.resolve()
-        def core = files.find { it.name.startsWith('wrims-core-') && it.name.endsWith('.jar') }
-        if (core == null) {
-            throw new GradleException("wrims-core jar not found on runtimeClasspath")
-        }
-        core
-    })
-    into layout.buildDirectory.dir('tmp/wrims-core')
-    rename { String fileName -> 'wrims-core.jar' }
-}
-
-jar {
-    dependsOn tasks.named('prepareWrimsCoreJar')
-    bundle {
-        // Ensure classpath is ready before bundling
-        dependsOn(configurations.runtimeClasspath)
-    }
-}
-
 configurations.configureEach {
     exclude group: "javax.media", module: "jai_core"
     exclude group: "javax.media", module: "jai_codec"
     exclude group: "com.sun.media", module: "jai_imageio"
 }
 
+tasks.register('copyWrimsCore', Copy) {
+    from({configurations.wrimsCore.copy().setTransitive(false)})
+    into layout.buildDirectory.dir('tmp/wrims-core')
+    rename { String fileName -> 'wrims-core.jar' }
+}
 
 //task to download native libraries (dlls)
 tasks.register('getNatives', Sync) { syncTask ->
@@ -72,4 +57,13 @@ test {
     useJUnitPlatform()
     dependsOn(getNatives)
     systemProperty "java.library.path", "${layout.buildDirectory.asFile.get()}/lib"
+}
+
+jar {
+    dependsOn tasks.named('copyWrimsCore')
+
+    bundle {
+        // Ensure classpath is ready before bundling
+        dependsOn(configurations.runtimeClasspath)
+    }
 }

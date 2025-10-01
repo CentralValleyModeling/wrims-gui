@@ -392,7 +392,7 @@ public class DebugCorePlugin extends AbstractUIPlugin {
                 return new File(localURL.getFile());
             }
         } catch (IOException ioe) {
-            // Handle exception or return null
+            //return null;
         }
         return null;
     }
