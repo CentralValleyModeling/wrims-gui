@@ -38,7 +38,7 @@ jobs:
           cache: 'gradle'
       - name: Build with Gradle
         run: |
-          ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="$WRIMS_ENGINE_DEPENDENCIES_TOKEN}"
+          ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="$WRIMS_ENGINE_DEPENDENCIES_TOKEN"
           ./gradlew build -x test -PcvmUserId="dwr-wrims-build" -PcvmPassword="$WRIMS_ENGINE_DEPENDENCIES_TOKEN"
       - name: Analyze
         env:
