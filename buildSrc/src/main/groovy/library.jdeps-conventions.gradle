@@ -1,0 +1,65 @@
+project.tasks.register('jdepsReport', Exec) { t ->
+    group = 'verification'
+    description = "Runs jdeps to analyze Java 21 compatibility for ${project.name}."
+
+    // Ensure classes are built and classpath is resolved
+    dependsOn project.configurations.runtimeClasspath
+    dependsOn 'classes'
+    // Build a jar if available (used as a fallback target)
+    if (project.tasks.findByName('jar') != null) {
+        dependsOn 'jar'
+    }
+
+    def reportsDir = project.layout.buildDirectory.dir('reports/jdeps')
+    def tmpDir = project.layout.buildDirectory.dir('tmp/jdeps')
+
+    // Use the resolved runtime classpath
+    def classpathFiles = { project.configurations.runtimeClasspath.resolve() } // lazy
+    def cpSeparator = File.pathSeparator
+    def classpathArg = { classpathFiles().collect { it.absolutePath }.join(cpSeparator) }
+
+    // Targets: analyze the compiled classes directories (keeps command short)
+    def mainClassesDirs = {
+        def ss = project.extensions.findByName('sourceSets')
+        def main = ss ? ss.findByName('main') : null
+        def dirs = main ? (main.output?.classesDirs?.files ?: []) : []
+        return dirs as List
+    }
+
+    // Configure the command just-in-time to have resolved files
+    doFirst {
+        // Ensure the reports and tmp directories exist
+        reportsDir.get().asFile.mkdirs()
+        tmpDir.get().asFile.mkdirs()
+
+        // Determine targets (compiled classes dirs or jar fallback)
+        def targets = mainClassesDirs()
+        if (!targets || targets.isEmpty()) {
+            def jarTask = project.tasks.findByName('jar')
+            def jarFile = jarTask && jarTask.hasProperty('archiveFile') ? jarTask.archiveFile.get().asFile : null
+            if (jarFile != null) {
+                targets = [jarFile]
+            }
+        }
+
+        // Provide runtime classpath via environment to keep command line short and avoid @args warnings
+        def cpValue = classpathArg()
+        if (cpValue?.trim()) {
+            environment 'CLASSPATH', cpValue
+        }
+
+        // Set working directory (for consistency across environments)
+        workingDir project.projectDir
+
+        // Build a short jdeps command without @args; rely on CLASSPATH for dependency resolution
+        def cmd = ['jdeps', '--multi-release', '21', '--ignore-missing-deps', '-summary']
+        cmd.addAll(targets.collect { it.absolutePath })
+        commandLine cmd
+
+        // redirect output to files
+        standardOutput = new FileOutputStream(new File(reportsDir.get().asFile, 'jdeps-summary.txt'))
+        errorOutput = new FileOutputStream(new File(reportsDir.get().asFile, 'jdeps-summary.err'))
+        // do not fail the build if jdeps returns non-zero; we want the report even if issues are found
+        ignoreExitValue = true
+    }
+}

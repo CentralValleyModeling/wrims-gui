@@ -3488,7 +3488,7 @@ public class MonthlyTable extends JTable
 	 *  set the cell editor for all the columns to be a RMADecimalField specifying
 	 *  whether to show commas.
 	 *
-	 *@param  showFormatting  The Double.valueOfCellEditor value
+	 *@param  showFormatting  The new DoubleCellEditor value
 	 */
 	public void setDoubleCellEditor(boolean showFormatting)
 	{
@@ -3502,8 +3502,8 @@ public class MonthlyTable extends JTable
 	/**
 	 *  set the cell editor from beginCol to EndCol to be a RMADecimalField
 	 *
-	 *@param  beginCol  The Double.valueOfCellEditor value
-	 *@param  endCol    The Double.valueOfCellEditor value
+     *@param  beginCol  The new DoubleCellEditor value
+     *@param  endCol    The new DoubleCellEditor value
 	 */
 	public void setDoubleCellEditor(int beginCol, int endCol)
 	{
@@ -3514,9 +3514,9 @@ public class MonthlyTable extends JTable
 	 *  set the double cell editor from beginCol to endCol to be a RMADecimalField
 	 *  if showFormatting is true then show with embedded commas.
 	 *
-	 *@param  beginCol        The Double.valueOfCellEditor value
-	 *@param  endCol          The Double.valueOfCellEditor value
-	 *@param  showFormatting  The Double.valueOfCellEditor value
+     *@param  beginCol        The new DoubleCellEditor value
+     *@param  endCol          The new DoubleCellEditor value
+     *@param  showFormatting  The new DoubleCellEditor value
 	 */
 	public void setDoubleCellEditor(int beginCol, int endCol, boolean showFormatting)
 	{
@@ -3531,7 +3531,7 @@ public class MonthlyTable extends JTable
 	/**
 	 *  set a cell editor for column col to be a RMADecimalField
 	 *
-	 *@param  col  The Double.valueOfCellEditor value
+     *@param  col  The new DoubleCellEditor value
 	 *@return      Description
 	 */
 	public RmaJDecimalField setDoubleCellEditor(int col)
@@ -3542,8 +3542,8 @@ public class MonthlyTable extends JTable
 	/**
 	 *  set a cell editor for column col to be a RMADecimalField
 	 *
-	 *@param  col             The Double.valueOfCellEditor value
-	 *@param  showFormatting  The Double.valueOfCellEditor value
+     *@param  col             The new DoubleCellEditor value
+     *@param  showFormatting  The new DoubleCellEditor value
 	 *@return                 Description
 	 */
 	public RmaJDecimalField setDoubleCellEditor(int col, boolean showFormatting)

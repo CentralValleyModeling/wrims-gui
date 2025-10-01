@@ -9,7 +9,7 @@ configurations{
 }
 
 dependencies {
-    windows_x64 "gov.ca.dwr:run-libs:+"
+    windows_x64 "gov.ca.dwr:run-libs:0.1.0"
     implementation libs.wrims.core
 }
 
@@ -104,7 +104,7 @@ tasks.register('cleanLibFolder', Delete) {
 //task to download native libraries (dlls)
 tasks.register('getNatives', Sync) { syncTask ->
     dependsOn cleanLibFolder
-    syncTask.from configurations.windows_x64.collect { zipTree(it) }
+    syncTask.from {configurations.windows_x64.collect { zipTree(it) }}
     syncTask.into file("${buildDir}/installer/${wrimsGuiFolder}/lib")
 }
 
@@ -230,7 +230,7 @@ tasks.register('copyJarsToPatchDropins', Copy) {
 //task to download native libraries (dlls)
 tasks.register('getNativesForPatch', Sync) { syncTask ->
     dependsOn copyJarsToPatchDropins
-    syncTask.from configurations.windows_x64.collect { zipTree(it) }
+    syncTask.from {configurations.windows_x64.collect { zipTree(it) }}
     syncTask.into file("${buildDir}/patch/${wrimsPatchFolder}/lib")
 }
 

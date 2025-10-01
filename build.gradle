@@ -19,8 +19,7 @@ def versionLabel(gitInfo) {
     def branch = gitInfo.branchName // all branches are snapshots, only tags get released
     def tag = gitInfo.lastTag
     // tag is returned as is. Branch may need cleanup
-//    return branch == null ? tag : gitInfo.lastTag + ".9999"
-    return "3.0.9999"
+    return branch == null ? tag : gitInfo.lastTag + ".9999"
 }
 
 sonar {
@@ -36,75 +35,4 @@ sonar {
 allprojects {
     group = 'gov.ca.dwr'
     version = versionLabel(versionDetails())
-}
-
-subprojects {
-    plugins.withType(JavaPlugin) {
-        configurations {
-            tattletale
-        }
-
-        dependencies {
-            tattletale libs.tattletale
-        }
-
-        tasks.register('copyDependencies', Copy) {
-            from(configurations.runtimeClasspath) {
-                exclude '**/org.eclipse*.jar'
-            }
-            into 'build/tmp/libs'
-            duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        }
-
-        tasks.register('tattletaleReport', JavaExec) {
-            dependsOn copyDependencies
-            group = 'verification'
-            description = "Generates a JBoss Tattletale report for ${project.name}."
-            classpath = configurations.tattletale
-            mainClass = 'org.jboss.tattletale.Main'
-
-            args = [
-                    "${layout.buildDirectory.asFile.get()}/tmp/libs#${layout.buildDirectory.asFile.get()}/libs",
-                    "${layout.buildDirectory.asFile.get()}/reports/tattletale"
-            ]
-        }
-
-        // Java 21 compatibility analysis using jdeps
-        tasks.register('jdepsReport', Exec) { t ->
-            group = 'verification'
-            description = "Runs jdeps to analyze Java 21 compatibility for ${project.name}."
-
-            // Ensure classpath is resolved and jars are copied
-            dependsOn configurations.runtimeClasspath
-
-            def reportsDir = layout.buildDirectory.dir('reports/jdeps')
-            doFirst {
-                reportsDir.get().asFile.mkdirs()
-            }
-
-            // Use the resolved runtime classpath
-            def classpathFiles = { configurations.runtimeClasspath.resolve() } // lazy
-            def cpSeparator = File.pathSeparator
-            def classpathArg = { classpathFiles().collect { it.absolutePath }.join(cpSeparator) }
-            def targets = { classpathFiles().collect { it.absolutePath } }
-
-            // Configure the command just-in-time to have resolved files
-            doFirst {
-                commandLine 'jdeps', '--multi-release', '21', '--jdk-internals', '--ignore-missing-deps', '--class-path', classpathArg(), '--summary'
-                args targets()
-                // redirect output to files
-                standardOutput = new FileOutputStream(new File(reportsDir.get().asFile, 'jdeps-summary.txt'))
-                errorOutput = new FileOutputStream(new File(reportsDir.get().asFile, 'jdeps-summary.err'))
-                // do not fail the build if jdeps returns non-zero; we want the report even if issues are found
-                ignoreExitValue = true
-            }
-        }
-    }
-}
-
-// Aggregate Java 21 compatibility report across all Java subprojects
-tasks.register('java21CompatibilityReport') {
-    group = 'verification'
-    description = 'Runs jdeps-based Java 21 compatibility analysis for all Java subprojects.'
-    dependsOn subprojects.collect { prj -> prj.tasks.matching { it.name == 'jdepsReport' } }
 }
