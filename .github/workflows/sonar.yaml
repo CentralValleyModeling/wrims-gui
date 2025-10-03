@@ -40,7 +40,8 @@ jobs:
         run: |
           ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ env.WRIMS_ENGINE_DEPENDENCIES }}"
           ./gradlew build -x test -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ env.WRIMS_ENGINE_DEPENDENCIES }}"
-      - name: Analyze
+      - name: Analyze Workflow Run
+        if: github.event_name == 'workflow_run'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -53,7 +54,19 @@ jobs:
                   -PcvmUserId="dwr-wrims-build" `
                   -PcvmPassword="${{ env.WRIMS_ENGINE_DEPENDENCIES }}" `
                   --info `
-                  "-Dsonar.scm.revision=${{ env.REVISION}}" `
-                  "-Dsonar.pullrequest.key=${{ env.REQUEST_NUM }}" `
-                  "-Dsonar.pullrequest.branch=${{ env.REQUEST_BRANCH }}" `
-                  "-Dsonar.pullrequest.base=${{ env.BASE_BRANCH }}"
+                  "-Dsonar.scm.revision=$REVISION" `
+                  "-Dsonar.pullrequest.key=$REQUEST_NUM" `
+                  "-Dsonar.pullrequest.branch=$REQUEST_BRANCH" `
+                  "-Dsonar.pullrequest.base=$BASE_BRANCH"
+      - name: Analyze Push to Main
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          REVISION: ${{ github.event.push.head_sha }}
+        run: |
+          ./gradlew sonar `
+                  -PcvmUserId="dwr-wrims-build" `
+                  -PcvmPassword="${{ env.WRIMS_ENGINE_DEPENDENCIES }}" `
+                  --info `
+                  "-Dsonar.scm.revision=$REVISION" `
