@@ -59,7 +59,7 @@ import java.lang.Runtime;
 
 
 public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
-	private String mainFileAbsPath;
+    private String mainFileAbsPath;
 	private String externalPath;
 	private String gwDataFolder;
 	private String mainFile;
@@ -181,14 +181,14 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		try {
 			if (mode.equals("debug")){
 				DebugCorePlugin.debugSet.reset();
-				Process process = Runtime.getRuntime().exec("WRIMSv2_Engine.bat");
+				Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
 				IProcess p = DebugPlugin.newProcess(launch, process, "DebugWPP");
 				IDebugTarget target = new WPPDebugTarget(launch, p, requestPort, eventPort);
 				launch.addDebugTarget(target);
 				process.waitFor();
 				terminateCode=process.exitValue();
 			}else{
-				Process process = Runtime.getRuntime().exec("WRIMSv2_Engine.bat");
+				Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
 				IProcess p = DebugPlugin.newProcess(launch, process, "RunWPP");
 				process.waitFor();
 				terminateCode=process.exitValue();
@@ -229,7 +229,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 			try {
 				if (mode.equals("debug")){
 					DebugCorePlugin.debugSet.reset();
-					Process process = Runtime.getRuntime().exec("WRIMSv2_Engine.bat");
+					Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
 					IProcess p = DebugPlugin.newProcess(launch, process, "DebugWPP");
 					IDebugTarget target = new WPPDebugTarget(launch, p, requestPort, eventPort);
 					launch.addDebugTarget(target);
@@ -238,7 +238,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 					launch.removeDebugTarget(target);
 					process.destroy();
 				}else{
-					Process process = Runtime.getRuntime().exec("WRIMSv2_Engine.bat");
+					Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
 					IProcess p = DebugPlugin.newProcess(launch, process, "RunWPP");
 					process.waitFor();
 					terminateCode=process.exitValue();
@@ -520,7 +520,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 			String mainDirectory = mainFileAbsPath.substring(0, index + 1);
 			externalPath = mainDirectory + "External";
 			
-			String engineFileFullPath = "WRIMSv2_Engine.bat";
+			String engineFileFullPath = WPPSettings.WRIMS_ENGINE_BAT;
 			try {
 				String configFilePath = generateConfigFile(configuration, mainFileAbsPath);
 				FileWriter engineFile = new FileWriter(engineFileFullPath);
@@ -553,9 +553,10 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		}
 		*/
         String javaPath = EclipseUtil.getJreRelativePath()+"\\bin\\java";
+        String remoteDebugSettings = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006";
 		if (compileOnly.equalsIgnoreCase("no")){
 			if (mode.equals("debug")){
-				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.DebugInterface "+requestPort+" "+eventPort+" "+"-config="+configFilePath);
+				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K " + remoteDebugSettings +" -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.DebugInterface "+requestPort+" "+eventPort+" "+"-config="+configFilePath);
 			}else{
 				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-config="+configFilePath);
 			}
