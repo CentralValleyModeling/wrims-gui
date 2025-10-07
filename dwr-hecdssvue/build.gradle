@@ -6,19 +6,22 @@ plugins{
     id 'biz.aQute.bnd.builder' version '6.4.0'
 }
 
-configurations {
-    eclipseLibs
-    implementation.extendsFrom(eclipseLibs)
-}
-
 dependencies {
 
     //module dependencies
     implementation project(':third-party')
     implementation project(':wrims-ide')
 
-    //eclipse libs:
-    implementation fileTree(dir: '../eclipse-luna-libs', include: ['*.jar'])
-    //NOTE: These jars will get refactored into a github package zip. Tracking under issue: https://github.com/CentralValleyModeling/wrims/issues/148
+    implementation(libs.eclipse.swt) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+    implementation(libs.eclipse.ui) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+    implementation(libs.eclipse.jface) {
+        exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
+    }
+    implementation libs.eclipse.osgi
+    implementation libs.eclipse.core.resources
 }
 

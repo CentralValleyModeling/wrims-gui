@@ -12,10 +12,7 @@
 package wrimsv2_plugin.debugger.core;
 
 import org.eclipse.core.internal.resources.PreferenceInitializer;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.*;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.IValue;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -387,16 +384,18 @@ public class DebugCorePlugin extends AbstractUIPlugin {
 	 * Return a <code>java.io.File</code> object that corresponds to the specified
 	 * <code>IPath</code> in the plugin directory, or <code>null</code> if none.
 	 */
-	public static File getFileInPlugin(IPath path) {
-		try {
-			URL installURL =
-				new URL(getDefault().getDescriptor().getInstallURL(), path.toString());
-			URL localURL = Platform.asLocalURL(installURL);
-			return new File(localURL.getFile());
-		} catch (IOException ioe) {
-			return null;
-		}
-	}	
+    public static File getFileInPlugin(IPath path) {
+        try {
+            URL installURL = FileLocator.find(getDefault().getBundle(), path, null);
+            if (installURL != null) {
+                URL localURL = FileLocator.toFileURL(installURL);
+                return new File(localURL.getFile());
+            }
+        } catch (IOException ioe) {
+            //return null;
+        }
+        return null;
+    }
 	
 	public static ImageDescriptor getImageDescriptor(String name) {
 		/*

@@ -14,6 +14,7 @@ import javax.swing.JRootPane;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobFunction;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -68,7 +69,7 @@ public abstract class AbstractDSSView extends ViewPart {
 			while (dataReadJob != null && dataReadJob.getState() == Job.RUNNING) {
 				dataReadJob.cancel();
 			}
-			dataReadJob = Job.create("Reading DSS Data", monitor -> readDssValues( part, selection, monitor));
+            dataReadJob = Job.create("Reading DSS Data", (IJobFunction) monitor -> readDssValues(part, selection, monitor));
 			dataReadJob.setUser(true);
 			dataReadJob.schedule();
 		}

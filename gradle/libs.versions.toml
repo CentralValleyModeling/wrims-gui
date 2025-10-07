@@ -1,6 +1,5 @@
 [versions]
 wrims-engine = "3.0.0-alpha.1.2.1-RC-demo"
-guava = "33.4.8-jre"
 commons-io = "2.20.0"
 junit_5 = "5.11.3"
 antlr = "3.5.2"
@@ -11,28 +10,40 @@ osgi_compendium = "5.0.0"
 slf4jnop = "2.0.17"
 guice = "7.0.0"
 log4j = "1.2.17"
-tattletale = "1.2.0.Beta2"
 mssql_jdbc = "12.10.1.jre11"
-kryo = "5.6.2"
 hec-monolith = "6.0.0"
 dssgui = "3.4.18"
 javaHeclib = "7-IU-4-win-x86_64"
 antlr-generator = "3.2.1"
 coinor = "2021.12.17"
-linearsolver = "2013-01-10"
 dsm2-input-model = "2010.03.15"
 jpy = "2010.01.17"
 jpython = "1998.10.30"
 mssql-jdbc = "13.2.0.jre11"
 swixml = "2007.03.28"
 jdiagram = "4.3.1"
-calsurrogate = "2023.12.25"
-xaoptimizer = "2016.11.04"
-gurobi = "5.0"
 hdf = "2.10.0"
 hdf5 = "2.10.0"
 x64-dll = "2.2.0"
 vista = "2014.05.20"
+eclipse-core = "3.33.100"
+eclipse-swt = "3.130.0"
+eclipse-compare = "3.11.400"
+eclipse-debug-core = "3.23.0"
+eclipse-debug-ui = "3.18.800"
+eclipse-datatools-connectivity = "1.15.0"
+eclipse-ui = "3.207.200"
+eclipse-jface = "3.37.0"
+eclipse-jface-text = "3.28.0"
+eclipse-osgi = "3.23.100"
+eclipse-core-resources = "3.22.200"
+eclipse-ui-views = "3.12.600"
+eclipse-search = "3.17.200"
+eclipse-xtext = "2.39.0"
+eclipse-xtext-ui = "2.10.0"
+eclipse-emf-edit = "2.23.0"
+eclipse-emf-edit-ui = "2.26.0"
+eclipse-ltk-core-refactoring = "3.15.0"
 
 [libraries]
 wrims-core = { module = "gov.ca.dwr:wrims-core", version.ref = "wrims-engine" }
@@ -40,9 +51,7 @@ wrims-engine-bom = { module = "gov.ca.dwr:wrims-engine-bom", version.ref = "wrim
 hec-monolith = { module = "mil.army.usace.hec:hec-monolith", version.ref = "hec-monolith" }
 hec-monolith-bom = { module = "mil.army.usace.hec:hec-monolith-bom", version.ref = "hec-monolith" }
 dssgui = { module = "mil.army.usace.hec:dssgui", version.ref = "dssgui" }
-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
-kryo = { module = "com.esotericsoftware:kryo", version.ref = "kryo" }
 junit-5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit_5" }
 junit-5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit_5" }
 junit-5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit_5" }
@@ -54,12 +63,10 @@ osgi-compendium = { module = "org.osgi:org.osgi.compendium", version.ref = "osgi
 slf4jnop = { module = "org.slf4j:slf4j-nop", version.ref = "slf4jnop" }
 guice = { module = "com.google.inject:guice", version.ref = "guice" }
 log4j = { module = "log4j:log4j", version.ref = "log4j" }
-tattletale = { module = "org.jboss.tattletale:tattletale", version.ref = "tattletale"}
 mssql-jdbc = { module = "com.microsoft.sqlserver:mssql-jdbc", version.ref = "mssql_jdbc" }
 javaHeclib = { module = "mil.army.usace.hec:javaHeclib", version.ref = "javaHeclib" }
 itext = { module = "com.lowagie:itext", version.ref = "itext" }
 antlr-generator = { module = "org.xtext:antlr-generator", version.ref = "antlr-generator" }
-linearsolver = { module = "com.google.ortools:linearsolver", version.ref = "linearsolver" }
 
 coinor = { module = "org.coinor:coinor", version.ref = "coinor" }
 dsm2-input-model = { module = "gov.ca.dsm2:dsm2-input-model", version.ref = "dsm2-input-model" }
@@ -67,9 +74,6 @@ jpy = { module = "org.jpy:jpy", version.ref = "jpy" }
 jpython = { module = "org.jpython:jpython", version.ref = "jpython" }
 swixml = { module = "org.swixml:swixml", version.ref = "swixml" }
 jdiagram = { module = "com.mindfusion:jdiagram", version.ref = "jdiagram" }
-calsurrogate = { module = "gov.ca.dwr.deltamodeling:calsurrogate", version.ref = "calsurrogate" }
-xaoptimizer = { module = "com.sunsetsoft.xa:xaoptimizer", version.ref = "xaoptimizer" }
-gurobi = { module = "gurobi:gurobi", version.ref = "gurobi" }
 jarh5obj = { module = "ncsa.hdf:jarh5obj", version.ref = "hdf5" }
 jarhdf5 = { module = "ncsa.hdf:jarhdf5", version.ref = "hdf5" }
 jarhdfobj = { module = "ncsa.hdf:jarhdfobj", version.ref = "hdf" }
@@ -80,6 +84,32 @@ cb-dll = { module = "dwr.win.x64:cb", version.ref = "x64-dll" }
 jep-dll = { module = "dwr.win.x64:jep", version.ref = "x64-dll" }
 jhdf-dll = { module = "dwr.win.x64:jhdf", version.ref = "x64-dll" }
 jhdf5-dll = { module = "dwr.win.x64:jhdf5", version.ref = "x64-dll" }
+
+eclipse-core-runtime = { module = "org.eclipse.platform:org.eclipse.core.runtime", version.ref = "eclipse-core" }
+eclipse-swt = { module = "org.eclipse.platform:org.eclipse.swt.win32.win32.x86_64", version.ref = "eclipse-swt"}
+eclipse-compare = { module = "org.eclipse.platform:org.eclipse.compare", version.ref = "eclipse-compare" }
+eclipse-ui = { module = "org.eclipse.platform:org.eclipse.ui", version.ref = "eclipse-ui" }
+eclipse-jface = { module = "org.eclipse.platform:org.eclipse.jface", version.ref = "eclipse-jface" }
+eclipse-jface-text = { module = "org.eclipse.platform:org.eclipse.jface.text", version.ref = "eclipse-jface-text" }
+eclipse-debug-core = { module = "org.eclipse.platform:org.eclipse.debug.core", version.ref = "eclipse-debug-core" }
+eclipse-debug-ui = { module = "org.eclipse.platform:org.eclipse.debug.ui", version.ref = "eclipse-debug-ui" }
+eclipse-datatools-connectivity = { module = "org.eclipse.birt.dependencies:org.eclipse.datatools.connectivity", version.ref = "eclipse-datatools-connectivity" }
+eclipse-osgi = { module = "org.eclipse.platform:org.eclipse.osgi", version.ref = "eclipse-osgi" }
+eclipse-core-resources = { module = "org.eclipse.platform:org.eclipse.core.resources", version.ref = "eclipse-core-resources" }
+eclipse-ui-views = { module = "org.eclipse.platform:org.eclipse.ui.views", version.ref = "eclipse-ui-views" }
+eclipse-search = { module = "org.eclipse.platform:org.eclipse.search", version.ref = "eclipse-search" }
+eclipse-xtext = { module = "org.eclipse.xtext:org.eclipse.xtext", version.ref = "eclipse-xtext" }
+eclipse-xtext-ui-shared = { module = "org.eclipse.xtext:org.eclipse.xtext.ui.shared", version.ref = "eclipse-xtext" }
+eclipse-xtext-ui-codetemplates = { module = "org.eclipse.xtext:org.eclipse.xtext.ui.codetemplates", version.ref = "eclipse-xtext" }
+eclipse-xtext-ui-codetemplates-ui = { module = "org.eclipse.xtext:org.eclipse.xtext.ui.codetemplates.ui", version.ref = "eclipse-xtext" }
+eclipse-xtext-common-types = { module = "org.eclipse.xtext:org.eclipse.xtext.common.types", version.ref = "eclipse-xtext" }
+eclipse-xtext-common-types-ui = { module = "org.eclipse.xtext:org.eclipse.xtext.common.types.ui", version.ref = "eclipse-xtext" }
+eclipse-xtext-builder = { module = "org.eclipse.xtext:org.eclipse.xtext.builder", version.ref = "eclipse-xtext" }
+eclipse-emf-ecore = { module = "org.eclipse.emf:org.eclipse.emf.ecore", version.ref = "eclipse-xtext" }
+eclipse-emf-edit = { module = "org.eclipse.emf:org.eclipse.emf.edit", version.ref = "eclipse-emf-edit" }
+eclipse-emf-edit-ui = { module = "org.eclipse:org.eclipse.emf.edit.ui", version.ref = "eclipse-emf-edit-ui" }
+eclipse-xtext-ui = { module = "org.eclipse.xtext:org.eclipse.xtext.ui", version.ref = "eclipse-xtext-ui" }
+eclipse-ltk-core-refactoring = { module = "org.eclipse.platform:org.eclipse.ltk.core.refactoring", version.ref = "eclipse-ltk-core-refactoring" }
 
 [bundles]
 junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params" ]
