@@ -29,9 +29,9 @@ jobs:
           PKG_USERNAME: ${{ github.actor }}
           PKG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew clean
-          ./gradlew build
-          ./gradlew :wrims-install:zipWrimsGui          
+          ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
+          ./gradlew build -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
+          ./gradlew :wrims-install:zipWrimsGui -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"  
 
       - name: Attach WRIMS Installer zip to github deployment
         run: |
