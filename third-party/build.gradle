@@ -13,6 +13,7 @@ configurations {
 }
 
 dependencies {
+    api platform(libs.wrims.engine.bom)
     api libs.antlr
     api libs.antlr.runtime
     api libs.commons.io
@@ -22,24 +23,18 @@ dependencies {
     api libs.slf4jnop
     api libs.hec.monolith
     api libs.dssgui
-    api libs.kryo
     api libs.guice
     api libs.log4j
-    api libs.guava
     api libs.mssql.jdbc
     api libs.itext
     api libs.antlr.generator
     api libs.coinor
-    api libs.linearsolver
     api libs.dsm2.input.model
     api libs.jpy
     api libs.jpython
     api libs.mssql.jdbc
     api libs.swixml
     api libs.jdiagram
-    api libs.calsurrogate
-    api libs.xaoptimizer
-    api libs.gurobi
 
     //flagged for removal
     api libs.vista
@@ -99,6 +94,13 @@ tasks.register('copyHeclib', Sync) { syncTask ->
         configurations.hecdll.collect { zipTree(it) }
     }
     into file("build/tmp/dll/heclib")
+}
+
+tasks.register('copyDependencies', Copy) {
+    from(configurations.runtimeClasspath) {
+        exclude '**/org.eclipse*.jar'
+    }
+    into 'build/tmp/libs'
 }
 
 tasks.register('prepareBndFile') {

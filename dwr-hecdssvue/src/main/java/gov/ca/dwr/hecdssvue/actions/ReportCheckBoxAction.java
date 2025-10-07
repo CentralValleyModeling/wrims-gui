@@ -16,21 +16,8 @@ import hec.io.TimeSeriesContainer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Vector;
 
 import javax.swing.JCheckBox;
-
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
-
-import wrimsv2_plugin.debugger.core.DebugCorePlugin;
-import wrimsv2_plugin.debugger.exception.WPPException;
-import wrimsv2_plugin.debugger.model.WPPValue;
-import wrimsv2_plugin.debugger.view.WPPGoalView;
-import wrimsv2_plugin.tools.DataProcess;
 
 public class ReportCheckBoxAction implements ActionListener {
 
