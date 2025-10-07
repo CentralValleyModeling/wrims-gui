@@ -194,7 +194,7 @@ public class WPPWsiDiTab extends AbstractLaunchConfigurationTab {
 	}
 	
 	public void wsidigenerator(){
-		String engineFileFullPath = "WRIMSv2_Engine.bat";
+		String engineFileFullPath = WPPSettings.WRIMS_ENGINE_BAT;
 		try {
 			String configFilePath = generateWsiDiConfigFile();
 			FileWriter engineFile = new FileWriter(engineFileFullPath);
