@@ -39,14 +39,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Attach WRIMS Patch zip to github deployment
-        run: |
-          gh release upload ${{ github.event.release.tag_name }} wrims-install/build/patch/wrims_patch_v2.2.0_basis.zip --repo ${{ github.repository }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Attach WRIMS Patch release date to github deployment
-        run: |
-          gh release upload ${{ github.event.release.tag_name }} wrims-install/build/patch/releasedate_v2.2.0_basis.log --repo ${{ github.repository }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Attach WRIMS Patch zip to github deployment
+#        run: |
+#          gh release upload ${{ github.event.release.tag_name }} wrims-install/build/patch/wrims_patch_v2.2.0_basis.zip --repo ${{ github.repository }}
+#        env:
+#          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#
+#      - name: Attach WRIMS Patch release date to github deployment
+#        run: |
+#          gh release upload ${{ github.event.release.tag_name }} wrims-install/build/patch/releasedate_v2.2.0_basis.log --repo ${{ github.repository }}
+#        env:
+#          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
