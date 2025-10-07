@@ -35,6 +35,12 @@ dependencies {
     api libs.mssql.jdbc
     api libs.swixml
     api libs.jdiagram
+    api libs.kryo
+    api libs.guava
+    api libs.linearsolver
+    api libs.calsurrogate
+    api libs.xaoptimizer
+    api libs.gurobi
 
     //added for jdiagram support, these used to be included in java 8
     api libs.jaxb.api
