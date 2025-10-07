@@ -11,7 +11,6 @@ slf4jnop = "2.0.17"
 guice = "7.0.0"
 log4j = "1.2.17"
 mssql_jdbc = "12.10.1.jre11"
-kryo = "5.6.2"
 hec-monolith = "6.0.0"
 dssgui = "3.4.18"
 javaHeclib = "7-IU-4-win-x86_64"
@@ -55,10 +54,8 @@ javax-activation = "1.1.1"
 wrims-core = { module = "gov.ca.dwr:wrims-core", version.ref = "wrims-engine" }
 wrims-engine-bom = { module = "gov.ca.dwr:wrims-engine-bom", version.ref = "wrims-engine" }
 hec-monolith = { module = "mil.army.usace.hec:hec-monolith", version.ref = "hec-monolith" }
-hec-monolith-bom = { module = "mil.army.usace.hec:hec-monolith-bom", version.ref = "hec-monolith" }
 dssgui = { module = "mil.army.usace.hec:dssgui", version.ref = "dssgui" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
-kryo = { module = "com.esotericsoftware:kryo", version.ref = "kryo" }
 junit-5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit_5" }
 junit-5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit_5" }
 junit-5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit_5" }
@@ -86,6 +83,13 @@ jarhdf5 = { module = "ncsa.hdf:jarhdf5", version.ref = "hdf5" }
 jarhdfobj = { module = "ncsa.hdf:jarhdfobj", version.ref = "hdf" }
 jarhdf = { module = "ncsa.hdf:jarhdf", version.ref = "hdf" }
 vista = { module = "gov.ca.dwr:vista", version.ref = "vista" }
+
+guava = { module = "com.google.guava:guava"}
+kryo = { module = "com.esotericsoftware.kryo:kryo"}
+linearsolver = { module = "com.google.ortools:linearsolver"}
+calsurrogate = { module = "gov.ca.dwr.deltamodeling:calsurrogate"}
+xaoptimizer = { module = "com.sunsetsoft.xa:xaoptimizer"}
+gurobi = { module = "gurobi:gurobi"}
 
 cb-dll = { module = "dwr.win.x64:cb", version.ref = "x64-dll" }
 jep-dll = { module = "dwr.win.x64:jep", version.ref = "x64-dll" }
