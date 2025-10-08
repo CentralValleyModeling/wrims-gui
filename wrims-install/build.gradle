@@ -95,22 +95,13 @@ tasks.register('installXtext', Exec) {
 
     workingDir = file("${buildDir}/installer/${wrimsGuiFolder}")
 
-    // Install the broader Web Developer Tools (includes XML editor) and Xtext UI/runtime
-    // Note: multiple repositories and IUs are comma-separated
-//    commandLine 'cmd', '/c', (
-//            'eclipse.exe ' +
-//                    '-nosplash ' +
-//                    '-application org.eclipse.equinox.p2.director ' +
-//                    '-repository https://download.eclipse.org/releases/2025-06,https://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/ ' +
-//                    '-installIUs org.eclipse.wst.web_ui.feature.feature.group,org.eclipse.xtext.ui.feature.group,org.eclipse.xtext.runtime.feature.group'
-//    )
-
     commandLine 'cmd', '/c',
             'eclipse.exe',
             '-nosplash',
             '-application', 'org.eclipse.equinox.p2.director',
             '-repository', 'https://download.eclipse.org/releases/2025-06,https://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/',
-            '-installIUs', 'org.eclipse.xtext.ui.feature.group,org.eclipse.xtext.runtime.feature.group'
+            '-installIUs', 'org.eclipse.xtext.ui.feature.group,org.eclipse.xtext.runtime.feature.group',
+            '>', 'NUL'
 }
 
 // Task to copy JARs to dropins/plugins folder (Equinox dropins watcher expects a plugins directory)
