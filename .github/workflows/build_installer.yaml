@@ -24,7 +24,7 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Build with Gradle
+      - name: Build Installer with Gradle & zip
         env:
           PKG_USERNAME: ${{ github.actor }}
           PKG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
