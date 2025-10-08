@@ -33,6 +33,13 @@ jobs:
           ./gradlew build -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
           ./gradlew :wrims-install:zipWrimsGui -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"  
 
+      - name: Upload Installer .zip artifact to Action Workflow
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: wrims-gui
+          path: |
+            ./wrims-install/build/installer/*.zip
+
       - name: Attach WRIMS Installer zip to github deployment
         run: |
           gh release upload ${{ github.event.release.tag_name }} wrims-install/build/installer/wrims_gui_x64_${{ github.event.release.tag_name }}.zip --repo ${{ github.repository }}
