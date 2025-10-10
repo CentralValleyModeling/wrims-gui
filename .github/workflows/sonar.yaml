@@ -63,10 +63,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          REVISION: ${{ github.event.push.head_sha }}
+          REVISION: ${{ github.sha }}
         run: |
           ./gradlew sonar `
                   -PcvmUserId="dwr-wrims-build" `
                   -PcvmPassword="${{ env.WRIMS_ENGINE_DEPENDENCIES }}" `
                   --info `
-                  "-Dsonar.scm.revision=$REVISION" `
+                  "-Dsonar.scm.revision=$REVISION"
