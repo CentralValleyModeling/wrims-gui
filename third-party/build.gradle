@@ -43,6 +43,7 @@ dependencies {
     api libs.gurobi
 
     //added for jdiagram support, these used to be included in java 8
+    //Plan to upgrade these when JDiagram is updated.
     api libs.jaxb.api
     api libs.jaxb.core
     api libs.jaxb.impl
