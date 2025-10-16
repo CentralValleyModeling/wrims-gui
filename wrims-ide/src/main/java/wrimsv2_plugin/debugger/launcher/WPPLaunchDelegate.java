@@ -542,7 +542,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		out.println("@echo off");
 		out.println();
 		out.println("set path=" + externalPath + ";"+"lib;%path%");
-        String tempWrims2 = "set temp_wrims2="+ EclipseUtil.getJreRelativePath()+"\\bin";
+        String tempWrims2 = "set temp_wrims2="+ (EclipseUtil.getJreRelativePath().resolve("bin").toString());
 		out.println(tempWrims2);
 		out.println("set TF_CPP_MIN_LOG_LEVEL=2");
 		out.println();
@@ -552,7 +552,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 			xmx="4096m";
 		}
 		*/
-        String javaPath = EclipseUtil.getJreRelativePath()+"\\bin\\java";
+        String javaPath = EclipseUtil.getJreRelativePath().resolve("bin").resolve("java").toString();
         String remoteDebugSettings = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006";
 		if (compileOnly.equalsIgnoreCase("no")){
 			if (mode.equals("debug")){

@@ -163,9 +163,7 @@ tasks.register('copyThirdPartyToLib', Copy) {
 //Copies all updated resource files into the installer
 tasks.register('copyResources', Copy) {
     dependsOn copyThirdPartyToLib
-    from("src/main/resources/installer") {
-
-    }
+    from("src/main/resources/installer")
     into("${buildDir}/installer/${wrimsGuiFolder}")
     filter { line ->
         line.replace('${WRIMS_VERSION}', version)

@@ -1,13 +1,14 @@
 package wrimsv2_plugin.batchrun;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Objects;
 
 public class EclipseUtil {
 
-    private static String cachedJrePath = null;
+    private static Path cachedJrePath = null;
 
-    public static String getJreRelativePath() {
+    public static Path getJreRelativePath() {
         // Cached value
         if (cachedJrePath != null) {
             return cachedJrePath;
@@ -16,12 +17,12 @@ public class EclipseUtil {
         if (pluginsFolder.isDirectory()) {
             for (File file : Objects.requireNonNull(pluginsFolder.listFiles())) {
                 if (file.isDirectory() && file.getName().contains("jre.full")) {
-                    cachedJrePath = "plugins\\" + file.getName() + "\\jre";
+                    cachedJrePath = pluginsFolder.toPath().resolve(file.getName()).resolve("jre");
                     return cachedJrePath;
                 }
             }
         }
-        cachedJrePath = "jre";
+        cachedJrePath = new File("jre").toPath();
         return cachedJrePath;
     }
 }
