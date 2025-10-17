@@ -1,0 +1,1 @@
+eclipse -clean -console -consoleLog -debug -Dorg.eclipse.ui.intro.universal/SHOW_INTRO=false -Dlogback.configurationFile=none .options

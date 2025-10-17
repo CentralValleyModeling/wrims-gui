@@ -5,26 +5,24 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.util.ArrayList;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
-import org.eclipse.debug.core.DebugPlugin;
-import org.eclipse.debug.core.ILaunch;
-import org.eclipse.debug.core.model.IDebugTarget;
-import org.eclipse.debug.core.model.IProcess;
 
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 import wrimsv2_plugin.debugger.core.CBCSetting;
 import wrimsv2_plugin.debugger.core.DebugCorePlugin;
 import wrimsv2_plugin.debugger.dialog.ConfigTab;
@@ -452,7 +450,8 @@ public class BatchRunProcess {
 	public void generateBatch(PrintWriter out, String configFilePath){
 		out.println("@echo off");
 		out.println("set path=" + externalPath + ";"+"lib;%path%");
-		out.println("set temp_wrims2=jre\\bin");
+        String setTempWrims2 = "set temp_wrims2=" + EclipseUtil.getJreRelativePath()+ "\\bin";
+		out.println(setTempWrims2);
 		out.println("set TF_CPP_MIN_LOG_LEVEL=2");
 		/*
 		String xmx="1280m";
@@ -460,7 +459,8 @@ public class BatchRunProcess {
 			xmx="4096m";
 		}
 		*/
-		out.println("jre\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-config="+configFilePath);
+
+		out.println(EclipseUtil.getJreRelativePath()+"\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-config="+configFilePath);
 		out.println("timeout 10 > NUL");
 		out.println("exit");
 		out.close();
