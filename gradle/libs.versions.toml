@@ -1,5 +1,5 @@
 [versions]
-wrims-engine = "3.0.0-alpha.1.2.1-RC-demo"
+wrims-engine = "3.0.0-alpha.4"
 commons-io = "2.20.0"
 junit_5 = "5.11.3"
 antlr = "3.5.2"
@@ -45,11 +45,15 @@ eclipse-emf-edit = "2.23.0"
 eclipse-emf-edit-ui = "2.26.0"
 eclipse-ltk-core-refactoring = "3.15.0"
 
+jaxb-api = "2.3.1"
+jaxb-core = "2.3.0.1"
+jaxb-impl = "2.3.2"
+javax-activation = "1.1.1"
+
 [libraries]
 wrims-core = { module = "gov.ca.dwr:wrims-core", version.ref = "wrims-engine" }
 wrims-engine-bom = { module = "gov.ca.dwr:wrims-engine-bom", version.ref = "wrims-engine" }
 hec-monolith = { module = "mil.army.usace.hec:hec-monolith", version.ref = "hec-monolith" }
-hec-monolith-bom = { module = "mil.army.usace.hec:hec-monolith-bom", version.ref = "hec-monolith" }
 dssgui = { module = "mil.army.usace.hec:dssgui", version.ref = "dssgui" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
 junit-5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit_5" }
@@ -79,6 +83,13 @@ jarhdf5 = { module = "ncsa.hdf:jarhdf5", version.ref = "hdf5" }
 jarhdfobj = { module = "ncsa.hdf:jarhdfobj", version.ref = "hdf" }
 jarhdf = { module = "ncsa.hdf:jarhdf", version.ref = "hdf" }
 vista = { module = "gov.ca.dwr:vista", version.ref = "vista" }
+
+guava = { module = "com.google.guava:guava"}
+kryo = { module = "com.esotericsoftware.kryo:kryo"}
+linearsolver = { module = "com.google.ortools:linearsolver"}
+calsurrogate = { module = "gov.ca.dwr.deltamodeling:calsurrogate"}
+xaoptimizer = { module = "com.sunsetsoft.xa:xaoptimizer"}
+gurobi = { module = "gurobi:gurobi"}
 
 cb-dll = { module = "dwr.win.x64:cb", version.ref = "x64-dll" }
 jep-dll = { module = "dwr.win.x64:jep", version.ref = "x64-dll" }
@@ -110,6 +121,11 @@ eclipse-emf-edit = { module = "org.eclipse.emf:org.eclipse.emf.edit", version.re
 eclipse-emf-edit-ui = { module = "org.eclipse:org.eclipse.emf.edit.ui", version.ref = "eclipse-emf-edit-ui" }
 eclipse-xtext-ui = { module = "org.eclipse.xtext:org.eclipse.xtext.ui", version.ref = "eclipse-xtext-ui" }
 eclipse-ltk-core-refactoring = { module = "org.eclipse.platform:org.eclipse.ltk.core.refactoring", version.ref = "eclipse-ltk-core-refactoring" }
+
+jaxb-api = { module = 'javax.xml.bind:jaxb-api', version.ref = "jaxb-api" }
+jaxb-core = { module = 'com.sun.xml.bind:jaxb-core', version.ref = "jaxb-core" }
+jaxb-impl = { module = 'com.sun.xml.bind:jaxb-impl', version.ref = "jaxb-impl" }
+javax-activation = { module = 'javax.activation:activation', version.ref = "javax-activation" }
 
 [bundles]
 junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params" ]

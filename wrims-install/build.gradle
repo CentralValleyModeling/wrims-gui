@@ -18,7 +18,7 @@ def formattedDate = date.format('yyyyMMdd')
 def releaseDate = date.format('MM/dd/yyyy')
 
 def wrimsGuiFolder = "wrims_gui_x64_${version}"
-def wrimsGuiDownload = "${buildDir}/download/wrims2_gui_download.zip"
+def wrimsGuiDownload = "${buildDir}/download/eclipse_2025_rcp.zip"
 def wrimsPatchFolder = "wrims_patch_v2.2.0_basis"
 def wrimsPatchReleaseDateFile = "releasedate_v2.2.0_basis.log"
 
@@ -33,7 +33,11 @@ tasks.register('unzipThirdPartyLibs', Copy) {
 //download the latest WRIMS GUI installer from DWR
 tasks.register('downloadWrimsGuiInstaller', Download) {
     dependsOn unzipThirdPartyLibs
-    src 'https://data.cnra.ca.gov/dataset/0f6b03b4-7de8-4579-8aa0-60f73d9d21fb/resource/89f60e4a-c0c2-4ca2-acac-beb6bdb5d69e/download/wrims2_gui_x64_20240129.zip'
+//    src 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2025-06/R/eclipse-rcp-2025-06-R-win32-x86_64.zip'
+//    src 'https://mirror.cs.odu.edu/eclipse/technology/epp/downloads/release/2025-06/R/eclipse-rcp-2025-06-R-win32-x86_64.zip'
+//    src 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2025-06/R/eclipse-jee-2025-06-R-win32-x86_64.zip&r=1'
+    src 'https://mirror.cs.odu.edu/eclipse/technology/epp/downloads/release/2025-06/R/eclipse-jee-2025-06-R-win32-x86_64.zip'
+//    src 'https://mirror.cs.odu.edu/eclipse/technology/epp/downloads/release/2025-06/R/eclipse-modeling-2025-06-R-win32-x86_64.zip'
     dest new File(wrimsGuiDownload)
     onlyIfModified true
 }
@@ -83,21 +87,46 @@ tasks.register('removeWorkspaceCache', Delete) {
     delete "${buildDir}/installer/${wrimsGuiFolder}/workspace/.metadata"
 }
 
-// Task to copy JARs to dropins folder
-tasks.register('copyJarsToDropins', Copy) {
+// Installs Xtext features into the EPP using p2 director
+tasks.register('installXtext', Exec) {
+    group 'install'
+    description 'Installs Xtext via p2 director'
     dependsOn removeWorkspaceCache
+
+    workingDir = file("${buildDir}/installer/${wrimsGuiFolder}")
+
+    commandLine 'cmd', '/c',
+            'eclipse.exe',
+            '-nosplash',
+            '-application', 'org.eclipse.equinox.p2.director',
+            '-repository', 'https://download.eclipse.org/releases/2025-06,https://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/',
+            '-installIUs', 'org.eclipse.xtext.ui.feature.group,org.eclipse.xtext.runtime.feature.group,org.eclipse.xtext.xtext.ui.feature.group',
+            '>', 'NUL'
+}
+
+// Task to copy JARs to dropins/plugins folder (Equinox dropins watcher expects a plugins directory)
+tasks.register('copyJarsToDropins', Copy) {
+    dependsOn installXtext
     from(project(':third-party').tasks.named('jar').get().archiveFile)
     from(project(':wrims-ide').tasks.named('jar').get().archiveFile)
     from(project(':dwr-hecdssvue').tasks.named('jar').get().archiveFile)
     from(project(':jdiagram').tasks.named('jar').get().archiveFile)
     from(project(':xtext-editor').tasks.named('jar').get().archiveFile)
     from(project(':xtext-editor-ui').tasks.named('jar').get().archiveFile)
-    into("${buildDir}/installer/${wrimsGuiFolder}/dropins")
+    into("${buildDir}/installer/${wrimsGuiFolder}/dropins/plugins")
+}
+
+//Task to copy the splash.bmp file from branding into plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300
+tasks.register('copySplash', Copy) {
+    dependsOn copyJarsToDropins
+    from("src/main/resources/branding/splash.bmp")
+    into("${buildDir}/installer/${wrimsGuiFolder}/plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300")
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 //task to delete all contents of the ${buildDir}/installer/${wrimsGuiFolder}/libs folder
 tasks.register('cleanLibFolder', Delete) {
-    dependsOn copyJarsToDropins
+    dependsOn copySplash
     delete "${buildDir}/installer/${wrimsGuiFolder}/lib"
 }
 
@@ -141,6 +170,12 @@ tasks.register('copyResources', Copy) {
     }
 }
 
+//Copy LICENSE file:
+tasks.register('copyLicense', Copy) {
+    from("${rootProject.projectDir}/LICENSE")
+    into("${buildDir}/installer/${wrimsGuiFolder}")
+}
+
 //Add the release date to the installer
 //generate a releasedate.log file that contains the current date in MM/DD/YYYY format
 tasks.register('buildWrimsInstall', DefaultTask) {
@@ -156,20 +191,20 @@ tasks.register('buildWrimsInstall', DefaultTask) {
 // Task that zips the wrims_gui_x64_${version} folder into a zip file
 tasks.register('zipWrimsGui', Zip) {
     group 'release'
-    description 'Creates a zip of the of the WRIMS2 gui. Depends on buildWrimsInstall.'
+    description 'Creates a zip of the of the WRIMS3 gui. Depends on buildWrimsInstall.'
     dependsOn buildWrimsInstall
     from("${buildDir}/installer/${wrimsGuiFolder}")
     archiveFileName = "${wrimsGuiFolder}.zip"
     destinationDirectory = file("${buildDir}/installer")
 }
 
-//task that runs the bat file in build/download/${WRIMS_GUI_FOLDER/WRIMS2_GUI_Start.bat
+//task that runs the bat file in build/download/${WRIMS_GUI_FOLDER/WRIMS3_GUI_Start.bat
 //NOTE: You must build the installer before you can run it with this task using the buildWrimsInstall task
 tasks.register('runWrimsGui') {
     group 'run'
-    description 'Launches the built WRIMS install from the WRIMS2_GUI_Start.bat file. Requires buildWrimsInstall task to have completed.'
+    description 'Launches the built WRIMS install from the WRIMS3_GUI_Start.bat file. Requires buildWrimsInstall task to have completed.'
     doLast {
-        def processBuilder = new ProcessBuilder('cmd', '/c', 'WRIMS2_GUI_Start.bat')
+        def processBuilder = new ProcessBuilder('cmd', '/c', 'WRIMS3_GUI_Start.bat')
         processBuilder.directory(new File("${buildDir}/installer/${wrimsGuiFolder}"))
         def process = processBuilder.start()
     }
@@ -178,22 +213,22 @@ tasks.register('runWrimsGui') {
 tasks.register('updateInstallerDropins', Copy) {
     group 'run'
     description 'Updates the dropin jars in the built installer'
-    // Task to copy JARs to dropins folder
+    // Task to copy JARs to dropins/plugins folder (Equinox dropins watcher expects a plugins directory)
     from(project(':third-party').tasks.named('jar').get().archiveFile)
     from(project(':wrims-ide').tasks.named('jar').get().archiveFile)
     from(project(':dwr-hecdssvue').tasks.named('jar').get().archiveFile)
     from(project(':jdiagram').tasks.named('jar').get().archiveFile)
     from(project(':xtext-editor').tasks.named('jar').get().archiveFile)
     from(project(':xtext-editor-ui').tasks.named('jar').get().archiveFile)
-    into("${buildDir}/installer/${wrimsGuiFolder}/dropins")
+    into("${buildDir}/installer/${wrimsGuiFolder}/dropins/plugins")
 }
 
 tasks.register('updateAndRun') {
     group 'run'
-    description 'Updates the dropin jars in the built installer then runs WRIMS2 Gui from the WRIMS2_GUI_Start.bat file'
+    description 'Updates the dropin jars in the built installer then runs WRIMS3 Gui from the WRIMS3_GUI_Start.bat file'
     dependsOn updateInstallerDropins
     doLast {
-        def processBuilder = new ProcessBuilder('cmd', '/c', 'WRIMS2_GUI_Start.bat')
+        def processBuilder = new ProcessBuilder('cmd', '/c', 'WRIMS3_GUI_Start.bat')
         processBuilder.directory(new File("${buildDir}/installer/${wrimsGuiFolder}"))
         def process = processBuilder.start()
     }
@@ -201,16 +236,16 @@ tasks.register('updateAndRun') {
 
 tasks.register('debugWRIMS', Exec) {
     group 'debug'
-    description 'Runs WRIMS2 GUI with remote debugging enabled'
-    commandLine 'cmd', '/c', 'wriMS2_GUI_x64 -clean -console -consoleLog -debug .options -vmargs -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
+    description 'Runs WRIMS3 GUI with remote debugging enabled'
+    commandLine 'cmd', '/c', 'eclipse -clean -console -consoleLog -debug .options -vmargs -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
     workingDir = file("${buildDir}/installer/${wrimsGuiFolder}")
 }
 
 tasks.register('updateAndDebugWRIMS', Exec) {
     group 'debug'
-    description 'Updates the the dropin jars and runs WRIMS2 GUI with remote debugging enabled'
+    description 'Updates the the dropin jars and runs WRIMS3 GUI with remote debugging enabled'
     dependsOn updateInstallerDropins
-    commandLine 'cmd', '/c', 'wriMS2_GUI_x64 -clean -console -consoleLog -debug .options -vmargs -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
+    commandLine 'cmd', '/c', 'WRIMS3_GUI_x64 -clean -console -consoleLog -debug .options -vmargs -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
     workingDir = file("${buildDir}/installer/${wrimsGuiFolder}")
 }
 
@@ -261,7 +296,9 @@ tasks.register('copyThirdPartyToPatchLib', Copy) {
 //Copies all updated resource files into the installer
 tasks.register('copyResourcesToPatch', Copy) {
     dependsOn copyThirdPartyToPatchLib
-    from("src/main/resources/installer")
+    from("src/main/resources/installer") {
+        exclude "WRIMS3_GUI_Update_and_Start.bat"
+    }
     into("${buildDir}/patch/${wrimsPatchFolder}")
     filter { line ->
         line.replace('${WRIMS_VERSION}', version)

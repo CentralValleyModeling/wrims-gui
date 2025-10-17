@@ -22,7 +22,7 @@ PREREQUISITES:
   - https://github.com/git-guides/install-git
 - IDE Eclipse
   - Latest Eclipse RCP download site:
-  - https://www.eclipse.org/downloads/packages/release/2024-12/r/eclipse-ide-rcp-and-rap-developers
+  - https://www.eclipse.org/downloads/packages/release/2025-06/r/eclipse-ide-rcp-and-rap-developers
 - \<USER-DIR\>\\.gradle\gradle.properties configured with token for access to the CentralValleyModeling GitHub repository
   - Example: C:\\Users\\\<username\>\\.gradle\gradle.properties
   - NOTE: If you have to create the gradle.properties file, make sure it's not a "gradle.properties.txt" file. 

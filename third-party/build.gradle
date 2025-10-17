@@ -35,6 +35,19 @@ dependencies {
     api libs.mssql.jdbc
     api libs.swixml
     api libs.jdiagram
+    api libs.kryo
+    api libs.guava
+    api libs.linearsolver
+    api libs.calsurrogate
+    api libs.xaoptimizer
+    api libs.gurobi
+
+    //added for jdiagram support, these used to be included in java 8
+    //Plan to upgrade these when JDiagram is updated.
+    api libs.jaxb.api
+    api libs.jaxb.core
+    api libs.jaxb.impl
+    api libs.javax.activation
 
     //flagged for removal
     api libs.vista
@@ -68,9 +81,6 @@ configurations.configureEach {
     exclude group: "mil.army.usace.hec", module: "radar-server-suite"
     exclude group: "mil.army.usace.hec", module: "vrt"
     exclude group: "mil.army.usace.hec.swingx", module: "swingx-core"
-    exclude group: "javax.xml.bind", module: "jaxb-api"
-    exclude group: "com.sun.xml.bind", module: "jaxb-impl"
-    exclude group: "com.sun.xml.bind", module: "jaxb-core"
     exclude group: "org.bouncycastle", module: "bcprov-jdk15on"
     exclude group: "org.bouncycastle", module: "bcpkix-jdk15on"
     exclude group: "com.mrsid", module: "mrsidreader"
