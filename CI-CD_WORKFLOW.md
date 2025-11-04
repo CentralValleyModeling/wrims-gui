@@ -14,7 +14,7 @@ During the **Planning** phase, we gather requirements and coordinate on features
 
 ## Development
 
-The **Development** phase begins with work being assigned and tracked through GitHub issues. Before starting development, a developer creates a new branch, adds an intial commit to this new branch which then creates a new pull request. Then development starts in their local copy of this branch. As work progresses, changes are committed and pushed to the remote repository.
+The **Development** phase begins with work being assigned and tracked through GitHub issues. Before starting development, a developer creates a new branch, adds an intial commit to this new branch, pushes the new branch to the remote repository, and creates a new pull request from the new branch into the `main` branch. This pull request contains the initial commit in the new branch and makes it differ from the `main` branch. Then development starts in their local copy of this branch. As work progresses, changes are committed and pushed to the remote repository.
 
 ## Code Review
 
