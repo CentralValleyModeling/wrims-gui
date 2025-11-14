@@ -12,7 +12,7 @@ import gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl.SvarDefImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.hover.html.DefaultEObjectHoverProvider;
 
-import wrimsv2_plugin.debugger.core.DebugCorePlugin;
+import wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class WreslEObjectHoverProvider extends DefaultEObjectHoverProvider {
 	

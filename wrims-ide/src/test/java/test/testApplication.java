@@ -1,7 +1,7 @@
 package test;
 
 import java.io.IOException;
-import wrimsv2_plugin.debugger.ContactDebugger;
+import wrims.gui.ide.debugger.ContactDebugger;
 
 public class testApplication {
 	
