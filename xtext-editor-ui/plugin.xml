@@ -6,48 +6,48 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="wresl"
-            id="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
+            id="gov.ca.water.wresl.xtext.editor.WreslEditor"
             name="WreslEditor Editor">
         </editor>
     </extension>
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
             commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
-                    definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+                    definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
         <handler
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.validate">
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+            commandId="gov.ca.water.wresl.xtext.editor.WreslEditor.validate">
          <activeWhen>
             <reference
-                    definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+                    definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
             </reference>
          </activeWhen>
       	</handler>
       	<!-- copy qualified name -->
         <handler
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
             <activeWhen>
-				<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened" />
+				<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened" />
             </activeWhen>
         </handler>
         <handler
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
             <activeWhen>
             	<and>
-            		<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.XtextEditor.opened" />
+            		<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.XtextEditor.opened" />
 	                <iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -56,22 +56,22 @@
         </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+        <definition id="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="gov.ca.dwr.wresl.xtext.editor.WreslEditor" 
+                        value="gov.ca.water.wresl.xtext.editor.WreslEditor"
                         forcePluginActivation="true"/>
                 </with>        
             </and>
         </definition>
-        <definition id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.XtextEditor.opened">
+        <definition id="gov.ca.water.wresl.xtext.editor.WreslEditor.XtextEditor.opened">
             <and>
                 <reference definitionId="isXtextEditorActive"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="gov.ca.dwr.wresl.xtext.editor.WreslEditor" 
+                        value="gov.ca.water.wresl.xtext.editor.WreslEditor"
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -80,33 +80,33 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="gov.ca.water.wresl.xtext.editor.WreslEditor"
             name="WreslEditor">
-            <keywordReference id="gov.ca.dwr.wresl.xtext.editor.ui.keyword_WreslEditor"/>
+            <keywordReference id="gov.ca.water.wresl.xtext.editor.ui.keyword_WreslEditor"/>
         </page>
         <page
-            category="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.coloring"
+            category="gov.ca.water.wresl.xtext.editor.WreslEditor"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            id="gov.ca.water.wresl.xtext.editor.WreslEditor.coloring"
             name="Syntax Coloring">
-            <keywordReference id="gov.ca.dwr.wresl.xtext.editor.ui.keyword_WreslEditor"/>
+            <keywordReference id="gov.ca.water.wresl.xtext.editor.ui.keyword_WreslEditor"/>
         </page>
         <page
-            category="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.templates"
+            category="gov.ca.water.wresl.xtext.editor.WreslEditor"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+            id="gov.ca.water.wresl.xtext.editor.WreslEditor.templates"
             name="Templates">
-            <keywordReference id="gov.ca.dwr.wresl.xtext.editor.ui.keyword_WreslEditor"/>
+            <keywordReference id="gov.ca.water.wresl.xtext.editor.ui.keyword_WreslEditor"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="gov.ca.water.wresl.xtext.editor.WreslEditor"
             name="WreslEditor">
-            <keywordReference id="gov.ca.dwr.wresl.xtext.editor.ui.keyword_WreslEditor"/>
+            <keywordReference id="gov.ca.water.wresl.xtext.editor.ui.keyword_WreslEditor"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -116,14 +116,14 @@
     <extension
         point="org.eclipse.ui.keywords">
         <keyword
-            id="gov.ca.dwr.wresl.xtext.editor.ui.keyword_WreslEditor"
+            id="gov.ca.water.wresl.xtext.editor.ui.keyword_WreslEditor"
             label="WreslEditor"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
-            id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.validate"
+            id="gov.ca.water.wresl.xtext.editor.WreslEditor.validate"
             name="Validate">
       </command>
       <!-- copy qualified name -->
@@ -144,12 +144,12 @@
         <menuContribution
             locationURI="popup:#TextEditorContext?after=group.edit">
              <command
-                 commandId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.validate"
+                 commandId="gov.ca.water.wresl.xtext.editor.WreslEditor.validate"
                  style="push"
                  tooltip="Trigger expensive validation">
             <visibleWhen checkEnabled="false">
                 <reference
-                    definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+                    definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
                 </reference>
             </visibleWhen>
          </command>  
@@ -159,7 +159,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
          		style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened" />
+                	<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -167,7 +167,7 @@
          	<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
             	style="push" tooltip="Copy Qualified Name">
             	<visibleWhen checkEnabled="false">
-                	<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened" />
+                	<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened" />
             	</visibleWhen>
          	</command>  
          </menuContribution>
@@ -176,7 +176,7 @@
 				style="push" tooltip="Copy Qualified Name">
          		<visibleWhen checkEnabled="false">
 	            	<and>
-	            		<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.XtextEditor.opened" />
+	            		<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -189,7 +189,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+                	<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
                 	</reference>
             	</visibleWhen>
 			</command>
@@ -197,11 +197,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 	    <handler
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
             commandId="org.eclipse.xtext.ui.editor.FindReferences">
             <activeWhen>
                 <reference
-                    definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+                    definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
                 </reference>
             </activeWhen>
         </handler>
@@ -212,19 +212,19 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="wresl">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
             uriExtension="wresl">
         </resourceServiceProvider>
     </extension>
 
 
-    <!-- marker definitions for gov.ca.dwr.wresl.xtext.editor.WreslEditor -->
+    <!-- marker definitions for gov.ca.water.wresl.xtext.editor.WreslEditor -->
     <extension
             id="wresleditor.check.fast"
             name="WreslEditor Problem"
@@ -250,7 +250,7 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
             fileExtensions="wresl"
             >
       </participant>
@@ -258,21 +258,21 @@
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            category="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.compiler.preferencePage"
+            category="gov.ca.water.wresl.xtext.editor.WreslEditor"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="gov.ca.water.wresl.xtext.editor.WreslEditor.compiler.preferencePage"
             name="Compiler">
-            <keywordReference id="gov.ca.dwr.wresl.xtext.editor.ui.keyword_WreslEditor"/>
+            <keywordReference id="gov.ca.water.wresl.xtext.editor.ui.keyword_WreslEditor"/>
         </page>
     </extension>
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            category="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.compiler.propertyPage"
+            category="gov.ca.water.wresl.xtext.editor.WreslEditor"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+            id="gov.ca.water.wresl.xtext.editor.WreslEditor.compiler.propertyPage"
             name="Compiler">
-            <keywordReference id="gov.ca.dwr.wresl.xtext.editor.ui.keyword_WreslEditor"/>
+            <keywordReference id="gov.ca.water.wresl.xtext.editor.ui.keyword_WreslEditor"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -283,20 +283,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.OpenGeneratedCode"
+				id="gov.ca.water.wresl.xtext.editor.WreslEditor.OpenGeneratedCode"
 				style="push">
 					<visibleWhen checkEnabled="false">
-						<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened" />
+						<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened" />
 					</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 				<activeWhen>
-					<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened" />
+					<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened" />
 				</activeWhen>
 		</handler>
 	</extension>
@@ -305,11 +305,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+					definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -329,33 +329,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened"/>
+					<reference definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-    <!-- quickfix marker resolution generator for gov.ca.dwr.wresl.xtext.editor.WreslEditor -->
+    <!-- quickfix marker resolution generator for gov.ca.water.wresl.xtext.editor.WreslEditor -->
     <extension
             point="org.eclipse.ui.ide.markerResolution">
         <markerResolutionGenerator
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="gov.ca.dwr.wresl.xtext.editor.ui.wresleditor.check.fast">
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="gov.ca.water.wresl.xtext.editor.ui.wresleditor.check.fast">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="gov.ca.dwr.wresl.xtext.editor.ui.wresleditor.check.normal">
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="gov.ca.water.wresl.xtext.editor.ui.wresleditor.check.normal">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
             </attribute>
         </markerResolutionGenerator>
         <markerResolutionGenerator
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="gov.ca.dwr.wresl.xtext.editor.ui.wresleditor.check.expensive">
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+            markerType="gov.ca.water.wresl.xtext.editor.ui.wresleditor.check.expensive">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
@@ -365,11 +365,11 @@
    	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+					definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -381,7 +381,7 @@
                style="push">
             <visibleWhen checkEnabled="false">
                <reference
-                     definitionId="gov.ca.dwr.wresl.xtext.editor.WreslEditor.Editor.opened">
+                     definitionId="gov.ca.water.wresl.xtext.editor.WreslEditor.Editor.opened">
                </reference>
             </visibleWhen>
          </command>
@@ -389,29 +389,29 @@
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
 	    <page
-	        category="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
-	        class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-	        id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.refactoring"
+	        category="gov.ca.water.wresl.xtext.editor.WreslEditor"
+	        class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+	        id="gov.ca.water.wresl.xtext.editor.WreslEditor.refactoring"
 	        name="Refactoring">
-	        <keywordReference id="gov.ca.dwr.wresl.xtext.editor.ui.keyword_WreslEditor"/>
+	        <keywordReference id="gov.ca.water.wresl.xtext.editor.ui.keyword_WreslEditor"/>
 	    </page>
 	</extension>
 
   <extension point="org.eclipse.compare.contentViewers">
-    <viewer id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.compare.contentViewers"
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="gov.ca.water.wresl.xtext.editor.WreslEditor.compare.contentViewers"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="wresl">
     </viewer>
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
-    <viewer id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.compare.contentMergeViewers"
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+    <viewer id="gov.ca.water.wresl.xtext.editor.WreslEditor.compare.contentMergeViewers"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="wresl" label="WreslEditor Compare">
      </viewer>
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
-    <provider id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.editors.documentProviders"
-            class="gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+    <provider id="gov.ca.water.wresl.xtext.editor.WreslEditor.editors.documentProviders"
+            class="gov.ca.water.wresl.xtext.editor.ui.WreslEditorExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
             extensions="wresl">
     </provider>
   </extension>

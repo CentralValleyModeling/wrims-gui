@@ -1,12 +1,12 @@
-module gov.ca.dwr.wresl.xtext.editor.GenerateWreslEditor
+module gov.ca.water.wresl.xtext.editor.GenerateWreslEditor
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/gov/ca/dwr/wresl/xtext/editor/WreslEditor.xtext"
+var grammarURI = "classpath:/gov/ca/water/wresl/xtext/editor/WreslEditor.xtext"
 var file.extensions = "wresl"
-var projectName = "gov.ca.dwr.wresl.xtext.editor"
+var projectName = "gov.ca.water.wresl.xtext.editor"
 var runtimeProject = "../${projectName}"
 
 Workflow {
