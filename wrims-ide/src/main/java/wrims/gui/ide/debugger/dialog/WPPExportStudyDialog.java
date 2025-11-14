@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 
-import wrimsv2.components.IncFileCollector;
+import wrims.engine.core.components.IncFileCollector;
 import wrims.gui.ide.debugger.core.DebugCorePlugin;
 import wrims.gui.ide.debugger.exception.WPPException;
 

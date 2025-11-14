@@ -23,8 +23,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import wrimsv2.commondata.wresldata.StudyDataSet;
-import wrimsv2.debug.Compile;
+import wrims.engine.core.commondata.wresldata.StudyDataSet;
+import wrims.engine.core.debug.Compile;
 import wrims.gui.ide.debugger.core.DebugCorePlugin;
 import wrims.gui.ide.debugger.exception.WPPException;
 import wrims.gui.ide.debugger.model.WPPDebugTarget;
