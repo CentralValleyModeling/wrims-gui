@@ -3,7 +3,7 @@ Bundle-Name: wrims-ide
 Bundle-Version: 1.0.0.0
 Bundle-ManifestVersion: 2.0
 Bundle-RequiredExecutionEnvironment: JavaSE-21
-Bundle-Activator: wrimsv2_plugin.debugger.core.DebugCorePlugin
+Bundle-Activator: wrims.gui.ide.debugger.core.DebugCorePlugin
 Bundle-ActivationPolicy: lazy
 -noee true
 

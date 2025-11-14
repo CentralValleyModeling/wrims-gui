@@ -3,7 +3,7 @@ Bundle-Name: HEC-DSSVue in DWR
 Bundle-Version: 1.0.0.0
 Bundle-ManifestVersion: 2.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-Activator: gov.ca.dwr.hecdssvue.Activator
+Bundle-Activator: gov.ca.water.hecdssvue.Activator
 Bundle-ActivationPolicy: lazy
 -noee true
 

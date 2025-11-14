@@ -6,12 +6,12 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import wrimsv2_plugin.debugger.core.DebugCorePlugin;
-import wrimsv2_plugin.debugger.exception.WPPException;
-import wrimsv2_plugin.debugger.view.UpdateView;
-import wrimsv2_plugin.debugger.view.WPPWatchView;
-import wrimsv2_plugin.tools.ProcWatchItem;
-import wrimsv2_plugin.tools.ShowDuplicatedWatch;
+import wrims.gui.ide.debugger.core.DebugCorePlugin;
+import wrims.gui.ide.debugger.exception.WPPException;
+import wrims.gui.ide.debugger.view.UpdateView;
+import wrims.gui.ide.debugger.view.WPPWatchView;
+import wrims.gui.ide.tools.ProcWatchItem;
+import wrims.gui.ide.tools.ShowDuplicatedWatch;
 
 public class AddWatch extends org.eclipse.core.commands.AbstractHandler {
 	
