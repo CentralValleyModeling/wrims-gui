@@ -29,7 +29,7 @@ eclipse, etc.)
 
 - [dwr-jdiagram](./gov.ca.dwr.jdiagram/README.md)
 - [dwr-hecdssvue](./gov.ca.dwr.hecdssvue/README.md)
-- [wrims-ide](./wrims_v2/wrimsv2_plugin/README.md)
+- [wrims-ide](./wrims-ide/README.md)
 - [third-party](./third-party/README.md)
 - [WRIMSv2](./wrims_v2/wrims_v2/README.md)
 

@@ -5,7 +5,7 @@
     modelName="WreslEditor" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="xtext" editorPluginID="xtext"
     runtimeVersion="2.10">
-  <genPackages prefix="WreslEditor" basePackage="gov.ca.dwr.wresl.xtext.editor" disposableProviderFactory="true"
+  <genPackages prefix="WreslEditor" basePackage="gov.ca.water.wresl.xtext.editor" disposableProviderFactory="true"
       ecorePackage="WreslEditor.ecore#/">
     <genClasses ecoreClass="WreslEditor.ecore#//WreslEvaluator">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WreslEditor.ecore#//WreslEvaluator/pattern"/>
