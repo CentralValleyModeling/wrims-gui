@@ -5,7 +5,7 @@ Bundle-ManifestVersion: 2.0
 Bundle-Vendor: California Department of Water Resources
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: gov.ca.dwr.wresl.xtext.editor.ui.internal.WreslEditorActivator
+Bundle-Activator: gov.ca.water.wresl.xtext.editor.ui.internal.WreslEditorActivator
 -noee true
 
 Require-Bundle: \
@@ -46,11 +46,11 @@ Import-Package: \
     wrimsv2_plugin.tools
 
 Export-Package: \
-    gov.ca.dwr.wresl.xtext.editor.ui.contentassist.antlr,\
-    gov.ca.dwr.wresl.xtext.editor.ui.internal,\
-    gov.ca.dwr.wresl.xtext.editor.ui.contentassist,\
-    gov.ca.dwr.wresl.xtext.editor.ui.quickfix,\
-    gov.ca.dwr.wresl.xtext.editor.ui.contentassist.antlr.internal
+    gov.ca.water.wresl.xtext.editor.ui.contentassist.antlr,\
+    gov.ca.water.wresl.xtext.editor.ui.internal,\
+    gov.ca.water.wresl.xtext.editor.ui.contentassist,\
+    gov.ca.water.wresl.xtext.editor.ui.quickfix,\
+    gov.ca.water.wresl.xtext.editor.ui.contentassist.antlr.internal
 
 -includeresource: \
   plugin.xml = plugin.xml,\

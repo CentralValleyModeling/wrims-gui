@@ -21,8 +21,8 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
-import wrimsv2.commondata.wresldata.StudyDataSet;
-import wrimsv2.debug.Compile;
+import wrims.engine.core.commondata.wresldata.StudyDataSet;
+import wrims.engine.core.debug.Compile;
 import wrims.gui.ide.debugger.core.DebugCorePlugin;
 import wrims.gui.ide.debugger.exception.WPPException;
 import wrims.gui.ide.debugger.model.WPPDebugTarget;

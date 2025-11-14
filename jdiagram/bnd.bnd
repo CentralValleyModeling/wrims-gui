@@ -21,16 +21,16 @@ Require-Bundle: \
 
 Import-Package: \
     com.mindfusion.drawing,\
-    gov.ca.dwr.hecdssvue,\
-    gov.ca.dwr.hecdssvue.panel,\
-    gov.ca.dwr.hecdssvue.views,\
+    gov.ca.water.hecdssvue,\
+    gov.ca.water.hecdssvue.panel,\
+    gov.ca.water.hecdssvue.views,\
     wrimsv2_plugin.debugger.core,\
     wrimsv2_plugin.debugger.exception,\
     wrimsv2_plugin.tools
 
 Export-Package: \
-    gov.ca.dwr.jdiagram,\
-    gov.ca.dwr.jdiagram.views
+    gov.ca.water.jdiagram,\
+    gov.ca.water.jdiagram.views
 
 -includeresource: \
   plugin.xml = plugin.xml,\

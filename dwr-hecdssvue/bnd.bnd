@@ -37,15 +37,15 @@ Import-Package: \
     wrimsv2_plugin.tools
 
 Export-Package: \
-    gov.ca.dwr.hecdssvue,\
-    gov.ca.dwr.hecdssvue.actions,\
-    gov.ca.dwr.hecdssvue.components,\
-    gov.ca.dwr.hecdssvue.dialog,\
-    gov.ca.dwr.hecdssvue.monthly,\
-    gov.ca.dwr.hecdssvue.menus,\
-    gov.ca.dwr.hecdssvue.perspective,\
-    gov.ca.dwr.hecdssvue.panel,\
-    gov.ca.dwr.hecdssvue.views
+    gov.ca.water.hecdssvue,\
+    gov.ca.water.hecdssvue.actions,\
+    gov.ca.water.hecdssvue.components,\
+    gov.ca.water.hecdssvue.dialog,\
+    gov.ca.water.hecdssvue.monthly,\
+    gov.ca.water.hecdssvue.menus,\
+    gov.ca.water.hecdssvue.perspective,\
+    gov.ca.water.hecdssvue.panel,\
+    gov.ca.water.hecdssvue.views
 
 -includeresource: \
   plugin.xml = plugin.xml,\

@@ -7,8 +7,8 @@ import java.util.Set;
 
 import org.eclipse.debug.core.ILaunchConfiguration;
 
-import wrimsv2.commondata.wresldata.ModelDataSet;
-import wrimsv2.commondata.wresldata.StudyDataSet;
+import wrims.engine.core.commondata.wresldata.ModelDataSet;
+import wrims.engine.core.commondata.wresldata.StudyDataSet;
 
 public class FileProcess {
 	public static ArrayList<String> retrieveFileNames(ArrayList<String> fns){
