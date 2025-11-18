@@ -2,6 +2,8 @@ plugins{
     id 'library.deps-conventions'
     id 'library.java-conventions'
     id 'library.jdeps-conventions'
+    id 'java'
+    id 'jacoco'
 
     // The following plugin is used to build the OSGI bundle
     id 'biz.aQute.bnd.builder' version '7.1.0'
@@ -63,5 +65,22 @@ jar {
     bundle {
         // Ensure classpath is ready before bundling
         dependsOn(configurations.runtimeClasspath)
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.14"
+}
+
+test {
+    finalizedBy('jacocoTestReport')
+}
+
+jacocoTestReport {
+    dependsOn('test')
+    reports {
+        xml.required = true
+        csv.required = false
+        html.required = false
     }
 }
