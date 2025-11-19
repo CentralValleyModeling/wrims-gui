@@ -14,21 +14,21 @@ Feature: Test debugging a study
 ![DebugConfigurations.png](TEST_images\DebugConfigurations.png)
 	
 5. When the study reach the breakpoint; click "next step" button; then click "next cycle" button on the "Console" view
-   
+![buttons.png](TEST_images\buttons.png)
 6. Click the menu of "Run->Next step"; then click the menu of "Run->Next cycle" button
 
 7. Open a wresl file on the WRESL Editor, e.g. "C:\9.3.1_danube_adj\Run\COA\coa.wresl"; then check the views of "Variables", "Goals", "All Variables", "All Goals"
-  
+![variables-goals.png](TEST_images\variables-goals.png)
 8. Click the menu of "Data\Load Dss/Studies" and load a dv dss file, .e.g. "DCR2023_DV_9.3.1_Danube_Hist_v1.7.dss" and a sv dss file, e.g. "DCR2023_SV_Danube_Hist_v1.7.dss"
 ![LoadAltDssStudies.png](TEST_images\LoadAltDssStudies.png)
 9. Click "all variables from DSS" button in this view of "All Variables" to see all the values of "All Variables" in both current run and the alternatives
     
 10. Open the view of "All Goals" and click "Control Goals" button in this view to see all the control goals
-
-11. Open the view of "Watch", add a variable, e.g. "s_shsta" to the watch list; and add a constraint, e.g. "swp_storage_change" to the watch list; and then delete this constraint from watch list
-
+![controlgoals.png](TEST_images\controlgoals.png)
+11. Open the view of "Watch", add a variable, e.g. "s_shsta" to the watch list; and add a constraint, e.g. "coa_cvp3" to the watch list; and then delete this constraint from watch list
+![watch.png](TEST_images\watch.png)
 12. Hove over on a variable .e.g. "I_SHSTA" in the wresl file of "C:\9.3.1_danube_hist\Run\COA\coa.wresl"; and hove over on a constraint, e.g. "swp_storage_change" in the wresl file "C:\9.3.1_danube_hist\Run\COA\coa.wresl"
-
+![hove-over.png](TEST_images\hove-over.png)
 13. Click "Resume" button and then click "Pause" button on the "Console" View after 2 second
 	
 14. Click the "Terminate" button to terminate the debug run

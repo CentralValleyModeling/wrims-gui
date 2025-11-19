@@ -9,7 +9,7 @@ Feature: Debug a study
 	Given timestamp of year 1923 and month 10 and date 31 and cycle 1
 	When set this timestamp and cycle as breakpoint
 	Given the launch file "C:\9.3.1_danube_adj\CS3_Hist_Dev.launch" exists
-	When launch this lanuch file under "debug" mode
+	When launch this launch file under "debug" mode
 	Given the study reach the breakpoint
 	When click "next step" button
 	And click "next cycle" button
