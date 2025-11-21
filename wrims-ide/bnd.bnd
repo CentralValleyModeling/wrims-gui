@@ -43,20 +43,20 @@ Import-Package: \
     org.osgi.framework
 
 Export-Package: \
-    wrims.gui.ide.debugger,\
-    wrims.gui.ide.debugger.breakpoint,\
-    wrims.gui.ide.debugger.commanditem,\
-    wrims.gui.ide.debugger.core,\
-    wrims.gui.ide.debugger.exception,\
-    wrims.gui.ide.debugger.launcher,\
-    wrims.gui.ide.debugger.menuitem,\
-    wrims.gui.ide.debugger.model,\
-    wrims.gui.ide.debugger.sourcelookup,\
-    wrims.gui.ide.debugger.toolbaritem,\
-    wrims.gui.ide.debugger.ui,\
-    wrims.gui.ide.debugger.view,\
-    wrims.gui.ide.presentation,\
-    wrims.gui.ide.tools
+    gov.ca.water.wrims.gui.ide.debugger,\
+    gov.ca.water.wrims.gui.ide.debugger.breakpoint,\
+    gov.ca.water.wrims.gui.ide.debugger.commanditem,\
+    gov.ca.water.wrims.gui.ide.debugger.core,\
+    gov.ca.water.wrims.gui.ide.debugger.exception,\
+    gov.ca.water.wrims.gui.ide.debugger.launcher,\
+    gov.ca.water.wrims.gui.ide.debugger.menuitem,\
+    gov.ca.water.wrims.gui.ide.debugger.model,\
+    gov.ca.water.wrims.gui.ide.debugger.sourcelookup,\
+    gov.ca.water.wrims.gui.ide.debugger.toolbaritem,\
+    gov.ca.water.wrims.gui.ide.debugger.ui,\
+    gov.ca.water.wrims.gui.ide.debugger.view,\
+    gov.ca.water.wrims.gui.ide.presentation,\
+    gov.ca.water.wrims.gui.ide.tools
 
 -includeresource: \
   plugin.xml = plugin.xml,\
