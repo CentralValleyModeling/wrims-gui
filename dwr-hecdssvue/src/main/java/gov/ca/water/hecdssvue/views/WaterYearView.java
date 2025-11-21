@@ -27,10 +27,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.part.ViewPart;
 
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
-import wrims.gui.ide.debugger.exception.WPPException;
-import wrims.gui.ide.tools.DssOperations;
-import wrims.gui.ide.tools.DssUtil;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DssOperations;
+import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 
 public class WaterYearView extends ViewPart {
 

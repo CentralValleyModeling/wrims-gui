@@ -18,7 +18,7 @@ import vista.set.DataReference;
 import vista.set.Group;
 import vista.set.GroupProxy;
 import vista.set.Pathname;
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 class DSSGroup extends GroupProxy {
 

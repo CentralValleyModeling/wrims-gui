@@ -16,7 +16,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
 
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class DuplicateRecords implements IWorkbenchWindowActionDelegate{
 

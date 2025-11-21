@@ -79,10 +79,10 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
-import wrims.gui.ide.debugger.exception.WPPException;
-import wrims.gui.ide.tools.DssUtil;
-import wrims.gui.ide.tools.TimeOperation;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DssUtil;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 import com.mindfusion.diagramming.AttachToNode;
 import com.mindfusion.diagramming.Behavior;

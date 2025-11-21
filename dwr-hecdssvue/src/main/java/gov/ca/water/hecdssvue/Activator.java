@@ -15,8 +15,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.swixml.SwingEngine;
 
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
-import wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 /**
  * The activator class controls the plug-in life cycle

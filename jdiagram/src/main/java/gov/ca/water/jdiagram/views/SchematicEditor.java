@@ -42,7 +42,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.w3c.dom.Document;
 
-import wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 import com.mindfusion.diagramming.Behavior;
 import com.mindfusion.diagramming.CompositeCmd;

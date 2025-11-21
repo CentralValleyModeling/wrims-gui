@@ -6,12 +6,12 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
-import wrims.gui.ide.debugger.exception.WPPException;
-import wrims.gui.ide.debugger.view.UpdateView;
-import wrims.gui.ide.debugger.view.WPPWatchView;
-import wrims.gui.ide.tools.ProcWatchItem;
-import wrims.gui.ide.tools.ShowDuplicatedWatch;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.view.UpdateView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView;
+import gov.ca.water.wrims.gui.ide.tools.ProcWatchItem;
+import gov.ca.water.wrims.gui.ide.tools.ShowDuplicatedWatch;
 
 public class AddWatch extends org.eclipse.core.commands.AbstractHandler {
 	

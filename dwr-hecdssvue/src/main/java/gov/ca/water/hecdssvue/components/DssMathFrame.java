@@ -13,7 +13,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 
 import rma.swing.RmaImage;
-import wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
 import hec.dssgui.ListSelection;
 import hec.dssgui.MathFrame2;
