@@ -15,9 +15,9 @@ import org.eclipse.debug.core.DebugException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
-import wrims.gui.ide.debugger.exception.WPPException;
-import wrims.gui.ide.debugger.model.WPPValue;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
 
 public class WreslEObjectDocumentationProvider implements
 		IEObjectDocumentationProvider {

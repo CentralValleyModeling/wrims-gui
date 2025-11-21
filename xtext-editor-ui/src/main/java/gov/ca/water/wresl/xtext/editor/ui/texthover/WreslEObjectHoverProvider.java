@@ -12,7 +12,7 @@ import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SvarDefImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.hover.html.DefaultEObjectHoverProvider;
 
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class WreslEObjectHoverProvider extends DefaultEObjectHoverProvider {
 	

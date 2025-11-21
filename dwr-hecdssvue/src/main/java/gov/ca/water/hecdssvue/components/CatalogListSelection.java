@@ -16,7 +16,7 @@ import org.eclipse.ui.PlatformUI;
 
 import rma.util.PlugInLoader;
 import rma.util.RMAIO;
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
 import hec.dssgui.ListSelection;

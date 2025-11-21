@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
 <extension point="org.eclipse.ui.startup">
-   <startup class="wrims.gui.ide.debugger.core.DebuggerStartUp"/>
+   <startup class="gov.ca.water.wrims.gui.ide.debugger.core.DebuggerStartUp"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
@@ -12,7 +12,7 @@
         <view id="wpp.variableview"
              name="Variables"
              category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.WPPVariableView"/>
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPVariableView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
@@ -22,7 +22,7 @@
         <view id="wpp.watchview"
              name="Watch"
              category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.WPPWatchView"/>
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
@@ -32,7 +32,7 @@
         <view id="wpp.allvariableview"
              name="All Variables"
              category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.WPPAllVariableView"/>
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPAllVariableView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
@@ -42,7 +42,7 @@
         <view id="wpp.goalview"
              name="Goals"
              category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.WPPGoalView"/>
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPGoalView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
@@ -52,7 +52,7 @@
         <view id="wpp.allgoalview"
              name="All Goals"
              category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.WPPAllGoalView"/>
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPAllGoalView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
@@ -62,7 +62,7 @@
         <view id="wpp.calsimhydroview"
              name="CalSimHydro"
              category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.CalSimHydroView"/>
+          class="gov.ca.water.wrims.gui.ide.debugger.view.CalSimHydroView"/>
 </extension>
 <extension point="org.eclipse.ui.viewActions"> 
   <viewContribution 
@@ -73,7 +73,7 @@
          label="Search" 
          tooltip="search"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.VarGoalSearch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.VarGoalSearch"
          enablesFor="*">
       </action> 
    </viewContribution> 
@@ -87,7 +87,7 @@
          label="Search" 
          tooltip="search"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.VarGoalSearch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.VarGoalSearch"
          enablesFor="*">
       </action> 
       <action
@@ -96,7 +96,7 @@
          icon="icons\weight_icon.png" 
          tooltip="weighted variables"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.WeightedVariables"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.WeightedVariables"
          enablesFor="*">
       </action>  
       <action
@@ -105,7 +105,7 @@
          icon="icons\DSS_icon.png" 
          tooltip="all variables from DSS"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.AllDssVariables"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.AllDssVariables"
          enablesFor="*">
       </action>
    </viewContribution> 
@@ -119,7 +119,7 @@
          label="Search" 
          tooltip="search"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.VarGoalSearch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.VarGoalSearch"
          enablesFor="*">
       </action>  
       <action
@@ -128,7 +128,7 @@
          icon="icons\filtergoal_icon.png" 
          tooltip="filter goals"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.FilterGoals"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.FilterGoals"
          enablesFor="*">
       </action> 
    </viewContribution> 
@@ -142,7 +142,7 @@
          label="Search" 
          tooltip="search"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.VarGoalSearch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.VarGoalSearch"
          enablesFor="*">
       </action>
       <action
@@ -151,7 +151,7 @@
          icon="icons\filtergoal_icon.png" 
          tooltip="filter goals"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.FilterGoals"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.FilterGoals"
          enablesFor="*">
       </action> 
       <action
@@ -160,7 +160,7 @@
          icon="icons\control_icon.png" 
          tooltip="control goals"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.AllControlGoals"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.AllControlGoals"
          enablesFor="*">
       </action>  
    </viewContribution> 
@@ -175,7 +175,7 @@
          icon="icons\export_icon.png" 
          tooltip="Export Watch Variables"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.ExportWatch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.ExportWatch"
          enablesFor="*">
       </action> 
       <action
@@ -184,7 +184,7 @@
          icon="icons\import_icon.png" 
          tooltip="Import Watch Variables"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.ImportWatch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.ImportWatch"
          enablesFor="*">
       </action>
       <action
@@ -193,7 +193,7 @@
          icon="icons\deleteall_icon.png" 
          tooltip="delete all watch"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.DeleteAllWatch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.DeleteAllWatch"
          enablesFor="*">
       </action>  
       <action
@@ -202,7 +202,7 @@
          icon="icons\delete_icon.png" 
          tooltip="delete watch"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.DeleteWatch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.DeleteWatch"
          enablesFor="*">
       </action> 
       <action
@@ -211,7 +211,7 @@
          icon="icons\add_icon.png" 
          tooltip="add watch"
          toolbarPath="group1"
-         class="wrims.gui.ide.debugger.toolbaritem.AddWatch"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.AddWatch"
          enablesFor="*">
       </action> 
    </viewContribution> 
@@ -226,7 +226,7 @@
          icon="icons\next_timestep.png" 
          tooltip="next timestep"
          toolbarPath="launchGroup"
-         class="wrims.gui.ide.debugger.toolbaritem.NextTimestep"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.NextTimestep"
          enablesFor="1">
       </action> 
       <action
@@ -235,7 +235,7 @@
          icon="icons\next_cycle.png" 
          tooltip="next cycle"
          toolbarPath="launchGroup"
-         class="wrims.gui.ide.debugger.toolbaritem.NextCycle"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.NextCycle"
          enablesFor="1">
       </action> 
       <action
@@ -244,7 +244,7 @@
          icon="icons\pause.png" 
          tooltip="pause/resume"
          toolbarPath="launchGroup"
-         class="wrims.gui.ide.debugger.toolbaritem.PauseResume"
+         class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.PauseResume"
          enablesFor="1">
       </action> 
    </viewContribution>
@@ -257,7 +257,7 @@
         <view id="wpp.exceptionview"
              name="Exception"
              category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.WPPExceptionView"/>
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPExceptionView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
 	<category 
@@ -266,7 +266,7 @@
     </category>
 	<view name="Variable Detail"
 	      category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.WPPVarDetailView"
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPVarDetailView"
           id="wpp.vardetailview">
     </view>
 </extension>
@@ -276,7 +276,7 @@
           name="WRIMS2">
     </category>	
 	<view name="Variable Monitor"
-          class="wrims.gui.ide.debugger.view.WPPVarMonitorView"
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPVarMonitorView"
           category="wpp.category.wrims2"
           id="wpp.varmonitorview">
     </view>
@@ -289,14 +289,14 @@
         <view id="wpp.fileincexploreview"
              name="WRESL Included"
              category="wpp.category.wrims2"
-          class="wrims.gui.ide.debugger.view.WPPFileIncExploreView"/>
+          class="gov.ca.water.wrims.gui.ide.debugger.view.WPPFileIncExploreView"/>
 </extension>
 <extension
 	point="org.eclipse.ui.commands">
 	<command
 		description="List included WRESL in a study"
 		id="wpp.studywresl"
-		defaultHandler="wrims.gui.ide.debugger.commanditem.StudyWresl"
+		defaultHandler="gov.ca.water.wrims.gui.ide.debugger.commanditem.StudyWresl"
 		name="Study WRESL">
 	</command>
 </extension>
@@ -305,7 +305,7 @@
 	<command
 		description="List included WRESL in a cycle"
 		id="wpp.cyclewresl"
-		defaultHandler="wrims.gui.ide.debugger.commanditem.CycleWresl"
+		defaultHandler="gov.ca.water.wrims.gui.ide.debugger.commanditem.CycleWresl"
 		name="Cycle WRESL">
 	</command>
 </extension>
@@ -314,7 +314,7 @@
 	<command
 		description="Export Study"
 		id="wpp.exportstudy"
-		defaultHandler="wrims.gui.ide.debugger.commanditem.StudyExport"
+		defaultHandler="gov.ca.water.wrims.gui.ide.debugger.commanditem.StudyExport"
 		name="Export Study">
 	</command>
 </extension>
@@ -323,7 +323,7 @@
 	<command
 		description="DSS HDF5 Conversion"
 		id="wpp.dsshdf5conversion"
-		defaultHandler="wrims.gui.ide.debugger.commanditem.DSSHDF5Conversion"
+		defaultHandler="gov.ca.water.wrims.gui.ide.debugger.commanditem.DSSHDF5Conversion"
 		name="DSS HDF5 Conversion">
 	</command>
 </extension>
@@ -419,13 +419,13 @@
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
             type="wpp.launchType"
-            class="wrims.gui.ide.debugger.launcher.WPPTabGroup"
+            class="gov.ca.water.wrims.gui.ide.debugger.launcher.WPPTabGroup"
             id="wpp.tabGroup"/>
    </extension>
  <extension point = "org.eclipse.debug.core.launchConfigurationTypes">
    <launchConfigurationType
 	   name="WRESL/WRIMS2 Application"
-	   delegate="wrims.gui.ide.debugger.launcher.WPPLaunchDelegate"
+	   delegate="gov.ca.water.wrims.gui.ide.debugger.launcher.WPPLaunchDelegate"
 	   modes= "run, debug"
 	   id="wpp.launchType"
 	   sourceLocatorId="wpp.sourceLocator"
@@ -442,21 +442,21 @@
 <extension
          point="org.eclipse.debug.core.sourceLocators">
       <sourceLocator
-            class="wrims.gui.ide.debugger.sourcelookup.WPPSourceLookupDirector"
+            class="gov.ca.water.wrims.gui.ide.debugger.sourcelookup.WPPSourceLookupDirector"
             name="WPP Source Locator"
             id="wpp.sourceLocator"/>
 </extension>
 <extension
          point="org.eclipse.debug.core.sourcePathComputers">
       <sourcePathComputer
-            class="wrims.gui.ide.debugger.sourcelookup.WPPSourcePathComputerDelegate"
+            class="gov.ca.water.wrims.gui.ide.debugger.sourcelookup.WPPSourcePathComputerDelegate"
             id="wpp.sourcePathComputer"/>
 </extension>
 <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
             label="WRESL/WRIMS Application"
-            class="wrims.gui.ide.debugger.launcher.WPPLaunchShortcut"
+            class="gov.ca.water.wrims.gui.ide.debugger.launcher.WPPLaunchShortcut"
             modes="run, debug"
             id="WPP.launchShortcut">
          <contextualLaunch>
@@ -477,14 +477,14 @@
    <extension
          point="org.eclipse.debug.ui.debugModelPresentations">
       <debugModelPresentation
-            class="wrims.gui.ide.presentation.WPPModelPresentation"
+            class="gov.ca.water.wrims.gui.ide.presentation.WPPModelPresentation"
             id="wpp.debugModel"/>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
       <editor
             filenames="*.wpp"
-            class="wrims.gui.ide.editor.WPPEditor"
+            class="gov.ca.water.wrims.gui.ide.editor.WPPEditor"
             default="true"
             name="WPP Editor"
             id="wpp.editor"
@@ -497,7 +497,7 @@
             id="wpp.rulerActions">
          <action
                label="Not Used"
-               class="wrims.gui.ide.editor.RulerToggleBreakpointAction"
+               class="gov.ca.water.wrims.gui.ide.editor.RulerToggleBreakpointAction"
                style="push"
                actionID="RulerDoubleClick"
                id="wpp.doubleClickBreakpointAction"/>
@@ -506,12 +506,12 @@
      <extension
          point="org.eclipse.debug.core.breakpoints">
       <breakpoint
-            class="wrims.gui.ide.debugger.breakpoint.WPPLineBreakpoint"
+            class="gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPLineBreakpoint"
             name="WPP Line Breakpoints"
             markerType="wpp.markerType.lineBreakpoint"
             id="wpp.lineBreakpoint"/>
       <breakpoint
-            class="wrims.gui.ide.debugger.breakpoint.WPPWatchpoint"
+            class="gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPWatchpoint"
             name="WPP Watchpoints"
             markerType="wpp.markerType.watchpoint"
             id="wpp.watchpoint"/>
@@ -536,7 +536,7 @@
            id="wpp.toolbar"
            label="WRIMS2Debug">
        <control
-            class="wrims.gui.ide.debugger.toolbaritem.DebugSet"
+            class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.DebugSet"
             id="wpp.debugset">
        </control>  
      </toolbar>
@@ -550,61 +550,61 @@
 		id="wpp.debugcontrol">
 		<action
 			label="Batch Run"
-			class="wrims.gui.ide.debugger.menuitem.BatchRunMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.BatchRunMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.batchrun">
 		</action>
 		<action
 			label="Clear Conditional Breakpoint"
-			class="wrims.gui.ide.debugger.menuitem.ClearConditionalBreakpointMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.ClearConditionalBreakpointMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.clearconditionalbreakpoint">
 		</action>
 		<action
 			label="Conditional Breakpoint"
-			class="wrims.gui.ide.debugger.menuitem.ConditionalBreakpointMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.ConditionalBreakpointMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.conditionalbreakpoint">
 		</action>
 		<action
 			label="Re-Simulate"
-			class="wrims.gui.ide.debugger.menuitem.ReSimMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.ReSimMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.resim">
 		</action>
 		<action
 			label="Suspend"
-			class="wrims.gui.ide.debugger.menuitem.SuspendMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.SuspendMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.suspend">
 		</action>
 		<action
 			label="Pause"
-			class="wrims.gui.ide.debugger.menuitem.PauseMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.PauseMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.pause">
 		</action>
 		<action
 			label="Terminate"
-			class="wrims.gui.ide.debugger.menuitem.TerminateMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.TerminateMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.terminate">
 		</action>
 		<action
 			label="Next time step"
-			class="wrims.gui.ide.debugger.menuitem.NextTimeStepMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.NextTimeStepMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.nexttimestep">
 		</action>
 		<action
 			label="Next cycle"
-			class="wrims.gui.ide.debugger.menuitem.NextCycleMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.NextCycleMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.nextcycle">
 		</action>
 		<action
 			label="Resume"
-			class="wrims.gui.ide.debugger.menuitem.ResumeMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.ResumeMenu"
 			menubarPath="org.eclipse.ui.run/debug"
 			id="wpp.resume">
 		</action>
@@ -618,13 +618,13 @@
 		id="wpp.wrims">
 		<action
 			label="Option"
-			class="wrims.gui.ide.debugger.menuitem.SolverOptionMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.SolverOptionMenu"
 			menubarPath="org.eclipse.ui.run/other"
 			id="wpp.solveroption">
 		</action>
 		<action
 			label="Load Zip File"
-			class="wrims.gui.ide.debugger.menuitem.LoadZipFileMenu"
+			class="gov.ca.water.wrims.gui.ide.debugger.menuitem.LoadZipFileMenu"
 			menubarPath="File/other"
 			id="wpp.loadzipfile">
 		</action>
@@ -648,42 +648,42 @@
           </separator>
        </menu>
        <action
-             class="wrims.gui.ide.debugger.menuitem.DSSHDF5ConversionMenu"
+             class="gov.ca.water.wrims.gui.ide.debugger.menuitem.DSSHDF5ConversionMenu"
              id="wpp.dsshdf5conversion"
              label="DSS HDF5 Conversion"
              menubarPath="wpp.data/operation"
              style="push">
        </action>
        <action
-             class="wrims.gui.ide.debugger.menuitem.ReportToolMenu"
+             class="gov.ca.water.wrims.gui.ide.debugger.menuitem.ReportToolMenu"
              id="wpp.reporttool"
              label="Report Tool"
              menubarPath="wpp.data/operation"
              style="push">
        </action>
        <action
-             class="wrims.gui.ide.debugger.menuitem.SaveInitFileMenu"
+             class="gov.ca.water.wrims.gui.ide.debugger.menuitem.SaveInitFileMenu"
              id="wpp.saveinitfile"
              label="Save To Initial File"
              menubarPath="wpp.data/operation"
              style="push">
        </action>
        <action
-             class="wrims.gui.ide.debugger.menuitem.SaveDVFileMenu"
+             class="gov.ca.water.wrims.gui.ide.debugger.menuitem.SaveDVFileMenu"
              id="wpp.savedvfile"
              label="Save To DV File"
              menubarPath="wpp.data/operation"
              style="push">
        </action>
        <action
-             class="wrims.gui.ide.debugger.menuitem.SaveSVFileMenu"
+             class="gov.ca.water.wrims.gui.ide.debugger.menuitem.SaveSVFileMenu"
              id="wpp.savesvfile"
              label="Save To SV File"
              menubarPath="wpp.data/operation"
              style="push">
        </action>
        <action
-             class="wrims.gui.ide.debugger.menuitem.LoadStudiesDSS"
+             class="gov.ca.water.wrims.gui.ide.debugger.menuitem.LoadStudiesDSS"
              id="wpp.loadstudiesdss"
              label="Load DSS/Studies"
              menubarPath="wpp.data/operation"
@@ -693,7 +693,7 @@
  </extension>
  <extension point="org.eclipse.ui.console.consolePatternMatchListeners">
   <consolePatternMatchListener
-    class="wrims.gui.ide.debugger.console.WPPConsoleLogPatternMatcher"
+    class="gov.ca.water.wrims.gui.ide.debugger.console.WPPConsoleLogPatternMatcher"
     id="wpp.consolelogpatternmatcher"
     regex="\([a-zA-Z]:.*\.wresl:[0-9]*\)">
     <enablement>
@@ -703,7 +703,7 @@
  <extension
        point="org.eclipse.ui.console.consolePageParticipants">
     <consolePageParticipant
-          class="wrims.gui.ide.debugger.console.WPPConsolePageParticipant"
+          class="gov.ca.water.wrims.gui.ide.debugger.console.WPPConsolePageParticipant"
           id="wpp.consolepageparticipant">
        <enablement>
           <instanceof
@@ -714,7 +714,7 @@
  <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="wrims.gui.ide.perspective.IDEPerspectiveFactory"
+            class="gov.ca.water.wrims.gui.ide.perspective.IDEPerspectiveFactory"
             id="wpp.ideperspective"
             name="IDE"/>
  </extension>

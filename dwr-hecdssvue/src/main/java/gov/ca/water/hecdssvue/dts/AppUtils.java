@@ -59,7 +59,7 @@ import vista.time.Time;
 import vista.time.TimeFactory;
 import vista.time.TimeInterval;
 import vista.time.TimeWindow;
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 /**
  * Common utility functions for App package

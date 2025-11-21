@@ -38,7 +38,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IViewSite;
 
-import wrims.gui.ide.tools.TimeOperation;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 /**
  * Displays a plot in a view based on selection on DSS Catalog View

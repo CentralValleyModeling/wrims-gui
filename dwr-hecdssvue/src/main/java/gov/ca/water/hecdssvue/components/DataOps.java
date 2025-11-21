@@ -27,9 +27,9 @@ import org.eclipse.ui.PlatformUI;
 
 import gov.ca.water.hecdssvue.dts.AppUtils;
 import gov.ca.water.hecdssvue.dts.Project;
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
-import wrims.gui.ide.debugger.exception.WPPException;
-import wrims.gui.ide.tools.DssUtil;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 
 public class DataOps {
 

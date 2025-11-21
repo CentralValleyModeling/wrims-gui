@@ -51,8 +51,8 @@ jaxb-impl = "2.3.2"
 javax-activation = "1.1.1"
 
 [libraries]
-wrims-core = { module = "gov.ca.dwr:wrims-core", version.ref = "wrims-engine" }
-wrims-engine-bom = { module = "gov.ca.dwr:wrims-engine-bom", version.ref = "wrims-engine" }
+wrims-core = { module = "gov.ca.water:wrims-core", version.ref = "wrims-engine" }
+wrims-engine-bom = { module = "gov.ca.water:wrims-engine-bom", version.ref = "wrims-engine" }
 hec-monolith = { module = "mil.army.usace.hec:hec-monolith", version.ref = "hec-monolith" }
 dssgui = { module = "mil.army.usace.hec:dssgui", version.ref = "dssgui" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }

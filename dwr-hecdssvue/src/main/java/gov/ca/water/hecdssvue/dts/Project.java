@@ -14,7 +14,7 @@ import java.util.Hashtable;
 import vista.set.Group;
 import vista.set.Pathname;
 import vista.time.TimeWindow;
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 /**
  * A project contains a user defined list of DerivedTimeSeries (DTS) and

@@ -54,8 +54,8 @@ import org.eclipse.ui.PlatformUI;
 
 import gov.ca.water.hecdssvue.dts.AppUtils;
 import gov.ca.water.hecdssvue.dts.Project;
-import wrims.gui.ide.debugger.core.DebugCorePlugin;
-import wrims.gui.ide.tools.TimeOperation;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 public class OpsPanel extends JPanel {
 
