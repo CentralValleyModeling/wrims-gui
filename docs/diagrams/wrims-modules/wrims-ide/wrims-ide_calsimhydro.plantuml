@@ -6,7 +6,7 @@ skinparam linetype ortho
 
 rectangle WRIMS {
     component wrims-ide as "WRIMS IDE" #orange {
-        package wrimsv2_plugin {
+        package wrims.gui {
             package calsimhydro#lightgreen
             package tools
             package debugger

@@ -10,18 +10,18 @@ rectangle wrims as "WRIMS 2.2"{
     rectangle wrims_ide as "WRIMS IDE" #lightgreen
 
     rectangle wrims_dssvue as "DWR DSSVue" #orange {
-        package dssvue as "gov.ca.dwr.hecdssvue"
+        package dssvue as "gov.ca.water.hecdssvue"
     }
 
     rectangle wrims_jdiagram as "DWR JDiagram" #orange {
-        package gov.ca.dwr.jdiagram
+        package gov.ca.water.jdiagram
     }
 
     rectangle wrims_core as "WRIMS Core" #orange
 
-    package xtext_editor as "gov.ca.dwr.xtext.editor" #orange
+    package xtext_editor as "gov.ca.water.xtext.editor" #orange
 
-    package xtext_editor_ui as "gov.ca.dwr.xtext.editor.ui" #orange
+    package xtext_editor_ui as "gov.ca.water.xtext.editor.ui" #orange
 
     rectangle eclipse_luna_libs as "Eclipse Luna Libraries" #orange {
         package org.eclipse.xtext
@@ -58,7 +58,7 @@ xtext_editor -> eclipse_luna_libs #blue
 xtext_editor_ui -> eclipse_luna_libs #blue
 
 
-gov.ca.dwr.jdiagram -> local_jars #grey
+gov.ca.water.jdiagram -> local_jars #grey
 wrims_jdiagram -> eclipse_luna_libs #blue
 
 hec -down-> hec_nexus

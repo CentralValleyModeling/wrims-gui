@@ -10,21 +10,21 @@ rectangle wrims as "WRIMS 2.2"{
     component wrims_ide as "WRIMS IDE" #lightgreen
 
     component wrims_dssvue as "DWR DSSVue" #orange {
-        package dssvue as "gov.ca.dwr.hecdssvue"
+        package dssvue as "gov.ca.water.hecdssvue"
     }
 
     component wrims_jdiagram as "DWR JDiagram" #orange {
-        package gov.ca.dwr.jdiagram
+        package gov.ca.water.jdiagram
     }
 
     component wrims_core as "WRIMS Core" #orange
 
     component xtext_editor as "xText Editor" #orange {
-        package xtext.editor as "gov.ca.dwr.xtext.editor"
+        package xtext.editor as "gov.ca.water.xtext.editor"
     }
 
     component xtext_editor_ui as "xText Editor UI" #orange {
-        package xtext.editor.ui as "gov.ca.dwr.xtext.editor.ui"
+        package xtext.editor.ui as "gov.ca.water.xtext.editor.ui"
     }
 
     component eclipse_luna_libs as "Eclipse Luna Libraries" #orange {
@@ -141,7 +141,7 @@ xtext_editor -down-> antlrgenerator
 
 calsurrogate -down-> org.tensorflow
 
-gov.ca.dwr.jdiagram -> jdiagram
+gov.ca.water.jdiagram -> jdiagram
 wrims_jdiagram -down-> eclipse_luna_libs
 
 hec -down-> hec_nexus
