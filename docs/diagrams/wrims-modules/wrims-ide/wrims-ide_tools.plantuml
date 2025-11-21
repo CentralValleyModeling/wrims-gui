@@ -6,7 +6,7 @@ skinparam linetype ortho
 
 rectangle WRIMS {
     component wrims-ide as "WRIMS IDE" #orange {
-        package wrimsv2_plugin {
+        package wrims.gui {
             package tools #lightgreen
             package debugger
         }
@@ -18,7 +18,7 @@ rectangle WRIMS {
     }
 
     component wrims-core as "WRIMS Core" #orange {
-        package wrimsv2 {
+        package wrims.engine.core {
             package commondata.wresldata
         }
     }
