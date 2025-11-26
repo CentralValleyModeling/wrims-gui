@@ -2,7 +2,6 @@ plugins{
     id 'library.deps-conventions'
     id 'library.java-conventions'
     id 'library.jdeps-conventions'
-    id 'java'
     id 'jacoco'
 
     // The following plugin is used to build the OSGI bundle
