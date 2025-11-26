@@ -6,6 +6,8 @@ plugins {
     id 'base'
     id 'eclipse'
     id 'org.sonarqube' version '6.3.1.5724'
+    id 'library.deps-conventions'
+    id 'jacoco'
 }
 
 allprojects {
@@ -41,4 +43,39 @@ sonar {
 allprojects {
     group = 'gov.ca.dwr'
     version = versionLabel(versionDetails())
+}
+
+// Define the aggregation task to merge reports from all subprojects
+tasks.register('codeCoverageReport', JacocoReport) {
+    group = 'Verification'
+    description = 'Generates an aggregate code coverage report for all subprojects'
+
+    subprojects { subproject ->
+        subproject.plugins.withType(JacocoPlugin).each {
+            subproject.tasks.matching({t -> t.extensions.findByType(JacocoTaskExtension)}).each { testTask ->
+                if(testTask.extensions.getByType(JacocoTaskExtension).isEnabled()) {
+                    sourceSets subproject.sourceSets.main
+                    executionData(testTask)
+                }
+            }
+        }
+    }
+
+    reports {
+        xml.required = true
+        html.required = false
+        csv.required = false
+    }
+
+    classDirectories.setFrom(files(classDirectories.files.collect {
+        fileTree(dir: it)
+    }))
+}
+
+subprojects {
+    sonar {
+        properties {
+            property "sonar.coverage.jacoco.xmlReportPaths", "$rootDir/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+        }
+    }
 }
