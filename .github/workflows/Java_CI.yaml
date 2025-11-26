@@ -38,7 +38,7 @@ jobs:
           
       - name: Gather Code Coverage into single report
         run: |
-          ./gradlew codeCoverageReport --info
+          ./gradlew codeCoverageReport --info -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
 
       - name: Upload Code Coverage Report
         uses: actions/upload-artifact@v4.6.2
