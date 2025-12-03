@@ -6,7 +6,7 @@ skinparam linetype ortho
 
 rectangle WRIMS {
     component wrims-ide as "WRIMS IDE" #orange {
-        package wrims.gui {
+        package wrims.gui.ide {
             package tools #lightgreen
             package debugger
         }
@@ -30,5 +30,5 @@ tools -down-> commondata.wresldata
 
 debugger -> tools #firebrick
 
-footer "green components indicate the primary module being represented \n orange components indicate key local modules \n red lines represent circular dependencies"
+footer "green components indicate the primary module being represented \n orange components indicate key local modules \n red lines represent circular dependencies\n All WRIMS IDE and WRIMS Core components shown are located under the canonical package root gov.ca.water.*"
 @enduml
