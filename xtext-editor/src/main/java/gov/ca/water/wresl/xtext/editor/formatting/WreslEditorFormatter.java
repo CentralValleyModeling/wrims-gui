@@ -4,7 +4,6 @@
 package gov.ca.water.wresl.xtext.editor.formatting;
 
 import gov.ca.water.wresl.xtext.editor.services.WreslEditorGrammarAccess;
-
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 

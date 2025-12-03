@@ -3,6 +3,8 @@
  */
 package gov.ca.water.wresl.xtext.editor;
 
+import com.google.inject.Binder;
+import com.google.inject.name.Names;
 import gov.ca.water.wresl.xtext.editor.formatting.WreslEditorFormatter;
 import gov.ca.water.wresl.xtext.editor.generator.WreslEditorGenerator;
 import gov.ca.water.wresl.xtext.editor.parser.antlr.WreslEditorAntlrTokenFileProvider;
@@ -14,11 +16,7 @@ import gov.ca.water.wresl.xtext.editor.serializer.WreslEditorSyntacticSequencer;
 import gov.ca.water.wresl.xtext.editor.services.WreslEditorGrammarAccess;
 import gov.ca.water.wresl.xtext.editor.validation.WreslEditorJavaValidator;
 import java.util.Properties;
-
 import org.eclipse.xtext.Constants;
-
-import com.google.inject.Binder;
-import com.google.inject.name.Names;
 
 /**
  * Manual modifications go to {gov.ca.water.wresl.xtext.editor.WreslEditorRuntimeModule}

@@ -1,7 +1,6 @@
 package gov.ca.water.hecdssvue.menus;
 
 import gov.ca.water.hecdssvue.components.DataOps;
-
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;

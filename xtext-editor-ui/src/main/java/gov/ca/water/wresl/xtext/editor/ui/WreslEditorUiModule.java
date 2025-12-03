@@ -7,7 +7,6 @@ import gov.ca.water.wresl.xtext.editor.ui.link.WreslLinkedPositionGroupCalculato
 import gov.ca.water.wresl.xtext.editor.ui.link.WreslLinkingService;
 import gov.ca.water.wresl.xtext.editor.ui.texthover.WreslEObjectDocumentationProvider;
 import gov.ca.water.wresl.xtext.editor.ui.texthover.WreslEObjectHoverProvider;
-
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.linking.ILinkingService;

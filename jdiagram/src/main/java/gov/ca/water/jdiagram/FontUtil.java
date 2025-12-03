@@ -1,7 +1,6 @@
 package gov.ca.water.jdiagram;
 
 import javax.swing.JPanel;
-
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;

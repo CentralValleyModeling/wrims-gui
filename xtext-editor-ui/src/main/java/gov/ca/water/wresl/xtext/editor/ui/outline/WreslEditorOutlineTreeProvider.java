@@ -20,7 +20,6 @@ import gov.ca.water.wresl.xtext.editor.wreslEditor.Objective;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.Sequence;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.SvarDef;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEvaluator;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;

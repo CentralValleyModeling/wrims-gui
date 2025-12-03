@@ -1,11 +1,12 @@
 package gov.ca.water.wrims.gui.ide.debugger.toolbaritem;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
@@ -15,9 +16,6 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionDelegate;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class ExportWatch extends ActionDelegate implements IViewActionDelegate{
 	IViewPart view;

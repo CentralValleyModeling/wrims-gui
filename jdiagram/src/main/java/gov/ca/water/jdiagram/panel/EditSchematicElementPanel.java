@@ -1,16 +1,14 @@
 package gov.ca.water.jdiagram.panel;
 
-import java.awt.Color;
-import java.awt.GridLayout;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import com.mindfusion.diagramming.DiagramItem;
 import com.mindfusion.diagramming.DiagramLink;
 import com.mindfusion.diagramming.Shape;
 import com.mindfusion.diagramming.ShapeNode;
+import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class EditSchematicElementPanel extends JPanel{
 	private JLabel colorLabel;

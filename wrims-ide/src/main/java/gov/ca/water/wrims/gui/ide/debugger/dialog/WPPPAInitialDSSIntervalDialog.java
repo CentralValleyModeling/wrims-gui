@@ -1,17 +1,20 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.launcher.WPPMainTab;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import hec.heclib.dss.HecDss;
 import hec.hecmath.HecMath;
 import hec.hecmath.TimeSeriesMath;
 import hec.io.TimeSeriesContainer;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.Vector;
-
 import org.apache.commons.io.FileUtils;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.swt.SWT;
@@ -26,12 +29,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.launcher.WPPMainTab;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 public class WPPPAInitialDSSIntervalDialog extends Dialog {
 	private WPPMainTab mainTab;

@@ -1,13 +1,12 @@
 package gov.ca.water.jdiagram.dialog;
 
+import gov.ca.water.hecdssvue.DssPluginCore;
+import gov.ca.water.jdiagram.SchematicPluginCore;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import gov.ca.water.hecdssvue.DssPluginCore;
-import gov.ca.water.jdiagram.SchematicPluginCore;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -22,8 +21,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class AddTimeWindowDialog extends Dialog {
 	//private DateCombo dateCombo;

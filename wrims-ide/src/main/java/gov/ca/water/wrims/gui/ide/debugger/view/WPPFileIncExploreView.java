@@ -1,10 +1,12 @@
 package gov.ca.water.wrims.gui.ide.debugger.view;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -28,10 +30,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ViewPart;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 
 public class WPPFileIncExploreView extends ViewPart {
 	private TreeViewer viewer;

@@ -11,6 +11,8 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.launcher;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
@@ -23,9 +25,6 @@ import org.eclipse.debug.ui.ILaunchShortcut;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 /**
  * Launches a WPP file

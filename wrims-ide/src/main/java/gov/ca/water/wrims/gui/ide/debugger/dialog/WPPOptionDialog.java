@@ -1,6 +1,11 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
 
+import gov.ca.water.wrims.gui.ide.debugger.core.CBCSetting;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.SettingPref;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -27,12 +32,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.internal.Workbench;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.CBCSetting;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.core.SettingPref;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 
 public class WPPOptionDialog extends Dialog {
 	

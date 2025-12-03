@@ -5,16 +5,13 @@ import gov.ca.water.hecdssvue.views.DSSCatalogView;
 import gov.ca.water.hecdssvue.views.DSSMonthlyView;
 import gov.ca.water.hecdssvue.views.DSSPlotView;
 import gov.ca.water.hecdssvue.views.DSSTableView;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import hec.io.DataContainer;
-
 import java.util.Iterator;
 import java.util.Vector;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class ShowSelected {
 

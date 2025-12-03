@@ -1,12 +1,12 @@
 package gov.ca.water.jdiagram.views;
 
+import com.mindfusion.diagramming.DiagramView;
+import com.mindfusion.diagramming.Overview;
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.Panel;
-
 import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
@@ -14,9 +14,6 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-
-import com.mindfusion.diagramming.DiagramView;
-import com.mindfusion.diagramming.Overview;
 
 /**
  * This represents the overview to the schematic being displayed by the

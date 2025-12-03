@@ -1,13 +1,12 @@
 package gov.ca.water.wrims.gui.ide.debugger.menuitem;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class TerminateMenu implements IWorkbenchWindowActionDelegate{
 	public TerminateMenu(){

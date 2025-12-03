@@ -4,9 +4,7 @@ package gov.ca.water.wresl.xtext.editor.wreslEditor.impl;
 
 import gov.ca.water.wresl.xtext.editor.wreslEditor.Unary;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**

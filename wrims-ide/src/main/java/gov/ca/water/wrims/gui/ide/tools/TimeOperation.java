@@ -3,7 +3,6 @@ package gov.ca.water.wrims.gui.ide.tools;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
-
 import mil.army.usace.hec.metadata.Interval;
 import mil.army.usace.hec.metadata.IntervalFactory;
 

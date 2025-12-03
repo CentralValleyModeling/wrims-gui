@@ -1,5 +1,6 @@
 package gov.ca.water.wrims.gui.ide.debugger.listener;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
@@ -9,8 +10,6 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class TableCursorCopyListener implements KeyListener {
 

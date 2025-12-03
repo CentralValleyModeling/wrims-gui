@@ -1,24 +1,21 @@
 package gov.ca.water.hecdssvue.components;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Vector;
-
-import javax.swing.AbstractAction;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PlatformUI;
-
-import rma.swing.RmaImage;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import hec.dssgui.ListSelection;
 import hec.dssgui.MathFrame2;
 import hec.heclib.dss.HecDss;
 import hec.io.DataContainer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PlatformUI;
+import rma.swing.RmaImage;
 
 public class DssMathFrame extends MathFrame2 {
 

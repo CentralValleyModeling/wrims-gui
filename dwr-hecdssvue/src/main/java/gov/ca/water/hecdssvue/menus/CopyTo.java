@@ -2,7 +2,6 @@ package gov.ca.water.hecdssvue.menus;
 
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.components.CatalogListSelection;
-
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;

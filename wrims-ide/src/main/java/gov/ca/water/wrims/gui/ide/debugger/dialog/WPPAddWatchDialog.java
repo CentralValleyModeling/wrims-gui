@@ -1,5 +1,10 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.view.UpdateView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView;
+import gov.ca.water.wrims.gui.ide.tools.ProcWatchItem;
+import gov.ca.water.wrims.gui.ide.tools.ShowDuplicatedWatch;
 import java.util.ArrayList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -15,12 +20,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.view.UpdateView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView;
-import gov.ca.water.wrims.gui.ide.tools.ProcWatchItem;
-import gov.ca.water.wrims.gui.ide.tools.ShowDuplicatedWatch;
 
 public class WPPAddWatchDialog extends Dialog {
 	

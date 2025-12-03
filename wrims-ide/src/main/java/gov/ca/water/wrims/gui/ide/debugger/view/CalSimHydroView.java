@@ -1,11 +1,11 @@
 package gov.ca.water.wrims.gui.ide.debugger.view;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -18,8 +18,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class CalSimHydroView extends ViewPart implements ISelectionListener{
 	

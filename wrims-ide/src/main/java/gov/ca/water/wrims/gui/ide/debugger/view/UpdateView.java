@@ -1,9 +1,15 @@
 package gov.ca.water.wrims.gui.ide.debugger.view;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
+import gov.ca.water.wrims.gui.ide.tools.VariableProperty;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.debug.core.DebugException;
@@ -23,14 +29,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.ResourceUtil;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
-import gov.ca.water.wrims.gui.ide.tools.VariableProperty;
 
 public class UpdateView {
 		

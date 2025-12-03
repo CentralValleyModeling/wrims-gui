@@ -1,7 +1,5 @@
 package gov.ca.water.wresl.xtext.editor.ui.texthover;
 
-import java.util.Map;
-
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.AliasImpl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ConstDefImpl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.DeclarationImpl;
@@ -10,14 +8,13 @@ import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ExternalDefImpl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.GoalImpl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.IdentImpl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SvarDefImpl;
-
-import org.eclipse.debug.core.DebugException;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
-
 import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
+import java.util.Map;
+import org.eclipse.debug.core.DebugException;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 
 public class WreslEObjectDocumentationProvider implements
 		IEObjectDocumentationProvider {

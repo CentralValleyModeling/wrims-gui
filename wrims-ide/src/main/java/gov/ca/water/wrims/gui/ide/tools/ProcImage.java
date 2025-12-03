@@ -1,12 +1,10 @@
 package gov.ca.water.wrims.gui.ide.tools;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import java.util.HashMap;
 import java.util.Iterator;
-
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class ProcImage {
 	static HashMap<ImageDescriptor, Image> imageCache=new HashMap<ImageDescriptor, Image>();

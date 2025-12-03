@@ -1,11 +1,16 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.listener.TableCopyListener;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
+import gov.ca.water.wrims.gui.ide.debugger.view.ProcessAltColumn;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import java.text.Collator;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -21,13 +26,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.listener.TableCopyListener;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
-import gov.ca.water.wrims.gui.ide.debugger.view.ProcessAltColumn;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 
 public class WPPWeightDialog extends Dialog {
 	

@@ -1,9 +1,13 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPVariableView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
+import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 import hec.heclib.dss.HecDss;
-
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
@@ -28,13 +32,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPVariableView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
-import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 
 public class WPPLoadStudyDssDialog extends Dialog {
 	private Button[] checkBox=new Button[8];

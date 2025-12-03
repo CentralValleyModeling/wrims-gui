@@ -1,14 +1,12 @@
 package gov.ca.water.wrims.gui.ide.debugger.msr;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-
 import org.eclipse.debug.core.ILaunchConfiguration;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 
 public class MSRUtil {
 	

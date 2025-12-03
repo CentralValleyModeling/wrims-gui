@@ -98,12 +98,10 @@ import gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEvaluator;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.lowerUpper;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.upperLower;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**

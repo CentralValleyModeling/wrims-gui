@@ -1,5 +1,7 @@
 package gov.ca.water.wrims.gui.ide.debugger.view;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import hec.gfx2d.G2dObject;
 import hec.gfx2d.G2dPanel;
 import hec.gfx2d.PairedDataSet;
@@ -7,7 +9,6 @@ import hec.gfx2d.TimeSeriesDataSet;
 import hec.io.DataContainer;
 import hec.io.PairedDataContainer;
 import hec.io.TimeSeriesContainer;
-
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Frame;
@@ -16,16 +17,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
-
 import javax.swing.JRootPane;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 
 public class WPPVarMonitorView extends ViewPart{
 

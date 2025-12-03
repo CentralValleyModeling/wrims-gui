@@ -1,14 +1,12 @@
 package gov.ca.water.wrims.gui.ide.debugger.console;
 
-import java.util.HashMap;
-
-import org.eclipse.ui.console.IConsole;
-import org.eclipse.ui.console.IConsolePageParticipant;
-import org.eclipse.ui.part.IPageBookViewPage;
-
 import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
 import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
+import java.util.HashMap;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.IConsolePageParticipant;
+import org.eclipse.ui.part.IPageBookViewPage;
 
 public class WPPConsolePageParticipant implements IConsolePageParticipant {
 

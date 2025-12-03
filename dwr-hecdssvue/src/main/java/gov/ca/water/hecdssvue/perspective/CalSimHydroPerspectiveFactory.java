@@ -8,12 +8,10 @@ import gov.ca.water.hecdssvue.views.DSSPlotView;
 import gov.ca.water.hecdssvue.views.DSSTableView;
 import gov.ca.water.hecdssvue.views.DTSView;
 import gov.ca.water.hecdssvue.views.WaterYearView;
-
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class CalSimHydroPerspectiveFactory implements IPerspectiveFactory {
 

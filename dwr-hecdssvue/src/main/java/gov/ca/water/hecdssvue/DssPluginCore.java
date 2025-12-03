@@ -4,14 +4,12 @@ import gov.ca.water.hecdssvue.panel.MonthlyTablePanel;
 import hec.heclib.dss.CondensedReference;
 import hec.heclib.dss.HecDss;
 import hec.hecmath.HecMath;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
 import java.util.prefs.Preferences;
-
 import org.swixml.SwingEngine;
 
 public class DssPluginCore {

@@ -2,10 +2,8 @@ package gov.ca.water.hecdssvue.actions;
 
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.components.RetrieveCheckBoxTsData;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JCheckBox;
 
 public class ReportCheckBoxAction implements ActionListener {

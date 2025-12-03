@@ -2,12 +2,15 @@ package gov.ca.water.hecdssvue.views;
 
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.components.ShowSelected;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DssOperations;
+import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 import hec.heclib.dss.CondensedReference;
 import hec.heclib.dss.HecDss;
 import hec.heclib.util.HecTime;
 import hec.io.DataContainer;
 import hec.io.TimeSeriesContainer;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -15,7 +18,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Vector;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -26,11 +28,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.part.ViewPart;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.DssOperations;
-import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 
 public class WaterYearView extends ViewPart {
 

@@ -2,9 +2,7 @@ package gov.ca.water.hecdssvue.views;
 
 import gov.ca.water.hecdssvue.panel.OpsPanel;
 import hec.io.DataContainer;
-
 import java.util.Vector;
-
 import org.eclipse.swt.widgets.Composite;
 
 /**

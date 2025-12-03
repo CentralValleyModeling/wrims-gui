@@ -1,5 +1,23 @@
 package gov.ca.water.jdiagram.views;
 
+import com.mindfusion.diagramming.AttachToNode;
+import com.mindfusion.diagramming.Behavior;
+import com.mindfusion.diagramming.Diagram;
+import com.mindfusion.diagramming.DiagramAdapter;
+import com.mindfusion.diagramming.DiagramItem;
+import com.mindfusion.diagramming.DiagramLink;
+import com.mindfusion.diagramming.DiagramLinkList;
+import com.mindfusion.diagramming.DiagramNode;
+import com.mindfusion.diagramming.DiagramNodeList;
+import com.mindfusion.diagramming.DiagramView;
+import com.mindfusion.diagramming.Group;
+import com.mindfusion.diagramming.InplaceEditable;
+import com.mindfusion.diagramming.LinkEvent;
+import com.mindfusion.diagramming.NodeEvent;
+import com.mindfusion.diagramming.ShapeNode;
+import com.mindfusion.diagramming.export.SvgExporter;
+import com.mindfusion.drawing.Align;
+import com.mindfusion.drawing.TextFormat;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
 import gov.ca.water.hecdssvue.views.DSSMonthlyView;
@@ -14,6 +32,10 @@ import gov.ca.water.jdiagram.dialog.PDFOptionDialog;
 import gov.ca.water.jdiagram.panel.MagnifierPanel;
 import gov.ca.water.jdiagram.toolbars.DateCombo;
 import gov.ca.water.jdiagram.toolbars.SearchText;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DssUtil;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import hec.heclib.dss.CondensedReference;
 import hec.heclib.dss.DSSPathname;
 import hec.heclib.dss.HecDss;
@@ -22,7 +44,6 @@ import hec.hecmath.HecMath;
 import hec.hecmath.HecMathException;
 import hec.io.DataContainer;
 import hec.io.TimeSeriesContainer;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -44,11 +65,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 import java.util.prefs.Preferences;
-
 import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -78,30 +97,6 @@ import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.DssUtil;
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
-
-import com.mindfusion.diagramming.AttachToNode;
-import com.mindfusion.diagramming.Behavior;
-import com.mindfusion.diagramming.Diagram;
-import com.mindfusion.diagramming.DiagramAdapter;
-import com.mindfusion.diagramming.DiagramItem;
-import com.mindfusion.diagramming.DiagramLink;
-import com.mindfusion.diagramming.DiagramLinkList;
-import com.mindfusion.diagramming.DiagramNode;
-import com.mindfusion.diagramming.DiagramNodeList;
-import com.mindfusion.diagramming.DiagramView;
-import com.mindfusion.diagramming.Group;
-import com.mindfusion.diagramming.InplaceEditable;
-import com.mindfusion.diagramming.LinkEvent;
-import com.mindfusion.diagramming.NodeEvent;
-import com.mindfusion.diagramming.ShapeNode;
-import com.mindfusion.diagramming.export.SvgExporter;
-import com.mindfusion.drawing.Align;
-import com.mindfusion.drawing.TextFormat;
 
 /**
  * This view represents the schematic drawing

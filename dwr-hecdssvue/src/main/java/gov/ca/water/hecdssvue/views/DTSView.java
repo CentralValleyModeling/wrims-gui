@@ -1,10 +1,11 @@
 package gov.ca.water.hecdssvue.views;
 
+import gov.ca.water.hecdssvue.components.DataOps;
 import gov.ca.water.hecdssvue.dts.DTSTable;
 import gov.ca.water.hecdssvue.dts.DtsTreeModel;
 import gov.ca.water.hecdssvue.dts.DtsTreePanel;
 import gov.ca.water.hecdssvue.dts.GuiTaskListener;
-import gov.ca.water.hecdssvue.components.DataOps;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import hec.io.DataContainer;
 import java.util.Vector;
 import javax.swing.JButton;
@@ -14,7 +15,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class DTSView extends AbstractCalSimView{
 

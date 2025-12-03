@@ -1,5 +1,11 @@
 package gov.ca.water.wrims.gui.ide.debugger.view;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.listener.TableCopyListener;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
+import gov.ca.water.wrims.gui.ide.tools.SetSelectionInTable;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.IDebugElement;
 import org.eclipse.debug.core.model.IDebugTarget;
@@ -26,13 +32,6 @@ import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.listener.TableCopyListener;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
-import gov.ca.water.wrims.gui.ide.tools.SetSelectionInTable;
 
 public class WPPAllVariableView extends AbstractDebugView implements ISelectionListener { 
 	private IValue[] dataStack=null;

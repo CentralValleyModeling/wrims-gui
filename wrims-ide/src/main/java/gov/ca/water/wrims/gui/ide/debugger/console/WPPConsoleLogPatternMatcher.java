@@ -1,17 +1,15 @@
 package gov.ca.water.wrims.gui.ide.debugger.console;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.io.File;
-
-import org.eclipse.ui.console.IPatternMatchListenerDelegate;
-import org.eclipse.ui.console.PatternMatchEvent;
-import org.eclipse.ui.console.TextConsole;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.debug.ui.console.FileLink;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import org.eclipse.ui.console.IPatternMatchListenerDelegate;
+import org.eclipse.ui.console.PatternMatchEvent;
+import org.eclipse.ui.console.TextConsole;
 
 public class WPPConsoleLogPatternMatcher implements IPatternMatchListenerDelegate {
 	private String fFilePath; 

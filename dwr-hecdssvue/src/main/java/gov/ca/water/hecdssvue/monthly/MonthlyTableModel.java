@@ -6,7 +6,6 @@ import hec.heclib.util.HecDoubleArray;
 import hec.heclib.util.HecTime;
 import hec.heclib.util.HecTimeArray;
 import hec.io.TimeSeriesContainer;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -19,12 +18,10 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.Vector;
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.event.TableModelEvent;
@@ -36,7 +33,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
 import rma.swing.table.CellLocation;
 
 /**

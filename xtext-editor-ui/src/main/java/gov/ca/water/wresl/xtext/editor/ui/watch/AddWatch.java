@@ -1,17 +1,16 @@
 package gov.ca.water.wresl.xtext.editor.ui.watch;
 
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-
 import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.wrims.gui.ide.debugger.view.UpdateView;
 import gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView;
 import gov.ca.water.wrims.gui.ide.tools.ProcWatchItem;
 import gov.ca.water.wrims.gui.ide.tools.ShowDuplicatedWatch;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 
 public class AddWatch extends org.eclipse.core.commands.AbstractHandler {
 	

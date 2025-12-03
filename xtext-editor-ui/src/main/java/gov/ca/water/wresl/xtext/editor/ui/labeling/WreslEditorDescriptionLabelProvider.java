@@ -3,13 +3,12 @@
 */
 package gov.ca.water.wresl.xtext.editor.ui.labeling;
 
+import com.google.inject.Inject;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.resource.IReferenceDescription;
 import org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider;
-
-import com.google.inject.Inject;
 
 /**
  * Provides labels for a IEObjectDescriptions and IResourceDescriptions.

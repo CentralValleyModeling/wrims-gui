@@ -11,11 +11,10 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.sourcelookup;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.debug.core.sourcelookup.AbstractSourceLookupParticipant;
-
 import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
 import gov.ca.water.wrims.gui.ide.debugger.model.WPPStackFrame;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.debug.core.sourcelookup.AbstractSourceLookupParticipant;
 
 /**
  * The WPP source lookup participant knows how to translate a 

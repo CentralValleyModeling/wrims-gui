@@ -8,6 +8,7 @@
 
 package gov.ca.water.hecdssvue.dts;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import hec.heclib.util.HecTime;
 import hec.hecmath.HecMath;
 import hec.hecmath.HecMathException;
@@ -59,7 +60,6 @@ import vista.time.Time;
 import vista.time.TimeFactory;
 import vista.time.TimeInterval;
 import vista.time.TimeWindow;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 /**
  * Common utility functions for App package

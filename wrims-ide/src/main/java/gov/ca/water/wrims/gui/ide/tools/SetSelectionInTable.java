@@ -1,13 +1,11 @@
 package gov.ca.water.wrims.gui.ide.tools;
 
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.Table;
-
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
 
 public class SetSelectionInTable {
 	public SetSelectionInTable(IStructuredSelection oldSelection, TableViewer viewer, Table table){

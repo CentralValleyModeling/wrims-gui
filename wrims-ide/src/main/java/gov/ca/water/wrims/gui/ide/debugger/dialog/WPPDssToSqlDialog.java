@@ -1,11 +1,13 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.Encryption;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
-
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
@@ -25,10 +27,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.Encryption;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 
 
 public class WPPDssToSqlDialog extends Dialog {

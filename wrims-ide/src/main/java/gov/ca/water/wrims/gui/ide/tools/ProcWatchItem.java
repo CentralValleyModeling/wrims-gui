@@ -1,5 +1,6 @@
 package gov.ca.water.wrims.gui.ide.tools;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,8 +10,6 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class ProcWatchItem {
 	

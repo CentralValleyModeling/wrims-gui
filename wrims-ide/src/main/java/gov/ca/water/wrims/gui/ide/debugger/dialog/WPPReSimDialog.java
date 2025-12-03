@@ -1,7 +1,11 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
+import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
+import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
 import java.util.HashMap;
-
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -15,12 +19,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
-import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
-import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
 
 public class WPPReSimDialog extends Dialog {
 	Combo year;

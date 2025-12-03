@@ -1,5 +1,10 @@
 package gov.ca.water.wrims.gui.ide.debugger.msr;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DssOperations;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import hec.heclib.dss.DSSPathname;
 import hec.heclib.dss.HecDss;
 import hec.hecmath.TimeSeriesMath;
@@ -14,11 +19,6 @@ import java.util.Set;
 import java.util.Vector;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.DssOperations;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 public class MSRDataTransfer {
 	

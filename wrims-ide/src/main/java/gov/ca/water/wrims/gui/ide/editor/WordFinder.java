@@ -11,13 +11,12 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.editor;
 
- 
+
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.Region;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 /**
  * Looks for an identifier in a source file

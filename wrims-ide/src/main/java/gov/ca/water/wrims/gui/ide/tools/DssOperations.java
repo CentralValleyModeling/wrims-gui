@@ -2,14 +2,14 @@ package gov.ca.water.wrims.gui.ide.tools;
 
 import static java.util.stream.Collectors.toSet;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import hec.heclib.dss.DSSPathname;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 import mil.army.usace.hec.metadata.Interval;
 import mil.army.usace.hec.metadata.IntervalFactory;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class DssOperations {
 	public static String matchPathName(Vector<?> v, String partB, String partC, String partE) {

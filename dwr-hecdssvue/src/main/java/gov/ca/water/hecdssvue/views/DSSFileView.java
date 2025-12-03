@@ -5,6 +5,9 @@ import static java.util.stream.Collectors.joining;
 import gov.ca.water.hecdssvue.Activator;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.components.DataOps;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 import hec.heclib.dss.HecDss;
 import java.io.BufferedReader;
 import java.io.File;
@@ -47,9 +50,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.statushandlers.StatusManager;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 
 public class DSSFileView extends ViewPart {
 

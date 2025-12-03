@@ -1,17 +1,16 @@
 package gov.ca.water.jdiagram;
 
-import java.awt.Color;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Properties;
-
 import com.mindfusion.diagramming.CustomDraw;
 import com.mindfusion.diagramming.Shape;
 import com.mindfusion.drawing.Brush;
 import com.mindfusion.drawing.DashStyle;
 import com.mindfusion.drawing.Pen;
 import com.mindfusion.drawing.SolidBrush;
+import java.awt.Color;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Properties;
 
 public class AttributeMapper {
 

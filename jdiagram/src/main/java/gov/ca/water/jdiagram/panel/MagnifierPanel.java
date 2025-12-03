@@ -1,19 +1,17 @@
 package gov.ca.water.jdiagram.panel;
 
+import com.mindfusion.diagramming.Diagram;
+import com.mindfusion.diagramming.DiagramView;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D.Float;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-
-import com.mindfusion.diagramming.Diagram;
-import com.mindfusion.diagramming.DiagramView;
 
 /**
  * Creates a magnified view of the current diagram view by a default factor of

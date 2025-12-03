@@ -5,12 +5,9 @@ package gov.ca.water.wresl.xtext.editor.wreslEditor.impl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.Declaration;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.ExternalFunction2;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

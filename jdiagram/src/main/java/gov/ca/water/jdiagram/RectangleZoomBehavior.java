@@ -1,7 +1,11 @@
 package gov.ca.water.jdiagram;
 
+import com.mindfusion.common.ByRef;
+import com.mindfusion.diagramming.BehaviorBase;
+import com.mindfusion.diagramming.CursorHint;
+import com.mindfusion.diagramming.DiagramView;
+import com.mindfusion.diagramming.InteractionState;
 import gov.ca.water.jdiagram.views.SchematicOverview;
-
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -9,14 +13,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-
 import javax.swing.SwingUtilities;
-
-import com.mindfusion.common.ByRef;
-import com.mindfusion.diagramming.BehaviorBase;
-import com.mindfusion.diagramming.CursorHint;
-import com.mindfusion.diagramming.DiagramView;
-import com.mindfusion.diagramming.InteractionState;
 
 public class RectangleZoomBehavior extends BehaviorBase {
 

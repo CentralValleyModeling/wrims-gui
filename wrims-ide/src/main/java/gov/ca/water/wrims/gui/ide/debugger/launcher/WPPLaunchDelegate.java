@@ -11,31 +11,6 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.launcher;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
-import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.debug.core.DebugPlugin;
-import org.eclipse.debug.core.ILaunch;
-import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.debug.core.model.IDebugTarget;
-import org.eclipse.debug.core.model.IProcess;
-import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
-
 import gov.ca.water.wrims.gui.ide.batchrun.EclipseUtil;
 import gov.ca.water.wrims.gui.ide.calsimhydro.CalSimHydro;
 import gov.ca.water.wrims.gui.ide.debugger.core.CBCSetting;
@@ -54,8 +29,29 @@ import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import gov.ca.water.wrims.gui.ide.tools.Encryption;
 import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
-
-import java.lang.Runtime;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
+import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.ILaunch;
+import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.model.IDebugTarget;
+import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
 
 
 public class WPPLaunchDelegate extends LaunchConfigurationDelegate {

@@ -1,7 +1,6 @@
 package gov.ca.water.jdiagram.toolbars;
 
 import gov.ca.water.jdiagram.views.SchematicBase;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;

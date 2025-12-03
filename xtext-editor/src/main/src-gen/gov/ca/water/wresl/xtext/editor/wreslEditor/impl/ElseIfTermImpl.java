@@ -6,18 +6,12 @@ import gov.ca.water.wresl.xtext.editor.wreslEditor.ElseIfTerm;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.LogicalExpression;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.Pattern;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 

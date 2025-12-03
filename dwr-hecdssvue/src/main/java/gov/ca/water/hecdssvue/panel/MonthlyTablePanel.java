@@ -6,7 +6,6 @@ import hec.gfx2d.G2dMarkerProperties;
 import hec.io.DataContainer;
 import hec.io.PairedDataContainer;
 import hec.io.TimeSeriesContainer;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -27,7 +26,6 @@ import java.io.EOFException;
 import java.io.LineNumberReader;
 import java.io.StringReader;
 import java.util.List;
-
 import javax.swing.AbstractCellEditor;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
@@ -41,7 +39,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
-
 import rma.swing.table.TableExportOptions;
 import rma.util.RMAIO;
 

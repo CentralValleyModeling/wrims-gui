@@ -1,5 +1,11 @@
 package gov.ca.water.wrims.gui.ide.debugger.msr;
 
+import gov.ca.water.wrims.gui.ide.batchrun.BatchRunProcess;
+import gov.ca.water.wrims.gui.ide.batchrun.LaunchConfigInfo;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.tools.DssOperations;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import hec.heclib.dss.DSSPathname;
 import hec.heclib.dss.HecDss;
 import hec.hecmath.TimeSeriesMath;
@@ -12,12 +18,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
-import gov.ca.water.wrims.gui.ide.batchrun.BatchRunProcess;
-import gov.ca.water.wrims.gui.ide.batchrun.LaunchConfigInfo;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.tools.DssOperations;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 public class MSRDataTransferBR {
 	

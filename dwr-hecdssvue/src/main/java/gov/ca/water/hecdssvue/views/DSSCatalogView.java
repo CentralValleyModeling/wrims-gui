@@ -1,17 +1,27 @@
 package gov.ca.water.hecdssvue.views;
 
+import static java.util.Comparator.comparing;
+
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import gov.ca.water.hecdssvue.Activator;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.components.CatalogListSelection;
 import gov.ca.water.hecdssvue.components.DataOps;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import hec.dssgui.NewPartsDialog;
 import hec.heclib.dss.CondensedReference;
 import hec.heclib.dss.HecDss;
 import hec.io.DataContainer;
 import hec.io.TimeSeriesContainer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeSet;
+import java.util.Vector;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -53,17 +63,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.statushandlers.StatusManager;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.TreeSet;
-import java.util.Vector;
-import java.util.regex.Pattern;
-
-import static java.util.Comparator.comparing;
 
 //public class DSSCatalogView extends ViewPart {
 public class DSSCatalogView extends AbstractDSSView {

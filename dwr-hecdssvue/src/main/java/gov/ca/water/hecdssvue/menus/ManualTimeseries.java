@@ -1,18 +1,16 @@
 package gov.ca.water.hecdssvue.menus;
 
+import gov.ca.water.hecdssvue.components.CatalogListSelection;
+import gov.ca.water.hecdssvue.views.DSSCatalogView;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import hec.dssgui.TimeSeriesDataEntry;
+import hec.heclib.dss.DssDataManager;
+import hec.heclib.dss.HecDss;
+import hec.heclib.dss.LocalDssDataManager;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Vector;
-
 import javax.swing.SwingUtilities;
-
-import gov.ca.water.hecdssvue.components.CatalogListSelection;
-import gov.ca.water.hecdssvue.views.DSSCatalogView;
-import hec.heclib.dss.DssDataManager;
-import hec.dssgui.TimeSeriesDataEntry;
-import hec.heclib.dss.HecDss;
-
-import hec.heclib.dss.LocalDssDataManager;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TableViewer;
@@ -21,8 +19,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class ManualTimeseries implements IWorkbenchWindowActionDelegate{
 

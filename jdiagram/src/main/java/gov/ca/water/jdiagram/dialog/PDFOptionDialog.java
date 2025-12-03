@@ -1,10 +1,12 @@
 package gov.ca.water.jdiagram.dialog;
 
+import com.mindfusion.diagramming.Diagram;
+import com.mindfusion.diagramming.export.PdfExporter;
+import com.mindfusion.pdf.AutoScale;
+import com.mindfusion.pdf.PageSizesEnum;
+import gov.ca.water.jdiagram.SchematicPluginCore;
 import java.util.HashMap;
 import java.util.Map;
-
-import gov.ca.water.jdiagram.SchematicPluginCore;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -15,11 +17,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-
-import com.mindfusion.diagramming.Diagram;
-import com.mindfusion.diagramming.export.PdfExporter;
-import com.mindfusion.pdf.AutoScale;
-import com.mindfusion.pdf.PageSizesEnum;
 
 public class PDFOptionDialog extends Dialog {
 	

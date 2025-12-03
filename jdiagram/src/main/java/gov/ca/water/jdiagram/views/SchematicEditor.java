@@ -1,49 +1,5 @@
 package gov.ca.water.jdiagram.views;
 
-import gov.ca.water.jdiagram.Activator;
-import gov.ca.water.jdiagram.AttributeMapper;
-import gov.ca.water.jdiagram.SchematicPluginCore;
-import gov.ca.water.jdiagram.XmlUtilities;
-import gov.ca.water.jdiagram.panel.EditSchematicElementPanel;
-
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dialog.ModalityType;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.LineNumberReader;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.prefs.Preferences;
-
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
-import javax.swing.filechooser.FileFilter;
-
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IActionBars;
-import org.w3c.dom.Document;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-
 import com.mindfusion.diagramming.Behavior;
 import com.mindfusion.diagramming.CompositeCmd;
 import com.mindfusion.diagramming.CustomDraw;
@@ -77,6 +33,45 @@ import com.mindfusion.drawing.DashStyle;
 import com.mindfusion.drawing.Pen;
 import com.mindfusion.drawing.PointList;
 import com.mindfusion.drawing.SolidBrush;
+import gov.ca.water.jdiagram.Activator;
+import gov.ca.water.jdiagram.AttributeMapper;
+import gov.ca.water.jdiagram.SchematicPluginCore;
+import gov.ca.water.jdiagram.XmlUtilities;
+import gov.ca.water.jdiagram.panel.EditSchematicElementPanel;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dialog.ModalityType;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.prefs.Preferences;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileFilter;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IActionBars;
+import org.w3c.dom.Document;
 
 public abstract class SchematicEditor extends SchematicBase {
 
