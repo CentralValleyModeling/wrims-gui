@@ -3,7 +3,6 @@ package gov.ca.water.wrims.gui.ide.debugger.toolbaritem;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
-
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IToolBarManager;

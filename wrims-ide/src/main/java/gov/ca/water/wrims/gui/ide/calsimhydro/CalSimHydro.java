@@ -1,14 +1,12 @@
 package gov.ca.water.wrims.gui.ide.calsimhydro;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.debug.core.ILaunchConfiguration;
-
 import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.wrims.gui.ide.tools.FileProcess;
+import java.io.File;
+import java.io.IOException;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.debug.core.ILaunchConfiguration;
 
 public class CalSimHydro {
 

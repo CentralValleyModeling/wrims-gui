@@ -1,10 +1,9 @@
 package gov.ca.water.wrims.gui.ide.perspective;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class IDEPerspectiveFactory implements IPerspectiveFactory {
 

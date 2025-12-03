@@ -1,27 +1,25 @@
 package gov.ca.water.wrims.gui.ide.reporttool;
 
-import java.util.Set;
 import gov.ca.water.wrims.gui.ide.reporttool.Report.PathnameMap;
 import gov.ca.water.wrims.gui.ide.tools.DssOperations;
 import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
-
+import hec.data.TimeWindow;
+import hec.heclib.dss.DSSPathname;
+import hec.heclib.dss.HecTimeSeries;
+import hec.heclib.util.HecTime;
+import hec.heclib.util.Heclib;
+import hec.hecmath.HecMathException;
+import hec.hecmath.TimeSeriesMath;
+import hec.hecmath.computation.ComputationException;
+import hec.hecmath.functions.TimeSeriesFunctions;
+import hec.io.TimeSeriesContainer;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.TimeZone;
-
-import hec.heclib.dss.DSSPathname;
-import hec.heclib.dss.HecTimeSeries;
-import hec.io.TimeSeriesContainer;
-import hec.heclib.util.HecTime;
-import hec.heclib.util.Heclib;
-import hec.hecmath.HecMathException;
-import hec.hecmath.TimeSeriesMath;
-import hec.hecmath.functions.*;
-import hec.hecmath.computation.*;
-import hec.data.TimeWindow;
 
 public class Utils {
 	static StringBuffer messages = new StringBuffer();

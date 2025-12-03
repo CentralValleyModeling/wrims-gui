@@ -1,5 +1,6 @@
 package gov.ca.water.wrims.gui.ide.debugger.core;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,8 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class SettingPref {
 	private static String settingPrefFile="setting.prf";

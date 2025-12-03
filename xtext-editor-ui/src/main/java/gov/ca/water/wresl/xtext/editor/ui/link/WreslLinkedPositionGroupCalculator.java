@@ -3,8 +3,10 @@ package gov.ca.water.wresl.xtext.editor.ui.link;
 import static com.google.common.collect.Iterables.filter;
 import static org.eclipse.xtext.util.Strings.notNull;
 
+import com.google.common.base.Function;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterables;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.jface.text.BadLocationException;
@@ -14,10 +16,6 @@ import org.eclipse.text.edits.ReplaceEdit;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.refactoring.ui.DefaultLinkedPositionGroupCalculator;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Iterables;
 
 public class WreslLinkedPositionGroupCalculator extends
 		DefaultLinkedPositionGroupCalculator {

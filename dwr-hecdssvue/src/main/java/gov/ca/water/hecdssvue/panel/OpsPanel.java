@@ -3,8 +3,11 @@ package gov.ca.water.hecdssvue.panel;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.components.ShowSelected;
 import gov.ca.water.hecdssvue.dialog.InsertTimeWindowDialog;
+import gov.ca.water.hecdssvue.dts.AppUtils;
+import gov.ca.water.hecdssvue.dts.Project;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
-
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +27,6 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Vector;
-
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
@@ -46,16 +48,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.hecdssvue.dts.AppUtils;
-import gov.ca.water.hecdssvue.dts.Project;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 public class OpsPanel extends JPanel {
 

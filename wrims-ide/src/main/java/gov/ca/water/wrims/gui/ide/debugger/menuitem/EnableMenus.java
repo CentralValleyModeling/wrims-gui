@@ -1,7 +1,6 @@
 package gov.ca.water.wrims.gui.ide.debugger.menuitem;
 
 import java.util.HashMap;
-
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.SubContributionItem;

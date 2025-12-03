@@ -1,21 +1,19 @@
 package gov.ca.water.wrims.gui.ide.debugger.commanditem;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 public class DSSHDF5Conversion extends AbstractHandler {
 

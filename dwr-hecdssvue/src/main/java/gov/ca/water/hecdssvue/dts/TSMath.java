@@ -16,7 +16,6 @@ import vista.set.DataSetElement;
 import vista.set.DataSetIterator;
 import vista.set.ElementFilter;
 import vista.set.MultiValueFilter;
-import vista.set.NaNFilter;
 import vista.set.RegularTimeSeries;
 import vista.set.TimeSeries;
 import vista.set.TimeSeriesMath;

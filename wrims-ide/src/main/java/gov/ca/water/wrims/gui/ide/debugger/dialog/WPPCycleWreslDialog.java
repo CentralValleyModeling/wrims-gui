@@ -1,9 +1,15 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.engine.core.commondata.wresldata.StudyDataSet;
+import gov.ca.water.wrims.engine.core.debug.Compile;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPFileIncExploreView;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -22,14 +28,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.engine.core.commondata.wresldata.StudyDataSet;
-import gov.ca.water.wrims.engine.core.debug.Compile;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPFileIncExploreView;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 
 public class WPPCycleWreslDialog extends Dialog {
 	

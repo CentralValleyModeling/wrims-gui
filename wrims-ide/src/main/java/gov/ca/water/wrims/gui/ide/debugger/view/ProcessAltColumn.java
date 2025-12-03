@@ -1,23 +1,20 @@
 package gov.ca.water.wrims.gui.ide.debugger.view;
 
-import hec.heclib.dss.HecDss;
-import hec.io.DataContainer;
-import hec.io.TimeSeriesContainer;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
-
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
-
 import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.wrims.gui.ide.tools.DssOperations;
 import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import gov.ca.water.wrims.gui.ide.tools.VariableProperty;
+import hec.heclib.dss.HecDss;
+import hec.io.DataContainer;
+import hec.io.TimeSeriesContainer;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 
 public class ProcessAltColumn {
 	

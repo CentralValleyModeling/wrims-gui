@@ -1,13 +1,19 @@
 package gov.ca.water.wresl.xtext.editor.parser.antlr.internal;
 
+import gov.ca.water.wresl.xtext.editor.services.WreslEditorGrammarAccess;
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.IntStream;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import gov.ca.water.wresl.xtext.editor.services.WreslEditorGrammarAccess;
-
-
-
-import org.antlr.runtime.*;
 
 @SuppressWarnings("all")
 public class InternalWreslEditorParser extends AbstractInternalAntlrParser {

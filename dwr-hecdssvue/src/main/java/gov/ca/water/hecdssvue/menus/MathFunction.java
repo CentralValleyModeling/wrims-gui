@@ -1,14 +1,11 @@
 package gov.ca.water.hecdssvue.menus;
 
-import java.util.Vector;
-
-import javax.swing.SwingUtilities;
-
 import gov.ca.water.hecdssvue.components.CatalogListSelection;
 import gov.ca.water.hecdssvue.components.DssMathFrame;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
 import hec.io.DataContainer;
-
+import java.util.Vector;
+import javax.swing.SwingUtilities;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbench;

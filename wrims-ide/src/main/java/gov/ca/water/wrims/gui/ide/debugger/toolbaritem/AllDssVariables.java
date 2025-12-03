@@ -1,7 +1,10 @@
 package gov.ca.water.wrims.gui.ide.debugger.toolbaritem;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllVariableView;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -12,11 +15,6 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionDelegate;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllVariableView;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 
 public class AllDssVariables extends ActionDelegate implements IViewActionDelegate{
 

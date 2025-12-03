@@ -3,13 +3,12 @@
  */
 package gov.ca.water.wresl.xtext.editor;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.ISetup;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 /**
  * Generated from StandaloneSetup.xpt!

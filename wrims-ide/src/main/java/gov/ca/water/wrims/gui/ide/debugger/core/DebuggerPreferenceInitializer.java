@@ -1,14 +1,12 @@
 package gov.ca.water.wrims.gui.ide.debugger.core;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 
 public class DebuggerPreferenceInitializer extends

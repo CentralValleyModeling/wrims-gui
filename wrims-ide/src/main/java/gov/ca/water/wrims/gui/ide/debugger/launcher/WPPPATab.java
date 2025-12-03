@@ -1,7 +1,9 @@
 package gov.ca.water.wrims.gui.ide.debugger.launcher;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPPAInitialDSSIntervalDialog;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import java.util.Calendar;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
@@ -25,10 +27,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPPAInitialDSSIntervalDialog;
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 public class WPPPATab extends AbstractLaunchConfigurationTab {
 	

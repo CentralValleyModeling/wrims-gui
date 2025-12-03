@@ -1,12 +1,10 @@
 package gov.ca.water.wrims.gui.ide.tools;
 
-import java.util.Stack;
-
-import org.eclipse.debug.core.DebugException;
-import org.eclipse.swt.widgets.TableItem;
-
 import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
+import java.util.Stack;
+import org.eclipse.debug.core.DebugException;
+import org.eclipse.swt.widgets.TableItem;
 
 public class SearchTable {
 	public static int search(TableItem[] tableItems, int bi, int ei, String text, boolean exact, boolean includeValue){

@@ -11,17 +11,15 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.model;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.IStackFrame;
 import org.eclipse.debug.core.model.IThread;
 import org.eclipse.debug.core.model.IVariable;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 /**
  * A WPP thread. A WPP VM is single threaded.

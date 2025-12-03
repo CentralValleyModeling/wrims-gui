@@ -1,5 +1,12 @@
 package gov.ca.water.wrims.gui.ide.debugger.launcher;
 
+import gov.ca.water.wrims.gui.ide.batchrun.LaunchConfigInfo;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPReSimDialog;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
+import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
+import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugException;
@@ -34,14 +40,6 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.batchrun.LaunchConfigInfo;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPReSimDialog;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
-import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
-import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
 
 public class WPPInfeasibilityTab extends AbstractLaunchConfigurationTab {
 

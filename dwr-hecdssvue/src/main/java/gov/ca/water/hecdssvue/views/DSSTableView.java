@@ -4,11 +4,8 @@ import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.components.DataOps;
 import hec.dataTable.HecDataTable;
 import hec.io.DataContainer;
-
 import java.util.Vector;
-
 import javax.swing.JScrollPane;
-
 import org.eclipse.swt.widgets.Composite;
 
 /**

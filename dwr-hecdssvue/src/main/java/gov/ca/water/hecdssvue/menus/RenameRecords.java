@@ -1,12 +1,11 @@
 package gov.ca.water.hecdssvue.menus;
 
-import java.util.Vector;
-
 import gov.ca.water.hecdssvue.components.DataOps;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import hec.dssgui.NewPartsDialog;
 import hec.heclib.dss.HecDss;
-
+import java.util.Vector;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TableViewer;
@@ -15,8 +14,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class RenameRecords implements IWorkbenchWindowActionDelegate{
 

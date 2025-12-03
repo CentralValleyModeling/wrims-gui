@@ -1,14 +1,12 @@
 package gov.ca.water.wrims.gui.ide.tools;
 
+import gov.ca.water.wrims.engine.core.commondata.wresldata.ModelDataSet;
+import gov.ca.water.wrims.engine.core.commondata.wresldata.StudyDataSet;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
-
 import org.eclipse.debug.core.ILaunchConfiguration;
-
-import gov.ca.water.wrims.engine.core.commondata.wresldata.ModelDataSet;
-import gov.ca.water.wrims.engine.core.commondata.wresldata.StudyDataSet;
 
 public class FileProcess {
 	public static ArrayList<String> retrieveFileNames(ArrayList<String> fns){

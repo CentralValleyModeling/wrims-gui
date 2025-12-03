@@ -4,20 +4,17 @@ import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.views.DSSMonthlyView;
 import gov.ca.water.hecdssvue.views.DSSPlotView;
 import gov.ca.water.hecdssvue.views.DSSTableView;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import hec.hecmath.HecMath;
 import hec.hecmath.HecMathException;
 import hec.hecmath.TimeSeriesMath;
 import hec.io.DataContainer;
 import hec.io.TimeSeriesContainer;
-
 import java.util.Vector;
-
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class RetrieveCheckBoxTsData {
 	public RetrieveCheckBoxTsData() {

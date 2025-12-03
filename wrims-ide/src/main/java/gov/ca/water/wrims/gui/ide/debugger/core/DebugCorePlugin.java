@@ -11,24 +11,28 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.core;
 
-import org.eclipse.core.runtime.*;
-import org.eclipse.debug.core.ILaunchConfiguration;
-import org.eclipse.debug.core.model.IValue;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.osgi.framework.BundleContext;
-
 import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
 import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
 import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.DebugSet;
 import gov.ca.water.wrims.gui.ide.tools.VariableProperty;
 import hec.heclib.dss.HecDss;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.Vector;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.model.IValue;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.

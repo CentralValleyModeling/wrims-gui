@@ -1,18 +1,11 @@
 package gov.ca.water.hecdssvue.views;
 
-import hec.io.DataContainer;
-
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Frame;
 import java.awt.Panel;
-import java.util.Iterator;
-import java.util.Vector;
-
 import javax.swing.JRootPane;
-
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;

@@ -1,16 +1,14 @@
 package gov.ca.water.wrims.gui.ide.debugger.toolbaritem;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
 import java.util.HashMap;
-
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.actions.ActionDelegate;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
 
 public class PauseResume extends ActionDelegate implements IViewActionDelegate{
 	IViewPart view;

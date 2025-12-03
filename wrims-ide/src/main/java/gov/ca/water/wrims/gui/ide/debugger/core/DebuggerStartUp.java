@@ -1,8 +1,12 @@
 package gov.ca.water.wrims.gui.ide.debugger.core;
 
+import gov.ca.water.wrims.gui.ide.calsimhydro.DefaultCalSimHydro;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.listener.WelcomeViewListener;
+import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IPerspectiveListener;
@@ -12,12 +16,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.internal.Workbench;
-
-import gov.ca.water.wrims.gui.ide.calsimhydro.DefaultCalSimHydro;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.listener.WelcomeViewListener;
-import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 
 public class DebuggerStartUp implements IStartup {
 

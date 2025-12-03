@@ -3,14 +3,11 @@ package gov.ca.water.hecdssvue.views;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.actions.ReportButtonAction;
 import gov.ca.water.hecdssvue.actions.ReportCheckBoxAction;
-
 import java.awt.Component;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import org.eclipse.swt.widgets.Composite;
 
 public class StorageFlowsView extends AbstractCalSimView{

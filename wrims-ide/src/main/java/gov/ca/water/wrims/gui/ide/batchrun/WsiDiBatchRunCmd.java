@@ -1,5 +1,7 @@
 package gov.ca.water.wrims.gui.ide.batchrun;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.SettingPref;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,9 +13,6 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.SettingPref;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class WsiDiBatchRunCmd {
 

@@ -1,22 +1,5 @@
 package gov.ca.water.wrims.gui.ide.batchrun;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
-
 import gov.ca.water.wrims.gui.ide.debugger.core.CBCSetting;
 import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.wrims.gui.ide.debugger.dialog.ConfigTab;
@@ -31,8 +14,21 @@ import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import gov.ca.water.wrims.gui.ide.tools.Encryption;
 import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
-
-import java.lang.Runtime;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 
 public class BatchRunProcess {
 	private String externalPath;

@@ -11,13 +11,12 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.model;
 
-import org.eclipse.debug.core.model.DebugElement;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IBreakpointManager;
+import org.eclipse.debug.core.model.DebugElement;
 import org.eclipse.debug.core.model.IDebugTarget;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 /**
  * Common function for WPP debug elemnets.

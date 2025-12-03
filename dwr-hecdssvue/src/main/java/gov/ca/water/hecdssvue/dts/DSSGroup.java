@@ -8,6 +8,7 @@
 
 package gov.ca.water.hecdssvue.dts;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import hec.heclib.dss.CondensedReference;
 import hec.heclib.dss.DSSPathname;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ import vista.set.DataReference;
 import vista.set.Group;
 import vista.set.GroupProxy;
 import vista.set.Pathname;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 class DSSGroup extends GroupProxy {
 

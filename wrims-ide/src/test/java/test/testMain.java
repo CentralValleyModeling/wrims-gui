@@ -1,7 +1,6 @@
 package test;
 
 import java.io.File;
-import java.lang.Runtime;
 
 public class testMain {
 	public static void main(String arg[]){

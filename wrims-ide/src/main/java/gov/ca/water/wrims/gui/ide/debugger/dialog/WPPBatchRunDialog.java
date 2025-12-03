@@ -1,8 +1,13 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.gui.ide.batchrun.BatchRunProcess;
+import gov.ca.water.wrims.gui.ide.batchrun.LaunchConfigInfo;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import hec.heclib.dss.HecDss;
 import hec.io.TimeSeriesContainer;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +23,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -36,14 +40,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
 import vista.db.dss.DSSUtil;
-import gov.ca.water.wrims.gui.ide.batchrun.BatchRunProcess;
-import gov.ca.water.wrims.gui.ide.batchrun.LaunchConfigInfo;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 
 public class WPPBatchRunDialog extends Dialog {

@@ -11,6 +11,13 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.presentation;
 
+import gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPLineBreakpoint;
+import gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPWatchpoint;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPStackFrame;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPThread;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -24,14 +31,6 @@ import org.eclipse.debug.ui.IValueDetailListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPLineBreakpoint;
-import gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPWatchpoint;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPStackFrame;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPThread;
 
 /**
  * Renders PDA debug elements

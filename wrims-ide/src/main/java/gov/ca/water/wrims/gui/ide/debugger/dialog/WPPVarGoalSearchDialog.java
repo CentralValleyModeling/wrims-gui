@@ -1,5 +1,11 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllGoalView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllVariableView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPGoalView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPVariableView;
+import gov.ca.water.wrims.gui.ide.tools.SearchTable;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -18,13 +24,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllGoalView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllVariableView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPGoalView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPVariableView;
-import gov.ca.water.wrims.gui.ide.tools.SearchTable;
 
 public class WPPVarGoalSearchDialog extends Dialog {
 	

@@ -1,7 +1,12 @@
 package gov.ca.water.hecdssvue.components;
 
 import gov.ca.water.hecdssvue.DssPluginCore;
+import gov.ca.water.hecdssvue.dts.AppUtils;
+import gov.ca.water.hecdssvue.dts.Project;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 import hec.dataTable.HecDataTable;
 import hec.heclib.dss.CondensedReference;
 import hec.heclib.dss.DSSPathname;
@@ -13,23 +18,15 @@ import hec.hecmath.HecMath;
 import hec.hecmath.HecMathException;
 import hec.io.DataContainer;
 import hec.io.TimeSeriesContainer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.hecdssvue.dts.AppUtils;
-import gov.ca.water.hecdssvue.dts.Project;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.tools.DssUtil;
 
 public class DataOps {
 

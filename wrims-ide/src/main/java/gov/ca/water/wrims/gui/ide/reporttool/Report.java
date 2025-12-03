@@ -3,11 +3,11 @@ package gov.ca.water.wrims.gui.ide.reporttool;
 import gov.ca.dsm2.input.parser.InputTable;
 import gov.ca.dsm2.input.parser.Parser;
 import gov.ca.dsm2.input.parser.Tables;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import hec.data.TimeWindow;
 import hec.heclib.dss.HecTimeSeries;
 import hec.heclib.util.HecTime;
 import hec.io.TimeSeriesContainer;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,15 +17,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 /**
  * Generates a report based on the template file instructions

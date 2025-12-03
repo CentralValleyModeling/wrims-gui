@@ -1,5 +1,6 @@
 package gov.ca.water.wrims.gui.ide.debugger.toolbaritem;
 
+import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPAddWatchDialog;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewActionDelegate;
@@ -7,8 +8,6 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionDelegate;
-
-import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPAddWatchDialog;
 
 public class AddWatch extends ActionDelegate implements IViewActionDelegate{
 	IViewPart view;

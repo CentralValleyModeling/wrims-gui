@@ -1,17 +1,15 @@
 package gov.ca.water.wrims.gui.ide.debugger.menuitem;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
+import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
 import java.util.HashMap;
-
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
-import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
 
 public class SuspendMenu implements IWorkbenchWindowActionDelegate {
 	public SuspendMenu(){

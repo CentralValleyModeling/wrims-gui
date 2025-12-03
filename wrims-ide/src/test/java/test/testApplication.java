@@ -1,7 +1,7 @@
 package test;
 
-import java.io.IOException;
 import gov.ca.water.wrims.gui.ide.debugger.ContactDebugger;
+import java.io.IOException;
 
 public class testApplication {
 	

@@ -4,10 +4,9 @@
 package gov.ca.water.wresl.xtext.editor.parser.antlr;
 
 import com.google.inject.Inject;
-
 import gov.ca.water.wresl.xtext.editor.parser.antlr.internal.InternalWreslEditorParser;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import gov.ca.water.wresl.xtext.editor.services.WreslEditorGrammarAccess;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 public class WreslEditorParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

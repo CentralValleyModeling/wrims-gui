@@ -5,7 +5,6 @@ package gov.ca.water.wresl.xtext.editor.ui.contentassist.antlr;
 
 import java.util.Collection;
 import java.util.Collections;
-
 import org.eclipse.xtext.AbstractRule;
 import org.eclipse.xtext.ui.codetemplates.ui.partialEditing.IPartialContentAssistParser;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;

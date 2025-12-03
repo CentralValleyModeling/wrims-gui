@@ -1,11 +1,10 @@
 package gov.ca.water.wrims.gui.ide.debugger.exception;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPExceptionView;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPExceptionView;
 
 public class WPPException {
 	public static void handleException(final Exception e){

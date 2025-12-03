@@ -1,5 +1,8 @@
 package gov.ca.water.wrims.gui.ide.debugger.launcher;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPDssToSqlDialog;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,7 +11,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
@@ -37,10 +39,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPDssToSqlDialog;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class WPPSQLTab extends AbstractLaunchConfigurationTab {
 

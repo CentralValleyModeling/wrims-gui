@@ -8,11 +8,9 @@ import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ExternalDefImpl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.GoalImpl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.IdentImpl;
 import gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SvarDefImpl;
-
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.hover.html.DefaultEObjectHoverProvider;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class WreslEObjectHoverProvider extends DefaultEObjectHoverProvider {
 	

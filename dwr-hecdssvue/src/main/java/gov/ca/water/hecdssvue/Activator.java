@@ -1,22 +1,19 @@
 package gov.ca.water.hecdssvue;
 
+import gov.ca.water.hecdssvue.components.NumericTextField;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import hec.heclib.dss.HecDSSFileAccess;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
 import java.util.prefs.Preferences;
-
-import gov.ca.water.hecdssvue.components.NumericTextField;
-import hec.heclib.dss.HecDSSFileAccess;
-
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.swixml.SwingEngine;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 /**
  * The activator class controls the plug-in life cycle

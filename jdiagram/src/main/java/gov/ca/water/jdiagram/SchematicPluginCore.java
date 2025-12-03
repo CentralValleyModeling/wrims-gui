@@ -1,11 +1,9 @@
 package gov.ca.water.jdiagram;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.mindfusion.diagramming.Diagram;
 import com.mindfusion.diagramming.DiagramItem;
 import com.mindfusion.pdf.PageSizesEnum;
+import java.util.ArrayList;
 
 public class SchematicPluginCore {
 	

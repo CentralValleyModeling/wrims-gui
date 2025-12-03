@@ -11,16 +11,14 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.editor;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.util.Iterator;
-
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationHover;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 /**
  * Returns hover for breakpoints.

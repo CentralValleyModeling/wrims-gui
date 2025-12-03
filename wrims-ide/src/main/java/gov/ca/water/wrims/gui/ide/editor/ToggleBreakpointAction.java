@@ -11,6 +11,8 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.editor;
 
+import gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPBreakpointAdapter;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.text.BadLocationException;
@@ -21,9 +23,6 @@ import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.text.source.IVerticalRulerInfo;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
-
-import gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPBreakpointAdapter;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 /**
  * Action to toggle a breakpoint

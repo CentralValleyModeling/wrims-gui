@@ -11,6 +11,7 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.sourcelookup;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -24,8 +25,6 @@ import org.eclipse.debug.core.sourcelookup.ISourcePathComputerDelegate;
 import org.eclipse.debug.core.sourcelookup.containers.FolderSourceContainer;
 import org.eclipse.debug.core.sourcelookup.containers.ProjectSourceContainer;
 import org.eclipse.debug.core.sourcelookup.containers.WorkspaceSourceContainer;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 /**
  * Computes the default source lookup path for a WPP launch configuration.

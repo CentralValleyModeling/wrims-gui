@@ -4,12 +4,10 @@ import gov.ca.water.hecdssvue.views.DeliveryShortagesView;
 import gov.ca.water.hecdssvue.views.SanJoaquinRiverView;
 import gov.ca.water.hecdssvue.views.StorageFlowsView;
 import gov.ca.water.hecdssvue.views.WaterManagementActionsView;
-
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class ClearAllCheckBox {
 

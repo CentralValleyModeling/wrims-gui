@@ -3,6 +3,7 @@ package gov.ca.water.hecdssvue.views;
 import gov.ca.water.hecdssvue.Activator;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.components.DataOps;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 import hec.gfx2d.G2dObject;
 import hec.gfx2d.G2dPanel;
 import hec.gfx2d.G2dZoomAdapter;
@@ -13,7 +14,6 @@ import hec.heclib.util.HecTime;
 import hec.io.DataContainer;
 import hec.io.PairedDataContainer;
 import hec.io.TimeSeriesContainer;
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -29,7 +29,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IToolBarManager;
@@ -37,8 +36,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IViewSite;
-
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
 
 /**
  * Displays a plot in a view based on selection on DSS Catalog View

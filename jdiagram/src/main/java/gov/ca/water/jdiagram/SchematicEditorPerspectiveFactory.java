@@ -2,7 +2,6 @@ package gov.ca.water.jdiagram;
 
 import gov.ca.water.jdiagram.views.SchematicEditorViewA;
 import gov.ca.water.jdiagram.views.SchematicEditorViewB;
-
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 

@@ -1,5 +1,8 @@
 package gov.ca.water.wrims.gui.ide.batchrun;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.SettingPref;
+import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,13 +13,8 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.eclipse.core.runtime.CoreException;
-
 import vista.db.dss.DSSUtil;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.core.SettingPref;
-import gov.ca.water.wrims.gui.ide.tools.FileProcess;
 
 public class BatchRunCmd {
 

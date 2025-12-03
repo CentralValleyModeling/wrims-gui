@@ -1,23 +1,5 @@
 package gov.ca.water.jdiagram.panel;
 
-import gov.ca.water.jdiagram.ImageUtil;
-import gov.ca.water.jdiagram.views.SchematicBase;
-import gov.ca.water.jdiagram.views.SchematicEditor;
-
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import javax.swing.AbstractAction;
-import javax.swing.Icon;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.KeyStroke;
-
 import com.mindfusion.diagramming.Behavior;
 import com.mindfusion.diagramming.Diagram;
 import com.mindfusion.diagramming.DiagramAdapter;
@@ -31,6 +13,21 @@ import com.mindfusion.diagramming.NodeEvent;
 import com.mindfusion.diagramming.NodeValidationEvent;
 import com.mindfusion.diagramming.ShapeNode;
 import com.mindfusion.drawing.Pen;
+import gov.ca.water.jdiagram.ImageUtil;
+import gov.ca.water.jdiagram.views.SchematicBase;
+import gov.ca.water.jdiagram.views.SchematicEditor;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.KeyStroke;
 
 public class LegendPanel extends JPanel {
 	private Diagram legendDiagram;

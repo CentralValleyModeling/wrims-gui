@@ -1,15 +1,10 @@
 package gov.ca.water.wrims.gui.ide.debugger.view;
 
-import org.eclipse.debug.ui.AbstractDebugView;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.part.ViewPart;
 
 public class WPPExceptionView extends ViewPart implements ISelectionListener{

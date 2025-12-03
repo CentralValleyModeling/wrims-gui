@@ -11,6 +11,19 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.model;
 
+import gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPLineBreakpoint;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
+import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
+import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
+import gov.ca.water.wrims.gui.ide.debugger.view.UpdateView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllGoalView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllVariableView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPGoalView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPVariableView;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,7 +34,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -60,20 +72,6 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.ITextEditor;
-
-import gov.ca.water.wrims.gui.ide.debugger.breakpoint.WPPLineBreakpoint;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.menuitem.EnableMenus;
-import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.EnableButtons;
-import gov.ca.water.wrims.gui.ide.debugger.toolbaritem.HandlePauseResumeButton;
-import gov.ca.water.wrims.gui.ide.debugger.view.UpdateView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllGoalView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllVariableView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPGoalView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPVariableView;
-import gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 
 /**
  * WPP Debug Target

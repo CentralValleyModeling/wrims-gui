@@ -11,6 +11,11 @@
  *******************************************************************************/
 package gov.ca.water.wrims.gui.ide.debugger.breakpoint;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.model.IWPPEventListener;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPThread;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRunnable;
@@ -20,12 +25,6 @@ import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.IThread;
 import org.eclipse.debug.core.model.LineBreakpoint;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.model.IWPPEventListener;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPDebugTarget;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPThread;
 
 /**
  * WPP line breakpoint

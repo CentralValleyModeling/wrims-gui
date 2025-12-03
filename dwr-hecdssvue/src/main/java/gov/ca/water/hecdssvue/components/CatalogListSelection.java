@@ -1,29 +1,32 @@
 package gov.ca.water.hecdssvue.components;
 
-import java.awt.Cursor;
-import java.awt.GridBagLayout;
-import java.io.File;
-import java.util.Vector;
-
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
-
-import hec.heclib.dss.*;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
-
-import rma.util.PlugInLoader;
-import rma.util.RMAIO;
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import hec.dssgui.ListSelection;
+import hec.heclib.dss.DSSPathname;
+import hec.heclib.dss.DataReference;
+import hec.heclib.dss.DataReferenceSet;
+import hec.heclib.dss.DssDataManager;
+import hec.heclib.dss.HecDataManager;
+import hec.heclib.dss.HecDss;
+import hec.heclib.dss.LocalDssDataManager;
 import hec.heclib.util.HecTime;
 import hec.heclib.util.Heclib;
 import hec.heclib.util.stringContainer;
 import hec.io.TimeSeriesContainer;
+import java.awt.Cursor;
+import java.awt.GridBagLayout;
+import java.io.File;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import rma.util.PlugInLoader;
+import rma.util.RMAIO;
 
 public class CatalogListSelection extends ListSelection {
 

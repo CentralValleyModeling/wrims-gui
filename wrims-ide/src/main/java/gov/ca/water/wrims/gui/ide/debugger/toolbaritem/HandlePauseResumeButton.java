@@ -1,5 +1,6 @@
 package gov.ca.water.wrims.gui.ide.debugger.toolbaritem;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IToolBarManager;
@@ -11,8 +12,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.internal.PluginActionContributionItem;
 import org.eclipse.ui.internal.Workbench;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 
 public class HandlePauseResumeButton {
 	public static int status=0;

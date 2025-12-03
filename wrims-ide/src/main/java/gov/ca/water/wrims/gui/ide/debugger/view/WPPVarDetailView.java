@@ -1,15 +1,24 @@
 package gov.ca.water.wrims.gui.ide.debugger.view;
 
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPCycleDialog;
+import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPTimeSeriesDialog;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.listener.TableCopyListener;
+import gov.ca.water.wrims.gui.ide.debugger.listener.TableCursorCopyListener;
+import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
+import gov.ca.water.wrims.gui.ide.tools.DssOperations;
+import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
+import gov.ca.water.wrims.gui.ide.tools.VariableProperty;
 import hec.heclib.dss.HecDss;
 import hec.io.DataContainer;
 import hec.io.TimeSeriesContainer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
-
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
@@ -34,18 +43,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
-import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPCycleDialog;
-import gov.ca.water.wrims.gui.ide.debugger.dialog.WPPTimeSeriesDialog;
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
-import gov.ca.water.wrims.gui.ide.debugger.listener.TableCopyListener;
-import gov.ca.water.wrims.gui.ide.debugger.listener.TableCursorCopyListener;
-import gov.ca.water.wrims.gui.ide.debugger.model.WPPValue;
-import gov.ca.water.wrims.gui.ide.tools.DataProcess;
-import gov.ca.water.wrims.gui.ide.tools.DssOperations;
-import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
-import gov.ca.water.wrims.gui.ide.tools.VariableProperty;
 
 public class WPPVarDetailView extends ViewPart implements ISelectionListener{
 

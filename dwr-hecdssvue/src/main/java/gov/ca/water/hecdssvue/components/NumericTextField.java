@@ -1,14 +1,12 @@
 package gov.ca.water.hecdssvue.components;
 
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.util.regex.Pattern;
-
 import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
-
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 
 public class NumericTextField extends JTextField {
 
