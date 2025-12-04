@@ -52,7 +52,6 @@ tasks.register('getNatives', Sync) { syncTask ->
 }
 
 test {
-    useJUnitPlatform()
     dependsOn(getNatives)
     systemProperty "java.library.path", "${layout.buildDirectory.asFile.get()}/lib"
 }
