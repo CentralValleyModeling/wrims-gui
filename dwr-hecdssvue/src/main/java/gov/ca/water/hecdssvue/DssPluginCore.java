@@ -10,10 +10,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
 import java.util.prefs.Preferences;
+
+import gov.ca.water.hecdssvue.views.DSSTableView;
 import org.swixml.SwingEngine;
 
 public class DssPluginCore {
-	public static String ID_DSSVue_DSSTableView="views.gov.ca.water.hecdssvue.DSSTableView";
+	public static String ID_DSSVue_DSSTableView= DSSTableView.ID;
 	
 	public static boolean dssEditable=false;
 	

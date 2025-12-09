@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link PowFunctionImpl#getE1 <em>E1</em>}</li>
- *   <li>{@link PowFunctionImpl#getE2 <em>E2</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.PowFunctionImpl#getE1 <em>E1</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.PowFunctionImpl#getE2 <em>E2</em>}</li>
  * </ul>
  * </p>
  *

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link TimeArraySizeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.TimeArraySizeImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *

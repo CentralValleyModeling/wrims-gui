@@ -119,7 +119,7 @@ public class WelcomeViewListener {
     }
     
     private void logInfo(String message) {
-        IStatus status = new Status(IStatus.INFO, "gov/ca/water/wrims/gui/ide", message);
+        IStatus status = new Status(IStatus.INFO, "gov.ca.water.wrims.gui.ide", message);
         Platform.getLog(Platform.getBundle("wpp.debuggerapplication")).log(status);
     }
 }

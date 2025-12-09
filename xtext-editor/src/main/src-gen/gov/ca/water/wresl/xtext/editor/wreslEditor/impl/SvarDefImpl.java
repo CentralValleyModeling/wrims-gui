@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link SvarDefImpl#getTa <em>Ta</em>}</li>
- *   <li>{@link SvarDefImpl#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SvarDefImpl#getTa <em>Ta</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SvarDefImpl#getDefinition <em>Definition</em>}</li>
  * </ul>
  * </p>
  *

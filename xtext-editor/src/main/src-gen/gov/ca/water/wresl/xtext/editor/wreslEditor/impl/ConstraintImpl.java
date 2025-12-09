@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ConstraintImpl#getLhs <em>Lhs</em>}</li>
- *   <li>{@link ConstraintImpl#getOperator <em>Operator</em>}</li>
- *   <li>{@link ConstraintImpl#getRhs <em>Rhs</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ConstraintImpl#getLhs <em>Lhs</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ConstraintImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ConstraintImpl#getRhs <em>Rhs</em>}</li>
  * </ul>
  * </p>
  *

@@ -18,7 +18,7 @@ import org.eclipse.ui.PlatformUI;
 
 public class DTSView extends AbstractCalSimView{
 
-	public static String ID="views.gov.ca.water.hecdssvue.DTSView";
+	public static String ID = DTSView.class.getCanonicalName();
 
 	@Override
 	public void createPartControl(Composite parent){

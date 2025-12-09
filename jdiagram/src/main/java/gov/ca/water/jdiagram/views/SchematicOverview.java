@@ -26,7 +26,7 @@ public class SchematicOverview extends ViewPart {
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "views.gov.ca.water.jdiagram.SchematicOverview";
+	public static final String ID = SchematicOverview.class.getCanonicalName();
 
 	private Composite swingContainer;
 

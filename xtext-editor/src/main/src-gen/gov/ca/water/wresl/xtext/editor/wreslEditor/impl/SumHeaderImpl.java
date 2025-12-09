@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link SumHeaderImpl#getExpression1 <em>Expression1</em>}</li>
- *   <li>{@link SumHeaderImpl#getExpression2 <em>Expression2</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SumHeaderImpl#getExpression1 <em>Expression1</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SumHeaderImpl#getExpression2 <em>Expression2</em>}</li>
  * </ul>
  * </p>
  *

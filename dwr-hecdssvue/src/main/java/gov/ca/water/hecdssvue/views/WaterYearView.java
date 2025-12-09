@@ -43,7 +43,7 @@ public class WaterYearView extends ViewPart {
 	
 	private Composite area;
 	
-	public static final String ID = "views.gov.ca.water.hecdssvue.WaterYearView";
+	public static final String ID = WaterYearView.class.getName();
 	
 	private boolean fromDSS=true;
 	

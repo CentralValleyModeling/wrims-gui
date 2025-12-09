@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class SanJoaquinRiverView extends AbstractCalSimView{
 
-	public static String ID="views.gov.ca.water.hecdssvue.SanJoaquinRiverView";
+	public static String ID = SanJoaquinRiverView.class.getCanonicalName();
 	private Component[] components = new Component[0];
 	
 	public SanJoaquinRiverView(){

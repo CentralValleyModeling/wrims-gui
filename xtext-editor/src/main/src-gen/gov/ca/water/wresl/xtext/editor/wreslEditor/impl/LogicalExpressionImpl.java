@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link LogicalExpressionImpl#getC1 <em>C1</em>}</li>
- *   <li>{@link LogicalExpressionImpl#getC2 <em>C2</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.LogicalExpressionImpl#getC1 <em>C1</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.LogicalExpressionImpl#getC2 <em>C2</em>}</li>
  * </ul>
  * </p>
  *

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link DVarNonStdImpl#getLowerUpper <em>Lower Upper</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.DVarNonStdImpl#getLowerUpper <em>Lower Upper</em>}</li>
  * </ul>
  * </p>
  *

@@ -48,7 +48,7 @@ public class DSSPlotView extends AbstractDSSView {
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "views.gov.ca.water.hecdssvue.DSSPlotView";
+	public static final String ID = DSSPlotView.class.getCanonicalName();
 	G2dPanel plot;
 	private Action copyAction;
 	private Viewport[] viewPorts;

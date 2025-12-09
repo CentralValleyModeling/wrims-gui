@@ -18,7 +18,7 @@ public class DSSTableView extends AbstractDSSView {
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "views.gov.ca.water.hecdssvue.DSSTableView";
+	public static final String ID = DSSTableView.class.getCanonicalName();
 	JScrollPane pane;
 	HecDataTable table;
 

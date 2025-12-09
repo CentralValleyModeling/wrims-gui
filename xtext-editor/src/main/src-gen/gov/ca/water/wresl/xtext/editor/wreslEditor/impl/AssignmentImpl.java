@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link AssignmentImpl#getTerm <em>Term</em>}</li>
- *   <li>{@link AssignmentImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.AssignmentImpl#getTerm <em>Term</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.AssignmentImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *

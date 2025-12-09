@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link PatternImpl#isLocal <em>Local</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.PatternImpl#isLocal <em>Local</em>}</li>
  * </ul>
  * </p>
  *

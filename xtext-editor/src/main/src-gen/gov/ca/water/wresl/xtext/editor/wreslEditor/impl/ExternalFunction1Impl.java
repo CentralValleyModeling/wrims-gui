@@ -24,10 +24,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ExternalFunction1Impl#getRef <em>Ref</em>}</li>
- *   <li>{@link ExternalFunction1Impl#getE1 <em>E1</em>}</li>
- *   <li>{@link ExternalFunction1Impl#getE2 <em>E2</em>}</li>
- *   <li>{@link ExternalFunction1Impl#getE0 <em>E0</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ExternalFunction1Impl#getRef <em>Ref</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ExternalFunction1Impl#getE1 <em>E1</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ExternalFunction1Impl#getE2 <em>E2</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ExternalFunction1Impl#getE0 <em>E0</em>}</li>
  * </ul>
  * </p>
  *

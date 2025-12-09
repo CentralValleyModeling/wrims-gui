@@ -16,7 +16,7 @@ public class DSSOpsView extends AbstractDSSView {
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "views.gov.ca.water.hecdssvue.DSSOpsView";
+	public static final String ID = DSSOpsView.class.getCanonicalName();
 	private OpsPanel options;
 
 	/**

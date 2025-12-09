@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class StorageFlowsView extends AbstractCalSimView{
 
-	public static String ID="views.gov.ca.water.hecdssvue.StorageFlowsView";
+	public static String ID = StorageFlowsView.class.getCanonicalName();
 	private Component[] components=new Component[0];
 	
 	public StorageFlowsView(){

@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class DeliveryShortagesView extends AbstractCalSimView{
 
-	public static String ID="views.gov.ca.water.hecdssvue.DeliveryShortagesView";
+	public static String ID = DeliveryShortagesView.class.getCanonicalName();
 	private Component[] components = new Component[0];
 	
 	public DeliveryShortagesView(){

@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class WaterManagementActionsView extends AbstractCalSimView{
 
-	public static String ID="views.gov.ca.water.hecdssvue.WaterManagementActionsView";
+	public static String ID = WaterManagementActionsView.class.getCanonicalName();
 	private Component[] components = new Component[0];
 	
 	public WaterManagementActionsView(){
