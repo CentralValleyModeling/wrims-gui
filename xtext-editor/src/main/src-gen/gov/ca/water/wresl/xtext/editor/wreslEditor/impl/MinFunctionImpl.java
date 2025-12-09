@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link MinFunctionImpl#getE1 <em>E1</em>}</li>
- *   <li>{@link MinFunctionImpl#getE2 <em>E2</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.MinFunctionImpl#getE1 <em>E1</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.MinFunctionImpl#getE2 <em>E2</em>}</li>
  * </ul>
  * </p>
  *

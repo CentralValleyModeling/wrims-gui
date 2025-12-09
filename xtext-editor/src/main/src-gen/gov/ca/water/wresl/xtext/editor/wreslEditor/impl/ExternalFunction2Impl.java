@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ExternalFunction2Impl#getRef <em>Ref</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.ExternalFunction2Impl#getRef <em>Ref</em>}</li>
  * </ul>
  * </p>
  *

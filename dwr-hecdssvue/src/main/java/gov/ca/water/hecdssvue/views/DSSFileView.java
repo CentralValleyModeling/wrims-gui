@@ -56,7 +56,7 @@ public class DSSFileView extends ViewPart {
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "views.gov.ca.water.hecdssvue.DSSFileView";
+	public static final String ID = DSSFileView.class.getCanonicalName();
 	
 	private Button[] checkBox=new Button[4];
 	private Text[] dvFileText=new Text[4];

@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link TrunkTimeArrayImpl#getRef <em>Ref</em>}</li>
- *   <li>{@link TrunkTimeArrayImpl#getT1 <em>T1</em>}</li>
- *   <li>{@link TrunkTimeArrayImpl#getT2 <em>T2</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.TrunkTimeArrayImpl#getRef <em>Ref</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.TrunkTimeArrayImpl#getT1 <em>T1</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.TrunkTimeArrayImpl#getT2 <em>T2</em>}</li>
  * </ul>
  * </p>
  *

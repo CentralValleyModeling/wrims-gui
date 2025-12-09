@@ -24,9 +24,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link GroupImpl#getName <em>Name</em>}</li>
- *   <li>{@link GroupImpl#getPattern <em>Pattern</em>}</li>
- *   <li>{@link GroupImpl#getIfincitems <em>Ifincitems</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.GroupImpl#getName <em>Name</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.GroupImpl#getPattern <em>Pattern</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.GroupImpl#getIfincitems <em>Ifincitems</em>}</li>
  * </ul>
  * </p>
  *

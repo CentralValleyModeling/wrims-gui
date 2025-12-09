@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link SVarSumImpl#getSumContent <em>Sum Content</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SVarSumImpl#getSumContent <em>Sum Content</em>}</li>
  * </ul>
  * </p>
  *

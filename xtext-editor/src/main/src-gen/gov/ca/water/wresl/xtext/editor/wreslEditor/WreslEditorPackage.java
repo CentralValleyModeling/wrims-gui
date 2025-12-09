@@ -113,7 +113,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see WreslEditorFactory
+ * @see gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEditorFactory
  * @model kind="package"
  * @generated
  */

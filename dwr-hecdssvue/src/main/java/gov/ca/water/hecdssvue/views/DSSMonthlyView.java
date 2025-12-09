@@ -17,7 +17,7 @@ public class DSSMonthlyView extends AbstractDSSView {
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "views.gov.ca.water.hecdssvue.DSSMonthlyView";
+	public static final String ID = DSSMonthlyView.class.getCanonicalName();
 	private MonthlyTablePanel monthly;
 
 	/**

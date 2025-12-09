@@ -214,7 +214,7 @@
    </extension>
    <extension point="org.eclipse.ltk.core.refactoring.renameParticipants">
       <renameParticipant
-            class="refactoring.gov.ca.water.wresl.xtext.editor.ui.WreslEditorRenameElementParticipant"
+			  class="gov.ca.dwr.wresl.xtext.editor.ui.refactoring.WreslEditorRenameElementParticipant"
             id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.editors.wresleditorrenameelementparticipant"
             name="WRESL editor rename participant">
          	<enablement>
@@ -229,7 +229,7 @@
 		<command
 			description="Add watch."
 			id="gov.ca.dwr.wresl.xtext.editor.AddWatch"
-			defaultHandler="watch.gov.ca.water.wresl.xtext.editor.ui.AddWatch"
+			defaultHandler="gov.ca.dwr.wresl.xtext.editor.ui.watch.AddWatch"
 			name="Watch">
 		</command>
 	</extension>

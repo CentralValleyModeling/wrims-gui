@@ -70,7 +70,7 @@ public class DSSCatalogView extends AbstractDSSView {
 	/**
 	 * The ID of the view as specified by the extension.
 	 */
-	public static final String ID = "views.gov.ca.water.hecdssvue.DSSCatalogView";
+	public static final String ID = DSSCatalogView.class.getCanonicalName();
 	private static final Cache<String, DataContainer> dssCache = CacheBuilder.newBuilder()
 		.expireAfterWrite(30, TimeUnit.SECONDS) // Entries expire 30 seconds after creation
 		.build();

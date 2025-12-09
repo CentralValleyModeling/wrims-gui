@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link SVarExpressionImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.SVarExpressionImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *

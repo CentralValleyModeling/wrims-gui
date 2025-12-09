@@ -107,7 +107,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see WreslEditorPackage
+ * @see gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEditorPackage
  * @generated
  */
 public class WreslEditorAdapterFactory extends AdapterFactoryImpl

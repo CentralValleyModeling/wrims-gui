@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link CaseContentImpl#getCaseName <em>Case Name</em>}</li>
- *   <li>{@link CaseContentImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link CaseContentImpl#getContent <em>Content</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.CaseContentImpl#getCaseName <em>Case Name</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.CaseContentImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link gov.ca.water.wresl.xtext.editor.wreslEditor.impl.CaseContentImpl#getContent <em>Content</em>}</li>
  * </ul>
  * </p>
  *

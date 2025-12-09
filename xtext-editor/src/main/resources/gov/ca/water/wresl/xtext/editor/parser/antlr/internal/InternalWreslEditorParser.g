@@ -22,7 +22,7 @@ import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import services.gov.ca.water.wresl.xtext.editor.WreslEditorGrammarAccess;
+import gov.ca.water.wresl.xtext.editor.services.WreslEditorGrammarAccess;
 
 }
 
