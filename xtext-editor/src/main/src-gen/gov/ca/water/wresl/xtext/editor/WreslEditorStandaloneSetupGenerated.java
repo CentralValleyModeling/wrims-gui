@@ -29,8 +29,8 @@ public class WreslEditorStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.ca.gov/dwr/wresl/xtext/editor/WreslEditor")) {
-		EPackage.Registry.INSTANCE.put("http://www.ca.gov/dwr/wresl/xtext/editor/WreslEditor", WreslEditorPackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey(WreslEditorPackage.eNS_URI)) {
+		EPackage.Registry.INSTANCE.put(WreslEditorPackage.eNS_URI, WreslEditorPackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);
