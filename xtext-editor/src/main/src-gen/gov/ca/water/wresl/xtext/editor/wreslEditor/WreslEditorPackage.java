@@ -133,7 +133,7 @@ public interface WreslEditorPackage extends EPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  String eNS_URI = "http://www.ca.gov/dwr/wresl/xtext/editor/WreslEditor";
+  String eNS_URI = "http://www.water.ca.gov/wresl/xtext/editor/WreslEditor";
 
   /**
    * The package namespace name.

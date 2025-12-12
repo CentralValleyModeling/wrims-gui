@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="wreslEditor" nsURI="http://www.ca.gov/dwr/wresl/xtext/editor/WreslEditor"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="wreslEditor" nsURI="http://www.water.ca.gov/wresl/xtext/editor/WreslEditor"
     nsPrefix="wreslEditor">
   <eClassifiers xsi:type="ecore:EClass" name="WreslEvaluator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" upperBound="-1"
