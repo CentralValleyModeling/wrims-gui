@@ -16,6 +16,8 @@ import org.eclipse.ui.internal.Workbench;
 
 public class WelcomeViewListener {
 
+	private static final String PLUGIN_ID = "gov.ca.water.wrims.gui.ide";
+
     public void addWelcomeViewListener() {
     	
     	Display.getDefault().syncExec(new Runnable() {
@@ -119,7 +121,7 @@ public class WelcomeViewListener {
     }
     
     private void logInfo(String message) {
-        IStatus status = new Status(IStatus.INFO, "gov.ca.water.wrims.gui.ide", message);
+        IStatus status = new Status(IStatus.INFO, PLUGIN_ID, message);
         Platform.getLog(Platform.getBundle("wpp.debuggerapplication")).log(status);
     }
 }
