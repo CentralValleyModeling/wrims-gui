@@ -412,7 +412,7 @@ public class WPPWsiDiTab extends AbstractLaunchConfigurationTab {
 			xmx="4096m";
 		}
 		*/
-		out.println("jre\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-config="+configFilePath);
+		out.println("jre\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.components.ControllerBatch "+"-config="+configFilePath);
 		out.close();
 	}
 	

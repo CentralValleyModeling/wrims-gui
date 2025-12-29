@@ -152,7 +152,7 @@ public class WPPConfigTab extends AbstractLaunchConfigurationTab {
 					out.println("set temp_wrims2=jre\\bin");
 					out.println("set TF_CPP_MIN_LOG_LEVEL=2");
 					out.println();
-					out.println("jre\\bin\\java -Xmx4096m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"lib\" -cp \"lib\\external;lib\\*\" wrimsv2.hdf5.DSSHDF5Converter -launch="+launchFileName);
+					out.println("jre\\bin\\java -Xmx4096m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"lib\" -cp \"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.hdf5.DSSHDF5Converter -launch="+launchFileName);
 					out.close();
 					Runtime.getRuntime().exec(new String[] {"cmd.exe", "/c", "start", "/w", conversionFileName}, 
 							null, null); 
