@@ -7,29 +7,35 @@ Feature: Test debugging a study
 ![ImportProject.png](TEST_images\ImportProject.png)
     Otherwise, create a new project with "C:\9.3.1_danube_hist" by clicking the menu of "File->New->Project", and then select "General Project" in the dialog of "New Project"; in the next page of the dialog, give a name of the project and then uncheck "Use default location" and select the root project folder as the location
 ![NewProject.png](TEST_images\NewProject.png)
+
+After that, the Project Explorer of WRIMS GUI should look like the following:
+![ProjectExplorerAfterImport.png](TEST_images\ProjectExplorerAfterImport.png)
     
 3. Set timestamp of year 1923 and month 10 and date 31 and cycle 1 as a breakpoint
 ![Breakpoint.png](TEST_images\Breakpoint.png)   
-4. Right click "Project Explorer", in the popup menu, select "Debug As->Debug Configurations", and at the "Debug Configurations" dialog select the launch configuration e.g. "CS3_Hist_Dev" under the "WRESL/WRIMS2 Application"; and then click "Debug" button
+4. Click the arrow on the left of the project "DCR2025_Hist" on the "Project Explorer" view to unfold the project. Right click the blank area of the "Project Explorer" view, in the popup menu, select "Debug As->Debug Configurations", and at the "Debug Configurations" dialog select the launch configuration e.g. "CS3_Hist_Dev" under the "WRESL/WRIMS2 Application"; and then click "Debug" button
 ![DebugConfigurations.png](TEST_images\DebugConfigurations.png)
-	
-5. When the study reach the breakpoint; click "next step" button; then click "next cycle" button on the "Console" view
-![buttons.png](TEST_images\buttons.png)
-6. Click the menu of "Run->Next step"; then click the menu of "Run->Next cycle" button
 
-7. Open a WRESL file on the WRESL Editor, e.g. "C:\9.3.1_danube_adj\Run\COA\coa.wresl"; then check the views of "Variables", "Goals", "All Variables", "All Goals"
+    After that, the study of "DCR2025_Hist" will run as follows:
+
+   
+6. When the study reach the breakpoint; click "next step" button; then click "next cycle" button on the "Console" view
+![buttons.png](TEST_images\buttons.png)
+7. Click the menu of "Run->Next step"; then click the menu of "Run->Next cycle" button
+
+8. Open a WRESL file on the WRESL Editor, e.g. "C:\9.3.1_danube_adj\Run\COA\coa.wresl"; then check the views of "Variables", "Goals", "All Variables", "All Goals"
 ![variables-goals.png](TEST_images\variables-goals.png)
-8. Click the menu of "Data\Load Dss/Studies" and load a dv dss file, .e.g. "DCR2023_DV_9.3.1_Danube_Hist_v1.7.dss" and a sv dss file, e.g. "DCR2023_SV_Danube_Hist_v1.7.dss"
+9. Click the menu of "Data\Load Dss/Studies" and load a dv dss file, .e.g. "DCR2023_DV_9.3.1_Danube_Hist_v1.7.dss" and a sv dss file, e.g. "DCR2023_SV_Danube_Hist_v1.7.dss"
 ![LoadAltDssStudies.png](TEST_images\LoadAltDssStudies.png)
-9. Click "all variables from DSS" button in this view of "All Variables" to see all the values of "All Variables" in both current run and the alternatives
+10. Click "all variables from DSS" button in this view of "All Variables" to see all the values of "All Variables" in both current run and the alternatives
     
-10. Open the view of "All Goals" and click "Control Goals" button in this view to see all the control goals
+11. Open the view of "All Goals" and click "Control Goals" button in this view to see all the control goals
 ![controlgoals.png](TEST_images\controlgoals.png)
-11. Open the view of "Watch", add a variable, e.g. "s_shsta" to the watch list; and add a constraint, e.g. "coa_cvp3" to the watch list; and then delete this constraint from watch list
+12. Open the view of "Watch", add a variable, e.g. "s_shsta" to the watch list; and add a constraint, e.g. "coa_cvp3" to the watch list; and then delete this constraint from watch list
 ![watch.png](TEST_images\watch.png)
-12. Hove over on a variable .e.g. "I_SHSTA" in the WRESL file of "C:\9.3.1_danube_hist\Run\COA\coa.wresl"; and hove over on a constraint, e.g. "swp_storage_change" in the WRESL file "C:\9.3.1_danube_hist\Run\COA\coa.wresl"
+13. Hove over on a variable .e.g. "I_SHSTA" in the WRESL file of "C:\9.3.1_danube_hist\Run\COA\coa.wresl"; and hove over on a constraint, e.g. "swp_storage_change" in the WRESL file "C:\9.3.1_danube_hist\Run\COA\coa.wresl"
 ![hove-over.png](TEST_images\hove-over.png)
-13. Click "Resume" button and then click "Pause" button on the "Console" View after 2 second
+14. Click "Resume" button and then click "Pause" button on the "Console" View after 2 second
 	
-14. Click the "Terminate" button to terminate the debug run
+15. Click the "Terminate" button to terminate the debug run
 ![Terminate.png](TEST_images\Terminate.png)
