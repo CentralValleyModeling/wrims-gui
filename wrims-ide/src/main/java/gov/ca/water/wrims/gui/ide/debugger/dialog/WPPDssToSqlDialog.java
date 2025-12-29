@@ -197,7 +197,7 @@ public class WPPDssToSqlDialog extends Dialog {
 			FileWriter fw = new FileWriter(batchFilePath);
 			PrintWriter out = new PrintWriter(fw);
 			out.println("@echo off");
-			out.println("jre\\bin\\java -Xmx4096m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"lib\" -cp \"lib\\*\" wrimsv2.sql.DssToSQLDatabase -dss_sql=" + profileFilePath);
+			out.println("jre\\bin\\java -Xmx4096m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"lib\" -cp \"lib\\*\" gov.ca.water.wrims.engine.core.sql.DssToSQLDatabase -dss_sql=" + profileFilePath);
 			out.close();
 			fw.close();
 		} catch (IOException e) {

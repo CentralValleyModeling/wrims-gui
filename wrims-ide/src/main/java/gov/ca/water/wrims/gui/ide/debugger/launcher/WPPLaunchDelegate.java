@@ -552,15 +552,15 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
         String remoteDebugSettings = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006";
 		if (compileOnly.equalsIgnoreCase("no")){
 			if (mode.equals("debug")){
-				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K " + remoteDebugSettings +" -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.DebugInterface "+requestPort+" "+eventPort+" "+"-config="+configFilePath);
+				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K " + remoteDebugSettings +" -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.components.DebugInterface "+requestPort+" "+eventPort+" "+"-config="+configFilePath);
 			}else{
-				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-config="+configFilePath);
+				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.components.ControllerBatch "+"-config="+configFilePath);
 			}
 		}else{
 			if (wreslPlus.equalsIgnoreCase("no")){
-				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-mainwresl="+mainFileAbsPath);
+				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.components.ControllerBatch "+"-mainwresl="+mainFileAbsPath);
 			}else{
-				out.println(javaPath + " -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" wrimsv2.components.ControllerBatch "+"-mainwreslplus="+mainFileAbsPath);
+				out.println(javaPath + " -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Dname="+requestPort+" -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.components.ControllerBatch "+"-mainwreslplus="+mainFileAbsPath);
 			}
 		}
 		out.close();
