@@ -28,3 +28,5 @@ Feature: Test DSS operations
 
 8. Select "Storage Flow" view, select flow "Trinity River", the plots and tables are the same as the ones in Step 7.
 	![StoragesFlows.png](TEST_images\StoragesFlows.png)
+The flows of Trinity and its min flow requirement in the two alternative will show on the chart and tables as follows:
+![StorageFlow.png](TEST_images\StorageFlow.png)
