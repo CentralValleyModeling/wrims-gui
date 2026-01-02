@@ -28,12 +28,12 @@ public abstract class AbstractWreslEditorRuntimeModule extends org.eclipse.xtext
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "gov/ca/dwr/wresl/xtext/editor/WreslEditor.properties");
+		properties = tryBindProperties(binder, "gov/ca/water/wresl/xtext/editor/WreslEditor.properties");
 		super.configure(binder);
 	}
 	
 	public void configureLanguageName(Binder binder) {
-		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("gov.ca.dwr.wresl.xtext.editor.WreslEditor");
+		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("gov.ca.water.wresl.xtext.editor.WreslEditor");
 	}
 	
 	public void configureFileExtensions(Binder binder) {

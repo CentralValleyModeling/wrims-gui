@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
  */
 public class WreslEditorActivator extends AbstractUIPlugin {
 	
-	public static final String GOV_CA_DWR_WRESL_XTEXT_EDITOR_WRESLEDITOR = "gov.ca.dwr.wresl.xtext.editor.WreslEditor";
+	public static final String GOV_CA_DWR_WRESL_XTEXT_EDITOR_WRESLEDITOR = "gov.ca.water.wresl.xtext.editor.WreslEditor";
 	
 	private static final Logger logger = Logger.getLogger(WreslEditorActivator.class);
 	

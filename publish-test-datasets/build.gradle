@@ -11,7 +11,7 @@ tasks.register('zip', Zip) {
 publishing {
     publications {
         study (MavenPublication) {
-            groupId 'gov.ca.dwr'
+            groupId 'gov.ca.water'
             artifactId project.findProperty('zipName') ?: 'Watershed'
             version = project.findProperty('postVersion') ?: "1.0.0"
 

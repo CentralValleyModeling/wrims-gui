@@ -38,6 +38,6 @@ sonar {
 }
 
 allprojects {
-    group = 'gov.ca.dwr'
+    group = 'gov.ca.water'
     version = versionLabel(versionDetails())
 }
