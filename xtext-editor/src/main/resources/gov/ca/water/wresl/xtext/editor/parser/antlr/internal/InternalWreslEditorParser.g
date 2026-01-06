@@ -11,7 +11,7 @@ options {
 }
 
 @header {
-package gov.ca.dwr.wresl.xtext.editor.parser.antlr.internal; 
+package gov.ca.water.wresl.xtext.editor.parser.antlr.internal; 
 
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
@@ -90,7 +90,7 @@ ruleWreslEvaluator returns [EObject current=null]
        			$current, 
        			"pattern",
         		lv_pattern_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -109,7 +109,7 @@ ruleWreslEvaluator returns [EObject current=null]
        			$current, 
        			"ifincitem",
         		lv_ifincitem_1_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.IfIncItems");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.IfIncItems");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -128,7 +128,7 @@ ruleWreslEvaluator returns [EObject current=null]
        			$current, 
        			"initial",
         		lv_initial_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Initial");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Initial");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -146,7 +146,7 @@ ruleWreslEvaluator returns [EObject current=null]
        			$current, 
        			"sequence",
         		lv_sequence_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Sequence");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Sequence");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -165,7 +165,7 @@ ruleWreslEvaluator returns [EObject current=null]
        			$current, 
        			"model",
         		lv_model_4_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Model");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Model");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -180,7 +180,7 @@ ruleWreslEvaluator returns [EObject current=null]
        			$current, 
        			"model",
         		lv_model_4_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Group");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Group");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -341,7 +341,7 @@ ruleDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -547,7 +547,7 @@ ruleIfIncItems returns [EObject current=null]
        			$current, 
        			"elseifterm",
         		lv_elseifterm_1_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ElseIfTerm");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ElseIfTerm");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -565,7 +565,7 @@ ruleIfIncItems returns [EObject current=null]
        			$current, 
        			"elseterm",
         		lv_elseterm_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ElseTerm");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ElseTerm");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -608,7 +608,7 @@ ruleIfTerm returns [EObject current=null]
        			$current, 
        			"logical",
         		lv_logical_1_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LogicalExpression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.LogicalExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -631,7 +631,7 @@ ruleIfTerm returns [EObject current=null]
        			$current, 
        			"pattern",
         		lv_pattern_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -679,7 +679,7 @@ ruleElseIfTerm returns [EObject current=null]
        			$current, 
        			"logical",
         		lv_logical_1_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LogicalExpression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.LogicalExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -702,7 +702,7 @@ ruleElseIfTerm returns [EObject current=null]
        			$current, 
        			"pattern",
         		lv_pattern_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -755,7 +755,7 @@ ruleElseTerm returns [EObject current=null]
        			$current, 
        			"pattern",
         		lv_pattern_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -900,7 +900,7 @@ ruleObjective returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -927,7 +927,7 @@ ruleObjective returns [EObject current=null]
        			$current, 
        			"weights",
         		lv_weights_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.WeightItem");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.WeightItem");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -992,7 +992,7 @@ ruleWeightItem returns [EObject current=null]
        			$current, 
        			"ta",
         		lv_ta_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1015,7 +1015,7 @@ ruleWeightItem returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1138,7 +1138,7 @@ ruleExternalDef returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_7_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.External");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.External");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1193,7 +1193,7 @@ ruleSvarDef returns [EObject current=null]
        			$current, 
        			"ta",
         		lv_ta_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1274,7 +1274,7 @@ ruleSvarDef returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SVar");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SVar");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1315,7 +1315,7 @@ ruleSvarDef returns [EObject current=null]
        			$current, 
        			"ta",
         		lv_ta_13_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1396,7 +1396,7 @@ ruleSvarDef returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_19_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SVar");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SVar");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1451,7 +1451,7 @@ ruleDvarDef returns [EObject current=null]
        			$current, 
        			"ta",
         		lv_ta_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1533,7 +1533,7 @@ ruleDvarDef returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_8_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.DVar");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.DVar");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1548,7 +1548,7 @@ ruleDvarDef returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_8_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.DVarInteger");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.DVarInteger");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1591,7 +1591,7 @@ ruleDvarDef returns [EObject current=null]
        			$current, 
        			"ta",
         		lv_ta_13_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1673,7 +1673,7 @@ ruleDvarDef returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_19_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.DVar");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.DVar");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1688,7 +1688,7 @@ ruleDvarDef returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_19_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.DVarInteger");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.DVarInteger");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1814,7 +1814,7 @@ ruleConstDef returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Number");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Number");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1869,7 +1869,7 @@ ruleAlias returns [EObject current=null]
        			$current, 
        			"ta",
         		lv_ta_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1961,7 +1961,7 @@ ruleAlias returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_10_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1991,7 +1991,7 @@ ruleAlias returns [EObject current=null]
        			$current, 
        			"kind",
         		lv_kind_13_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2020,7 +2020,7 @@ ruleAlias returns [EObject current=null]
        			$current, 
        			"units",
         		lv_units_16_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2075,7 +2075,7 @@ ruleExternal returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -2114,7 +2114,7 @@ ruleExternal returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_6_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -2198,7 +2198,7 @@ ruleDVarNonStd returns [EObject current=null]
        			$current, 
        			"lowerUpper",
         		lv_lowerUpper_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LowerAndOrUpper");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.LowerAndOrUpper");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2228,7 +2228,7 @@ ruleDVarNonStd returns [EObject current=null]
        			$current, 
        			"kind",
         		lv_kind_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2257,7 +2257,7 @@ ruleDVarNonStd returns [EObject current=null]
        			$current, 
        			"units",
         		lv_units_6_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2318,7 +2318,7 @@ ruleDVarStd returns [EObject current=null]
        			$current, 
        			"kind",
         		lv_kind_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2347,7 +2347,7 @@ ruleDVarStd returns [EObject current=null]
        			$current, 
        			"units",
         		lv_units_7_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2465,7 +2465,7 @@ ruleDVarIntegerStd returns [EObject current=null]
        			$current, 
        			"kind",
         		lv_kind_6_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2494,7 +2494,7 @@ ruleDVarIntegerStd returns [EObject current=null]
        			$current, 
        			"units",
         		lv_units_9_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2567,7 +2567,7 @@ ruleDVarIntegerNonStd returns [EObject current=null]
        			$current, 
        			"kind",
         		lv_kind_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2596,7 +2596,7 @@ ruleDVarIntegerNonStd returns [EObject current=null]
        			$current, 
        			"units",
         		lv_units_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2731,7 +2731,7 @@ ruleSVarDSS returns [EObject current=null]
        			$current, 
        			"bPart",
         		lv_bPart_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2760,7 +2760,7 @@ ruleSVarDSS returns [EObject current=null]
        			$current, 
        			"kind",
         		lv_kind_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2789,7 +2789,7 @@ ruleSVarDSS returns [EObject current=null]
        			$current, 
        			"units",
         		lv_units_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2818,7 +2818,7 @@ ruleSVarDSS returns [EObject current=null]
        			$current, 
        			"convert",
         		lv_convert_11_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )
@@ -2867,7 +2867,7 @@ ruleSVarExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2906,7 +2906,7 @@ ruleSVarSum returns [EObject current=null]
        			$current, 
        			"sumContent",
         		lv_sumContent_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SumContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SumContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2945,7 +2945,7 @@ ruleSVarTable returns [EObject current=null]
        			$current, 
        			"tableContent",
         		lv_tableContent_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TableContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TableContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2984,7 +2984,7 @@ ruleSVarCase returns [EObject current=null]
        			$current, 
        			"caseContent",
         		lv_caseContent_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.CaseContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.CaseContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3036,7 +3036,7 @@ ruleCaseContent returns [EObject current=null]
        			$current, 
        			"caseName",
         		lv_caseName_2_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
     |		{ 
@@ -3050,7 +3050,7 @@ ruleCaseContent returns [EObject current=null]
        			$current, 
        			"caseName",
         		lv_caseName_2_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3075,7 +3075,7 @@ ruleCaseContent returns [EObject current=null]
        			$current, 
        			"condition",
         		lv_condition_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Condition");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Condition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3093,7 +3093,7 @@ ruleCaseContent returns [EObject current=null]
        			$current, 
        			"content",
         		lv_content_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TableContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TableContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3112,7 +3112,7 @@ ruleCaseContent returns [EObject current=null]
        			$current, 
        			"content",
         		lv_content_6_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ValueContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ValueContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3131,7 +3131,7 @@ ruleCaseContent returns [EObject current=null]
        			$current, 
        			"content",
         		lv_content_7_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SumContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SumContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3186,7 +3186,7 @@ ruleSumContent returns [EObject current=null]
        			$current, 
        			"header",
         		lv_header_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SumHeader");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SumHeader");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3204,7 +3204,7 @@ ruleSumContent returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3253,7 +3253,7 @@ ruleSumHeader returns [EObject current=null]
        			$current, 
        			"expression1",
         		lv_expression1_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3276,7 +3276,7 @@ ruleSumHeader returns [EObject current=null]
        			$current, 
        			"expression2",
         		lv_expression2_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3345,7 +3345,7 @@ ruleValueContent returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3397,7 +3397,7 @@ ruleTableContent returns [EObject current=null]
        			$current, 
        			"tableName",
         		lv_tableName_2_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
     |		{ 
@@ -3411,7 +3411,7 @@ ruleTableContent returns [EObject current=null]
        			$current, 
        			"tableName",
         		lv_tableName_2_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3444,7 +3444,7 @@ ruleTableContent returns [EObject current=null]
        			$current, 
        			"from",
         		lv_from_5_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
     |		{ 
@@ -3458,7 +3458,7 @@ ruleTableContent returns [EObject current=null]
        			$current, 
        			"from",
         		lv_from_5_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3489,7 +3489,7 @@ ruleTableContent returns [EObject current=null]
        			$current, 
        			"given",
         		lv_given_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Assignment");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Assignment");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3519,7 +3519,7 @@ ruleTableContent returns [EObject current=null]
        			$current, 
        			"use",
         		lv_use_11_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -3547,7 +3547,7 @@ ruleTableContent returns [EObject current=null]
        			$current, 
        			"where",
         		lv_where_14_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.WhereItems");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.WhereItems");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3586,7 +3586,7 @@ ruleWhereItems returns [EObject current=null]
        			$current, 
        			"assignment",
         		lv_assignment_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Assignment");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Assignment");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3609,7 +3609,7 @@ ruleWhereItems returns [EObject current=null]
        			$current, 
        			"assignment",
         		lv_assignment_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Assignment");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Assignment");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3648,7 +3648,7 @@ ruleAssignment returns [EObject current=null]
        			$current, 
        			"term",
         		lv_term_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TermSimple");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TermSimple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3671,7 +3671,7 @@ ruleAssignment returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3818,7 +3818,7 @@ ruleupperLower returns [EObject current=null]
        			$current, 
        			"upper",
         		lv_upper_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Upper");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Upper");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3836,7 +3836,7 @@ ruleupperLower returns [EObject current=null]
        			$current, 
        			"lower",
         		lv_lower_1_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Lower");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Lower");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3875,7 +3875,7 @@ rulelowerUpper returns [EObject current=null]
        			$current, 
        			"lower",
         		lv_lower_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Lower");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Lower");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3893,7 +3893,7 @@ rulelowerUpper returns [EObject current=null]
        			$current, 
        			"upper",
         		lv_upper_1_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Upper");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Upper");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3964,7 +3964,7 @@ ruleUpper returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4035,7 +4035,7 @@ ruleLower returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4085,7 +4085,7 @@ ruleGoal returns [EObject current=null]
        			$current, 
        			"ta",
         		lv_ta_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4146,7 +4146,7 @@ ruleGoal returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_6_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -4169,7 +4169,7 @@ ruleGoal returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_8_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.GoalSimple");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.GoalSimple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4184,7 +4184,7 @@ ruleGoal returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_8_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.GoalCase");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.GoalCase");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4241,7 +4241,7 @@ ruleGoalCase returns [EObject current=null]
        			$current, 
        			"lhs",
         		lv_lhs_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4259,7 +4259,7 @@ ruleGoalCase returns [EObject current=null]
        			$current, 
        			"content",
         		lv_content_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.GoalNoCaseContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.GoalNoCaseContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4278,7 +4278,7 @@ ruleGoalCase returns [EObject current=null]
        			$current, 
        			"caseContent",
         		lv_caseContent_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.GoalCaseContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.GoalCaseContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4330,7 +4330,7 @@ ruleGoalCaseContent returns [EObject current=null]
        			$current, 
        			"caseName",
         		lv_caseName_2_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
     |		{ 
@@ -4344,7 +4344,7 @@ ruleGoalCaseContent returns [EObject current=null]
        			$current, 
        			"caseName",
         		lv_caseName_2_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4369,7 +4369,7 @@ ruleGoalCaseContent returns [EObject current=null]
        			$current, 
        			"condition",
         		lv_condition_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Condition");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Condition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4398,7 +4398,7 @@ ruleGoalCaseContent returns [EObject current=null]
        			$current, 
        			"rhs",
         		lv_rhs_7_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4416,7 +4416,7 @@ ruleGoalCaseContent returns [EObject current=null]
        			$current, 
        			"subContent",
         		lv_subContent_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SubContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SubContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4471,7 +4471,7 @@ ruleGoalNoCaseContent returns [EObject current=null]
        			$current, 
        			"rhs",
         		lv_rhs_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4489,7 +4489,7 @@ ruleGoalNoCaseContent returns [EObject current=null]
        			$current, 
        			"subContent",
         		lv_subContent_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SubContent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SubContent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4528,7 +4528,7 @@ ruleSubContent returns [EObject current=null]
        			$current, 
        			"gt",
         		lv_gt_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LhsGtRhs");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.LhsGtRhs");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4546,7 +4546,7 @@ ruleSubContent returns [EObject current=null]
        			$current, 
        			"lt",
         		lv_lt_1_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LhsLtRhs");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.LhsLtRhs");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4565,7 +4565,7 @@ ruleSubContent returns [EObject current=null]
        			$current, 
        			"lt",
         		lv_lt_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LhsLtRhs");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.LhsLtRhs");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4583,7 +4583,7 @@ ruleSubContent returns [EObject current=null]
        			$current, 
        			"gt",
         		lv_gt_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LhsGtRhs");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.LhsGtRhs");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4670,7 +4670,7 @@ ruleLhsGtRhs returns [EObject current=null]
        			$current, 
        			"penalty",
         		lv_penalty_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Penalty");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Penalty");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4757,7 +4757,7 @@ ruleLhsLtRhs returns [EObject current=null]
        			$current, 
        			"penalty",
         		lv_penalty_8_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Penalty");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Penalty");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4807,7 +4807,7 @@ rulePenalty returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4846,7 +4846,7 @@ ruleGoalSimple returns [EObject current=null]
        			$current, 
        			"constraint",
         		lv_constraint_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Constraint");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Constraint");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4885,7 +4885,7 @@ ruleConstraint returns [EObject current=null]
        			$current, 
        			"lhs",
         		lv_lhs_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4948,7 +4948,7 @@ ruleConstraint returns [EObject current=null]
        			$current, 
        			"rhs",
         		lv_rhs_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4999,7 +4999,7 @@ ruleGroup returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -5021,7 +5021,7 @@ ruleGroup returns [EObject current=null]
        			$current, 
        			"pattern",
         		lv_pattern_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5040,7 +5040,7 @@ ruleGroup returns [EObject current=null]
        			$current, 
        			"ifincitems",
         		lv_ifincitems_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.IfIncItems");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.IfIncItems");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5096,7 +5096,7 @@ ruleModel returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -5118,7 +5118,7 @@ ruleModel returns [EObject current=null]
        			$current, 
        			"pattern",
         		lv_pattern_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5137,7 +5137,7 @@ ruleModel returns [EObject current=null]
        			$current, 
        			"ifincitems",
         		lv_ifincitems_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.IfIncItems");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.IfIncItems");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5203,7 +5203,7 @@ ruleInitial returns [EObject current=null]
        			$current, 
        			"pattern",
         		lv_pattern_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5259,7 +5259,7 @@ ruleSequence returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
 	    }
 
 )
@@ -5308,7 +5308,7 @@ ruleSequence returns [EObject current=null]
        			$current, 
        			"condition",
         		lv_condition_7_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Condition");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Condition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5371,7 +5371,7 @@ ruleSequence returns [EObject current=null]
        			$current, 
        			"condition",
         		lv_condition_12_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Condition");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Condition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5448,7 +5448,7 @@ ruleCondition returns [EObject current=null]
        			$current, 
        			"logical",
         		lv_logical_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LogicalExpression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.LogicalExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5501,7 +5501,7 @@ ruleLogicalExpression returns [EObject current=null]
        			$current, 
        			"c1",
         		lv_c1_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ConditionalUnary");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ConditionalUnary");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5530,7 +5530,7 @@ ruleBinaryOp
        			$current, 
        			"c2",
         		lv_c2_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ConditionalUnary");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.ConditionalUnary");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5679,7 +5679,7 @@ ruleConditionalTerm returns [EObject current=null]
        			$current, 
        			"e1",
         		lv_e1_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5708,7 +5708,7 @@ ruleRelation
        			$current, 
        			"e2",
         		lv_e2_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5882,7 +5882,7 @@ ruleAdd returns [EObject current=null]
        			$current, 
        			"m1",
         		lv_m1_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Multiply");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Multiply");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5911,7 +5911,7 @@ ruleAdd returns [EObject current=null]
        			$current, 
        			"m2",
         		lv_m2_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Multiply");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Multiply");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5950,7 +5950,7 @@ ruleMultiply returns [EObject current=null]
        			$current, 
        			"u1",
         		lv_u1_0_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Unary");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Unary");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5979,7 +5979,7 @@ ruleMultiply returns [EObject current=null]
        			$current, 
        			"u2",
         		lv_u2_3_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Unary");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Unary");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6113,7 +6113,7 @@ ruleTerm returns [EObject current=null]
        			$current, 
        			"n",
         		lv_n_1_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Number");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Number");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6132,7 +6132,7 @@ ruleTerm returns [EObject current=null]
        			$current, 
        			"f",
         		lv_f_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Function");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Function");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6156,7 +6156,7 @@ ruleTerm returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6180,7 +6180,7 @@ ruleTerm returns [EObject current=null]
        			$current, 
        			"s",
         		lv_s_6_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6606,7 +6606,7 @@ ruleMonth
        			$current, 
        			"e1",
         		lv_e1_4_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6621,7 +6621,7 @@ ruleMonth
        			$current, 
        			"e1",
         		lv_e1_4_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TrunkTimeArray");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TrunkTimeArray");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6647,7 +6647,7 @@ ruleMonth
        			$current, 
        			"e2",
         		lv_e2_6_1, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6662,7 +6662,7 @@ ruleMonth
        			$current, 
        			"e2",
         		lv_e2_6_2, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TrunkTimeArray");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TrunkTimeArray");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6692,7 +6692,7 @@ ruleMonth
        			$current, 
        			"e0",
         		lv_e0_9_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6828,7 +6828,7 @@ ruleTrunkTimeArray returns [EObject current=null]
        			$current, 
        			"t1",
         		lv_t1_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TrunkTimeArrayIndex");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TrunkTimeArrayIndex");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6851,7 +6851,7 @@ ruleTrunkTimeArray returns [EObject current=null]
        			$current, 
        			"t2",
         		lv_t2_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TrunkTimeArrayIndex");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.TrunkTimeArrayIndex");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6956,7 +6956,7 @@ ruleMaxFunction returns [EObject current=null]
        			$current, 
        			"e1",
         		lv_e1_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6979,7 +6979,7 @@ ruleMaxFunction returns [EObject current=null]
        			$current, 
        			"e2",
         		lv_e2_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7032,7 +7032,7 @@ ruleMinFunction returns [EObject current=null]
        			$current, 
        			"e1",
         		lv_e1_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7055,7 +7055,7 @@ ruleMinFunction returns [EObject current=null]
        			$current, 
        			"e2",
         		lv_e2_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7108,7 +7108,7 @@ ruleModFunction returns [EObject current=null]
        			$current, 
        			"e1",
         		lv_e1_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7131,7 +7131,7 @@ ruleModFunction returns [EObject current=null]
        			$current, 
        			"e2",
         		lv_e2_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7184,7 +7184,7 @@ ruleIntFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7237,7 +7237,7 @@ ruleAbsFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7290,7 +7290,7 @@ ruleRoundFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7343,7 +7343,7 @@ rulePowFunction returns [EObject current=null]
        			$current, 
        			"e1",
         		lv_e1_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7366,7 +7366,7 @@ rulePowFunction returns [EObject current=null]
        			$current, 
        			"e2",
         		lv_e2_4_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7419,7 +7419,7 @@ ruleLogFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7472,7 +7472,7 @@ ruleSinFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7525,7 +7525,7 @@ ruleCosFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7578,7 +7578,7 @@ ruleTanFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7631,7 +7631,7 @@ ruleCotFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7684,7 +7684,7 @@ ruleAsinFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7737,7 +7737,7 @@ ruleAcosFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7790,7 +7790,7 @@ ruleAtanFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7843,7 +7843,7 @@ ruleAcotFunction returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_2_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8030,7 +8030,7 @@ ruleVarModelStep returns [EObject current=null]
        			$current, 
        			"e",
         		lv_e_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8170,7 +8170,7 @@ this_INT_3=RULE_INT
        			$current, 
        			"e",
         		lv_e_6_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8453,7 +8453,7 @@ ruleIncludeFile returns [EObject current=null]
        			$current, 
        			"file",
         		lv_file_5_0, 
-        		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+        		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
 	    }
 
 )

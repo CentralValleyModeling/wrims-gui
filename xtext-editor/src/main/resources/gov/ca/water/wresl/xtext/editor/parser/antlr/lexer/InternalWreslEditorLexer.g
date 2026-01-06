@@ -6,7 +6,7 @@ lexer grammar InternalWreslEditorLexer;
 
 
 @header {
-package gov.ca.dwr.wresl.xtext.editor.parser.antlr.lexer;
+package gov.ca.water.wresl.xtext.editor.parser.antlr.lexer;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
