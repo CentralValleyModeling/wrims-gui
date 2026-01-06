@@ -28,7 +28,7 @@ public class WreslEditorRenameElementParticipant extends AbstractProcessorBasedR
 
 	public WreslEditorRenameElementParticipant(){
 		WreslEditorActivator activator = WreslEditorActivator.getInstance();
-		activator.getInjector("gov.ca.dwr.wresl.xtext.editor.WreslEditor").injectMembers(this);
+		activator.getInjector("gov.ca.water.wresl.xtext.editor.WreslEditor").injectMembers(this);
 	}
 	
 	

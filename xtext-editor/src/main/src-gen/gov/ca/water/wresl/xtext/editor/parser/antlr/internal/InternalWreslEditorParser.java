@@ -348,7 +348,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                     	             			current, 
                     	             			"pattern",
                     	              		lv_pattern_0_0, 
-                    	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+                    	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
                     	      	        afterParserOrEnumRuleCall();
                     	      	    
                     	    }
@@ -389,7 +389,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                     	             			current, 
                     	             			"ifincitem",
                     	              		lv_ifincitem_1_0, 
-                    	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.IfIncItems");
+                    	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.IfIncItems");
                     	      	        afterParserOrEnumRuleCall();
                     	      	    
                     	    }
@@ -455,7 +455,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"initial",
                                       		lv_initial_2_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Initial");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Initial");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -506,7 +506,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                     	             			current, 
                     	             			"sequence",
                     	              		lv_sequence_3_0, 
-                    	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Sequence");
+                    	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Sequence");
                     	      	        afterParserOrEnumRuleCall();
                     	      	    
                     	    }
@@ -586,7 +586,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                     	                     			current, 
                     	                     			"model",
                     	                      		lv_model_4_1, 
-                    	                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Model");
+                    	                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Model");
                     	              	        afterParserOrEnumRuleCall();
                     	              	    
                     	            }
@@ -615,7 +615,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                     	                     			current, 
                     	                     			"model",
                     	                      		lv_model_4_2, 
-                    	                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Group");
+                    	                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Group");
                     	              	        afterParserOrEnumRuleCall();
                     	              	    
                     	            }
@@ -1090,7 +1090,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"name",
                       		lv_name_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
               	    
             }
 
@@ -1693,7 +1693,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"elseifterm",
                               		lv_elseifterm_1_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ElseIfTerm");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ElseIfTerm");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -1739,7 +1739,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"elseterm",
                               		lv_elseterm_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ElseTerm");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ElseTerm");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -1867,7 +1867,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"logical",
                       		lv_logical_1_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LogicalExpression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.LogicalExpression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -1921,7 +1921,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"pattern",
             	              		lv_pattern_3_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -2076,7 +2076,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"logical",
             	              		lv_logical_1_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LogicalExpression");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.LogicalExpression");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -2130,7 +2130,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	    	             			current, 
             	    	             			"pattern",
             	    	              		lv_pattern_3_0, 
-            	    	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+            	    	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
             	    	      	        afterParserOrEnumRuleCall();
             	    	      	    
             	    	    }
@@ -2300,7 +2300,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"pattern",
             	              		lv_pattern_2_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -2728,7 +2728,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"name",
                       		lv_name_5_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
               	    
             }
 
@@ -2804,7 +2804,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"weights",
             	              		lv_weights_8_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.WeightItem");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.WeightItem");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -2986,7 +2986,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"ta",
                               		lv_ta_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -3030,7 +3030,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression",
                       		lv_expression_4_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -3387,7 +3387,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"definition",
                       		lv_definition_7_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.External");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.External");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -3617,7 +3617,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"ta",
                                       		lv_ta_2_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -3804,7 +3804,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"definition",
                               		lv_definition_8_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SVar");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SVar");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -3936,7 +3936,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"ta",
                                       		lv_ta_13_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -4123,7 +4123,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"definition",
                               		lv_definition_19_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SVar");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SVar");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -4363,7 +4363,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"ta",
                                       		lv_ta_2_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -4571,7 +4571,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"definition",
                                       		lv_definition_8_1, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.DVar");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.DVar");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -4600,7 +4600,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"definition",
                                       		lv_definition_8_2, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.DVarInteger");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.DVarInteger");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -4738,7 +4738,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"ta",
                                       		lv_ta_13_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -4946,7 +4946,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"definition",
                                       		lv_definition_19_1, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.DVar");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.DVar");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -4975,7 +4975,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"definition",
                                       		lv_definition_19_2, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.DVarInteger");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.DVarInteger");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -5337,7 +5337,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"definition",
                       		lv_definition_8_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Number");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Number");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -5540,7 +5540,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"ta",
                               		lv_ta_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -5783,7 +5783,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression",
                       		lv_expression_10_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -5881,7 +5881,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"kind",
                               		lv_kind_13_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
                       	    
                     }
 
@@ -5984,7 +5984,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"units",
                               		lv_units_16_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
                       	    
                     }
 
@@ -6200,7 +6200,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"name",
                               		lv_name_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
                       	    
                     }
 
@@ -6316,7 +6316,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"name",
                               		lv_name_6_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
                       	    
                     }
 
@@ -6594,7 +6594,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"lowerUpper",
                       		lv_lowerUpper_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LowerAndOrUpper");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.LowerAndOrUpper");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -6681,7 +6681,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"kind",
                       		lv_kind_3_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -6767,7 +6767,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"units",
                       		lv_units_6_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -6994,7 +6994,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"kind",
                       		lv_kind_4_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -7080,7 +7080,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"units",
                       		lv_units_7_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -7526,7 +7526,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"kind",
                       		lv_kind_6_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -7612,7 +7612,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"units",
                       		lv_units_9_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -7862,7 +7862,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"kind",
                       		lv_kind_5_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -7948,7 +7948,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"units",
                       		lv_units_8_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -8387,7 +8387,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"bPart",
                               		lv_bPart_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
                       	    
                     }
 
@@ -8476,7 +8476,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"kind",
                       		lv_kind_5_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -8562,7 +8562,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"units",
                       		lv_units_8_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
@@ -8659,7 +8659,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"convert",
                               		lv_convert_11_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
                       	    
                     }
 
@@ -8836,7 +8836,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression",
                       		lv_expression_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -8947,7 +8947,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"sumContent",
                       		lv_sumContent_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SumContent");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.SumContent");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -9055,7 +9055,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"tableContent",
                       		lv_tableContent_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TableContent");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TableContent");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -9176,7 +9176,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"caseContent",
             	              		lv_caseContent_0_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.CaseContent");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.CaseContent");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -9384,7 +9384,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"caseName",
                               		lv_caseName_2_1, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
                       	    
                     }
 
@@ -9412,7 +9412,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"caseName",
                               		lv_caseName_2_2, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -9459,7 +9459,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"condition",
                       		lv_condition_4_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Condition");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Condition");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -9524,7 +9524,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"content",
                               		lv_content_5_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TableContent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.TableContent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -9565,7 +9565,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"content",
                               		lv_content_6_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ValueContent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ValueContent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -9606,7 +9606,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"content",
                               		lv_content_7_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SumContent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SumContent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -9792,7 +9792,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"header",
                       		lv_header_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SumHeader");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.SumHeader");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -9827,7 +9827,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression",
                       		lv_expression_3_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -9962,7 +9962,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression1",
                       		lv_expression1_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -10003,7 +10003,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression2",
                       		lv_expression2_4_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -10233,7 +10233,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression",
                       		lv_expression_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -10439,7 +10439,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"tableName",
                               		lv_tableName_2_1, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
                       	    
                     }
 
@@ -10467,7 +10467,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"tableName",
                               		lv_tableName_2_2, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -10581,7 +10581,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"from",
                               		lv_from_5_1, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
                       	    
                     }
 
@@ -10609,7 +10609,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"from",
                               		lv_from_5_2, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -10717,7 +10717,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"given",
                               		lv_given_8_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Assignment");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Assignment");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -10804,7 +10804,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"use",
                               		lv_use_11_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
                       	    
                     }
 
@@ -10911,7 +10911,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"where",
                               		lv_where_14_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.WhereItems");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.WhereItems");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -11034,7 +11034,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"assignment",
                       		lv_assignment_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Assignment");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Assignment");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -11090,7 +11090,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"assignment",
             	              		lv_assignment_2_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Assignment");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Assignment");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -11216,7 +11216,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"term",
                       		lv_term_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TermSimple");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TermSimple");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -11257,7 +11257,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression",
                       		lv_expression_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -11695,7 +11695,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"upper",
                       		lv_upper_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Upper");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Upper");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -11738,7 +11738,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"lower",
                               		lv_lower_1_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Lower");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Lower");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -11857,7 +11857,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"lower",
                       		lv_lower_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Lower");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Lower");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -11900,7 +11900,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"upper",
                               		lv_upper_1_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Upper");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Upper");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -12184,7 +12184,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"expression",
                               		lv_expression_5_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -12471,7 +12471,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"expression",
                               		lv_expression_5_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -12668,7 +12668,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"ta",
                               		lv_ta_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TimeArraySize");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.TimeArraySize");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -12815,7 +12815,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"name",
                       		lv_name_6_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
               	    
             }
 
@@ -12876,7 +12876,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"definition",
                               		lv_definition_8_1, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.GoalSimple");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.GoalSimple");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -12905,7 +12905,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"definition",
                               		lv_definition_8_2, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.GoalCase");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.GoalCase");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -13093,7 +13093,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"lhs",
                       		lv_lhs_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -13149,7 +13149,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"content",
                               		lv_content_3_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.GoalNoCaseContent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.GoalNoCaseContent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -13203,7 +13203,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                     	             			current, 
                     	             			"caseContent",
                     	              		lv_caseContent_4_0, 
-                    	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.GoalCaseContent");
+                    	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.GoalCaseContent");
                     	      	        afterParserOrEnumRuleCall();
                     	      	    
                     	    }
@@ -13420,7 +13420,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"caseName",
                               		lv_caseName_2_1, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
                       	    
                     }
 
@@ -13448,7 +13448,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"caseName",
                               		lv_caseName_2_2, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -13495,7 +13495,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"condition",
                       		lv_condition_4_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Condition");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Condition");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -13586,7 +13586,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"rhs",
                       		lv_rhs_7_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -13629,7 +13629,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"subContent",
                               		lv_subContent_8_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SubContent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SubContent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -13812,7 +13812,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"rhs",
                       		lv_rhs_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -13855,7 +13855,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"subContent",
                               		lv_subContent_3_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SubContent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SubContent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -14010,7 +14010,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"gt",
                               		lv_gt_0_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LhsGtRhs");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.LhsGtRhs");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -14053,7 +14053,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"lt",
                                       		lv_lt_1_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LhsLtRhs");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.LhsLtRhs");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -14103,7 +14103,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"lt",
                               		lv_lt_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LhsLtRhs");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.LhsLtRhs");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -14146,7 +14146,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"gt",
                                       		lv_gt_3_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LhsGtRhs");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.LhsGtRhs");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -14501,7 +14501,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"penalty",
                               		lv_penalty_8_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Penalty");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Penalty");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -14853,7 +14853,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"penalty",
                               		lv_penalty_8_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Penalty");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Penalty");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -15031,7 +15031,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"expression",
                       		lv_expression_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -15142,7 +15142,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"constraint",
                       		lv_constraint_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Constraint");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Constraint");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -15258,7 +15258,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"lhs",
                       		lv_lhs_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -15395,7 +15395,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"rhs",
                       		lv_rhs_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -15568,7 +15568,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"name",
                       		lv_name_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
               	    
             }
 
@@ -15627,7 +15627,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"pattern",
             	              		lv_pattern_4_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -15668,7 +15668,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"ifincitems",
             	              		lv_ifincitems_5_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.IfIncItems");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.IfIncItems");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -15861,7 +15861,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"name",
                       		lv_name_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
               	    
             }
 
@@ -15920,7 +15920,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"pattern",
             	              		lv_pattern_4_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -15961,7 +15961,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"ifincitems",
             	              		lv_ifincitems_5_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.IfIncItems");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.IfIncItems");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -16190,7 +16190,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"pattern",
             	              		lv_pattern_4_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Pattern");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Pattern");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -16408,7 +16408,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"name",
                               		lv_name_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ID");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ID");
                       	    
                     }
 
@@ -16541,7 +16541,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"condition",
                                       		lv_condition_7_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Condition");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Condition");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -16719,7 +16719,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                                      			current, 
                                      			"condition",
                                       		lv_condition_12_0, 
-                                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Condition");
+                                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Condition");
                               	        afterParserOrEnumRuleCall();
                               	    
                             }
@@ -16988,7 +16988,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"logical",
                               		lv_logical_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.LogicalExpression");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.LogicalExpression");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -17146,7 +17146,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"c1",
                       		lv_c1_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ConditionalUnary");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.ConditionalUnary");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -17216,7 +17216,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"c2",
             	              		lv_c2_2_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.ConditionalUnary");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.ConditionalUnary");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -17702,7 +17702,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"e1",
                               		lv_e1_0_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -17757,7 +17757,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"e2",
                               		lv_e2_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -18248,7 +18248,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"m1",
                       		lv_m1_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Multiply");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Multiply");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -18343,7 +18343,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"m2",
             	              		lv_m2_3_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Multiply");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Multiply");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -18470,7 +18470,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"u1",
                       		lv_u1_0_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Unary");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Unary");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -18565,7 +18565,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"u2",
             	              		lv_u2_3_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Unary");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Unary");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -18970,7 +18970,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"n",
                               		lv_n_1_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Number");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Number");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -19011,7 +19011,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"f",
                               		lv_f_2_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Function");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Function");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -19061,7 +19061,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"e",
                               		lv_e_4_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -19111,7 +19111,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"s",
                               		lv_s_6_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.SpecialIdent");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.SpecialIdent");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -20334,7 +20334,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"e1",
                               		lv_e1_4_1, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -20363,7 +20363,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"e1",
                               		lv_e1_4_2, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TrunkTimeArray");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.TrunkTimeArray");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -20599,7 +20599,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	                     			current, 
             	                     			"e2",
             	                      		lv_e2_6_1, 
-            	                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+            	                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
             	              	        afterParserOrEnumRuleCall();
             	              	    
             	            }
@@ -20628,7 +20628,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	                     			current, 
             	                     			"e2",
             	                      		lv_e2_6_2, 
-            	                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TrunkTimeArray");
+            	                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TrunkTimeArray");
             	              	        afterParserOrEnumRuleCall();
             	              	    
             	            }
@@ -20701,7 +20701,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                              			current, 
                              			"e0",
                               		lv_e0_9_0, 
-                              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -21082,7 +21082,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"t1",
                       		lv_t1_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TrunkTimeArrayIndex");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TrunkTimeArrayIndex");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -21123,7 +21123,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"t2",
                       		lv_t2_4_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.TrunkTimeArrayIndex");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.TrunkTimeArrayIndex");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -21438,7 +21438,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e1",
                       		lv_e1_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -21494,7 +21494,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"e2",
             	              		lv_e2_4_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -21641,7 +21641,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e1",
                       		lv_e1_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -21697,7 +21697,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
             	             			current, 
             	             			"e2",
             	              		lv_e2_4_0, 
-            	              		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+            	              		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -21844,7 +21844,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e1",
                       		lv_e1_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -21885,7 +21885,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e2",
                       		lv_e2_4_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22020,7 +22020,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22155,7 +22155,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22290,7 +22290,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22428,7 +22428,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e1",
                       		lv_e1_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22469,7 +22469,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e2",
                       		lv_e2_4_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22604,7 +22604,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22739,7 +22739,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -22874,7 +22874,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -23009,7 +23009,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -23144,7 +23144,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -23279,7 +23279,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -23414,7 +23414,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -23549,7 +23549,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -23684,7 +23684,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_2_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -24135,7 +24135,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_5_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -24458,7 +24458,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"e",
                       		lv_e_6_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.Expression");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.Expression");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -25352,7 +25352,7 @@ public class InternalWreslEditorParser extends AbstractInternalAntlrParser {
                      			current, 
                      			"file",
                       		lv_file_5_0, 
-                      		"gov.ca.dwr.wresl.xtext.editor.WreslEditor.STRING");
+                      		"gov.ca.water.wresl.xtext.editor.WreslEditor.STRING");
               	    
             }
 
