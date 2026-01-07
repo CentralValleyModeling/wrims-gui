@@ -5,9 +5,9 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package
-        uri = "http://www.water.ca.gov/wresl/xtext/editor/WreslEditor"
-        class = "gov.ca.water.wresl.xtext.editor.wreslEditor.WreslEditorPackage"
-        genModel = "gov/ca/water/wresl/xtext/editor/WreslEditor.genmodel" />
+        uri = "http://www.ca.gov/dwr/wresl/xtext/editor/WreslEditor"
+        class = "gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage"
+        genModel = "gov/ca/dwr/wresl/xtext/editor/WreslEditor.genmodel" />
 
   </extension>
 
