@@ -1,0 +1,168 @@
+Install location:
+    file:/j:/WRIMS3/wrims_gui_x64_2025.10.17/
+Configuration file:
+    file:/j:/WRIMS3/wrims_gui_x64_2025.10.17/configuration/config.ini loaded
+Configuration location:
+    file:/j:/WRIMS3/wrims_gui_x64_2025.10.17/configuration/
+Framework located:
+    file:/j:/WRIMS3/wrims_gui_x64_2025.10.17/plugins/org.eclipse.osgi_3.23.100.v20250514-1759.jar
+Loading extension: reference:file:org.eclipse.osgi.compatibility.state_1.2.1200.v20250506-0416.jar
+        eclipse.properties not found
+Framework classpath:
+    file:/j:/WRIMS3/wrims_gui_x64_2025.10.17/plugins/org.eclipse.osgi_3.23.100.v20250514-1759.jar
+    file:/j:/WRIMS3/wrims_gui_x64_2025.10.17/plugins/
+    file:/j:/WRIMS3/wrims_gui_x64_2025.10.17/plugins/org.eclipse.osgi.compatibility.state_1.2.1200.v20250506-0416.jar
+Splash location:
+    J:\WRIMS3\wrims_gui_x64_2025.10.17\\plugins\org.eclipse.epp.package.common_4.36.0.20250605-1300\splash.bmp
+Debug options:
+    file:/J:/WRIMS3/wrims_gui_x64_2025.10.17/.options loaded
+Time to load bundles: 474
+Jan 08, 2026 8:16:08 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider ch.qos.logback.classic.servlet.LogbackServletContainerInitializer of service jakarta.servlet.ServletContainerInitializer in bundle ch.qos.logback.classic
+Jan 08, 2026 8:16:08 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider ch.qos.logback.classic.spi.LogbackServiceProvider of service org.slf4j.spi.SLF4JServiceProvider in bundle ch.qos.logback.classic
+!SESSION 2026-01-08 08:15:54.390 -----------------------------------------------
+eclipse.buildId=4.36.0.20250605-1300
+java.version=21.0.7
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -Dorg.eclipse.ui.intro.universal/SHOW_INTRO=false -Dlogback.configurationFile=none .options
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product -clean -console -consoleLog -debug -Dorg.eclipse.ui.intro.universal/SHOW_INTRO=false -Dlogback.configurationFile=none .options
+
+!ENTRY ch.qos.logback.classic 1 0 2026-01-08 08:16:21.675
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+08:16:21.998 [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] DEBUG org.eclipse.jgit.internal.util.ShutdownHook -- register org.eclipse.jgit.util.FS$FileStoreAttributes$$Lambda/0x0000014b2a1dfa80@68aefc8c with shutdown hook
+08:16:21.998 [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] DEBUG org.eclipse.jgit.internal.util.ShutdownHook -- register org.eclipse.jgit.util.FS$FileStoreAttributes$$Lambda/0x0000014b2a1dfa80@68aefc8c with shutdown hook
+[p2] Thu Jan 08 08:16:26 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Cached timestamp file empty.
+[p2] Thu Jan 08 08:16:26 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Performing reconciliation.
+[p2] Thu Jan 08 08:16:33 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [dropins] Repository created file:/J:/WRIMS3/wrims_gui_x64_2025.10.17/dropins/
+[p2] Thu Jan 08 08:16:33 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [dropins]       dwr-hecdssvue 1.0.0.0
+[p2] Thu Jan 08 08:16:33 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [dropins]       xtext-editor 1.0.0.0
+[p2] Thu Jan 08 08:16:33 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [dropins]       jdiagram 1.0.0.0
+[p2] Thu Jan 08 08:16:33 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [dropins]       xtext-editor-ui 1.0.0.0
+[p2] Thu Jan 08 08:16:33 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [dropins]       third-party 1.0.0.0
+[p2] Thu Jan 08 08:16:33 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [dropins]       wrims-ide 1.0.0.0
+[p2] Thu Jan 08 08:16:35 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Timestamp file does not exist.
+[p2] Thu Jan 08 08:16:35 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Performing reconciliation.
+[p2] Thu Jan 08 08:16:35 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Profile timestamp not found in cache.
+[p2] Thu Jan 08 08:16:35 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Performing reconciliation.
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU: xtext-editor-ui 1.0.0.0
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU: jdiagram 1.0.0.0
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU: third-party 1.0.0.0
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU: wrims-ide 1.0.0.0
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU: dwr-hecdssvue 1.0.0.0
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU: xtext-editor 1.0.0.0
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU property: xtext-editor-ui 1.0.0.0->{org.eclipse.equinox.p2.type.lock=1, org.eclipse.equinox.p2.internal.inclusion.rules=OPTIONAL, org.eclipse.equinox.p2.reconciler.dropins=true}
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU property: jdiagram 1.0.0.0->{org.eclipse.equinox.p2.type.lock=1, org.eclipse.equinox.p2.internal.inclusion.rules=OPTIONAL, org.eclipse.equinox.p2.reconciler.dropins=true}
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU property: third-party 1.0.0.0->{org.eclipse.equinox.p2.type.lock=1, org.eclipse.equinox.p2.internal.inclusion.rules=OPTIONAL, org.eclipse.equinox.p2.reconciler.dropins=true}
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU property: wrims-ide 1.0.0.0->{org.eclipse.equinox.p2.type.lock=1, org.eclipse.equinox.p2.internal.inclusion.rules=OPTIONAL, org.eclipse.equinox.p2.reconciler.dropins=true}
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU property: dwr-hecdssvue 1.0.0.0->{org.eclipse.equinox.p2.type.lock=1, org.eclipse.equinox.p2.internal.inclusion.rules=OPTIONAL, org.eclipse.equinox.p2.reconciler.dropins=true}
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Adding IU property: xtext-editor 1.0.0.0->{org.eclipse.equinox.p2.type.lock=1, org.eclipse.equinox.p2.internal.inclusion.rules=OPTIONAL, org.eclipse.equinox.p2.reconciler.dropins=true}
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] No installable units to remove.
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] No IU properties to remove.
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] No installable units to move.
+[p2] Thu Jan 08 08:16:36 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] No extra requirements.
+[p2] Thu Jan 08 08:16:40 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [plan] [R]org.aopalliance 1.0.0.v20230720-0728 will be removed
+[p2] Thu Jan 08 08:16:40 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] [plan] Plan matches the request.
+[p2] Thu Jan 08 08:16:54 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Writing timestamp file to : J:\WRIMS3\wrims_gui_x64_2025.10.17\configuration\org.eclipse.osgi\410\data\timestamps905172377
+[p2] Thu Jan 08 08:16:54 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] PROFILE=1767889005664
+[p2] Thu Jan 08 08:16:54 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] file:/J:/WRIMS3/wrims_gui_x64_2025.10.17/configuration/org.eclipse.osgi/410/data/listener_1925729951/=1767888993629
+[p2] Thu Jan 08 08:16:54 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] file:/J:/WRIMS3/wrims_gui_x64_2025.10.17/dropins/=1767888993501
+[p2] Thu Jan 08 08:16:54 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] file:/J:/WRIMS3/wrims_gui_x64_2025.10.17/.eclipseextension=1767888994025
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.stax.WstxEventFactory of service javax.xml.stream.XMLEventFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.stax.WstxInputFactory of service javax.xml.stream.XMLInputFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.stax.WstxOutputFactory of service javax.xml.stream.XMLOutputFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.dtd.DTDSchemaFactory of service org.codehaus.stax2.validation.XMLValidationSchemaFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.msv.RelaxNGSchemaFactory of service org.codehaus.stax2.validation.XMLValidationSchemaFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.msv.W3CSchemaFactory of service org.codehaus.stax2.validation.XMLValidationSchemaFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.stax.WstxEventFactory of service javax.xml.stream.XMLEventFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.stax.WstxInputFactory of service javax.xml.stream.XMLInputFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.dtd.DTDSchemaFactory of service org.codehaus.stax2.validation.XMLValidationSchemaFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.msv.RelaxNGSchemaFactory of service org.codehaus.stax2.validation.XMLValidationSchemaFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.msv.W3CSchemaFactory of service org.codehaus.stax2.validation.XMLValidationSchemaFactory in bundle third-party
+Jan 08, 2026 8:16:58 AM org.apache.aries.spifly.BaseActivator log
+INFO: Registered provider com.ctc.wstx.stax.WstxOutputFactory of service javax.xml.stream.XMLOutputFactory in bundle third-party
+[p2] Thu Jan 08 08:16:58 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] Writing out timestamps to file : J:\WRIMS3\wrims_gui_x64_2025.10.17\configuration\org.eclipse.osgi\410\data\cache.timestamps
+[p2] Thu Jan 08 08:16:58 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] J:\WRIMS3\wrims_gui_x64_2025.10.17\features=1767809513152
+[p2] Thu Jan 08 08:16:58 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] J:\WRIMS3\wrims_gui_x64_2025.10.17\links=0
+[p2] Thu Jan 08 08:16:58 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] J:\WRIMS3\wrims_gui_x64_2025.10.17\dropins\plugins=1767809484954
+[p2] Thu Jan 08 08:16:58 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] J:\WRIMS3\wrims_gui_x64_2025.10.17\configuration\org.eclipse.update\platform.xml=1767809483822
+[p2] Thu Jan 08 08:16:58 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] J:\WRIMS3\wrims_gui_x64_2025.10.17\dropins=1767809484158
+[p2] Thu Jan 08 08:16:58 PST 2026 - [Start Level: Equinox Container: 2b1c1350-8e3f-4ceb-98b3-d0c5cb776fdf] [reconciler] J:\WRIMS3\wrims_gui_x64_2025.10.17\plugins=1767889014348
+Starting application: 64916
+____________________________
+Welcome to Apache Felix Gogo
+
+g! 08:17:28.287 [main] DEBUG org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob -- Queued refresh request: [/CalLite 3.1.0/pom.xml]
+08:17:28.287 [main] DEBUG org.eclipse.m2e.core.internal.project.registry.ProjectRegistryRefreshJob -- Queued refresh request: [/CalLite 3.1.0/pom.xml]
+
+!ENTRY ch.qos.logback.classic 1 0 2026-01-08 08:17:28.363
+!MESSAGE Logback config file: C:\Users\josh\eclipse-workspace-43\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
+Application started in : 127178ms
+Warning: NLS missing message: MarketplacePage_favorites in: org.eclipse.epp.internal.mpc.ui.wizards.messages
+
+!ENTRY org.eclipse.egit.ui 2 0 2026-01-08 08:18:01.999
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\josh'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.440
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.DSSCatalogView" id and the "DSS Catalog View" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.470
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.DSSMonthlyView" id and the "DSS Monthly" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.490
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.DSSPlotView" id and the "DSS Plot" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.502
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.DSSTableView" id and the "DSS Table" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.524
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.DSSFileView" id and the "DSS Files Compare" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.537
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.DSSOpsView" id and the "DSS Options" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.561
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.WaterYearView" id and the "Water Year" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.585
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.StorageFlowsView" id and the "Storage Flows" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.599
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.SanJoaquinRiverView" id and the "San Joaquin River" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.618
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.WaterManagementActionsView" id and the "Water Management Actions" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.628
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.DeliveryShortagesView" id and the "Delivery Shorages" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.648
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.hecdssvue.views.DTSView" id and the "DTS" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.676
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.jdiagram.views.SchematicView" id and the "Schematic View" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.689
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.jdiagram.views.SchematicOverview" id and the "Schematic Overview" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.711
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.jdiagram.views.SchematicEditorViewA" id and the "Schematic Editor A" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2026-01-08 08:18:02.726
+!MESSAGE Removing PartDescriptorImpl with the "gov.ca.water.jdiagram.views.SchematicEditorViewB" id and the "Schematic Editor B" label.It points to the non available "bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" class. Bundle might have been uninstalled

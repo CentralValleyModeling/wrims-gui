@@ -1,1 +1,1 @@
-eclipse -clean -console -consoleLog -debug -Dorg.eclipse.ui.intro.universal/SHOW_INTRO=false -Dlogback.configurationFile=none .options
+eclipse -clean -clearPersistedState -initialize -data "%~dp0workspace" -console -consoleLog -debug -perspective wpp.ideperspective -Dorg.eclipse.ui.intro.universal/SHOW_INTRO=false -Dlogback.configurationFile=none .options
