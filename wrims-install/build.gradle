@@ -100,21 +100,118 @@ tasks.register('installXtext', Exec) {
             '>', 'NUL'
 }
 
-// Task to copy JARs to dropins/plugins folder (Equinox dropins watcher expects a plugins directory)
-tasks.register('copyJarsToDropins', Copy) {
+// Stage local drop-in bundles into a temporary folder to publish as a p2 repo
+tasks.register('stageDropinsToP2Source', Copy) {
+    group 'install'
+    description 'Stages local WRIMS bundles into build/p2/dropins-source for p2 publishing'
     dependsOn installXtext
+    dependsOn(
+        project(':third-party').tasks.named('jar'),
+        project(':wrims-ide').tasks.named('jar'),
+        project(':dwr-hecdssvue').tasks.named('jar'),
+        project(':jdiagram').tasks.named('jar'),
+        project(':xtext-editor').tasks.named('jar'),
+        project(':xtext-editor-ui').tasks.named('jar')
+    )
+    into("${buildDir}/p2/dropins-source")
     from(project(':third-party').tasks.named('jar').get().archiveFile)
     from(project(':wrims-ide').tasks.named('jar').get().archiveFile)
     from(project(':dwr-hecdssvue').tasks.named('jar').get().archiveFile)
     from(project(':jdiagram').tasks.named('jar').get().archiveFile)
     from(project(':xtext-editor').tasks.named('jar').get().archiveFile)
     from(project(':xtext-editor-ui').tasks.named('jar').get().archiveFile)
-    into("${buildDir}/installer/${wrimsGuiFolder}/dropins/plugins")
 }
+
+// Publish the staged bundles as a local p2 repository using Equinox publisher
+tasks.register('publishDropinsToP2', Exec) {
+    group 'install'
+    description 'Publishes staged bundles into a local p2 repository under build/p2/local'
+    dependsOn stageDropinsToP2Source
+
+    def repoDir = new File(buildDir, 'p2\\local').absolutePath
+    def sourceDir = new File(buildDir, 'p2\\dropins-source').absolutePath
+    def repoUri = "file:/" + repoDir.replace('\\','/')
+    def sourcePath = sourceDir.replace('\\','/')
+
+    // Use the Eclipse in the installer as the runtime to run the publisher application
+    workingDir = file("${buildDir}/installer/${wrimsGuiFolder}")
+
+    commandLine 'cmd', '/c',
+            'eclipsec.exe',
+            '-nosplash',
+            '-application', 'org.eclipse.equinox.p2.publisher.FeaturesAndBundlesPublisher',
+            '-metadataRepository', repoUri,
+            '-artifactRepository', repoUri,
+            '-source', sourcePath,
+            '-bundles', sourcePath,
+            '-configs', 'win32,win32,x86_64',
+            '-publishArtifacts',
+            '-compress'
+}
+
+// Helper to list IUs from the local p2 repository for debugging
+tasks.register('listLocalP2IUs', Exec) {
+    group 'install'
+    description 'Lists IUs from build/p2/local to verify publish results'
+    dependsOn publishDropinsToP2
+
+    def repoDir = new File(buildDir, 'p2\\local').absolutePath
+    def repoUri = "file:/" + repoDir.replace('\\','/')
+
+    workingDir = file("${buildDir}/installer/${wrimsGuiFolder}")
+
+    commandLine 'cmd', '/c',
+            'eclipsec.exe',
+            '-nosplash',
+            '-application', 'org.eclipse.equinox.p2.director',
+            '-repository', repoUri,
+            '-list'
+}
+
+// Install the locally published bundles into the Eclipse instance via p2 director
+tasks.register('installLocalDropinsViaP2', Exec) {
+    group 'install'
+    description 'Installs locally published WRIMS bundles into the Eclipse instance via p2 director'
+    dependsOn publishDropinsToP2
+
+//    // Ensure Xtext is installed first as requested
+//    dependsOn installXtext
+
+    def repoDir = new File(buildDir, 'p2\\local').absolutePath
+    def repoUri = "file:/" + repoDir.replace('\\','/')
+    def dest = new File(buildDir, "installer\\${wrimsGuiFolder}").absolutePath
+    def destUri = dest.replace('\\','/')
+
+    workingDir = file("${buildDir}/installer/${wrimsGuiFolder}")
+
+    commandLine 'cmd', '/c',
+            'eclipse.exe',
+            '-nosplash',
+            '-application', 'org.eclipse.equinox.p2.director',
+            '-repository', repoUri + ',https://download.eclipse.org/releases/2025-06',
+            '-destination', dest,
+            '-profile', 'DefaultProfile',
+            '-bundlepool', dest,
+            '-roaming',
+            // IU ids correspond to the bundles that were published
+            '-installIUs', 'third-party,xtext-editor,xtext-editor-ui,jdiagram,wrims-ide,dwr-hecdssvue'
+}
+
+//// Task to copy JARs to plugins folder (Equinox dropins watcher expects a plugins directory)
+//tasks.register('copyJarsToPlugins', Copy) {
+//    dependsOn installLocalDropinsViaP2
+//    from(project(':third-party').tasks.named('jar').get().archiveFile)
+//    from(project(':wrims-ide').tasks.named('jar').get().archiveFile)
+//    from(project(':dwr-hecdssvue').tasks.named('jar').get().archiveFile)
+//    from(project(':jdiagram').tasks.named('jar').get().archiveFile)
+//    from(project(':xtext-editor').tasks.named('jar').get().archiveFile)
+//    from(project(':xtext-editor-ui').tasks.named('jar').get().archiveFile)
+//    into("${buildDir}/installer/${wrimsGuiFolder}/plugins")
+//}
 
 //Task to copy the splash.bmp file from branding into plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300
 tasks.register('copySplash', Copy) {
-    dependsOn copyJarsToDropins
+    dependsOn installLocalDropinsViaP2
     from("src/main/resources/branding/splash.bmp")
     into("${buildDir}/installer/${wrimsGuiFolder}/plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300")
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
