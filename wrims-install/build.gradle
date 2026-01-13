@@ -33,11 +33,7 @@ tasks.register('unzipThirdPartyLibs', Copy) {
 //download the latest WRIMS GUI installer from DWR
 tasks.register('downloadWrimsGuiInstaller', Download) {
     dependsOn unzipThirdPartyLibs
-//    src 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2025-06/R/eclipse-rcp-2025-06-R-win32-x86_64.zip'
-//    src 'https://mirror.cs.odu.edu/eclipse/technology/epp/downloads/release/2025-06/R/eclipse-rcp-2025-06-R-win32-x86_64.zip'
-//    src 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2025-06/R/eclipse-jee-2025-06-R-win32-x86_64.zip&r=1'
-    src 'https://mirror.cs.odu.edu/eclipse/technology/epp/downloads/release/2025-06/R/eclipse-jee-2025-06-R-win32-x86_64.zip'
-//    src 'https://mirror.cs.odu.edu/eclipse/technology/epp/downloads/release/2025-06/R/eclipse-modeling-2025-06-R-win32-x86_64.zip'
+    src 'https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2025-06/R/eclipse-jee-2025-06-R-win32-x86_64.zip&r=1'
     dest new File(wrimsGuiDownload)
     onlyIfModified true
 }
