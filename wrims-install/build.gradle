@@ -112,6 +112,75 @@ tasks.register('copyJarsToDropins', Copy) {
     into("${buildDir}/installer/${wrimsGuiFolder}/dropins/plugins")
 }
 
+// Updates bundles.info with entries for all jars in dropins/plugins
+// This runs after the dropins jars are copied
+tasks.register('updateBundlesInfo') {
+    group 'install'
+    description 'Updates configuration/org.eclipse.equinox.simpleconfigurator/bundles.info with dropins jars'
+    doLast {
+        def installDir = file("${buildDir}/installer/${wrimsGuiFolder}")
+        def dropinsDir = new File(installDir, 'dropins/plugins')
+        if (!dropinsDir.exists()) {
+            logger.lifecycle("No dropins/plugins directory found at: ${dropinsDir}. Skipping bundles.info update.")
+            return
+        }
+        def configuratorDir = new File(installDir, 'configuration/org.eclipse.equinox.simpleconfigurator')
+        def bundlesInfo = new File(configuratorDir, 'bundles.info')
+        if (!bundlesInfo.exists()) {
+            throw new GradleException("bundles.info not found at ${bundlesInfo}")
+        }
+        // Read existing lines and keep those that are not from dropins/plugins
+        List<String> existing = bundlesInfo.readLines('UTF-8')
+        List<String> kept = existing.findAll { line ->
+            if (line == null || line.trim().isEmpty()) return false
+            def parts = line.split(',')
+            // Expect 5 columns; third is path
+            return !(parts.size() >= 3 && parts[2].startsWith('dropins/'))
+        }
+        // Build new lines for jars in dropins/plugins
+        List<String> newLines = []
+        dropinsDir.listFiles(new FilenameFilter() {
+            boolean accept(File dir, String name) { name.toLowerCase().endsWith('.jar') }
+        })?.each { File jarFile ->
+            try {
+                def jar = new java.util.jar.JarFile(jarFile)
+                def mf = jar.manifest
+                def attrs = mf?.mainAttributes
+                String bsn = attrs?.getValue('Bundle-SymbolicName')
+                String ver = attrs?.getValue('Bundle-Version')
+                jar.close()
+                if (!bsn) {
+                    // fallback to filename without version
+                    bsn = jarFile.name.replaceFirst(/-\d+(?:\.\d+)*.*\.jar$/, '')
+                } else {
+                    // Remove any parameters e.g., ";singleton:=true"
+                    int semi = bsn.indexOf(';')
+                    if (semi > 0) bsn = bsn.substring(0, semi)
+                }
+                if (!ver) {
+                    // attempt to parse version from filename between last '-' and .jar
+                    def m = (jarFile.name =~ /-(\d+(?:\.\d+)*(?:\.[A-Za-z0-9_-]+)?)\.jar$/)
+                    ver = m.find() ? m.group(1) : '1.0.0'
+                }
+                def relPath = "dropins/plugins/${jarFile.name}"
+                // start level 4, not autostart
+                newLines << "${bsn},${ver},${relPath},4,false"
+            } catch (Exception ex) {
+                throw new GradleException("Failed to read manifest from ${jarFile.name}: ${ex.message}", ex)
+            }
+        }
+        // Combine kept lines with new lines
+        def outLines = []
+        outLines.addAll(kept)
+        outLines.addAll(newLines)
+        bundlesInfo.setText(outLines.join(System.lineSeparator()) + System.lineSeparator(), 'UTF-8')
+        logger.lifecycle("Updated bundles.info with ${newLines.size()} dropins entries.")
+    }
+}
+
+// Ensure bundles.info is updated after copying jars during full build
+tasks.named('copyJarsToDropins').configure { finalizedBy 'updateBundlesInfo' }
+
 //Task to copy the splash.bmp file from branding into plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300
 tasks.register('copySplash', Copy) {
     dependsOn copyJarsToDropins
