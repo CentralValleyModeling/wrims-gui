@@ -1,8 +1,8 @@
-# Building WRIMS v2.x from this repository
+# Building WRIMS v3.x from this repository
 The devops migration of WRIMS from native Eclipse to Gradle has allowed the WRIMS application to 
 be built headlessly through github and streamlines the configuration of a developer build environment.
 
-## WRIMS 2.2.x Gradle Structure
+## WRIMS 3.x Gradle Structure
 The Gradle integration involved refactoring the primary modules into the these root folders:
 1. wrims-core: Compute Engine source
 2. third-party: Collection of all third-party/external jars
@@ -78,8 +78,8 @@ gradlew.bat :wrims-install:zipWrimsGui
 Once the installer has been built, the WRIMS GUI application can launched by running one of the following files
 from the installer directory (wirms-gui\build\installer\wrims_gui_x64_\<version\>):
 
-- WRIMS2_GUI_Start.bat - This will force a clean and start of the WRIMS GUI application
-- WRIMS2_GUI_x64.exe - This will run the application without forcing a clean
+- WRIMS3_GUI_Start.bat - This will force a clean and start of the WRIMS GUI application
+- WRIMS3_GUI_x64.exe - This will run the application without forcing a clean
 
 ## 5. Debug the WRIMS GUI Application
 
@@ -89,12 +89,12 @@ Configure a "Java Remote Debug" configuration in your IDE with the following set
 
 ![](./README_images/intellij_remote_debug.png)
 
-Update the /wrims-install/build/installer/wrims_gui_x64_\<version\>/WRIMS2_GUI_Start.bat file to include the remote debug vmargs like this:
+Update the /wrims-install/build/installer/wrims_gui_x64_\<version\>/WRIMS3_GUI_Start.bat file to include the remote debug vmargs like this:
 ```
-wriMS2_GUI_x64 -clean -console -consoleLog -debug .options -vmargs -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+WRIMS3_GUI_x64 -clean -console -consoleLog -debug .options -vmargs -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
 ```
 
-Run the WRIMS2_GUI_Start.bat file to start the WRIMS GUI application in debug mode.
+Run the WRIMS3_GUI_Start.bat file to start the WRIMS GUI application in debug mode.
 
 Start the RemoteDebug configuration in your IDE to connect to the WRIMS GUI application.
 
@@ -108,7 +108,7 @@ folder. The patch file will be named: wrims_patch_v2.2.0_basis.zip
 
 > [!NOTE]
 > The patch zip version is currently hard-coded to "v2.2.0_basis" in the build.gradle file for
-> compatibility with the patch update link used in the WRIMS2_GUI_UPDATE_and_Start.bat file.
+> compatibility with the patch update link used in the WRIMS3_GUI_UPDATE_and_Start.bat file.
 
 ### From developer linux terminal:
 You can build the patch zip by running the following linux command from the root of the project:
