@@ -176,7 +176,7 @@ tasks.register('copyLicense', Copy) {
 //generate a releasedate.log file that contains the current date in MM/DD/YYYY format
 tasks.register('buildWrimsInstall', DefaultTask) {
     group 'install'
-    description 'Builds the complete WRIMS2 application'
+    description 'Builds the complete WRIMS3 application'
     dependsOn copyResources
     doLast {
         def releaseDateFile = file("${buildDir}/installer/${wrimsGuiFolder}/releasedate.log")

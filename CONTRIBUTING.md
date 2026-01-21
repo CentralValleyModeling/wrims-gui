@@ -180,3 +180,11 @@ Avoid the use of [namespace packages](https://docs.python.org/3/glossary.html#te
 #### On pull request merge:
 - Once the pull request has been merged, the issue can be assigned to QA testing to verify that the bug has been addressed.
 - The developer should assign an appropriate reviewer for their work.
+
+## Validation Tests
+In order to ensure that the code is working as intended, automated tests should be run. In addition, manual testing should 
+be performed to check for runtime errors and unexpected behavior. Instructions on the recommended runtime tests are provided
+in the following files:
+- [General Tests](wrims-ide/src/test/resources/test-ide.md)
+- [JDiagram Schematic Tests](jdiagram/src/main/resources/Test_Schematics.md)
+- [DSS Tests](dwr-hecdssvue/src/test/resources/Test_DSS.md)

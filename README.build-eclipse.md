@@ -1,8 +1,8 @@
-# Building WRIMS v2.x from this repository
+# Building WRIMS v3.x from this repository
 The devops migration of WRIMS from native Eclipse to Gradle has allowed the WRIMS application to 
 be built headlessly through github and streamlines the configuration of a developer build environment.
 
-## WRIMS 2.2.x Gradle Structure
+## WRIMS 3.x Gradle Structure
 The Gradle integration involved refactoring the primary modules into the these root folders:
 1. wrims-core: Compute Engine source
 2. third-party: Collection of all third-party/external jars
@@ -213,7 +213,7 @@ the fastest way to push code changes to the dropin modules is using the Gradle r
 
 ![](./README_images/eclipse_update_dropins.png)
 
-Both of these tasks will force a rebuild of any modified dropin jars and push them into the WRIMS2 GUI application that was previously built in the wrims-install module using the buildWrimsInstall task. <br> 
+Both of these tasks will force a rebuild of any modified dropin jars and push them into the WRIMS3 GUI application that was previously built in the wrims-install module using the buildWrimsInstall task. <br> 
 The updateAndRun task will also launch the WRIMS GUI application after the dropins have been updated.
 
 These tasks are much faster than doing a complete clean and rebuild of the WRIMS GUI application.
