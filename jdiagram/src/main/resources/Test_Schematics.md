@@ -11,6 +11,7 @@ Feature: Test schematics
 ![buttons.png](TEST_images/buttons.png)
 
 5. Open the `DSS` perspective; in the tab of `DSS Files Compare`, for `Alt 1`, load a dv DSS file, e.g. `C:\9.3.1_danube_hist\DSS\output\DCR2023_DV_9.3.1_Danube_Hist_v1.7.dss` and a sv DSS file, e.g. `C:\9.3.1_danube_hist\DSS\input\DCR2023_SV_Danube_Hist_v1.7.dss` and select study type as `CalSim 3`; for `Alt 2`, load a dv DSS file, e.g.  `Z:\9.3.1_danube_adj\DSS\output\DCR2023_DV_9.3.1_v2a_Danube_Adj_v1.8.dss` and a sv DSS file `Z:\9.3.1_danube_adj\DSS\input\DCR2023_SV_Danube_Adj_v1.8.dss` and select the study type as `CalSim 3`.
+    The above example can be found [here](https://data.cnra.ca.gov/dataset/final-dcr-2023-calsim3-modelsels).
 ![DSSFilesCompare.png](TEST_images/DSSFilesCompare.png)
 6. Then switch back to the `Schematic` perspective. Select the time step e.g. Dec 1921 in the dropdown box, use arrow buttons to move forward and backward of timestep and see the value changes on the schematic.
 ![Timestep.png](TEST_images/Timestep.png)

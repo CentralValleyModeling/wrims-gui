@@ -1,7 +1,7 @@
 /*
- * Water Resource Integrated Modeling System (WRIMS) Copyright (c) 2024.
+ * Water Resource Integrated Modeling System (WRIMS) Copyright (c) 2026.
  *
- * WRIMS 2 is copyrighted by the State of California Department of Water Resources.
+ * WRIMS 3 is copyrighted by the State of California Department of Water Resources.
  * It is licensed under the Eclipse Public License, Version 1.0.
  * See Eclipse Public License for more details.
  */

@@ -1,7 +1,7 @@
 Feature: Test debugging a study
   As users of WRIMS, we want to launch a regular run a CalSim study in debug mode so that we can debug the study
 
-1. Start WRIMS GUI by clicking `WRIMS2_GUI_Start.bat` under the root folder of WRIMS 2 GUI package
+1. Start WRIMS GUI by clicking `WRIMS3_GUI_Start.bat` under the root folder of WRIMS 2 GUI package
    
 2. Import the study/project e.g. `C:\9.3.1_danube_adj_hist` if `C:\9.3.1_danube_hist\.project` exists by click the menu of `File->Import...` and then select `General` and then `Existing Projects into Workspace` in the dialog of `Import` and then select the root directory of the project
 ![ImportProject.png](TEST_images/ImportProject.png)
@@ -26,7 +26,7 @@ After that, the Project Explorer of WRIMS GUI should look like the following:
 
 6. Open a WRESL file on the WRESL Editor, e.g. `C:\9.3.1_danube_adj\Run\COA\coa.wresl`; then check the views of `Variables`, `Goals`, `All Variables`, and `All Goals` as follows:
 ![variables-goals.png](TEST_images/variables.png)![Goals.png](TEST_images/Goals.png)![AllVariables.png](TEST_images/AllVariables.png)![AllGoals.png](TEST_images/AllGoals.png)
-That the `Goals` view has no items is because the file of `COA.wresl` is not used in this cycle and step. But that the `Vairables` view shows items is because some of the variables in the file of `COA.wresl` is used in this cycle and step.
+That the `Goals` view has no items is because the file of `COA.wresl` is not used in this cycle and step. But that the `Variables` view shows items is because some of the variables in the file of `COA.wresl` is used in this cycle and step.
 
 7. Click the menu of `Data\Load Dss/Studies` and load a dv dss file, .e.g. `DCR2023_DV_9.3.1_Danube_Hist_v1.7.dss` and a sv dss file, e.g. `DCR2023_SV_Danube_Hist_v1.7.dss`
 ![LoadAltDssStudies.png](TEST_images/LoadAltDssStudies.png)
