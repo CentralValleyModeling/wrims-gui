@@ -152,3 +152,9 @@ To set up SonarQube analysis in your IDE, follow these steps:
 4. **Run Analysis:**
    - You can now run SonarQube analysis directly from your IDE.
    - The plugin will provide real-time feedback on code quality and potential issues as you write code.
+
+# Developer Testing
+
+For development-specific guidelines, please refer to the [CONTRIBUTING](CONTRIBUTING.md) file.
+
+For instructions on GUI testing, refer to the [Validation Tests](https://github.com/CentralValleyModeling/wrims-gui/blob/main/CONTRIBUTING.md#validation-tests) section of the CONTRIBUTING file.

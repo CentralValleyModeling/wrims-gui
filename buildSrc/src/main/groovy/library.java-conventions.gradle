@@ -3,6 +3,7 @@
 
 plugins {
     id 'java-library'
+    id 'jacoco'
 }
 
 compileJava {
@@ -39,6 +40,23 @@ tasks.withType(Jar).configureEach {
             into 'META-INF'
             rename { 'LICENSE' }
         }
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.14"
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy('jacocoTestReport')
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+        html.required = false
     }
 }
 
