@@ -31,6 +31,27 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
+      - name: Ensure old Lookup library is not resolved (WRIMS IDE)
+        shell: bash
+        run: |
+          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}" \
+            :wrims-ide:dependencyInsight --dependency lookup --configuration runtimeClasspath \
+            | grep -F "^mil\.army\.usace\.hec:lookup:[^:\s]+$" && exit 1 || exit 0
+
+      - name: Ensure old Lookup library is not resolved (WRIMS INSTALL)
+        shell: bash
+        run: |
+          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}" \
+            :wrims-install:dependencyInsight --dependency lookup --configuration runtimeClasspath \
+            | grep -F "^mil\.army\.usace\.hec:lookup:[^:\s]+$" && exit 1 || exit 0
+
+      - name: Ensure old Lookup library is not resolved (DWR HECDSSVue)
+        shell: bash
+        run: |
+          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}" \
+            :dwr-hecdssvue:dependencyInsight --dependency lookup --configuration runtimeClasspath \
+            | grep -F "^mil\.army\.usace\.hec:lookup:[^:\s]+$" && exit 1 || exit 0
+
       - name: Build with Gradle
         run: |
           ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
