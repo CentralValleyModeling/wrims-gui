@@ -4,7 +4,7 @@ plugins {
     id "de.undercouch.download" version "5.6.0"
 }
 
-configurations{
+configurations {
     windows_x64
 }
 
@@ -115,6 +115,7 @@ tasks.register('copyJarsToDropins', Copy) {
 // Updates bundles.info with entries for all jars in dropins/plugins
 // This runs after the dropins jars are copied
 tasks.register('updateBundlesInfo') {
+    dependsOn copyJarsToDropins
     group 'install'
     description 'Updates configuration/org.eclipse.equinox.simpleconfigurator/bundles.info with dropins jars'
     doLast {
@@ -135,40 +136,48 @@ tasks.register('updateBundlesInfo') {
             if (line == null || line.trim().isEmpty()) return false
             def parts = line.split(',')
             // Expect 5 columns; third is path
-            return !(parts.size() >= 3 && parts[2].startsWith('dropins/'))
+            return !(parts.size() >= 3 && parts[2].startsWith('dropins/plugins'))
         }
         // Build new lines for jars in dropins/plugins
         List<String> newLines = []
-        dropinsDir.listFiles(new FilenameFilter() {
+        File[] jarFiles = dropinsDir.listFiles(new FilenameFilter() {
             boolean accept(File dir, String name) { name.toLowerCase().endsWith('.jar') }
-        })?.each { File jarFile ->
-            try {
-                def jar = new java.util.jar.JarFile(jarFile)
-                def mf = jar.manifest
-                def attrs = mf?.mainAttributes
-                String bsn = attrs?.getValue('Bundle-SymbolicName')
-                String ver = attrs?.getValue('Bundle-Version')
-                jar.close()
-                if (!bsn) {
-                    // fallback to filename without version
-                    bsn = jarFile.name.replaceFirst(/-\d+(?:\.\d+)*.*\.jar$/, '')
-                } else {
-                    // Remove any parameters e.g., ";singleton:=true"
-                    int semi = bsn.indexOf(';')
-                    if (semi > 0) bsn = bsn.substring(0, semi)
+        }) ?: new File[0]
+        // Ensure deterministic order by filename (case-insensitive)
+        jarFiles.toList()
+                .sort { a, b -> a.name.toLowerCase() <=> b.name.toLowerCase() }
+                .each { File jarFile ->
+                    java.util.jar.JarFile jar = null
+                    try {
+                        jar = new java.util.jar.JarFile(jarFile)
+                        def mf = jar.manifest
+                        def attrs = mf?.mainAttributes
+                        String bsn = attrs?.getValue('Bundle-SymbolicName')
+                        String ver = attrs?.getValue('Bundle-Version')
+
+                        if (!bsn) {
+                            bsn = jarFile.name.replaceFirst(/-\d+(?:\.\d+)*.*\.jar$/, '')
+                        } else {
+                            int semi = bsn.indexOf(';')
+                            if (semi > 0) bsn = bsn.substring(0, semi)
+                        }
+                        if (!ver) {
+                            def m = (jarFile.name =~ /-(\d[\w\.\-]*)\.jar$/)
+                            ver = m.find() ? m.group(1) : '1.0.0'
+                        }
+                        def relPath = "dropins/plugins/${jarFile.name}"
+                        newLines << "${bsn},${ver},${relPath},4,false"
+                    } catch (Exception ex) {
+                        throw new GradleException("Failed to read manifest from ${jarFile.name}: ${ex.message}", ex)
+                    } finally {
+                        if (jar != null) try {
+                            jar.close()
+                        } catch (IOException closeEx) {
+                            logger.warn("Failed to close JarFile {}", jarFile.name, closeEx)
+                        }
+                    }
                 }
-                if (!ver) {
-                    // attempt to parse version from filename between last '-' and .jar
-                    def m = (jarFile.name =~ /-(\d+(?:\.\d+)*(?:\.[A-Za-z0-9_-]+)?)\.jar$/)
-                    ver = m.find() ? m.group(1) : '1.0.0'
-                }
-                def relPath = "dropins/plugins/${jarFile.name}"
-                // start level 4, not autostart
-                newLines << "${bsn},${ver},${relPath},4,false"
-            } catch (Exception ex) {
-                throw new GradleException("Failed to read manifest from ${jarFile.name}: ${ex.message}", ex)
-            }
-        }
+
         // Combine kept lines with new lines
         def outLines = []
         outLines.addAll(kept)
@@ -178,12 +187,10 @@ tasks.register('updateBundlesInfo') {
     }
 }
 
-// Ensure bundles.info is updated after copying jars during full build
-tasks.named('copyJarsToDropins').configure { finalizedBy 'updateBundlesInfo' }
 
 //Task to copy the splash.bmp file from branding into plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300
 tasks.register('copySplash', Copy) {
-    dependsOn copyJarsToDropins
+    dependsOn updateBundlesInfo
     from("src/main/resources/branding/splash.bmp")
     into("${buildDir}/installer/${wrimsGuiFolder}/plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300")
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
@@ -198,7 +205,7 @@ tasks.register('cleanLibFolder', Delete) {
 //task to download native libraries (dlls)
 tasks.register('getNatives', Sync) { syncTask ->
     dependsOn cleanLibFolder
-    syncTask.from {configurations.windows_x64.collect { zipTree(it) }}
+    syncTask.from { configurations.windows_x64.collect { zipTree(it) } }
     syncTask.into file("${buildDir}/installer/${wrimsGuiFolder}/lib")
 }
 
@@ -330,13 +337,13 @@ tasks.register('copyJarsToPatchDropins', Copy) {
 //task to download native libraries (dlls)
 tasks.register('getNativesForPatch', Sync) { syncTask ->
     dependsOn copyJarsToPatchDropins
-    syncTask.from {configurations.windows_x64.collect { zipTree(it) }}
+    syncTask.from { configurations.windows_x64.collect { zipTree(it) } }
     syncTask.into file("${buildDir}/patch/${wrimsPatchFolder}/lib")
 }
 
 // Task to copy JARs to dropins folder
 tasks.register('copyWrimsCoreToPatchLib', Copy) {
-    dependsOn  getNativesForPatch
+    dependsOn getNativesForPatch
     dependsOn configurations.runtimeClasspath
     from({
         def files = configurations.runtimeClasspath.resolve()
