@@ -267,6 +267,7 @@ public abstract class SchematicBase extends ViewPart {
 			} 
 
 			public void showDSS(String name){
+				name=name.toLowerCase();
 				final Vector<DataContainer> data=new Vector<DataContainer>();
 				for (int i=0; i<4; i++){
 					if (DssPluginCore.allSchematicVariableData[i].containsKey(name)){
