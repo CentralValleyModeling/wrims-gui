@@ -11,11 +11,11 @@ package gov.ca.dwr.wresl.xtext.editor.wreslEditor;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.DecisionVariable#getTa <em>Ta</em>}</li>
+ *   <li>{@link DecisionVariable#getTa <em>Ta</em>}</li>
  * </ul>
  * </p>
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getDecisionVariable()
+ * @see WreslEditorPackage#getDecisionVariable()
  * @model
  * @generated
  */
@@ -31,14 +31,14 @@ public interface DecisionVariable extends Variable
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ta</em>' containment reference.
    * @see #setTa(TimeArraySize)
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getDecisionVariable_Ta()
+   * @see WreslEditorPackage#getDecisionVariable_Ta()
    * @model containment="true"
    * @generated
    */
   TimeArraySize getTa();
 
   /**
-   * Sets the value of the '{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.DecisionVariable#getTa <em>Ta</em>}' containment reference.
+   * Sets the value of the '{@link DecisionVariable#getTa <em>Ta</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Ta</em>' containment reference.

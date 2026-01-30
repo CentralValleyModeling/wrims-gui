@@ -3,7 +3,6 @@
 package gov.ca.dwr.wresl.xtext.editor.wreslEditor;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

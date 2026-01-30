@@ -11,7 +11,7 @@ options {
 }
 
 @header {
-package gov.ca.dwr.wresl.xtext.editor.ui.contentassist.antlr.internal; 
+package gov.ca.dwr.wresl.xtext.editor.ui.contentassist.antlr.internal;
 
 import java.util.Map;
 import java.util.HashMap;

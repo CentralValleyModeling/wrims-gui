@@ -7,7 +7,6 @@ import gov.ca.dwr.wresl.xtext.editor.ui.link.WreslLinkedPositionGroupCalculator;
 import gov.ca.dwr.wresl.xtext.editor.ui.link.WreslLinkingService;
 import gov.ca.dwr.wresl.xtext.editor.ui.texthover.WreslEObjectDocumentationProvider;
 import gov.ca.dwr.wresl.xtext.editor.ui.texthover.WreslEObjectHoverProvider;
-
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.linking.ILinkingService;
@@ -17,7 +16,8 @@ import org.eclipse.xtext.ui.refactoring.ui.DefaultLinkedPositionGroupCalculator;
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class WreslEditorUiModule extends gov.ca.dwr.wresl.xtext.editor.ui.AbstractWreslEditorUiModule {
+public class WreslEditorUiModule extends AbstractWreslEditorUiModule
+{
 	public WreslEditorUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

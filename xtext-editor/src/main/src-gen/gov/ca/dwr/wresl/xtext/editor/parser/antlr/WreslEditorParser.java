@@ -4,9 +4,9 @@
 package gov.ca.dwr.wresl.xtext.editor.parser.antlr;
 
 import com.google.inject.Inject;
-
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+import gov.ca.dwr.wresl.xtext.editor.parser.antlr.internal.InternalWreslEditorParser;
 import gov.ca.dwr.wresl.xtext.editor.services.WreslEditorGrammarAccess;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 public class WreslEditorParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	
@@ -19,8 +19,8 @@ public class WreslEditorParser extends org.eclipse.xtext.parser.antlr.AbstractAn
 	}
 	
 	@Override
-	protected gov.ca.dwr.wresl.xtext.editor.parser.antlr.internal.InternalWreslEditorParser createParser(XtextTokenStream stream) {
-		return new gov.ca.dwr.wresl.xtext.editor.parser.antlr.internal.InternalWreslEditorParser(stream, getGrammarAccess());
+	protected InternalWreslEditorParser createParser(XtextTokenStream stream) {
+		return new InternalWreslEditorParser(stream, getGrammarAccess());
 	}
 	
 	@Override 

@@ -3,6 +3,7 @@
  */
 package gov.ca.dwr.wresl.xtext.editor.ui.labeling;
 
+import com.google.inject.Inject;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Alias;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ConstDef;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Declaration;
@@ -18,12 +19,9 @@ import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SVarDSS;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Sequence;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SvarDef;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
-
-import com.google.inject.Inject;
 
 /**
  * Provides labels for a EObjects.

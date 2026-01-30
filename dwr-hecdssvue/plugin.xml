@@ -3,239 +3,239 @@
 <plugin>
 
    <extension
-         point="org.eclipse.ui.views">
+           point="org.eclipse.ui.views">
       <category
-            name="DWR"
-            id="gov.ca.dwr.hecdssvue">
+              name="DWR"
+              id="gov.ca.water.hecdssvue">
       </category>
       <view
-            name="DSS Catalog View"
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.DSSCatalogView"
-            id="gov.ca.dwr.hecdssvue.views.DSSCatalogView">
+              name="DSS Catalog View"
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.DSSCatalogView"
+              id="gov.ca.water.hecdssvue.views.DSSCatalogView">
       </view>
       <view
-            category="gov.ca.dwr.hecdssvue"
-            class="org.eclipse.ui.navigator.CommonNavigator"
-            id="gov.ca.dwr.view.navigator"
-            name="Navigator">
+              category="gov.ca.water.hecdssvue"
+              class="org.eclipse.ui.navigator.CommonNavigator"
+              id="gov.ca.water.view.navigator"
+              name="Navigator">
       </view>
       <view
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.DSSMonthlyView"
-            id="gov.ca.dwr.hecdssvue.views.DSSMonthlyView"
-            name="DSS Monthly">
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.DSSMonthlyView"
+              id="gov.ca.water.hecdssvue.views.DSSMonthlyView"
+              name="DSS Monthly">
       </view>
       <view
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.DSSPlotView"
-            id="gov.ca.dwr.hecdssvue.views.DSSPlotView"
-            name="DSS Plot">
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.DSSPlotView"
+              id="gov.ca.water.hecdssvue.views.DSSPlotView"
+              name="DSS Plot">
       </view>
       <view
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.DSSTableView"
-            id="gov.ca.dwr.hecdssvue.views.DSSTableView"
-            name="DSS Table">
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.DSSTableView"
+              id="gov.ca.water.hecdssvue.views.DSSTableView"
+              name="DSS Table">
       </view>
       <view
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.DSSFileView"
-            id="gov.ca.dwr.hecdssvue.views.DSSFileView"
-            name="DSS Files Compare">
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.DSSFileView"
+              id="gov.ca.water.hecdssvue.views.DSSFileView"
+              name="DSS Files Compare">
       </view>
       <view
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.DSSOpsView"
-            id="gov.ca.dwr.hecdssvue.views.DSSOpsView"
-            name="DSS Options">
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.DSSOpsView"
+              id="gov.ca.water.hecdssvue.views.DSSOpsView"
+              name="DSS Options">
       </view>
       <view
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.WaterYearView"
-            id="gov.ca.dwr.hecdssvue.views.WaterYearView"
-            name="Water Year">
-      </view>
-            <view
-            name="Storage Flows"
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.StorageFlowsView"
-            id="gov.ca.dwr.hecdssvue.views.StorageFlowsView">
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.WaterYearView"
+              id="gov.ca.water.hecdssvue.views.WaterYearView"
+              name="Water Year">
       </view>
       <view
-            name="San Joaquin River"
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.SanJoaquinRiverView"
-            id="gov.ca.dwr.hecdssvue.views.SanJoaquinRiverView">
+              name="Storage Flows"
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.StorageFlowsView"
+              id="gov.ca.water.hecdssvue.views.StorageFlowsView">
       </view>
       <view
-            name="Water Management Actions"
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.WaterManagementActionsView"
-            id="gov.ca.dwr.hecdssvue.views.WaterManagementActionsView">
+              name="San Joaquin River"
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.SanJoaquinRiverView"
+              id="gov.ca.water.hecdssvue.views.SanJoaquinRiverView">
       </view>
       <view
-            name="Delivery Shorages"
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.DeliveryShortagesView"
-            id="gov.ca.dwr.hecdssvue.views.DeliveryShortagesView">
+              name="Water Management Actions"
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.WaterManagementActionsView"
+              id="gov.ca.water.hecdssvue.views.WaterManagementActionsView">
       </view>
       <view
-            name="DTS"
-            category="gov.ca.dwr.hecdssvue"
-            class="gov.ca.dwr.hecdssvue.views.DTSView"
-            id="gov.ca.dwr.hecdssvue.views.DTSView">
+              name="Delivery Shorages"
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.DeliveryShortagesView"
+              id="gov.ca.water.hecdssvue.views.DeliveryShortagesView">
+      </view>
+      <view
+              name="DTS"
+              category="gov.ca.water.hecdssvue"
+              class="gov.ca.water.hecdssvue.views.DTSView"
+              id="gov.ca.water.hecdssvue.views.DTSView">
       </view>
    </extension>
    <extension
-         point="org.eclipse.ui.perspectiveExtensions">
+           point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="org.eclipse.jdt.ui.JavaPerspective">
+              targetID="org.eclipse.jdt.ui.JavaPerspective">
          <view
-               ratio="0.5"
-               relative="org.eclipse.ui.views.TaskList"
-               relationship="right"
-               id="gov.ca.dwr.hecdssvue.views.DSSCatalogView">
+                 ratio="0.5"
+                 relative="org.eclipse.ui.views.TaskList"
+                 relationship="right"
+                 id="gov.ca.water.hecdssvue.views.DSSCatalogView">
          </view>
       </perspectiveExtension>
       <perspectiveExtension
-            targetID="org.eclipse.ui.resourcePerspective">
+              targetID="org.eclipse.ui.resourcePerspective">
          <view
-               id="gov.ca.dwr.view.navigator"
-               ratio="0.5"
-               relationship="stack"
-               relative="org.eclipse.ui.navigator.ProjectExplorer">
+                 id="gov.ca.water.view.navigator"
+                 ratio="0.5"
+                 relationship="stack"
+                 relative="org.eclipse.ui.navigator.ProjectExplorer">
          </view>
       </perspectiveExtension>
    </extension>
    <extension
-         point="org.eclipse.help.contexts">
+           point="org.eclipse.help.contexts">
       <contexts
-            file="contexts.xml">
+              file="contexts.xml">
       </contexts>
    </extension>
    <extension
-         point="org.eclipse.ui.navigator.viewer">
+           point="org.eclipse.ui.navigator.viewer">
       <viewerActionBinding
-            viewerId="gov.ca.dwr.view.navigator">
+              viewerId="gov.ca.water.view.navigator">
          <includes>
             <actionExtension
-                  pattern="org.eclipse.ui.navigator.resources.*">
+                    pattern="org.eclipse.ui.navigator.resources.*">
             </actionExtension>
          </includes>
       </viewerActionBinding>
       <viewerContentBinding
-            viewerId="gov.ca.dwr.view.navigator">
+              viewerId="gov.ca.water.view.navigator">
          <includes>
             <contentExtension
-                  pattern="org.eclipse.ui.navigator.resourceContent">
+                    pattern="org.eclipse.ui.navigator.resourceContent">
             </contentExtension>
             <contentExtension
-                  pattern="org.eclipse.ui.navigator.resources.filters.*">
+                    pattern="org.eclipse.ui.navigator.resources.filters.*">
             </contentExtension>
             <contentExtension
-                  pattern="org.eclipse.ui.navigator.resources.linkHelper">
+                    pattern="org.eclipse.ui.navigator.resources.linkHelper">
             </contentExtension>
             <contentExtension
-                  pattern="org.eclipse.ui.navigator.resources.workingSets">
+                    pattern="org.eclipse.ui.navigator.resources.workingSets">
             </contentExtension>
          </includes>
       </viewerContentBinding>
    </extension>
- <extension
-       point="org.eclipse.ui.actionSets">
-    <actionSet
-          id="gov.ca.dwr.hecdssvue.dss"
-          label="DSS"
-          visible="true">
-       <menu
-             id="gov.ca.dwr.hecdssvue.dss"
-             label="DSS"
-             path="additions">
-          <groupMarker
-                name="operation">
-          </groupMarker>
-          <separator
-                name="additions">
-          </separator>
-       </menu>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.SaveDss"
-             id="gov.ca.dwr.hecdssvue.savedss"
-             label="Save"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.CopyTo"
-             id="gov.ca.dwr.hecdssvue.copyto"
-             label="Copy To"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.MathFunction"
-             id="gov.ca.dwr.hecdssvue.mathfunction"
-             label="Math Function"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.InsertRows"
-             id="gov.ca.dwr.hecdssvue.insertrows"
-             label="Insert Rows"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.DuplicateRecords"
-             id="gov.ca.dwr.hecdssvue.duplicaterecords"
-             label="Duplicate Records"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.DeleteRecords"
-             id="gov.ca.dwr.hecdssvue.deleterecords"
-             label="Delete Records"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.RenameRecords"
-             id="gov.ca.dwr.hecdssvue.renamerecords"
-             label="Rename Records"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.ManualTimeseries"
-             id="gov.ca.dwr.hecdssvue.manualtimeseries"
-             label="Manual Time Series"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-       <action
-             class="gov.ca.dwr.hecdssvue.menus.AllowEdit"
-             id="gov.ca.dwr.hecdssvue.allowedit"
-             label="Allow Editing"
-             menubarPath="gov.ca.dwr.hecdssvue.dss/operation"
-             style="push">
-       </action>
-    </actionSet>
- </extension>
-  <extension
-         point="org.eclipse.ui.perspectives">
-      <perspective
-            class="gov.ca.dwr.hecdssvue.perspective.CalSimHydroPerspectiveFactory"
-            id="wpp.calsimhydroperspective"
-            name="CalSimHydro"/>
- </extension>
    <extension
-         point="org.eclipse.ui.perspectives">
+           point="org.eclipse.ui.actionSets">
+      <actionSet
+              id="gov.ca.water.hecdssvue.dss"
+              label="DSS"
+              visible="true">
+         <menu
+                 id="gov.ca.water.hecdssvue.dss"
+                 label="DSS"
+                 path="additions">
+            <groupMarker
+                    name="operation">
+            </groupMarker>
+            <separator
+                    name="additions">
+            </separator>
+         </menu>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.SaveDss"
+                 id="gov.ca.water.hecdssvue.savedss"
+                 label="Save"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.CopyTo"
+                 id="gov.ca.water.hecdssvue.copyto"
+                 label="Copy To"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.MathFunction"
+                 id="gov.ca.water.hecdssvue.mathfunction"
+                 label="Math Function"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.InsertRows"
+                 id="gov.ca.water.hecdssvue.insertrows"
+                 label="Insert Rows"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.DuplicateRecords"
+                 id="gov.ca.water.hecdssvue.duplicaterecords"
+                 label="Duplicate Records"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.DeleteRecords"
+                 id="gov.ca.water.hecdssvue.deleterecords"
+                 label="Delete Records"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.RenameRecords"
+                 id="gov.ca.water.hecdssvue.renamerecords"
+                 label="Rename Records"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.ManualTimeseries"
+                 id="gov.ca.water.hecdssvue.manualtimeseries"
+                 label="Manual Time Series"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+         <action
+                 class="gov.ca.water.hecdssvue.menus.AllowEdit"
+                 id="gov.ca.water.hecdssvue.allowedit"
+                 label="Allow Editing"
+                 menubarPath="gov.ca.water.hecdssvue.dss/operation"
+                 style="push">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+           point="org.eclipse.ui.perspectives">
       <perspective
-            class="gov.ca.dwr.hecdssvue.perspective.DSSPerspectiveFactory"
-            id="wpp.dssperspective"
-            name="DSS"/>
- </extension> 
+              class="gov.ca.water.hecdssvue.perspective.CalSimHydroPerspectiveFactory"
+              id="wpp.calsimhydroperspective"
+              name="CalSimHydro"/>
+   </extension>
+   <extension
+           point="org.eclipse.ui.perspectives">
+      <perspective
+              class="gov.ca.water.hecdssvue.perspective.DSSPerspectiveFactory"
+              id="wpp.dssperspective"
+              name="DSS"/>
+   </extension>
 </plugin>

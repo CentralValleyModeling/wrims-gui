@@ -2,6 +2,7 @@
  */
 package gov.ca.dwr.wresl.xtext.editor.wreslEditor;
 
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl.WreslEditorFactoryImpl;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -9,7 +10,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage
+ * @see WreslEditorPackage
  * @generated
  */
 public interface WreslEditorFactory extends EFactory
@@ -20,7 +21,7 @@ public interface WreslEditorFactory extends EFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  WreslEditorFactory eINSTANCE = gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl.WreslEditorFactoryImpl.init();
+  WreslEditorFactory eINSTANCE = WreslEditorFactoryImpl.init();
 
   /**
    * Returns a new object of class '<em>Wresl Evaluator</em>'.

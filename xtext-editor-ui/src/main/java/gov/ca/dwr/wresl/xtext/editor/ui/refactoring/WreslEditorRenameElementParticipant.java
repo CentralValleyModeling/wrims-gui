@@ -1,10 +1,9 @@
 package gov.ca.dwr.wresl.xtext.editor.ui.refactoring;
 
+import com.google.inject.Inject;
 import gov.ca.dwr.wresl.xtext.editor.ui.internal.WreslEditorActivator;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -14,8 +13,6 @@ import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.ui.refactoring.impl.AbstractProcessorBasedRenameParticipant;
 import org.eclipse.xtext.util.Strings;
-
-import com.google.inject.Inject;
 
 
 /**

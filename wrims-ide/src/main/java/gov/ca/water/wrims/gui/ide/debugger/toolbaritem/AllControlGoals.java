@@ -1,0 +1,74 @@
+package gov.ca.water.wrims.gui.ide.debugger.toolbaritem;
+
+import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import gov.ca.water.wrims.gui.ide.debugger.view.WPPAllGoalView;
+import gov.ca.water.wrims.gui.ide.tools.DataProcess;
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.debug.core.DebugException;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IViewActionDelegate;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.ActionDelegate;
+
+public class AllControlGoals extends ActionDelegate implements IViewActionDelegate{
+
+	@Override
+	public void init(IViewPart view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void run(IAction action) {
+		if (DebugCorePlugin.target!=null && DebugCorePlugin.target.isSuspended()) getAllControlGoals();
+	}
+	
+	public void getAllControlGoals(){
+		final IWorkbench workbench=PlatformUI.getWorkbench();
+		workbench.getDisplay().asyncExec(new Runnable(){
+			public void run(){
+				Shell shell=workbench.getActiveWorkbenchWindow().getShell();
+				ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);  
+				try {
+					dialog.run(true,false, new IRunnableWithProgress() {
+						@Override
+						public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+							String goal="";
+							monitor.beginTask("Determine all control goals", 100);
+							try{
+								goal=DebugCorePlugin.target.sendRequest("allcontrolgoals");
+							}catch (DebugException e) {
+								WPPException.handleException(e);
+							}
+							monitor.worked(33);
+							
+							DebugCorePlugin.allControlGoals=DataProcess.generateArrayList(goal);
+							monitor.worked(33);
+							
+							final IWorkbench workbench=PlatformUI.getWorkbench();
+							workbench.getDisplay().asyncExec(new Runnable(){
+								public void run(){
+									WPPAllGoalView allGoalView = (WPPAllGoalView) workbench.getActiveWorkbenchWindow().getActivePage().findView(DebugCorePlugin.ID_WPP_ALLGOAL_VIEW);
+									allGoalView.updateView();
+								}
+							});
+							monitor.done();
+						}
+					});
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+}

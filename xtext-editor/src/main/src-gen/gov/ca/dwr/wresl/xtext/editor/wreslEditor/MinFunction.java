@@ -12,12 +12,12 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.MinFunction#getE1 <em>E1</em>}</li>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.MinFunction#getE2 <em>E2</em>}</li>
+ *   <li>{@link MinFunction#getE1 <em>E1</em>}</li>
+ *   <li>{@link MinFunction#getE2 <em>E2</em>}</li>
  * </ul>
  * </p>
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getMinFunction()
+ * @see WreslEditorPackage#getMinFunction()
  * @model
  * @generated
  */
@@ -33,14 +33,14 @@ public interface MinFunction extends Function
    * <!-- end-user-doc -->
    * @return the value of the '<em>E1</em>' containment reference.
    * @see #setE1(Expression)
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getMinFunction_E1()
+   * @see WreslEditorPackage#getMinFunction_E1()
    * @model containment="true"
    * @generated
    */
   Expression getE1();
 
   /**
-   * Sets the value of the '{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.MinFunction#getE1 <em>E1</em>}' containment reference.
+   * Sets the value of the '{@link MinFunction#getE1 <em>E1</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>E1</em>' containment reference.
@@ -51,7 +51,7 @@ public interface MinFunction extends Function
 
   /**
    * Returns the value of the '<em><b>E2</b></em>' containment reference list.
-   * The list contents are of type {@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Expression}.
+   * The list contents are of type {@link Expression}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>E2</em>' containment reference list isn't clear,
@@ -59,7 +59,7 @@ public interface MinFunction extends Function
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>E2</em>' containment reference list.
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getMinFunction_E2()
+   * @see WreslEditorPackage#getMinFunction_E2()
    * @model containment="true"
    * @generated
    */

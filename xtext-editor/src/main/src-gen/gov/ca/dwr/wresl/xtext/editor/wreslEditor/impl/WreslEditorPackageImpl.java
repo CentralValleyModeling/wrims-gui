@@ -98,12 +98,10 @@ import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.lowerUpper;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.upperLower;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -783,7 +781,7 @@ public class WreslEditorPackageImpl extends EPackageImpl implements WreslEditorP
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#eNS_URI
+   * @see WreslEditorPackage#eNS_URI
    * @see #init()
    * @generated
    */

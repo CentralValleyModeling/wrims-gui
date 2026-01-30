@@ -18,7 +18,7 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 }
 
 @parser::header {
-package gov.ca.dwr.wresl.xtext.editor.ui.contentassist.antlr.internal; 
+package gov.ca.dwr.wresl.xtext.editor.ui.contentassist.antlr.internal;
 
 import java.io.InputStream;
 import org.eclipse.xtext.*;

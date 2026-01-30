@@ -6,13 +6,10 @@ import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Assignment;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TableContent;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WhereItems;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 

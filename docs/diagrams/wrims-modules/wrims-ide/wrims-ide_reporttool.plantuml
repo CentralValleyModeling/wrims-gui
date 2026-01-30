@@ -6,7 +6,7 @@ skinparam linetype ortho
 
 rectangle WRIMS {
     component wrims-ide as "WRIMS IDE" #orange {
-        package wrimsv2_plugin {
+        package wrims.gui.ide {
             package reporttool #lightgreen
             package tools
             package debugger
@@ -52,5 +52,5 @@ reporttool --> com.lowagie
 
 debugger -> reporttool #firebrick
 
-footer "green components indicate the primary module being represented \n orange components indicate key local modules \n blue components indicate locally-stored third-party jars \n red lines represent circular dependencies"
+footer "green components indicate the primary module being represented \n orange components indicate key local modules \n blue components indicate locally-stored third-party jars \n red lines represent circular dependencies\n All WRIMS IDE components shown are located under the canonical package root gov.ca.water.*"
 @enduml
