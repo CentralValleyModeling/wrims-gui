@@ -6,13 +6,10 @@ import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Declaration;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TrunkTimeArray;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TrunkTimeArrayIndex;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -23,9 +20,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link TrunkTimeArrayImpl#getRef <em>Ref</em>}</li>
- *   <li>{@link TrunkTimeArrayImpl#getT1 <em>T1</em>}</li>
- *   <li>{@link TrunkTimeArrayImpl#getT2 <em>T2</em>}</li>
+ *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl.TrunkTimeArrayImpl#getRef <em>Ref</em>}</li>
+ *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl.TrunkTimeArrayImpl#getT1 <em>T1</em>}</li>
+ *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl.TrunkTimeArrayImpl#getT2 <em>T2</em>}</li>
  * </ul>
  * </p>
  *

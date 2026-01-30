@@ -4,7 +4,6 @@ package gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl;
 
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.upperLower;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

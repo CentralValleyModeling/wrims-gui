@@ -11,7 +11,7 @@ options {
 }
 
 @header {
-package gov.ca.dwr.wresl.xtext.editor.parser.antlr.internal; 
+package gov.ca.dwr.wresl.xtext.editor.parser.antlr.internal;
 
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;

@@ -2,11 +2,103 @@
  */
 package gov.ca.dwr.wresl.xtext.editor.wreslEditor.util;
 
-import gov.ca.dwr.wresl.xtext.editor.wreslEditor.*;
-
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.AbsFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.AcosFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.AcotFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Add;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Alias;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.AsinFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Assignment;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.AtanFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.CaseContent;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Condition;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ConditionalTerm;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ConditionalUnary;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ConstDef;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Constraint;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.CosFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.CotFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.DVar;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.DVarInteger;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.DVarIntegerNonStd;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.DVarIntegerStd;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.DVarNonStd;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.DVarStd;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.DecisionVariable;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Declaration;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.DvarDef;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ElseIfTerm;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ElseTerm;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Expression;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.External;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ExternalDef;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ExternalFunction1;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ExternalFunction2;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Function;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Goal;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.GoalCase;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.GoalCaseContent;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.GoalNoCaseContent;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.GoalSimple;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Group;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Ident;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.IfIncItems;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.IfTerm;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.IncludeFile;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Initial;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.IntFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.LhsGtRhs;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.LhsLtRhs;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.LogFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.LogicalExpression;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Lower;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.LowerAndOrUpper;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.MaxFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.MinFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ModFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Model;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Multiply;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Objective;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Pattern;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Penalty;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.PowFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.RoundFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SVar;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SVarCase;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SVarDSS;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SVarExpression;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SVarSum;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SVarTable;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Sequence;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SinFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.StateVariable;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SubContent;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SumContent;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SumHeader;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.SvarDef;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TableContent;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TanFunction;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Term;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TermSimple;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TimeArraySize;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TrunkTimeArray;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.TrunkTimeArrayIndex;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Unary;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Upper;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ValueContent;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.VarModel;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.VarModelIndex;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.VarModelIndexStep;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.VarModelStep;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Variable;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WeightItem;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WhereItems;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.lowerUpper;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.upperLower;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -19,7 +111,7 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage
+ * @see WreslEditorPackage
  * @generated
  */
 public class WreslEditorSwitch<T> extends Switch<T>

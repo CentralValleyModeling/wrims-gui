@@ -12,12 +12,12 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.SubContent#getGt <em>Gt</em>}</li>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.SubContent#getLt <em>Lt</em>}</li>
+ *   <li>{@link SubContent#getGt <em>Gt</em>}</li>
+ *   <li>{@link SubContent#getLt <em>Lt</em>}</li>
  * </ul>
  * </p>
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getSubContent()
+ * @see WreslEditorPackage#getSubContent()
  * @model
  * @generated
  */
@@ -33,14 +33,14 @@ public interface SubContent extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Gt</em>' containment reference.
    * @see #setGt(LhsGtRhs)
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getSubContent_Gt()
+   * @see WreslEditorPackage#getSubContent_Gt()
    * @model containment="true"
    * @generated
    */
   LhsGtRhs getGt();
 
   /**
-   * Sets the value of the '{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.SubContent#getGt <em>Gt</em>}' containment reference.
+   * Sets the value of the '{@link SubContent#getGt <em>Gt</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Gt</em>' containment reference.
@@ -59,14 +59,14 @@ public interface SubContent extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Lt</em>' containment reference.
    * @see #setLt(LhsLtRhs)
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getSubContent_Lt()
+   * @see WreslEditorPackage#getSubContent_Lt()
    * @model containment="true"
    * @generated
    */
   LhsLtRhs getLt();
 
   /**
-   * Sets the value of the '{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.SubContent#getLt <em>Lt</em>}' containment reference.
+   * Sets the value of the '{@link SubContent#getLt <em>Lt</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Lt</em>' containment reference.

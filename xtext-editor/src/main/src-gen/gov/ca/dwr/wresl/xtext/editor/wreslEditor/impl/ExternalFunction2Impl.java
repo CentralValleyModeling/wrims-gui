@@ -5,12 +5,9 @@ package gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Declaration;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.ExternalFunction2;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -20,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ExternalFunction2Impl#getRef <em>Ref</em>}</li>
+ *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl.ExternalFunction2Impl#getRef <em>Ref</em>}</li>
  * </ul>
  * </p>
  *

@@ -61,7 +61,7 @@
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="gov.ca.dwr.wresl.xtext.editor.WreslEditor" 
+                        value="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
                         forcePluginActivation="true"/>
                 </with>        
             </and>
@@ -71,7 +71,7 @@
                 <reference definitionId="isXtextEditorActive"/>
                 <with variable="activeEditor">
                     <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="gov.ca.dwr.wresl.xtext.editor.WreslEditor" 
+                        value="gov.ca.dwr.wresl.xtext.editor.WreslEditor"
                         forcePluginActivation="true"/>
                 </with>        
             </and>

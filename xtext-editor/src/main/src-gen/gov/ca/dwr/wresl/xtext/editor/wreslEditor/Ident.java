@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Ident#getName <em>Name</em>}</li>
+ *   <li>{@link Ident#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getIdent()
+ * @see WreslEditorPackage#getIdent()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface Ident extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getIdent_Name()
+   * @see WreslEditorPackage#getIdent_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Ident#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link Ident#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.

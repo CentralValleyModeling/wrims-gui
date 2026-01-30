@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Jdiagram
 Bundle-SymbolicName: gov.ca.dwr.jdiagram;singleton:=true
 Bundle-Version: 1.0.0.0
-Bundle-Activator: gov.ca.dwr.jdiagram.Activator
+Bundle-Activator: gov.ca.water.jdiagram.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.ui.views;bundle-version="3.6.0",

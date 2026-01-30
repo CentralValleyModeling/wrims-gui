@@ -4,6 +4,12 @@
  */
 package gov.ca.dwr.wresl.xtext.editor.ui;
 
+import gov.ca.dwr.wresl.xtext.editor.parser.antlr.lexer.InternalWreslEditorLexer;
+import gov.ca.dwr.wresl.xtext.editor.ui.contentassist.WreslEditorProposalProvider;
+import gov.ca.dwr.wresl.xtext.editor.ui.labeling.WreslEditorDescriptionLabelProvider;
+import gov.ca.dwr.wresl.xtext.editor.ui.labeling.WreslEditorLabelProvider;
+import gov.ca.dwr.wresl.xtext.editor.ui.outline.WreslEditorOutlineTreeProvider;
+import gov.ca.dwr.wresl.xtext.editor.ui.quickfix.WreslEditorQuickfixProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
@@ -29,7 +35,8 @@ public abstract class AbstractWreslEditorUiModule extends org.eclipse.xtext.comm
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
 	public void configureHighlightingLexer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.HIGHLIGHTING)).to(gov.ca.dwr.wresl.xtext.editor.parser.antlr.lexer.InternalWreslEditorLexer.class);
+		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.HIGHLIGHTING)).to(
+			InternalWreslEditorLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
@@ -84,27 +91,28 @@ public abstract class AbstractWreslEditorUiModule extends org.eclipse.xtext.comm
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
 	public Class<? extends org.eclipse.jface.viewers.ILabelProvider> bindILabelProvider() {
-		return gov.ca.dwr.wresl.xtext.editor.ui.labeling.WreslEditorLabelProvider.class;
+		return WreslEditorLabelProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
 	public void configureResourceUIServiceLabelProvider(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.jface.viewers.ILabelProvider.class).annotatedWith(org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider.class).to(gov.ca.dwr.wresl.xtext.editor.ui.labeling.WreslEditorDescriptionLabelProvider.class);
+		binder.bind(org.eclipse.jface.viewers.ILabelProvider.class).annotatedWith(org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider.class).to(
+			WreslEditorDescriptionLabelProvider.class);
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.outline.OutlineTreeProviderFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider> bindIOutlineTreeProvider() {
-		return gov.ca.dwr.wresl.xtext.editor.ui.outline.WreslEditorOutlineTreeProvider.class;
+		return WreslEditorOutlineTreeProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.outline.OutlineTreeProviderFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.outline.impl.IOutlineTreeStructureProvider> bindIOutlineTreeStructureProvider() {
-		return gov.ca.dwr.wresl.xtext.editor.ui.outline.WreslEditorOutlineTreeProvider.class;
+		return WreslEditorOutlineTreeProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider> bindIssueResolutionProvider() {
-		return gov.ca.dwr.wresl.xtext.editor.ui.quickfix.WreslEditorQuickfixProvider.class;
+		return WreslEditorQuickfixProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment
@@ -134,7 +142,7 @@ public abstract class AbstractWreslEditorUiModule extends org.eclipse.xtext.comm
 
 	// contributed by org.eclipse.xtext.ui.generator.contentAssist.JavaBasedContentAssistFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider> bindIContentProposalProvider() {
-		return gov.ca.dwr.wresl.xtext.editor.ui.contentassist.WreslEditorProposalProvider.class;
+		return WreslEditorProposalProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment

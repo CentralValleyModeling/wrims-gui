@@ -1,13 +1,11 @@
 package gov.ca.dwr.wresl.xtext.editor.ui.link;
 
-import java.util.Collections;
-import java.util.List;
-
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.Declaration;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorFactory;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
 import gov.ca.dwr.wresl.xtext.editor.wreslEditor.impl.WreslEditorFactoryImpl;
-
+import java.util.Collections;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -16,7 +14,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.linking.impl.DefaultLinkingService;
 import org.eclipse.xtext.linking.impl.IllegalNodeException;
-
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;

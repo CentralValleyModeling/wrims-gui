@@ -9,7 +9,7 @@ package gov.ca.dwr.wresl.xtext.editor.wreslEditor;
  * <!-- end-user-doc -->
  *
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getDVarIntegerNonStd()
+ * @see WreslEditorPackage#getDVarIntegerNonStd()
  * @model
  * @generated
  */

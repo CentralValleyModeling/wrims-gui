@@ -214,7 +214,7 @@
    </extension>
    <extension point="org.eclipse.ltk.core.refactoring.renameParticipants">
       <renameParticipant
-            class="gov.ca.dwr.wresl.xtext.editor.ui.refactoring.WreslEditorRenameElementParticipant"
+			  class="gov.ca.dwr.wresl.xtext.editor.ui.refactoring.WreslEditorRenameElementParticipant"
             id="gov.ca.dwr.wresl.xtext.editor.WreslEditor.editors.wresleditorrenameelementparticipant"
             name="WRESL editor rename participant">
          	<enablement>

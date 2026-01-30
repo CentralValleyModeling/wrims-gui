@@ -3,7 +3,7 @@ Bundle-Name: wrims-ide
 Bundle-Version: 1.0.0.0
 Bundle-ManifestVersion: 2.0
 Bundle-RequiredExecutionEnvironment: JavaSE-21
-Bundle-Activator: wrimsv2_plugin.debugger.core.DebugCorePlugin
+Bundle-Activator: gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin
 Bundle-ActivationPolicy: lazy
 -noee true
 
@@ -43,20 +43,20 @@ Import-Package: \
     org.osgi.framework
 
 Export-Package: \
-    wrimsv2_plugin.debugger,\
-    wrimsv2_plugin.debugger.breakpoint,\
-    wrimsv2_plugin.debugger.commanditem,\
-    wrimsv2_plugin.debugger.core,\
-    wrimsv2_plugin.debugger.exception,\
-    wrimsv2_plugin.debugger.launcher,\
-    wrimsv2_plugin.debugger.menuitem,\
-    wrimsv2_plugin.debugger.model,\
-    wrimsv2_plugin.debugger.sourcelookup,\
-    wrimsv2_plugin.debugger.toolbaritem,\
-    wrimsv2_plugin.debugger.ui,\
-    wrimsv2_plugin.debugger.view,\
-    wrimsv2_plugin.presentation,\
-    wrimsv2_plugin.tools
+    gov.ca.water.wrims.gui.ide.debugger,\
+    gov.ca.water.wrims.gui.ide.debugger.breakpoint,\
+    gov.ca.water.wrims.gui.ide.debugger.commanditem,\
+    gov.ca.water.wrims.gui.ide.debugger.core,\
+    gov.ca.water.wrims.gui.ide.debugger.exception,\
+    gov.ca.water.wrims.gui.ide.debugger.launcher,\
+    gov.ca.water.wrims.gui.ide.debugger.menuitem,\
+    gov.ca.water.wrims.gui.ide.debugger.model,\
+    gov.ca.water.wrims.gui.ide.debugger.sourcelookup,\
+    gov.ca.water.wrims.gui.ide.debugger.toolbaritem,\
+    gov.ca.water.wrims.gui.ide.debugger.ui,\
+    gov.ca.water.wrims.gui.ide.debugger.view,\
+    gov.ca.water.wrims.gui.ide.presentation,\
+    gov.ca.water.wrims.gui.ide.tools
 
 -includeresource: \
   plugin.xml = plugin.xml,\

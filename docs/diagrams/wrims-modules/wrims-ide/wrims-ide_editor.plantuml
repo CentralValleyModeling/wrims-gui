@@ -6,7 +6,7 @@ skinparam linetype ortho
 
 rectangle WRIMS {
     component wrims-ide as "WRIMS IDE" #orange {
-        package wrimsv2_plugin  {
+        package wrims.gui.ide  {
             package editor #lightgreen
             package debugger
         }
@@ -17,5 +17,5 @@ rectangle WRIMS {
 editor --> luna_libs
 editor -l-> debugger
 
-footer "green components indicate the primary module being represented \n orange components indicate key local modules"
+footer "green components indicate the primary module being represented \n orange components indicate key local modules\n All WRIMS IDE components shown are located under the canonical package root gov.ca.water.*"
 @enduml

@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.DvarDef#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link DvarDef#getDefinition <em>Definition</em>}</li>
  * </ul>
  * </p>
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getDvarDef()
+ * @see WreslEditorPackage#getDvarDef()
  * @model
  * @generated
  */
@@ -32,14 +32,14 @@ public interface DvarDef extends DecisionVariable
    * <!-- end-user-doc -->
    * @return the value of the '<em>Definition</em>' containment reference.
    * @see #setDefinition(EObject)
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getDvarDef_Definition()
+   * @see WreslEditorPackage#getDvarDef_Definition()
    * @model containment="true"
    * @generated
    */
   EObject getDefinition();
 
   /**
-   * Sets the value of the '{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.DvarDef#getDefinition <em>Definition</em>}' containment reference.
+   * Sets the value of the '{@link DvarDef#getDefinition <em>Definition</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Definition</em>' containment reference.

@@ -3,7 +3,6 @@
 package gov.ca.dwr.wresl.xtext.editor.wreslEditor;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Multiply#getU1 <em>U1</em>}</li>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Multiply#getU2 <em>U2</em>}</li>
+ *   <li>{@link Multiply#getU1 <em>U1</em>}</li>
+ *   <li>{@link Multiply#getU2 <em>U2</em>}</li>
  * </ul>
  * </p>
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getMultiply()
+ * @see WreslEditorPackage#getMultiply()
  * @model
  * @generated
  */
@@ -35,14 +34,14 @@ public interface Multiply extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>U1</em>' containment reference.
    * @see #setU1(Unary)
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getMultiply_U1()
+   * @see WreslEditorPackage#getMultiply_U1()
    * @model containment="true"
    * @generated
    */
   Unary getU1();
 
   /**
-   * Sets the value of the '{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Multiply#getU1 <em>U1</em>}' containment reference.
+   * Sets the value of the '{@link Multiply#getU1 <em>U1</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>U1</em>' containment reference.
@@ -53,7 +52,7 @@ public interface Multiply extends EObject
 
   /**
    * Returns the value of the '<em><b>U2</b></em>' containment reference list.
-   * The list contents are of type {@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Unary}.
+   * The list contents are of type {@link Unary}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>U2</em>' containment reference list isn't clear,
@@ -61,7 +60,7 @@ public interface Multiply extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>U2</em>' containment reference list.
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getMultiply_U2()
+   * @see WreslEditorPackage#getMultiply_U2()
    * @model containment="true"
    * @generated
    */

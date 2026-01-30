@@ -3,12 +3,12 @@
  */
 package gov.ca.dwr.wresl.xtext.editor;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.ISetup;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 /**
  * Generated from StandaloneSetup.xpt!
@@ -25,12 +25,12 @@ public class WreslEditorStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public Injector createInjector() {
-		return Guice.createInjector(new gov.ca.dwr.wresl.xtext.editor.WreslEditorRuntimeModule());
+		return Guice.createInjector(new WreslEditorRuntimeModule());
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.ca.gov/dwr/wresl/xtext/editor/WreslEditor")) {
-		EPackage.Registry.INSTANCE.put("http://www.ca.gov/dwr/wresl/xtext/editor/WreslEditor", gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey(WreslEditorPackage.eNS_URI)) {
+		EPackage.Registry.INSTANCE.put(WreslEditorPackage.eNS_URI, WreslEditorPackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);

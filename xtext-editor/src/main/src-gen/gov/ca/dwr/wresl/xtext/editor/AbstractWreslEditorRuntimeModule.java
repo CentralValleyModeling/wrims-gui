@@ -3,12 +3,20 @@
  */
 package gov.ca.dwr.wresl.xtext.editor;
 
-import java.util.Properties;
-
-import org.eclipse.xtext.Constants;
-
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
+import gov.ca.dwr.wresl.xtext.editor.formatting.WreslEditorFormatter;
+import gov.ca.dwr.wresl.xtext.editor.generator.WreslEditorGenerator;
+import gov.ca.dwr.wresl.xtext.editor.parser.antlr.WreslEditorAntlrTokenFileProvider;
+import gov.ca.dwr.wresl.xtext.editor.parser.antlr.WreslEditorParser;
+import gov.ca.dwr.wresl.xtext.editor.parser.antlr.lexer.InternalWreslEditorLexer;
+import gov.ca.dwr.wresl.xtext.editor.scoping.WreslEditorScopeProvider;
+import gov.ca.dwr.wresl.xtext.editor.serializer.WreslEditorSemanticSequencer;
+import gov.ca.dwr.wresl.xtext.editor.serializer.WreslEditorSyntacticSequencer;
+import gov.ca.dwr.wresl.xtext.editor.services.WreslEditorGrammarAccess;
+import gov.ca.dwr.wresl.xtext.editor.validation.WreslEditorJavaValidator;
+import java.util.Properties;
+import org.eclipse.xtext.Constants;
 
 /**
  * Manual modifications go to {gov.ca.dwr.wresl.xtext.editor.WreslEditorRuntimeModule}
@@ -23,7 +31,8 @@ public abstract class AbstractWreslEditorRuntimeModule extends org.eclipse.xtext
 		properties = tryBindProperties(binder, "gov/ca/dwr/wresl/xtext/editor/WreslEditor.properties");
 		super.configure(binder);
 	}
-	
+
+	// Use legacy XText path to maintain support for existing compiled XText grammars
 	public void configureLanguageName(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("gov.ca.dwr.wresl.xtext.editor.WreslEditor");
 	}
@@ -40,17 +49,17 @@ public abstract class AbstractWreslEditorRuntimeModule extends org.eclipse.xtext
 
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
-		return gov.ca.dwr.wresl.xtext.editor.services.WreslEditorGrammarAccess.class;
+		return WreslEditorGrammarAccess.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISemanticSequencer> bindISemanticSequencer() {
-		return gov.ca.dwr.wresl.xtext.editor.serializer.WreslEditorSemanticSequencer.class;
+		return WreslEditorSemanticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer> bindISyntacticSequencer() {
-		return gov.ca.dwr.wresl.xtext.editor.serializer.WreslEditorSyntacticSequencer.class;
+		return WreslEditorSyntacticSequencer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
@@ -60,7 +69,7 @@ public abstract class AbstractWreslEditorRuntimeModule extends org.eclipse.xtext
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.IParser> bindIParser() {
-		return gov.ca.dwr.wresl.xtext.editor.parser.antlr.WreslEditorParser.class;
+		return WreslEditorParser.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
@@ -70,22 +79,23 @@ public abstract class AbstractWreslEditorRuntimeModule extends org.eclipse.xtext
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider> bindIAntlrTokenFileProvider() {
-		return gov.ca.dwr.wresl.xtext.editor.parser.antlr.WreslEditorAntlrTokenFileProvider.class;
+		return WreslEditorAntlrTokenFileProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.antlr.Lexer> bindLexer() {
-		return gov.ca.dwr.wresl.xtext.editor.parser.antlr.lexer.InternalWreslEditorLexer.class;
+		return InternalWreslEditorLexer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
-	public com.google.inject.Provider<gov.ca.dwr.wresl.xtext.editor.parser.antlr.lexer.InternalWreslEditorLexer> provideInternalWreslEditorLexer() {
-		return org.eclipse.xtext.parser.antlr.LexerProvider.create(gov.ca.dwr.wresl.xtext.editor.parser.antlr.lexer.InternalWreslEditorLexer.class);
+	public com.google.inject.Provider<InternalWreslEditorLexer> provideInternalWreslEditorLexer() {
+		return org.eclipse.xtext.parser.antlr.LexerProvider.create(InternalWreslEditorLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
 	public void configureRuntimeLexer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.parser.antlr.LexerBindings.RUNTIME)).to(gov.ca.dwr.wresl.xtext.editor.parser.antlr.lexer.InternalWreslEditorLexer.class);
+		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.parser.antlr.LexerBindings.RUNTIME)).to(
+			InternalWreslEditorLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
@@ -104,13 +114,13 @@ public abstract class AbstractWreslEditorRuntimeModule extends org.eclipse.xtext
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends gov.ca.dwr.wresl.xtext.editor.validation.WreslEditorJavaValidator> bindWreslEditorJavaValidator() {
-		return gov.ca.dwr.wresl.xtext.editor.validation.WreslEditorJavaValidator.class;
+	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends WreslEditorJavaValidator> bindWreslEditorJavaValidator() {
+		return WreslEditorJavaValidator.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public Class<? extends org.eclipse.xtext.scoping.IScopeProvider> bindIScopeProvider() {
-		return gov.ca.dwr.wresl.xtext.editor.scoping.WreslEditorScopeProvider.class;
+		return WreslEditorScopeProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
@@ -150,12 +160,12 @@ public abstract class AbstractWreslEditorRuntimeModule extends org.eclipse.xtext
 
 	// contributed by org.eclipse.xtext.generator.generator.GeneratorFragment
 	public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
-		return gov.ca.dwr.wresl.xtext.editor.generator.WreslEditorGenerator.class;
+		return WreslEditorGenerator.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
 	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
-		return gov.ca.dwr.wresl.xtext.editor.formatting.WreslEditorFormatter.class;
+		return WreslEditorFormatter.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment

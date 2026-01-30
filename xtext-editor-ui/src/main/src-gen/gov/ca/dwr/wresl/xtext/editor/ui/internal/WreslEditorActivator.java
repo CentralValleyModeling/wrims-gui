@@ -3,19 +3,19 @@
  */
 package gov.ca.dwr.wresl.xtext.editor.ui.internal;
 
+import com.google.common.collect.Maps;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Module;
+import gov.ca.dwr.wresl.xtext.editor.WreslEditorRuntimeModule;
+import gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorUiModule;
 import java.util.Collections;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
 import org.osgi.framework.BundleContext;
-
-import com.google.common.collect.Maps;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
 
 /**
  * This class was generated. Customizations should only happen in a newly
@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class WreslEditorActivator extends AbstractUIPlugin {
 	
-	public static final String GOV_CA_DWR_WRESL_XTEXT_EDITOR_WRESLEDITOR = "gov.ca.dwr.wresl.xtext.editor.WreslEditor";
+	public static final String GOV_CA_DWR_WRESL_XTEXT_EDITOR_WRESLEDITOR = "gov.ca.water.wresl.xtext.editor.WreslEditor";
 	
 	private static final Logger logger = Logger.getLogger(WreslEditorActivator.class);
 	
@@ -74,7 +74,7 @@ public class WreslEditorActivator extends AbstractUIPlugin {
 
 	protected Module getRuntimeModule(String grammar) {
 		if (GOV_CA_DWR_WRESL_XTEXT_EDITOR_WRESLEDITOR.equals(grammar)) {
-			return new gov.ca.dwr.wresl.xtext.editor.WreslEditorRuntimeModule();
+			return new WreslEditorRuntimeModule();
 		}
 		
 		throw new IllegalArgumentException(grammar);
@@ -82,7 +82,7 @@ public class WreslEditorActivator extends AbstractUIPlugin {
 	
 	protected Module getUiModule(String grammar) {
 		if (GOV_CA_DWR_WRESL_XTEXT_EDITOR_WRESLEDITOR.equals(grammar)) {
-			return new gov.ca.dwr.wresl.xtext.editor.ui.WreslEditorUiModule(this);
+			return new WreslEditorUiModule(this);
 		}
 		
 		throw new IllegalArgumentException(grammar);

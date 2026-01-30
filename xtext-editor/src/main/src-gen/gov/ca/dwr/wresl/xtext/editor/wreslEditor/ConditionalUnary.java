@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getConditionalUnary()
+ * @see WreslEditorPackage#getConditionalUnary()
  * @model
  * @generated
  */

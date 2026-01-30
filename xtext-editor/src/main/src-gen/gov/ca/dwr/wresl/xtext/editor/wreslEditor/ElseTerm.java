@@ -3,7 +3,6 @@
 package gov.ca.dwr.wresl.xtext.editor.wreslEditor;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.ElseTerm#getPattern <em>Pattern</em>}</li>
+ *   <li>{@link ElseTerm#getPattern <em>Pattern</em>}</li>
  * </ul>
  * </p>
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getElseTerm()
+ * @see WreslEditorPackage#getElseTerm()
  * @model
  * @generated
  */
@@ -26,7 +25,7 @@ public interface ElseTerm extends EObject
 {
   /**
    * Returns the value of the '<em><b>Pattern</b></em>' containment reference list.
-   * The list contents are of type {@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Pattern}.
+   * The list contents are of type {@link Pattern}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Pattern</em>' containment reference list isn't clear,
@@ -34,7 +33,7 @@ public interface ElseTerm extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Pattern</em>' containment reference list.
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getElseTerm_Pattern()
+   * @see WreslEditorPackage#getElseTerm_Pattern()
    * @model containment="true"
    * @generated
    */

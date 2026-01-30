@@ -10,6 +10,7 @@ public class WreslEditorAntlrTokenFileProvider implements IAntlrTokenFileProvide
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("gov/ca/dwr/wresl/xtext/editor/parser/antlr/internal/InternalWreslEditorParser.tokens");
+    	return classLoader.getResourceAsStream(
+				"gov/ca/dwr/wresl/xtext/editor/parser/antlr/internal/InternalWreslEditorParser.tokens");
 	}
 }

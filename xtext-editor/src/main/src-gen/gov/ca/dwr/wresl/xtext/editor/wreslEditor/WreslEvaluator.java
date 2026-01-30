@@ -3,7 +3,6 @@
 package gov.ca.dwr.wresl.xtext.editor.wreslEditor;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,15 +13,15 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator#getPattern <em>Pattern</em>}</li>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator#getIfincitem <em>Ifincitem</em>}</li>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator#getInitial <em>Initial</em>}</li>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator#getSequence <em>Sequence</em>}</li>
- *   <li>{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator#getModel <em>Model</em>}</li>
+ *   <li>{@link WreslEvaluator#getPattern <em>Pattern</em>}</li>
+ *   <li>{@link WreslEvaluator#getIfincitem <em>Ifincitem</em>}</li>
+ *   <li>{@link WreslEvaluator#getInitial <em>Initial</em>}</li>
+ *   <li>{@link WreslEvaluator#getSequence <em>Sequence</em>}</li>
+ *   <li>{@link WreslEvaluator#getModel <em>Model</em>}</li>
  * </ul>
  * </p>
  *
- * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getWreslEvaluator()
+ * @see WreslEditorPackage#getWreslEvaluator()
  * @model
  * @generated
  */
@@ -30,7 +29,7 @@ public interface WreslEvaluator extends EObject
 {
   /**
    * Returns the value of the '<em><b>Pattern</b></em>' containment reference list.
-   * The list contents are of type {@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Pattern}.
+   * The list contents are of type {@link Pattern}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Pattern</em>' containment reference list isn't clear,
@@ -38,7 +37,7 @@ public interface WreslEvaluator extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Pattern</em>' containment reference list.
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getWreslEvaluator_Pattern()
+   * @see WreslEditorPackage#getWreslEvaluator_Pattern()
    * @model containment="true"
    * @generated
    */
@@ -46,7 +45,7 @@ public interface WreslEvaluator extends EObject
 
   /**
    * Returns the value of the '<em><b>Ifincitem</b></em>' containment reference list.
-   * The list contents are of type {@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.IfIncItems}.
+   * The list contents are of type {@link IfIncItems}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Ifincitem</em>' containment reference list isn't clear,
@@ -54,7 +53,7 @@ public interface WreslEvaluator extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ifincitem</em>' containment reference list.
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getWreslEvaluator_Ifincitem()
+   * @see WreslEditorPackage#getWreslEvaluator_Ifincitem()
    * @model containment="true"
    * @generated
    */
@@ -70,14 +69,14 @@ public interface WreslEvaluator extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Initial</em>' containment reference.
    * @see #setInitial(Initial)
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getWreslEvaluator_Initial()
+   * @see WreslEditorPackage#getWreslEvaluator_Initial()
    * @model containment="true"
    * @generated
    */
   Initial getInitial();
 
   /**
-   * Sets the value of the '{@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEvaluator#getInitial <em>Initial</em>}' containment reference.
+   * Sets the value of the '{@link WreslEvaluator#getInitial <em>Initial</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Initial</em>' containment reference.
@@ -88,7 +87,7 @@ public interface WreslEvaluator extends EObject
 
   /**
    * Returns the value of the '<em><b>Sequence</b></em>' containment reference list.
-   * The list contents are of type {@link gov.ca.dwr.wresl.xtext.editor.wreslEditor.Sequence}.
+   * The list contents are of type {@link Sequence}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Sequence</em>' containment reference list isn't clear,
@@ -96,7 +95,7 @@ public interface WreslEvaluator extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sequence</em>' containment reference list.
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getWreslEvaluator_Sequence()
+   * @see WreslEditorPackage#getWreslEvaluator_Sequence()
    * @model containment="true"
    * @generated
    */
@@ -112,7 +111,7 @@ public interface WreslEvaluator extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Model</em>' containment reference list.
-   * @see gov.ca.dwr.wresl.xtext.editor.wreslEditor.WreslEditorPackage#getWreslEvaluator_Model()
+   * @see WreslEditorPackage#getWreslEvaluator_Model()
    * @model containment="true"
    * @generated
    */
