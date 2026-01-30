@@ -14,6 +14,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -44,45 +45,50 @@ public class DebugSet extends WorkbenchWindowControlContribution{
 	
 	@Override
     protected Control createControl(Composite parent) {
-       	
+
+		parent.getParent().setRedraw(true);
+
 		CoolBar coolbar=new CoolBar(parent, SWT.HORIZONTAL|SWT.FLAT);
 
 		createTimeSlider(coolbar);
 		CoolItem itemTime=new CoolItem(coolbar, SWT.NONE);
 		itemTime.setControl(timeSlider);
-		itemTime.setSize(300,20);
-		
+		Point pt = timeSlider.computeSize(300, SWT.DEFAULT);
+		itemTime.setSize(itemTime.computeSize(pt.x, pt.y));
+
 		createComboYear(coolbar);
-		CoolItem itemYear = new CoolItem(coolbar, SWT.None); 
+		CoolItem itemYear = new CoolItem(coolbar, SWT.None);
 		itemYear.setControl(_year);
-		//Point pt=comboYear.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		//itemYear.setSize(itemYear.computeSize(pt.x, pt.y));
-		itemYear.setSize(100,20);
-				
+		pt = _year.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		itemYear.setSize(itemYear.computeSize(pt.x, pt.y));
+
 		createComboMonth(coolbar);
-		CoolItem itemMonth = new CoolItem(coolbar, SWT.NONE);	
+		CoolItem itemMonth = new CoolItem(coolbar, SWT.NONE);
 		itemMonth.setControl(_month);
-		//pt=comboMonth.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		//itemMonth.setSize(itemMonth.computeSize(pt.x, pt.y));
-		itemMonth.setSize(100,20);
-		
+		pt = _month.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		itemMonth.setSize(itemMonth.computeSize(pt.x, pt.y));
+
 		createComboDay(coolbar);
-		CoolItem itemDay = new CoolItem(coolbar, SWT.NONE);	
+		CoolItem itemDay = new CoolItem(coolbar, SWT.NONE);
 		itemDay.setControl(_day);
-		//pt=comboDay.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		//itemDay.setSize(itemDay.computeSize(pt.x, pt.y));
-		itemDay.setSize(100,20);
-		
+		pt = _day.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		itemDay.setSize(itemDay.computeSize(pt.x, pt.y));
+
 		createComboCycle(coolbar);
-		CoolItem itemCycle = new CoolItem(coolbar, SWT.NONE);	
+		CoolItem itemCycle = new CoolItem(coolbar, SWT.NONE);
 		itemCycle.setControl(_cycle);
-		//pt=comboCycle.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		//itemCycle.setSize(itemCycle.computeSize(pt.x, pt.y));
-		itemCycle.setSize(100,20);
-		
+		pt = _cycle.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		itemCycle.setSize(itemCycle.computeSize(pt.x, pt.y));
+
 		DebugCorePlugin.debugSet=this;
 		
         return coolbar;
+	}
+
+	@Override
+	public boolean isDynamic()
+	{
+		return true;
 	}
 
 	public Combo getComboYear(){
