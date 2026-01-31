@@ -15,6 +15,8 @@ import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -48,7 +50,13 @@ public class DebugSet extends WorkbenchWindowControlContribution{
 
 		parent.getParent().setRedraw(true);
 
-		CoolBar coolbar=new CoolBar(parent, SWT.HORIZONTAL|SWT.FLAT);
+		CoolBar coolbar=new CoolBar(parent, SWT.HORIZONTAL | SWT.WRAP);
+		FillLayout layout = new FillLayout();
+		coolbar.setLayout(layout);
+
+		GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
+		gd.heightHint = 20;
+		coolbar.setLayoutData(gd);
 
 		createTimeSlider(coolbar);
 		CoolItem itemTime=new CoolItem(coolbar, SWT.NONE);
@@ -81,7 +89,7 @@ public class DebugSet extends WorkbenchWindowControlContribution{
 		itemCycle.setSize(itemCycle.computeSize(pt.x, pt.y));
 
 		DebugCorePlugin.debugSet=this;
-		
+
         return coolbar;
 	}
 

@@ -158,3 +158,27 @@ To set up SonarQube analysis in your IDE, follow these steps:
 For development-specific guidelines, please refer to the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 For instructions on GUI testing, refer to the [Validation Tests](https://github.com/CentralValleyModeling/wrims-gui/blob/main/CONTRIBUTING.md#validation-tests) section of the CONTRIBUTING file.
+
+# GUI Scaling Troubleshooting on High-DPI Displays with Windows
+
+Some users may experience issues with the GUI scaling. 
+
+A clear indication of an issue is the toolbar date dropdown being cut off or not displaying completely. 
+
+To resolve this, please follow these steps:
+
+1. In the WRIMS 3 install folder, right-click on the `eclipse.exe` file and select `Properties`.
+2. In the Properties window, navigate to the `Compatibility` tab.
+3. Under the `Settings` sub-header, click the  `Change high DPI settings` button.
+4. In the pop-up window that appears, click to select the `Use this setting to fix scaling problems for
+this program instead of the one in Settings` checkbox.
+5. Click `OK`.
+6. Click `Apply` to save the changes.
+7. Close the Properties window.
+8. Start WRIMS using the `WRIMS3_GUI_Start.bat` script.
+9. Once the GUI has loaded, navigate to the `Window > Preferences` menu.
+10. Within this menu, navigate to the `General > Appearance` sub-header.
+11. De-select the `Use monitor-specific UI scaling` checkbox.
+12. Click `Apply` in the bottom-right corner of the window.
+13. Restart WRIMS if prompted.
+10. Verify that the toolbar date dropdown is fully visible.
