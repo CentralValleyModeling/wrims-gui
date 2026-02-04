@@ -51,10 +51,6 @@ public class DebugSet extends WorkbenchWindowControlContribution{
 
 		CoolBar coolbar=new CoolBar(parent, SWT.HORIZONTAL | SWT.FILL);
 
-		GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
-		gd.heightHint = 20;
-		coolbar.setLayoutData(gd);
-
 		createTimeSlider(coolbar);
 		CoolItem itemTime=new CoolItem(coolbar, SWT.NONE);
 		itemTime.setControl(timeSlider);
