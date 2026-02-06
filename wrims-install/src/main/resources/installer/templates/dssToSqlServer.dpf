@@ -1,0 +1,5 @@
+hxie
+BDOisNo1
+jdbc:sqlserver://dwrmsdb0113.ad.water.ca.gov:1433;databaseName=calsim
+TestDssToSQL
+z:\dssFilePaths.txt
