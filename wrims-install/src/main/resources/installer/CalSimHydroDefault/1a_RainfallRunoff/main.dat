@@ -1,0 +1,146 @@
+C*******************************************************************************
+C			CalSimHydro Rainfall-Runoff Model Main Input File
+C
+C*****************************************************************************
+C                            File Description
+C
+C  *Listed below are all input  file names used when running CalSimHydro
+C   
+C  *Each file name has a maximum length of 100 characters
+C  
+C
+C---------------------------------------------------------------------------------------------
+C   Scenario Name (to be used in Part F of pathnames in SV File
+C---------------------------------------------------------------------------------------------
+  L2015A					 /SCENARIO
+C---------------------------------------------------------------------------------------------
+C    FILE NAME                                      DESCRIPTION
+C---------------------------------------------------------------------------------------------
+ .\1a_RainfallRunoff\LUBySoilTypePCN.dat			         / 1: Input data file containing Land Use by Soil Type
+ .\1a_RainfallRunoff\Parameter.dat             	                 / 2: Input data file containing simulation parameters   
+ .\1a_RainfallRunoff\Precip.dat					 / 3: Input DSS data file containing Precipitation Data
+  MonthlyPrecip.dss				 / 4: Monthly precipitation DSS output File
+  EffPrecip.dss					 / 5: Effective Monthly Precipitation Output File
+  UnitInfOutput.dss	 	                 / 6: Output DSS file  
+C*******************************************************************************
+C                         Model Simulation Period and Output
+C
+C   The following lists the simulation beginning time, ending time and time step length.  
+C
+C   BDT    ; Beginning simulation date and time. Use MM/DD/YYYY_hh:mm format. 
+C             * Midnight is 24:00
+C   EDT   ; Ending simulation date and time.  Use MM/DD/YYYY_hh:mm format. 
+C            * Midnight is 24:00
+C   CACHE   ; Cache size in terms of number of values stored for time series data output
+C
+C-------------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-------------------------------------------------------------------------------
+     09/30/1920_24:00           / BDT 
+     09/30/2015_24:00           / EDT
+     1DAY                       / UNITT
+     5000000                    / CACHE
+     1MON						/ UNITTOUTPUT
+C*******************************************************************************
+C******************************************************************************
+C******************************************************************************
+C                         Physical System
+C
+C    NREGN  ; Number of sub-regions modeled in the system
+C
+C-----------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-----------------------------------------------------------------------------
+         40                      / NREGN
+         22                      / NLUCodes
+C******************************************************************************
+C*******************************************************************************
+C                       Land Use Codes (Agricultural plus NV and UR)
+C   
+C   The following lists the codes for each agricultural crop, NV, and UR.  These codes are 
+C   used during the print-out of the simulation results.
+C
+C    *Note* DO NOT enter codes for urban and native vegetation
+C    
+C--------------------------------------------------------------------------------
+C
+C   CCODE; Crop code (max. 5 characters)
+C
+C--------------------------------------------------------------------------------
+C   VALUE                        DESCRIPTION
+C--------------------------------------------------------------------------------
+     AL		/ CCODE1	ALFALFA
+     AP		/ CCODE2	ALMONDS AND PISTACHIO
+     CO		/ CCODE3	COTTON
+     CR		/ CCODE4	CORN
+     CU		/ CCODE5	CUCURBITS
+     DB		/ CCODE6	DRY BEANS
+     FI		/ CCODE7	OTHER FIELD
+     GR		/ CCODE8	GRAIN
+     NV		/ CCODE9	Native Vegetation
+     OG		/ CCODE10	ONIONS AND GARLIC
+     OR		/ CCODE11	OTHER DECID.
+     PA		/ CCODE12	PASTURE
+     PO		/ CCODE13	POTATOES
+     RI		/ CCODE14	RICE
+     SB		/ CCODE15	SUGAR BEETS
+     SF		/ CCODE16	SAFFLOWER
+     SO		/ CCODE17	SUBTROPICAL
+     TH		/ CCODE18	FRESH TOMATOES
+     TM		/ CCODE19	PROCESS TOMATOES
+     TR		/ CCODE20	OTHER TRUCK
+     UR		/ CCODE21   URBAN
+     VI		/ CCODE22	VINEYARDS                              
+C*******************************************************************************
+C                         Water Budget Areas (WBA) Names
+C   
+C   The following lists the names for each sub-region.  These names are 
+C   used during the print-out of the simulation results.
+C    
+C--------------------------------------------------------------------------------
+C
+C   WBANAME; WBA name (max. 15 characters)
+C	  Should really create the WBA name from the DU names by stripping all characters after _
+C--------------------------------------------------------------------------------
+C   VALUE                        DESCRIPTION
+C--------------------------------------------------------------------------------
+	02			 /WBANAME1	
+	03			 /WBANAME2	
+	04			 /WBANAME3	
+	05			 /WBANAME4	
+	06			 /WBANAME5	
+	07N			 /WBANAME6	
+	07S			 /WBANAME7	
+	08N			 /WBANAME8	
+	08S			 /WBANAME9	
+	09			 /WBANAME10	
+	10			 /WBANAME11	
+	11			 /WBANAME12	
+	12			 /WBANAME13	
+	13			 /WBANAME14	
+	14			 /WBANAME15	
+	15N			 /WBANAME16	
+	15S			 /WBANAME17	
+	16			 /WBANAME18	
+	17N			 /WBANAME19	
+	17S			 /WBANAME20	
+	18			 /WBANAME21	
+	19			 /WBANAME22	
+	20			 /WBANAME23	
+	21			 /WBANAME24	
+	22			 /WBANAME25	
+	23			 /WBANAME26	
+	24			 /WBANAME27	
+	25			 /WBANAME28	
+	26N			 /WBANAME29	
+	26S			 /WBANAME30	
+	60N			 /WBANAME31	
+	60S			 /WBANAME32	
+	61			 /WBANAME33	
+	62			 /WBANAME34	
+	63			 /WBANAME35	
+	64			 /WBANAME36	
+	71			 /WBANAME37	
+	72			 /WBANAME38	
+	73			 /WBANAME39	
+	90			 /WBANAME40	

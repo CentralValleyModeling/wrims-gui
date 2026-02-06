@@ -1,0 +1,18 @@
+C*******************************************************************************						
+C						
+C	This File contains the pathnames of TS DP data to be extracted from IDC output					
+C						
+C*******************************************************************************						
+C						
+C	IDC Output File Name					
+C						
+C*******************************************************************************						
+C						
+	0	/NDP number of deep-percolation pathnames				
+	NotusedIDCOutputEE.dss	/DSS file containing IDC output				
+C						
+C*******************************************************************************						
+C						
+C	Deep Percolation from IDC	AF/Month				
+C						
+C*******************************************************************************						

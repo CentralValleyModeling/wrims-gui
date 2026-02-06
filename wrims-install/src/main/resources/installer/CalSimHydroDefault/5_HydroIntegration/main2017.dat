@@ -1,0 +1,1063 @@
+C*******************************************************************************
+C			CalSimHydro Model Main Input File
+C
+C*****************************************************************************
+C                            File Description
+C
+C  *Listed below are all input  file names used when running CalSimHydro
+C   
+C  *Each file name has a maximum length of 100 characters
+C  
+C
+C---------------------------------------------------------------------------------------------
+C   Scenario Name (to be used in Part F of pathnames in SV File
+C---------------------------------------------------------------------------------------------
+  L2015A				 /SCENARIO
+C---------------------------------------------------------------------------------------------
+C    FILE NAME                                      DESCRIPTION
+C---------------------------------------------------------------------------------------------
+.\5_HydroIntegration\IDC_SR.dat			         / 1: Input data file containing pathnames for SR from IDC
+.\5_HydroIntegration\IDC_DP.dat                 	 / 2: Input data file containing pathnames for DP from IDC     
+.\5_HydroIntegration\IDC_AW.dat			         / 3: Input data file containing pathnames for AW from IDC
+.\5_HydroIntegration\IDC_RF.dat                 	 / 4: Input data file containing pathnames for RF from IDC   
+.\5_HydroIntegration\IDC_DPEE.dat                 	 / 5: Input data file containing pathnames for RF from IDC   
+.\5_HydroIntegration\Rice_SR.dat                 	 / 6: Input data file containing pathnames for SR from Rice     
+.\5_HydroIntegration\Rice_DP.dat                 	 / 7: Input data file containing pathnames for DP from Rice     
+.\5_HydroIntegration\Rice_AW.dat                 	 / 8: Input data file containing pathnames for AW from Rice     
+.\5_HydroIntegration\Rice_RF.dat                 	 / 9: Input data file containing pathnames for RF from Rice
+.\5_HydroIntegration\Rice_FT.dat                    /10: Input data file containing pathnames for RF from Rice         
+.\5_HydroIntegration\Refuge_SR.dat                  /11: Input data file containing pathnames for SR from Refuge    
+.\5_HydroIntegration\Refuge_DP.dat                  /12: Input data file containing pathnames for DP from Refuge    
+.\5_HydroIntegration\Refuge_AW.dat                  /13: Input data file containing pathnames for AW from Refuge    
+.\5_HydroIntegration\Refuge_RF.dat                  /14: Input data file containing pathnames for RF from Refuge
+.\5_HydroIntegration\UrbanDemand.dat                /15: Input data file containing pathnames for UD
+  CS3L2015V0Hydro_SV.dss		                 /16: CalSim SV File (output from CalSim Hydro)
+C*******************************************************************************
+C                         Model Simulation Period
+C
+C   The following lists the simulation beginning time, ending time and time step length.  
+C
+C   BDT    ; Beginning simulation date and time. Use MM/DD/YYYY_hh:mm format. 
+C             * Midnight is 24:00
+C   EDT   ; Ending simulation date and time.  Use MM/DD/YYYY_hh:mm format. 
+C            * Midnight is 24:00
+C
+C-------------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-------------------------------------------------------------------------------
+     10/31/1920_24:00           / BDT 
+     09/30/2015_24:00           / EDT
+     1MON                       / UNITT
+C******************************************************************************
+C                         Physical System
+C
+C    NREGN  ; Number of sub-regions modeled in the system
+C    
+C-----------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-----------------------------------------------------------------------------
+         230                      / NREGN
+C         
+C=====															
+C Other Crop Reuse Factors															
+C=====	1	2	3	4	5	6	7	8	9	10	11	12			
+C	Oct	Nov	Dec	Jan	Feb	Mar	Apr	May	Jun	Jul	Aug	Sep			
+C=====															
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_NA	   /RNAME1
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_PA	   /RNAME2
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_SA	   /RNAME3
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_NU	   /RNAME4
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_PU	   /RNAME5
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_SU	   /RNAME6
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_NA	   /RNAME7
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PA	   /RNAME8
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_SA	   /RNAME9
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_NU	   /RNAME10
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU1	   /RNAME11
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU2	   /RNAME12
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU3	   /RNAME13
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_SU	   /RNAME14
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NA	   /RNAME15
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_PA1	   /RNAME16
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_PA2	   /RNAME17
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NU1	   /RNAME18
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NU2	   /RNAME19
+	0	0	0	0	0	0	0	0	0	0	0	0		/05_NA	   /RNAME20
+	0	0	0	0	0	0	0	0	0	0	0	0		/05_NU	   /RNAME21
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_NA	   /RNAME22
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_PA	   /RNAME23
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_NU	   /RNAME24
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_NA	   /RNAME25
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_PA	   /RNAME26
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_NU	   /RNAME27
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_NA	   /RNAME28
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_PA	   /RNAME29
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_NU	   /RNAME30
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_NA	   /RNAME31
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PA	   /RNAME32
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_SA1	   /RNAME33
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_SA2	   /RNAME34
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PR1	   /RNAME35
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PR2	   /RNAME36
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_NU	   /RNAME37
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NA1	   /RNAME38
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NA2	   /RNAME39
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_PA	   /RNAME40
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA1	   /RNAME41
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA2	   /RNAME42
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA3	   /RNAME43
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_PR	   /RNAME44
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NU	   /RNAME45
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_NA	   /RNAME46
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_SA1	   /RNAME47
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_SA2	   /RNAME48
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_PR	   /RNAME49
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_NU	   /RNAME50
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NA	   /RNAME51
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NU1	   /RNAME52
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NU2	   /RNAME53
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NA	   /RNAME54
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA1	   /RNAME55
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA2	   /RNAME56
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA3	   /RNAME57
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA4	   /RNAME58
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_PR	   /RNAME59
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NU1	   /RNAME60
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NU2	   /RNAME61
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NA	   /RNAME62
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_SA	   /RNAME63
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NU1	   /RNAME64
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NU2	   /RNAME65
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NA	   /RNAME66
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NU1	   /RNAME67
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NU2	   /RNAME68
+	0	0	0	0	0	0	0	0	0	0	0	0		/14_NA	   /RNAME69
+	0	0	0	0	0	0	0	0	0	0	0	0		/14_NU	   /RNAME70
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NA1	   /RNAME72
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NA2	   /RNAME73
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_SA	   /RNAME74
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NU	   /RNAME75
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NA1	   /RNAME76
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NA2	   /RNAME77
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_SA	   /RNAME78
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NU	   /RNAME79
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NA1	   /RNAME80
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NA2	   /RNAME81
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_PA	   /RNAME82
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_SA	   /RNAME83
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NU	   /RNAME84
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_PU	   /RNAME85
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NA	   /RNAME86
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NR	   /RNAME87
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_PR	   /RNAME88
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NU	   /RNAME89
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_NA	   /RNAME90
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_SA	   /RNAME91
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_PR	   /RNAME92
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_NU	   /RNAME93
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_NA	   /RNAME94
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_SA	   /RNAME95
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_NU	   /RNAME96
+	0	0	0	0	0	0	0	0	0	0	0	0		/19_SA	   /RNAME97
+	0	0	0	0	0	0	0	0	0	0	0	0		/19_NU	   /RNAME98
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NA1	   /RNAME99
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NA2	   /RNAME100
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_PA	   /RNAME101
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NU1	   /RNAME102
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NU2	   /RNAME102
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_NA	   /RNAME103
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_PA	   /RNAME104
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_SA	   /RNAME105
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_PU	   /RNAME106
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_NU	   /RNAME107
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_NA	   /RNAME108
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_SA1	   /RNAME109
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_SA2	   /RNAME110
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_NU	   /RNAME111
+	0	0	0	0	0	0	0	0	0	0	0	0		/23_NA	   /RNAME112
+	0	0	0	0	0	0	0	0	0	0	0	0		/23_NU	   /RNAME113
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA1	   /RNAME114
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA2	   /RNAME115
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA3	   /RNAME116
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU1	   /RNAME117
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU2	   /RNAME118
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU3	   /RNAME119
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU4	   /RNAME120
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_NA	   /RNAME121
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PA1	   /RNAME122
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PA2	   /RNAME123
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_NU	   /RNAME124
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PU	   /RNAME125
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NA	   /RNAME126
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU1	   /RNAME127
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU2	   /RNAME128
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU3	   /RNAME129
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU4	   /RNAME130
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU5	   /RNAME131
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU1	   /RNAME132
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU2	   /RNAME133
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU3	   /RNAME134
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NA	   /RNAME135
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU1	   /RNAME136
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU2	   /RNAME137
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU3	   /RNAME138
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU4	   /RNAME139
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU1	   /RNAME140
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU2	   /RNAME141
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU3	   /RNAME142
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU4	   /RNAME143
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU5	   /RNAME144
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU6	   /RNAME145
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA1	   /RNAME146
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA2	   /RNAME147
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA3	   /RNAME148
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA4	   /RNAME149
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA5	   /RNAME150
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NU1	   /RNAME151
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NU2	   /RNAME152
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_PU  	   /RNAME153
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NA1	   /RNAME154
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NA2	   /RNAME155
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_PA1	   /RNAME156
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_PA2	   /RNAME157
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NU1	   /RNAME158
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NU2	   /RNAME159
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA1 	   /RNAME160
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA2	   /RNAME161
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA3	   /RNAME162
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA4	   /RNAME163
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA5	   /RNAME164
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA6	   /RNAME165
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_PA1	   /RNAME166
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_PA2	   /RNAME167
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU3	   /RNAME168
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU2	   /RNAME169
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU1	   /RNAME170
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA1	   /RNAME171
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA2	   /RNAME172
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA3	   /RNAME173
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA4	   /RNAME174
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA5	   /RNAME175
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA6	   /RNAME176
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NU 	   /RNAME177
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA1	   /RNAME178
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA2	   /RNAME179
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA3	   /RNAME180
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA4	   /RNAME181
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR1	   /RNAME182
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR2	   /RNAME183
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR3	   /RNAME184
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NU	   /RNAME185
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NA1	   /RNAME186
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NA2	   /RNAME187
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA1	   /RNAME188
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA2	   /RNAME189
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA3	   /RNAME190
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_XA 	   /RNAME191
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NU	   /RNAME192
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA1	   /RNAME193
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA2	   /RNAME194
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA3	   /RNAME195
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA1	   /RNAME196
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA2	   /RNAME197
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA3	   /RNAME198
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA4	   /RNAME199
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA5	   /RNAME200
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA6	   /RNAME201
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA7	   /RNAME202
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA8	   /RNAME203
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NU	   /RNAME204
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PU2	   /RNAME205
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PU1	   /RNAME206
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NA1	   /RNAME207
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NA2	   /RNAME208
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PA	   /RNAME209
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA1	   /RNAME210
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA2	   /RNAME211
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA3	   /RNAME212
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR1	   /RNAME213
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR2	   /RNAME214
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR3	   /RNAME215
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR4	   /RNAME216
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR5	   /RNAME217
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR6	   /RNAME218
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PU	   /RNAME219
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NU	   /RNAME220
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_NA	   /RNAME221
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA1	   /RNAME222
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA2	   /RNAME223
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA3	   /RNAME224
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_XA	   /RNAME225
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_NU 	   /RNAME226
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_NA	   /RNAME227
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PA1	   /RNAME228
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PA2	   /RNAME229
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PU	   /RNAME230
+C=====
+C Rice Reuse Factors
+C=====	1	2	3	4	5	6	7	8	9	10	11	12			
+C	Oct	Nov	Dec	Jan	Feb	Mar	Apr	May	Jun	Jul	Aug	Sep			
+C=====															
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_NA	   /RNAME1
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_PA	   /RNAME2
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_SA	   /RNAME3
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_NU	   /RNAME4
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_PU	   /RNAME5
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_SU	   /RNAME6
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_NA	   /RNAME7
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PA	   /RNAME8
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_SA	   /RNAME9
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_NU	   /RNAME10
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU1	   /RNAME11
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU2	   /RNAME12
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU3	   /RNAME13
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_SU	   /RNAME14
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NA	   /RNAME15
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_PA1	   /RNAME16
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_PA2	   /RNAME17
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NU1	   /RNAME18
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NU2	   /RNAME19
+	0	0	0	0	0	0	0	0	0	0	0	0		/05_NA	   /RNAME20
+	0	0	0	0	0	0	0	0	0	0	0	0		/05_NU	   /RNAME21
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_NA	   /RNAME22
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_PA	   /RNAME23
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_NU	   /RNAME24
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_NA	   /RNAME25
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_PA	   /RNAME26
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_NU	   /RNAME27
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_NA	   /RNAME28
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_PA	   /RNAME29
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_NU	   /RNAME30
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_NA	   /RNAME31
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PA	   /RNAME32
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_SA1	   /RNAME33
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_SA2	   /RNAME34
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PR1	   /RNAME35
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PR2	   /RNAME36
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_NU	   /RNAME37
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NA1	   /RNAME38
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NA2	   /RNAME39
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_PA	   /RNAME40
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA1	   /RNAME41
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA2	   /RNAME42
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA3	   /RNAME43
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_PR	   /RNAME44
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NU	   /RNAME45
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_NA	   /RNAME46
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_SA1	   /RNAME47
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_SA2	   /RNAME48
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_PR	   /RNAME49
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_NU	   /RNAME50
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NA	   /RNAME51
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NU1	   /RNAME52
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NU2	   /RNAME53
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NA	   /RNAME54
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA1	   /RNAME55
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA2	   /RNAME56
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA3	   /RNAME57
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA4	   /RNAME58
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_PR	   /RNAME59
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NU1	   /RNAME60
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NU2	   /RNAME61
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NA	   /RNAME62
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_SA	   /RNAME63
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NU1	   /RNAME64
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NU2	   /RNAME65
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NA	   /RNAME66
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NU1	   /RNAME67
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NU2	   /RNAME68
+	0	0	0	0	0	0	0	0	0	0	0	0		/14_NA	   /RNAME69
+	0	0	0	0	0	0	0	0	0	0	0	0		/14_NU	   /RNAME70
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NA1	   /RNAME72
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NA2	   /RNAME73
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_SA	   /RNAME74
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NU	   /RNAME75
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NA1	   /RNAME76
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NA2	   /RNAME77
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_SA	   /RNAME78
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NU	   /RNAME79
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NA1	   /RNAME80
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NA2	   /RNAME81
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_PA	   /RNAME82
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_SA	   /RNAME83
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NU	   /RNAME84
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_PU	   /RNAME85
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NA	   /RNAME86
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NR	   /RNAME87
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_PR	   /RNAME88
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NU	   /RNAME89
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_NA	   /RNAME90
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_SA	   /RNAME91
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_PR	   /RNAME92
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_NU	   /RNAME93
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_NA	   /RNAME94
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_SA	   /RNAME95
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_NU	   /RNAME96
+	0	0	0	0	0	0	0	0	0	0	0	0		/19_SA	   /RNAME97
+	0	0	0	0	0	0	0	0	0	0	0	0		/19_NU	   /RNAME98
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NA1	   /RNAME99
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NA2	   /RNAME100
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_PA	   /RNAME101
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NU1	   /RNAME102
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NU2	   /RNAME102
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_NA	   /RNAME103
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_PA	   /RNAME104
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_SA	   /RNAME105
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_PU	   /RNAME106
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_NU	   /RNAME107
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_NA	   /RNAME108
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_SA1	   /RNAME109
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_SA2	   /RNAME110
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_NU	   /RNAME111
+	0	0	0	0	0	0	0	0	0	0	0	0		/23_NA	   /RNAME112
+	0	0	0	0	0	0	0	0	0	0	0	0		/23_NU	   /RNAME113
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA1	   /RNAME114
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA2	   /RNAME115
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA3	   /RNAME116
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU1	   /RNAME117
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU2	   /RNAME118
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU3	   /RNAME119
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU4	   /RNAME120
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_NA	   /RNAME121
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PA1	   /RNAME122
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PA2	   /RNAME123
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_NU	   /RNAME124
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PU	   /RNAME125
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NA	   /RNAME126
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU1	   /RNAME127
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU2	   /RNAME128
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU3	   /RNAME129
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU4	   /RNAME130
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU5	   /RNAME131
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU1	   /RNAME132
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU2	   /RNAME133
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU3	   /RNAME134
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NA	   /RNAME135
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU1	   /RNAME136
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU2	   /RNAME137
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU3	   /RNAME138
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU4	   /RNAME139
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU1	   /RNAME140
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU2	   /RNAME141
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU3	   /RNAME142
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU4	   /RNAME143
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU5	   /RNAME144
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU6	   /RNAME145
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA1	   /RNAME146
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA2	   /RNAME147
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA3	   /RNAME148
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA4	   /RNAME149
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA5	   /RNAME150
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NU1	   /RNAME151
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NU2	   /RNAME152
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_PU  	   /RNAME153
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NA1	   /RNAME154
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NA2	   /RNAME155
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_PA1	   /RNAME156
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_PA2	   /RNAME157
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NU1	   /RNAME158
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NU2	   /RNAME159
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA1 	   /RNAME160
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA2	   /RNAME161
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA3	   /RNAME162
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA4	   /RNAME163
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA5	   /RNAME164
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA6	   /RNAME165
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_PA1	   /RNAME166
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_PA2	   /RNAME167
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU3	   /RNAME168
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU2	   /RNAME169
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU1	   /RNAME170
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA1	   /RNAME171
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA2	   /RNAME172
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA3	   /RNAME173
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA4	   /RNAME174
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA5	   /RNAME175
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA6	   /RNAME176
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NU 	   /RNAME177
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA1	   /RNAME178
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA2	   /RNAME179
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA3	   /RNAME180
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA4	   /RNAME181
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR1	   /RNAME182
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR2	   /RNAME183
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR3	   /RNAME184
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NU	   /RNAME185
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NA1	   /RNAME186
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NA2	   /RNAME187
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA1	   /RNAME188
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA2	   /RNAME189
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA3	   /RNAME190
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_XA 	   /RNAME191
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NU	   /RNAME192
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA1	   /RNAME193
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA2	   /RNAME194
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA3	   /RNAME195
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA1	   /RNAME196
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA2	   /RNAME197
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA3	   /RNAME198
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA4	   /RNAME199
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA5	   /RNAME200
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA6	   /RNAME201
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA7	   /RNAME202
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA8	   /RNAME203
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NU	   /RNAME204
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PU2	   /RNAME205
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PU1	   /RNAME206
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NA1	   /RNAME207
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NA2	   /RNAME208
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PA	   /RNAME209
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA1	   /RNAME210
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA2	   /RNAME211
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA3	   /RNAME212
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR1	   /RNAME213
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR2	   /RNAME214
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR3	   /RNAME215
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR4	   /RNAME216
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR5	   /RNAME217
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR6	   /RNAME218
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PU	   /RNAME219
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NU	   /RNAME220
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_NA	   /RNAME221
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA1	   /RNAME222
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA2	   /RNAME223
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA3	   /RNAME224
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_XA	   /RNAME225
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_NU 	   /RNAME226
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_NA	   /RNAME227
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PA1	   /RNAME228
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PA2	   /RNAME229
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PU	   /RNAME230
+C=====															
+C Refuge Wetland Reuse Factors															
+C=====	1	2	3	4	5	6	7	8	9	10	11	12			
+C	Oct	Nov	Dec	Jan	Feb	Mar	Apr	May	Jun	Jul	Aug	Sep			
+C=====															
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_NA	   /RNAME1
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_PA	   /RNAME2
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_SA	   /RNAME3
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_NU	   /RNAME4
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_PU	   /RNAME5
+	0	0	0	0	0	0	0	0	0	0	0	0		/02_SU	   /RNAME6
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_NA	   /RNAME7
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PA	   /RNAME8
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_SA	   /RNAME9
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_NU	   /RNAME10
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU1	   /RNAME11
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU2	   /RNAME12
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_PU3	   /RNAME13
+	0	0	0	0	0	0	0	0	0	0	0	0		/03_SU	   /RNAME14
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NA	   /RNAME15
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_PA1	   /RNAME16
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_PA2	   /RNAME17
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NU1	   /RNAME18
+	0	0	0	0	0	0	0	0	0	0	0	0		/04_NU2	   /RNAME19
+	0	0	0	0	0	0	0	0	0	0	0	0		/05_NA	   /RNAME20
+	0	0	0	0	0	0	0	0	0	0	0	0		/05_NU	   /RNAME21
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_NA	   /RNAME22
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_PA	   /RNAME23
+	0	0	0	0	0	0	0	0	0	0	0	0		/06_NU	   /RNAME24
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_NA	   /RNAME25
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_PA	   /RNAME26
+	0	0	0	0	0	0	0	0	0	0	0	0		/07N_NU	   /RNAME27
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_NA	   /RNAME28
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_PA	   /RNAME29
+	0	0	0	0	0	0	0	0	0	0	0	0		/07S_NU	   /RNAME30
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_NA	   /RNAME31
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PA	   /RNAME32
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_SA1	   /RNAME33
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_SA2	   /RNAME34
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PR1	   /RNAME35
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_PR2	   /RNAME36
+	0	0	0	0	0	0	0	0	0	0	0	0		/08N_NU	   /RNAME37
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NA1	   /RNAME38
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NA2	   /RNAME39
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_PA	   /RNAME40
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA1	   /RNAME41
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA2	   /RNAME42
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_SA3	   /RNAME43
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_PR	   /RNAME44
+	0	0	0	0	0	0	0	0	0	0	0	0		/08S_NU	   /RNAME45
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_NA	   /RNAME46
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_SA1	   /RNAME47
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_SA2	   /RNAME48
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_PR	   /RNAME49
+	0	0	0	0	0	0	0	0	0	0	0	0		/09_NU	   /RNAME50
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NA	   /RNAME51
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NU1	   /RNAME52
+	0	0	0	0	0	0	0	0	0	0	0	0		/10_NU2	   /RNAME53
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NA	   /RNAME54
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA1	   /RNAME55
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA2	   /RNAME56
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA3	   /RNAME57
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_SA4	   /RNAME58
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_PR	   /RNAME59
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NU1	   /RNAME60
+	0	0	0	0	0	0	0	0	0	0	0	0		/11_NU2	   /RNAME61
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NA	   /RNAME62
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_SA	   /RNAME63
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NU1	   /RNAME64
+	0	0	0	0	0	0	0	0	0	0	0	0		/12_NU2	   /RNAME65
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NA	   /RNAME66
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NU1	   /RNAME67
+	0	0	0	0	0	0	0	0	0	0	0	0		/13_NU2	   /RNAME68
+	0	0	0	0	0	0	0	0	0	0	0	0		/14_NA	   /RNAME69
+	0	0	0	0	0	0	0	0	0	0	0	0		/14_NU	   /RNAME70
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NA1	   /RNAME72
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NA2	   /RNAME73
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_SA	   /RNAME74
+	0	0	0	0	0	0	0	0	0	0	0	0		/15N_NU	   /RNAME75
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NA1	   /RNAME76
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NA2	   /RNAME77
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_SA	   /RNAME78
+	0	0	0	0	0	0	0	0	0	0	0	0		/15S_NU	   /RNAME79
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NA1	   /RNAME80
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NA2	   /RNAME81
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_PA	   /RNAME82
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_SA	   /RNAME83
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_NU	   /RNAME84
+	0	0	0	0	0	0	0	0	0	0	0	0		/16_PU	   /RNAME85
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NA	   /RNAME86
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NR	   /RNAME87
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_PR	   /RNAME88
+	0	0	0	0	0	0	0	0	0	0	0	0		/17N_NU	   /RNAME89
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_NA	   /RNAME90
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_SA	   /RNAME91
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_PR	   /RNAME92
+	0	0	0	0	0	0	0	0	0	0	0	0		/17S_NU	   /RNAME93
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_NA	   /RNAME94
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_SA	   /RNAME95
+	0	0	0	0	0	0	0	0	0	0	0	0		/18_NU	   /RNAME96
+	0	0	0	0	0	0	0	0	0	0	0	0		/19_SA	   /RNAME97
+	0	0	0	0	0	0	0	0	0	0	0	0		/19_NU	   /RNAME98
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NA1	   /RNAME99
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NA2	   /RNAME100
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_PA	   /RNAME101
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NU1	   /RNAME102
+	0	0	0	0	0	0	0	0	0	0	0	0		/20_NU2	   /RNAME102
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_NA	   /RNAME103
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_PA	   /RNAME104
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_SA	   /RNAME105
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_PU	   /RNAME106
+	0	0	0	0	0	0	0	0	0	0	0	0		/21_NU	   /RNAME107
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_NA	   /RNAME108
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_SA1	   /RNAME109
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_SA2	   /RNAME110
+	0	0	0	0	0	0	0	0	0	0	0	0		/22_NU	   /RNAME111
+	0	0	0	0	0	0	0	0	0	0	0	0		/23_NA	   /RNAME112
+	0	0	0	0	0	0	0	0	0	0	0	0		/23_NU	   /RNAME113
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA1	   /RNAME114
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA2	   /RNAME115
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NA3	   /RNAME116
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU1	   /RNAME117
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU2	   /RNAME118
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU3	   /RNAME119
+	0	0	0	0	0	0	0	0	0	0	0	0		/24_NU4	   /RNAME120
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_NA	   /RNAME121
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PA1	   /RNAME122
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PA2	   /RNAME123
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_NU	   /RNAME124
+	0	0	0	0	0	0	0	0	0	0	0	0		/25_PU	   /RNAME125
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NA	   /RNAME126
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU1	   /RNAME127
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU2	   /RNAME128
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU3	   /RNAME129
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU4	   /RNAME130
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_NU5	   /RNAME131
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU1	   /RNAME132
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU2	   /RNAME133
+	0	0	0	0	0	0	0	0	0	0	0	0		/26N_PU3	   /RNAME134
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NA	   /RNAME135
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU1	   /RNAME136
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU2	   /RNAME137
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU3	   /RNAME138
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_NU4	   /RNAME139
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU1	   /RNAME140
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU2	   /RNAME141
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU3	   /RNAME142
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU4	   /RNAME143
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU5	   /RNAME144
+	0	0	0	0	0	0	0	0	0	0	0	0		/26S_PU6	   /RNAME145
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA1	   /RNAME146
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA2	   /RNAME147
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA3	   /RNAME148
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA4	   /RNAME149
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NA5	   /RNAME150
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NU1	   /RNAME151
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_NU2	   /RNAME152
+	0	0	0	0	0	0	0	0	0	0	0	0		/60N_PU  	   /RNAME153
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NA1	   /RNAME154
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NA2	   /RNAME155
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_PA1	   /RNAME156
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_PA2	   /RNAME157
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NU1	   /RNAME158
+	0	0	0	0	0	0	0	0	0	0	0	0		/60S_NU2	   /RNAME159
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA1 	   /RNAME160
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA2	   /RNAME161
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA3	   /RNAME162
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA4	   /RNAME163
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA5	   /RNAME164
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NA6	   /RNAME165
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_PA1	   /RNAME166
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_PA2	   /RNAME167
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU3	   /RNAME168
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU2	   /RNAME169
+	0	0	0	0	0	0	0	0	0	0	0	0		/61_NU1	   /RNAME170
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA1	   /RNAME171
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA2	   /RNAME172
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA3	   /RNAME173
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA4	   /RNAME174
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA5	   /RNAME175
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NA6	   /RNAME176
+	0	0	0	0	0	0	0	0	0	0	0	0		/62_NU 	   /RNAME177
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA1	   /RNAME178
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA2	   /RNAME179
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA3	   /RNAME180
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NA4	   /RNAME181
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR1	   /RNAME182
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR2	   /RNAME183
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_PR3	   /RNAME184
+	0	0	0	0	0	0	0	0	0	0	0	0		/63_NU	   /RNAME185
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NA1	   /RNAME186
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NA2	   /RNAME187
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA1	   /RNAME188
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA2	   /RNAME189
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_PA3	   /RNAME190
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_XA 	   /RNAME191
+	0	0	0	0	0	0	0	0	0	0	0	0		/64_NU	   /RNAME192
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA1	   /RNAME193
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA2	   /RNAME194
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NA3	   /RNAME195
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA1	   /RNAME196
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA2	   /RNAME197
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA3	   /RNAME198
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA4	   /RNAME199
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA5	   /RNAME200
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA6	   /RNAME201
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA7	   /RNAME202
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PA8	   /RNAME203
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_NU	   /RNAME204
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PU2	   /RNAME205
+	0	0	0	0	0	0	0	0	0	0	0	0		/71_PU1	   /RNAME206
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NA1	   /RNAME207
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NA2	   /RNAME208
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PA	   /RNAME209
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA1	   /RNAME210
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA2	   /RNAME211
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_XA3	   /RNAME212
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR1	   /RNAME213
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR2	   /RNAME214
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR3	   /RNAME215
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR4	   /RNAME216
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR5	   /RNAME217
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PR6	   /RNAME218
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_PU	   /RNAME219
+	0	0	0	0	0	0	0	0	0	0	0	0		/72_NU	   /RNAME220
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_NA	   /RNAME221
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA1	   /RNAME222
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA2	   /RNAME223
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_PA3	   /RNAME224
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_XA	   /RNAME225
+	0	0	0	0	0	0	0	0	0	0	0	0		/73_NU 	   /RNAME226
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_NA	   /RNAME227
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PA1	   /RNAME228
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PA2	   /RNAME229
+	0	0	0	0	0	0	0	0	0	0	0	0		/90_PU	   /RNAME230
+C*******************************************************************************
+C                         Demand Unit (DU) Names
+C   The following lists 1) the ratio of the outside GW Domain acreage
+C                                and the total acreage of a Demand Unit
+C                       2) the DU names
+C--------------------------------------------------------------------------------
+C
+C   RNAME; Sub-region name (max. 15 characters)
+C	
+C--------------------------------------------------------------------------------
+C       NAME               DESCRIPTION
+C--------------------------------------------------------------------------------
+C     OARatioDU          DU_NAME
+C--------------------------------------------------------------------------------
+	0.1954		/02_NA	   /RNAME1
+	0.0814		/02_PA	   /RNAME2
+	0.0000		/02_SA	   /RNAME3
+	0.0000		/02_NU	   /RNAME4
+	0.9856		/02_PU	   /RNAME5
+	0.2223		/02_SU	   /RNAME6
+	0.5762		/03_NA	   /RNAME7
+	0.2591		/03_PA	   /RNAME8
+	0.0000		/03_SA	   /RNAME9
+	0.0000		/03_NU	   /RNAME10
+	0.9988		/03_PU1	   /RNAME11
+	0.0000		/03_PU2	   /RNAME12
+	0.8713		/03_PU3	   /RNAME13
+	0.1110		/03_SU	   /RNAME14
+	0.1347		/04_NA	   /RNAME15
+	0.0000		/04_PA1	   /RNAME16
+	0.0000		/04_PA2	   /RNAME17
+	0.0000		/04_NU1	   /RNAME18
+	0.0000		/04_NU2	   /RNAME19
+	0.1408		/05_NA	   /RNAME20
+	0.0000		/05_NU	   /RNAME21
+	0.0353		/06_NA	   /RNAME22
+	0.0000		/06_PA	   /RNAME23
+	0.0000		/06_NU	   /RNAME24
+	0.4287		/07N_NA	   /RNAME25
+	0.0118		/07N_PA	   /RNAME26
+	0.0000		/07N_NU	   /RNAME27
+	0.4149		/07S_NA	   /RNAME28
+	0.1876		/07S_PA	   /RNAME29
+	0.0000		/07S_NU	   /RNAME30
+	0.0000		/08N_NA	   /RNAME31
+	0.0000		/08N_PA	   /RNAME32
+	0.0000		/08N_SA1	   /RNAME33
+	0.0000		/08N_SA2	   /RNAME34
+	0.0000		/08N_PR1	   /RNAME35
+	0.0000		/08N_PR2	   /RNAME36
+	0.0000		/08N_NU	   /RNAME37
+	0.0000		/08S_NA1	   /RNAME38
+	0.0000		/08S_NA2	   /RNAME39
+	0.0000		/08S_PA	   /RNAME40
+	0.0000		/08S_SA1	   /RNAME41
+	0.0050		/08S_SA2	   /RNAME42
+	0.0000		/08S_SA3	   /RNAME43
+	0.0000		/08S_PR	   /RNAME44
+	0.0000		/08S_NU	   /RNAME45
+	0.0000		/09_NA	   /RNAME46
+	0.0000		/09_SA1	   /RNAME47
+	0.0000		/09_SA2	   /RNAME48
+	0.0000		/09_PR	   /RNAME49
+	0.0000		/09_NU	   /RNAME50
+	0.3686		/10_NA	   /RNAME51
+	0.1505		/10_NU1	   /RNAME52
+	0.0000		/10_NU2	   /RNAME53
+	0.3514		/11_NA	   /RNAME54
+	0.0000		/11_SA1	   /RNAME55
+	0.0000		/11_SA2	   /RNAME56
+	0.0097		/11_SA3	   /RNAME57
+	0.0231		/11_SA4	   /RNAME58
+	0.0000		/11_PR	   /RNAME59
+	0.4344		/11_NU1	   /RNAME60
+	0.0000		/11_NU2	   /RNAME61
+	0.0478		/12_NA	   /RNAME62
+	0.0000		/12_SA	   /RNAME63
+	0.3022		/12_NU1	   /RNAME64
+	0.0000		/12_NU2	   /RNAME65
+	0.8820		/13_NA	   /RNAME66
+	0.8851		/13_NU1	   /RNAME67
+	1.0000		/13_NU2	   /RNAME68
+	0.9004		/14_NA	   /RNAME69
+	1.0000		/14_NU	   /RNAME70
+	0.0694		/15N_NA1	   /RNAME72
+	0.0000		/15N_NA2	   /RNAME73
+	0.0000		/15N_SA	   /RNAME74
+	0.0000		/15N_NU	   /RNAME75
+	0.2166		/15S_NA1	   /RNAME76
+	0.0000		/15S_NA2	   /RNAME77
+	0.0000		/15S_SA	   /RNAME78
+	0.0000		/15S_NU	   /RNAME79
+	0.0000		/16_NA1	   /RNAME80
+	0.0000		/16_NA2	   /RNAME81
+	0.0000		/16_PA	   /RNAME82
+	0.0000		/16_SA	   /RNAME83
+	0.0000		/16_NU	   /RNAME84
+	0.0000		/16_PU	   /RNAME85
+	0.5061		/17N_NA	   /RNAME86
+	0.0000		/17N_NR	   /RNAME87
+	0.0000		/17N_PR	   /RNAME88
+	0.0000		/17N_NU	   /RNAME89
+	0.4303		/17S_NA	   /RNAME90
+	0.0000		/17S_SA	   /RNAME91
+	0.0000		/17S_PR	   /RNAME92
+	0.0000		/17S_NU	   /RNAME93
+	0.0000		/18_NA	   /RNAME94
+	0.0000		/18_SA	   /RNAME95
+	0.0000		/18_NU	   /RNAME96
+	0.0000		/19_SA	   /RNAME97
+	0.0000		/19_NU	   /RNAME98
+	0.1340		/20_NA1	   /RNAME99
+	0.7949		/20_NA2	   /RNAME100
+	0.0000		/20_PA	   /RNAME101
+	0.0000		/20_NU1	   /RNAME102
+	0.0000		/20_NU2	   /RNAME102
+	0.0000		/21_NA	   /RNAME103
+	0.0000		/21_PA	   /RNAME104
+	0.0000		/21_SA	   /RNAME105
+	0.0000		/21_PU	   /RNAME106
+	0.0000		/21_NU	   /RNAME107
+	0.0000		/22_NA	   /RNAME108
+	0.0000		/22_SA1	   /RNAME109
+	0.0000		/22_SA2	   /RNAME110
+	0.0000		/22_NU	   /RNAME111
+	0.0044		/23_NA	   /RNAME112
+	0.0000		/23_NU	   /RNAME113
+	0.7925		/24_NA1	   /RNAME114
+	0.0989		/24_NA2	   /RNAME115
+	0.8720		/24_NA3	   /RNAME116
+	0.9937		/24_NU1	   /RNAME117
+	0.3962		/24_NU2	   /RNAME118
+	0.9937		/24_NU3	   /RNAME119
+	0.9937		/24_NU4	   /RNAME120
+	0.1711		/25_NA	   /RNAME121
+	0.0629		/25_PA1	   /RNAME122
+	0.0000		/25_PA2	   /RNAME123
+	0.0000		/25_NU	   /RNAME124
+	0.0000		/25_PU	   /RNAME125
+	0.0206		/26N_NA	   /RNAME126
+	0.0000		/26N_NU1	   /RNAME127
+	0.0000		/26N_NU2	   /RNAME128
+	0.0000		/26N_NU3	   /RNAME129
+	0.0000		/26N_NU4	   /RNAME130
+	0.0000		/26N_NU5	   /RNAME131
+	0.0000		/26N_PU1	   /RNAME132
+	0.1986		/26N_PU2	   /RNAME133
+	0.0064		/26N_PU3	   /RNAME134
+	0.1105		/26S_NA	   /RNAME135
+	0.0000		/26S_NU1	   /RNAME136
+	0.0000		/26S_NU2	   /RNAME137
+	0.0000		/26S_NU3	   /RNAME138
+	0.0000		/26S_NU4	   /RNAME139
+	0.4073		/26S_PU1	   /RNAME140
+	0.0000		/26S_PU2	   /RNAME141
+	0.9528		/26S_PU3	   /RNAME142
+	0.0000		/26S_PU4	   /RNAME143
+	0.0000		/26S_PU5	   /RNAME144
+	0.0000		/26S_PU6	   /RNAME145
+	0.0000		/60N_NA1	   /RNAME146
+	0.0000		/60N_NA2	   /RNAME147
+	0.0000		/60N_NA3	   /RNAME148
+	0.0000		/60N_NA4	   /RNAME149
+	0.0580		/60N_NA5	   /RNAME150
+	0.0000		/60N_NU1	   /RNAME151
+	0.4041		/60N_NU2	   /RNAME152
+	0.0000		/60N_PU  	   /RNAME153
+	0.0000		/60S_NA1	   /RNAME154
+	0.0000		/60S_NA2	   /RNAME155
+	0.0000		/60S_PA1	   /RNAME156
+	0.0000		/60S_PA2	   /RNAME157
+	0.0000		/60S_NU1	   /RNAME158
+	0.0000		/60S_NU2	   /RNAME159
+	0.1019		/61_NA1 	   /RNAME160
+	0.0000		/61_NA2	   /RNAME161
+	0.0000		/61_NA3	   /RNAME162
+	0.0000		/61_NA4	   /RNAME163
+	0.0000		/61_NA5	   /RNAME164
+	0.0000		/61_NA6	   /RNAME165
+	0.0000		/61_PA1	   /RNAME166
+	0.0000		/61_PA2	   /RNAME167
+	0.0000		/61_NU3	   /RNAME168
+	0.0000		/61_NU2	   /RNAME169
+	0.0000		/61_NU1	   /RNAME170
+	0.0554		/62_NA1	   /RNAME171
+	0.0000		/62_NA2	   /RNAME172
+	0.0000		/62_NA3	   /RNAME173
+	0.0000		/62_NA4	   /RNAME174
+	0.0000		/62_NA5	   /RNAME175
+	0.0000		/62_NA6	   /RNAME176
+	0.0000		/62_NU 	   /RNAME177
+	0.1499		/63_NA1	   /RNAME178
+	0.0000		/63_NA2	   /RNAME179
+	0.0000		/63_NA3	   /RNAME180
+	0.0000		/63_NA4	   /RNAME181
+	0.0000		/63_PR1	   /RNAME182
+	0.0000		/63_PR2	   /RNAME183
+	0.0000		/63_PR3	   /RNAME184
+	0.0000		/63_NU	   /RNAME185
+	0.0707		/64_NA1	   /RNAME186
+	0.0000		/64_NA2	   /RNAME187
+	0.0000		/64_PA1	   /RNAME188
+	0.0000		/64_PA2	   /RNAME189
+	0.0000		/64_PA3	   /RNAME190
+	0.0000		/64_XA 	   /RNAME191
+	0.0000		/64_NU	   /RNAME192
+	0.0000		/71_NA1	   /RNAME193
+	0.0000		/71_NA2	   /RNAME194
+	0.2445		/71_NA3	   /RNAME195
+	0.0000		/71_PA1	   /RNAME196
+	0.0000		/71_PA2	   /RNAME197
+	0.0000		/71_PA3	   /RNAME198
+	0.0000		/71_PA4	   /RNAME199
+	0.0031		/71_PA5	   /RNAME200
+	0.0429		/71_PA6	   /RNAME201
+	0.4190		/71_PA7	   /RNAME202
+	0.0000		/71_PA8	   /RNAME203
+	0.0000		/71_NU	   /RNAME204
+	1.0000		/71_PU2	   /RNAME205
+	0.0000		/71_PU1	   /RNAME206
+	0.0000		/72_NA1	   /RNAME207
+	0.0000		/72_NA2	   /RNAME208
+	0.0000		/72_PA	   /RNAME209
+	0.0000		/72_XA1	   /RNAME210
+	0.0000		/72_XA2	   /RNAME211
+	0.0000		/72_XA3	   /RNAME212
+	0.0000		/72_PR1	   /RNAME213
+	0.0000		/72_PR2	   /RNAME214
+	0.0000		/72_PR3	   /RNAME215
+	0.0000		/72_PR4	   /RNAME216
+	0.0000		/72_PR5	   /RNAME217
+	0.0000		/72_PR6	   /RNAME218
+	0.0000		/72_PU	   /RNAME219
+	0.0000		/72_NU	   /RNAME220
+	0.5999		/73_NA	   /RNAME221
+	0.4483		/73_PA1	   /RNAME222
+	0.0000		/73_PA2	   /RNAME223
+	0.0000		/73_PA3	   /RNAME224
+	0.0000		/73_XA	   /RNAME225
+	0.0000		/73_NU 	   /RNAME226
+	0.5655		/90_NA	   /RNAME227
+	0.0000		/90_PA1	   /RNAME228
+	0.0042		/90_PA2	   /RNAME229
+	0.2608		/90_PU	   /RNAME230
+C*******************************************************************************
+C                         Water Budget Areas (WBA) Names
+C   The following lists 1) the uncovered WBA area ratio of 
+C                                the area of   a WBA that is outside small watersheds and is outside the C2VSIMdomain, and 
+C                                the area of the WBA that is outside the C2VSIM domain;
+C                       2) the WBA names
+C    
+C--------------------------------------------------------------------------------
+C
+C   WBANAME; WBA name (max. 15 characters)
+C	  Should really create the WBA name from the DU names by stripping all characters after _
+C--------------------------------------------------------------------------------
+C   VALUE                        DESCRIPTION
+C--------------------------------------------------------------------------------
+	0.5785		/02	 /WBANAME1
+	0.3049		/03	 /WBANAME2
+	0.2824		/04	 /WBANAME3
+	0.3098		/05	 /WBANAME4
+	1.0000		/06	 /WBANAME5
+	0.0085		/07N	 /WBANAME6
+	0.0171		/07S	 /WBANAME7
+	0.0000		/08N	 /WBANAME8
+	0.0000		/08S	 /WBANAME9
+	0.0000		/09	 /WBANAME10
+	0.2881		/10	 /WBANAME11
+	0.3510		/11	 /WBANAME12
+	0.4223		/12	 /WBANAME13
+	0.0829		/13	 /WBANAME14
+	0.6732		/14	 /WBANAME15
+	0.0007		/15N	 /WBANAME16
+	0.1411		/15S	 /WBANAME17
+	0.0000		/16	 /WBANAME18
+	0.0000		/17N	 /WBANAME19
+	0.0104		/17S	 /WBANAME20
+	0.0000		/18	 /WBANAME21
+	0.0000		/19	 /WBANAME22
+	0.7373		/20	 /WBANAME23
+	0.0000		/21	 /WBANAME24
+	0.0000		/22	 /WBANAME25
+	0.0801		/23	 /WBANAME26
+	0.0221		/24	 /WBANAME27
+	0.5266		/25	 /WBANAME28
+	0.0916		/26N	 /WBANAME29
+	0.9972		/26S	 /WBANAME30
+	0.1912		/60N	 /WBANAME31
+	0.0000		/60S	 /WBANAME32
+	0.1916		/61	 /WBANAME33
+	0.2150		/62	 /WBANAME34
+	0.1450		/63	 /WBANAME35
+	0.2533		/64	 /WBANAME36
+	0.0076		/71	 /WBANAME37
+	0.0000		/72	 /WBANAME38
+	0.0006		/73	 /WBANAME39
+	0.0000		/90	 /WBANAME40

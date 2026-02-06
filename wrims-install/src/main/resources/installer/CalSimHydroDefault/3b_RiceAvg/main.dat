@@ -1,0 +1,205 @@
+C*******************************************************************************
+C			CalSimHydro Rice Model Main Input File
+C
+C*****************************************************************************
+C                            File Description
+C
+C  *Listed below are all input  file names used when running CalSimHydro
+C   
+C  *Each file name has a maximum length of 100 characters
+C  
+C
+C---------------------------------------------------------------------------------------------
+C   Scenario Name (to be used in Part F of pathnames in SV File
+C---------------------------------------------------------------------------------------------
+  L2015A			 /SCENARIO
+C---------------------------------------------------------------------------------------------
+C    FILE NAME                                      DESCRIPTION
+C---------------------------------------------------------------------------------------------
+  .\3b_RiceAvg\Parameter.dat                     / 1: Input data file containing simulation parameters   
+  .\3b_RiceAvg\RefET.dat			    / 2: Input data file containing Pan Evaporation Time series
+  .\3b_RiceAvg\Precip.dat			    / 3: Input data file containing Precipitation Data
+  .\3b_RiceAvg\UnitInfilt.dat		    / 4: Input data file containing Unit Infiltration Data
+  .\3b_RiceAvg\LandUse.dat			    / 5: Input data file containing Historical Land Use data 
+  RiceOutputNORM.dss             / 6:
+  RiceOutput.dss	            / 7: Final Output DSS file  
+C*******************************************************************************
+C                         Model Simulation Period and Output
+C
+C   The following lists the simulation beginning time, ending time and time step length.  
+C
+C   BDT    ; Beginning simulation date and time. Use MM/DD/YYYY_hh:mm format. 
+C             * Midnight is 24:00
+C   EDT   ; Ending simulation date and time.  Use MM/DD/YYYY_hh:mm format. 
+C            * Midnight is 24:00
+C   CACHE   ; Cache size in terms of number of values stored for time series data output
+C
+C-------------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-------------------------------------------------------------------------------
+     10/31/1920_24:00           / BDT 
+     09/30/2015_24:00           / EDT
+     1MON                       / UNITT
+     500000                     / CACHE
+     0.65                        / NormFraction
+C*******************************************************************************
+C******************************************************************************
+C******************************************************************************
+C                         Physical System
+C
+C    NREGN  ; Number of sub-regions modeled in the system
+C
+C-----------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-----------------------------------------------------------------------------
+        148                      / NREGN
+C******************************************************************************
+	02_NA   	/1   
+	02_PA   	/2   
+	02_SA   	/3   
+	03_NA   	/4   
+	03_PA   	/5   
+	03_SA   	/6   
+	04_NA   	/7   
+	04_PA1  	/8   
+	04_PA2  	/9   
+	05_NA   	/10  
+	06_NA   	/11  
+	06_PA   	/12  
+	07N_NA  	/13  
+	07N_PA  	/14  
+	07S_NA  	/15  
+	07S_PA  	/16  
+	08N_NA  	/17  
+	08N_PA  	/18  
+	08N_PR1 	/21  
+	08N_PR2 	/22  
+	08N_SA1 	/19  
+	08N_SA2 	/20  
+	08S_NA1 	/23  
+	08S_NA2 	/24  
+	08S_PA  	/25  
+	08S_PR  	/29  
+	08S_SA1 	/26  
+	08S_SA2 	/27  
+	08S_SA3 	/28  
+	09_NA   	/30  
+	09_PR   	/33  
+	09_SA1  	/31  
+	09_SA2  	/32  
+	10_NA   	/34  
+	11_NA   	/35  
+	11_PR   	/40  
+	11_SA1  	/36  
+	11_SA2  	/37  
+	11_SA3  	/38  
+	11_SA4  	/39  
+	12_NA   	/41  
+	12_SA   	/42  
+	13_NA   	/43  
+	14_NA   	/44  
+	15N_NA1 	/45  
+	15N_NA2 	/46  
+	15N_SA  	/47  
+	15S_NA1 	/48  
+	15S_NA2 	/49  
+	15S_SA  	/50  
+	16_NA1  	/51  
+	16_NA2  	/52  
+	16_PA   	/53  
+	16_SA   	/54  
+	17N_NA  	/55  
+	17N_NR  	/56  
+	17N_PR  	/57  
+	17S_NA  	/58  
+	17S_PR  	/60  
+	17S_SA  	/59  
+	18_NA   	/61  
+	18_SA   	/62  
+	19_SA   	/63  
+	20_NA1  	/64  
+	20_NA2  	/65  
+	20_PA   	/66  
+	21_NA   	/67  
+	21_PA   	/68  
+	21_SA   	/69  
+	22_NA   	/70  
+	22_SA1  	/71  
+	22_SA2  	/72  
+	23_NA   	/73  
+	24_NA1  	/74  
+	24_NA2  	/75  
+	24_NA3  	/76  
+	25_NA   	/77  
+	25_PA1  	/78  
+	25_PA2  	/79  
+	26N_NA  	/80  
+	26S_NA  	/81  
+	60N_NA1 	/82  
+	60N_NA2 	/83  
+	60N_NA3 	/84  
+	60N_NA4 	/85  
+	60N_NA5 	/86  
+	60S_NA1 	/87  
+	60S_NA2 	/88  
+	60S_PA1 	/89  
+	60S_PA2 	/90  
+	61_NA1  	/91  
+	61_NA2  	/92  
+	61_NA3  	/93  
+	61_NA4  	/94  
+	61_NA5  	/95  
+	61_NA6  	/96  
+	61_PA1  	/97  
+	61_PA2  	/98  
+	62_NA1  	/99  
+	62_NA2  	/100 
+	62_NA3  	/101 
+	62_NA4  	/102 
+	62_NA5  	/103 
+	62_NA6  	/104 
+	63_NA1  	/105 
+	63_NA2  	/106 
+	63_NA3  	/107 
+	63_NA4  	/108 
+	63_PR1  	/109 
+	63_PR2  	/110 
+	63_PR3  	/111 
+	64_NA1  	/112 
+	64_NA2  	/113 
+	64_PA1  	/114 
+	64_PA2  	/115 
+	64_PA3  	/116 
+	64_XA   	/117 
+	71_NA1  	/118 
+	71_NA2  	/119 
+	71_NA3  	/120 
+	71_PA1  	/121 
+	71_PA2  	/122 
+	71_PA3  	/123 
+	71_PA4  	/124 
+	71_PA5  	/125 
+	71_PA6  	/126 
+	71_PA7  	/127 
+	71_PA8  	/128 
+	72_NA1  	/129 
+	72_NA2  	/130 
+	72_PA   	/131 
+	72_PR1  	/132 
+	72_PR2  	/133 
+	72_PR3  	/134 
+	72_PR4  	/135 
+	72_PR5  	/136 
+	72_PR6  	/147 
+	72_XA1  	/138 
+	72_XA2  	/139 
+	72_XA3  	/140 
+	73_NA   	/141 
+	73_PA1  	/142 
+	73_PA2  	/143 
+	73_PA3  	/144 
+	73_XA   	/145 
+	90_NA   	/146 
+	90_PA1  	/147 
+	90_PA2  	/148 
+	
