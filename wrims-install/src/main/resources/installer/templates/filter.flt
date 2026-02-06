@@ -1,0 +1,4 @@
+name, alias, tolerance
+meetRS_1,RS_1,0.1
+meetRS_2,RS_2,0.1
+meetRS_3,RS_3,1
