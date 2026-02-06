@@ -1,0 +1,32 @@
+C*******************************************************************************
+C
+C                          IWFM DEMAND CALCULATOR (IDC)
+C                              *** Version 2.1 ***
+C
+C*******************************************************************************
+C 
+C                  INITIAL CONDITIONS DATA FILE 
+C
+C
+C             Project :  CALSIM 3.0 Development                        
+C             Filename: Initial.dat               
+C
+C*******************************************************************************
+C                         File Description
+C
+C   This data file contains the initial soil moisture values for root zone at
+C   each agricultural crop and non-agricultural land use area in each subregion. 
+C
+C-------------------------------------------------------------------------------
+C
+C   ID   ;   Subregion number
+C             *Enter 0 (zero) if following values are to be used for all subregions
+C   SOILM;   Initial root zone moisture for corresponding land use type; [L/L]
+C
+C--------------------------------------------------------------------------------------------
+C                             Agricultural Crops and Land Use Types
+C           ---------------------------------------------------------------------------------------------------------------------------------
+C    ID		AL	AP	CO	CR	CU	DB	FI	GR	OG	OR	PA	PO	RI	SB	SF	SO	TH	TM	TR	VI	UR	NV	SL
+C----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     0		0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+

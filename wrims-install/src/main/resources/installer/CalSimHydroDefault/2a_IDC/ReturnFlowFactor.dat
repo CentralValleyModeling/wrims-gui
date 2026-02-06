@@ -1,0 +1,82 @@
+C*******************************************************************************
+C
+C                          IWFM DEMAND CALCULATOR (IDC)
+C                              *** Version 2.1 ***
+C
+C*******************************************************************************
+C
+C                          RETURN FLOW FRACTION DATA FILE 
+C
+C
+C             Project :  CALSIM 3.0 Development                         
+C             Filename:   ReturnFlowFactor.dat                        
+C
+C*******************************************************************************
+C                              File Description
+C
+C   This data file contains a set of time series data for initial return flow as a 
+C   fraction of applied water.  The net return flow is computed as the initial return 
+C   flow less the re-used portion of the initial return flow. Individual time-series 
+C   data columns are associted with each subregion and crop combination in the 
+C   Parameter Data File.
+C
+C*******************************************************************************
+C                   Return Flow Fraction Data Specifications
+C
+C   NRF    ;  Number of initial return flow fraction data columns
+C   DSSFL  ;  The name of the DSS file for data input (maximum 100 characters); 
+C              * Leave blank if DSS file is not used for data input
+C
+C-------------------------------------------------------------------------------
+C         VALUE                     DESCRIPTION
+C-------------------------------------------------------------------------------
+             3                       / NRF
+                                    / DSSFL
+C-------------------------------------------------------------------------------
+C                          Return Flow Fractions
+C                          (READ FROM THIS FILE)
+C
+C   List the initial return flow fractions below, if it will not be read from
+C   a DSS file (i.e. DSSFL is left blank above).
+C
+C   ITRF ;   Time
+C   RF   ;   Return flow fraction. It is defined as the ratio of the  
+C            return flow to the applied water; [dimensionless]
+C		For urban, this is only applicable to outdoor return flow	
+C            
+C-------------------------------------------------------------------------------
+C ITRF     RF[1]  RF[2]  RF[3] ..... RF[NRF]
+C-------------------------------------------------------------------------------
+10/31/4000_24:00   	0.1	 1.0  	 0.0
+11/30/4000_24:00   	0.1	 1.0  	 0.0
+12/31/4000_24:00   	0.1	 1.0  	 0.0
+01/31/4000_24:00   	0.1	 1.0  	 0.0
+02/29/4000_24:00   	0.1	 1.0  	 0.0
+03/31/4000_24:00   	0.1	 1.0  	 0.0
+04/30/4000_24:00   	0.1	 1.0  	 0.0
+05/31/4000_24:00   	0.1	 1.0  	 0.0
+06/30/4000_24:00   	0.1	 1.0     0.0
+07/31/4000_24:00   	0.1	 1.0  	 0.0
+08/31/4000_24:00   	0.1	 1.0  	 0.0
+09/30/4000_24:00   	0.1	 1.0  	 0.0
+C			AG     all to	 all to
+C			       surface	  DP
+C-------------------------------------------------------------------------------
+C                         Pathnames for Return Flow Fractions
+C                               (READ FROM DSS FILE)
+C
+C   List the pathnames for initial return flow fractions below, if it will be read
+C   from a DSS file (i.e. DSSFL is specified above).
+C
+C   REC  ;  Time series record number
+C   PATH ;  Pathname for the time series record 
+C
+C-------------------------------------------------------------------------------------
+C   REC       PATH
+C-------------------------------------------------------------------------------------
+*
+*
+ 
+
+
+  

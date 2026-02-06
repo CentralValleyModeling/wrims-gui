@@ -1,0 +1,42 @@
+C*******************************************************************************
+C
+C                  PAN EVAPORATION DATA FILE
+C
+C
+C             Project :  CALSIM 3.0 Development	(Rice Water Use Model)
+C             Filename:  PanEvap.dat
+C
+C*******************************************************************************
+C                              File Description:
+C
+C   This data file contains the time-series pan evaporation from the Gerber Pan.
+C   It is used for all DUs modeled.
+C
+C*******************************************************************************
+C                        Pan Evap Data Specifications
+C
+C   NEVAP ;  Number of precipitation data columns
+C 
+C   DSSFL ;  The name of the DSS file for data input (maximum 100 characters);
+C             * Leave blank if DSS file is not used for data input
+C
+C-------------------------------------------------------------------------------
+C         VALUE                                      DESCRIPTION
+C-------------------------------------------------------------------------------
+           1                               / NEVAP
+           .\inputDSS\CS3_PanEvapGerber.dss           	   / DSSFL 
+C	   (Data provided by CS3_GerberPanEvap_10.18.12Richard.xlsx dated 10/18/2012)
+C-------------------------------------------------------------------------------
+C                       Pathnames for Rainfall Data
+C                         (READ FROM DSS FILE)
+C
+C   List the pathnames for the rainfall data below, if it will be read
+C   from a DSS file (i.e. DSSFL is specified above).
+C
+C   PATH   ;  Pathname for the time series record
+C
+C-------------------------------------------------------------------------------
+C           PATH
+C-------------------------------------------------------------------------------
+/CALSIM/WBA02/PAN-EVAP//1MON/PAN-EVAP/
+
