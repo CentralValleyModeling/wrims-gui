@@ -1,0 +1,67 @@
+C*******************************************************************************
+C
+C                          IWFM DEMAND CALCULATOR (IDC)
+C                              *** Version 2.1 ***
+C
+C*******************************************************************************
+C
+C              IRRIGATION WATER RE-USE FACTOR DATA FILE 
+C
+C
+C             Project :  Calsim 3.0 Development   
+C             Filename:  Reuse.dat            
+C
+C*******************************************************************************
+C                              File Description
+C
+C   This data file contains the factors for the re-use of irrigation water on a 
+C   time-series basis for each subregion for the model simulation period. It is 
+C   assumed that only the surface runoff (as opposed to tile drainage) from the  
+C   fields can be allocated for re-use.
+C
+C*******************************************************************************
+C            Irrigation Water Re-use Factor Data Specifications
+C
+C   NRUF   ;  Number of re-use factor data columns
+C   DSSFL  ;  The name of the DSS file for data input (maximum 100 characters); 
+C              * Leave blank if DSS file is not used for data input
+C
+C-------------------------------------------------------------------------------
+C         VALUE                     DESCRIPTION
+C-------------------------------------------------------------------------------
+            1                       / NRUF
+                                    / DSSFL
+C-------------------------------------------------------------------------------
+C                      Irrigation Water Re-use Factors
+C                          (READ FROM THIS FILE)
+C
+C   List the irrigation water re-use factors below, if it will not be read from
+C   a DSS file (i.e. DSSFL is left blank above).
+C
+C   ITRUF;   Time
+C   RUF  ;   Irrigation water re-use factor. It is defined as the ratio of the  
+C            surface runoff that is re-used to the total surface runoff; [dimensionless]
+C            
+C-------------------------------------------------------------------------------
+C ITRUF     RUF[1]  RUF[2]  RUF[3] ..... RUF[NRUF]
+C-------------------------------------------------------------------------------
+10/31/2015_24:00	0 
+C-------------------------------------------------------------------------------
+C                      Pathnames for Irrigation Water Re-use Factors
+C                               (READ FROM DSS FILE)
+C
+C   List the pathnames for irrigation water re-use factors below, if it will be read
+C   from a DSS file (i.e. DSSFL is specified above).
+C
+C   REC  ;  Time series record number
+C   PATH ;  Pathname for the time series record 
+C
+C-------------------------------------------------------------------------------------
+C   REC       PATH
+C-------------------------------------------------------------------------------------
+*
+*
+ 
+
+
+  

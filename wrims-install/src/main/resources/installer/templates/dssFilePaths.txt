@@ -1,0 +1,3 @@
+Dv File,SV File,Init File,PartA,PartF
+Z:\1_DCR2015_Base_ExistingNoCC_20150226_x64\CONV\DSS\DCR2015_Base_ExistingNoCC_DV_test.dss,Z:\1_DCR2015_Base_ExistingNoCC_20150226_x64\common\DSS\2020D09ESV.dss,Z:\1_DCR2015_Base_ExistingNoCC_20150226_x64\common\DSS\2020D09EINIT.DSS,CALSIM,2020D09E
+D:\CalLite_v47_x64\callite\DSS\testdv.dss,D:\CalLite_v47_x64\callite\DSS\CL_FUTURE_BO_011012_SV.DSS,D:\CalLite_v47_x64\callite\DSS\CalLite2020D09EINIT.dss,CALSIM,2020D09E
