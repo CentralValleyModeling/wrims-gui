@@ -1,0 +1,133 @@
+C*******************************************************************************
+C			CalSimHydro Refuge Model Main Input File
+C
+C*******************************************************************************
+C                            File Description
+C
+C  *Listed below are all input  file names used when running CalSimHydro Refuge Model
+C   
+C  *Each file name has a maximum length of 100 characters
+C  
+C
+C   Scenario Name (to be used in Part F of pathnames in SV File
+C---------------------------------------------------------------------------------------------
+  L2015A				/SCENARIO
+C---------------------------------------------------------------------------------------------
+C    FILE NAME                                      DESCRIPTION
+C---------------------------------------------------------------------------------------------
+  .\4_Refuge\08N_PR1.dat			 / 1: Input data file 
+  .\4_Refuge\08N_PR2.dat                 	 / 2: Input data file     
+  .\4_Refuge\08S_PR.dat			 / 3: Input data file 
+  .\4_Refuge\09_PR.dat                 	 / 4: Input data file     
+  .\4_Refuge\11_PR.dat                 	 / 5: Input data file      
+  .\4_Refuge\17N_NR.dat                 	 / 6: Input data file      
+  .\4_Refuge\17N_PR.dat                 	 / 7: Input data file      
+  .\4_Refuge\17S_PR.dat                 	 / 8: Input data file      
+  .\4_Refuge\63_PR1.dat                 	 / 9: Input data file	
+  .\4_Refuge\63_PR2.dat                 	 /10: Input data file	
+  .\4_Refuge\63_PR3.dat                 	 /11: Input data file	
+  .\4_Refuge\72_PR1.dat                 	 /12: Input data file	
+  .\4_Refuge\72_PR2.dat                 	 /13: Input data file	
+  .\4_Refuge\72_PR3.dat                 	 /14: Input data file	
+  .\4_Refuge\72_PR4.dat                 	 /15: Input data file	
+  .\4_Refuge\72_PR5.dat                 	 /16: Input data file	
+  .\4_Refuge\72_PR6.dat                 	 /17: Input data file	
+  .\4_Refuge\91_PR1.dat                 	 /18: Input data file	
+  .\4_Refuge\05_NA.dat                 	 /19: Input data file	
+  .\4_Refuge\08N_PA.dat                 	 /20: Input data file	
+  .\4_Refuge\08N_SA1.dat                 	 /21: Input data file	
+  .\4_Refuge\08N_SA2.dat                 	 /22: Input data file	
+  .\4_Refuge\08S_PA.dat                 	 /23: Input data file	
+  .\4_Refuge\08S_SA1.dat                 	 /24: Input data file	
+  .\4_Refuge\08S_SA2.dat                 	 /25: Input data file	
+  .\4_Refuge\09_NA.dat                 	 /26: Input data file	
+  .\4_Refuge\09_SA2.dat                 	 /27: Input data file	
+  .\4_Refuge\10_NA.dat                 	 /28: Input data file	
+  .\4_Refuge\11_NA.dat                 	 /29: Input data file	
+  .\4_Refuge\11_SA1.dat                 	 /30: Input data file	
+  .\4_Refuge\11_SA2.dat                 	 /31: Input data file	
+  .\4_Refuge\11_SA3.dat                 	 /32: Input data file	
+  .\4_Refuge\11_SA4.dat                 	 /33: Input data file	
+  .\4_Refuge\12_NA.dat                 	 /34: Input data file	
+  .\4_Refuge\21_PA.dat                 	 /35: Input data file
+  .\4_Refuge\LandUse_Refuge.dat                    /36: RefugeAcreage DSS Pathnames  
+  .\4_Refuge\Precip.dat			 	/37: Precipitation
+  .\4_Refuge\EffPrecip.dat			        /38: Effective Precipitation
+  .\4_Refuge\PanEvap.dat				/39: Pan Evaporation data
+   RefugeOutput.dss       		/40: Output  
+C*****************************************************************************
+C                         Model Simulation Period
+C
+C   The following lists the simulation beginning time, ending time and time step length.  
+C
+C   BDT    ; Beginning simulation date and time. Use MM/DD/YYYY_hh:mm format. 
+C             * Midnight is 24:00
+C   EDT   ; Ending simulation date and time.  Use MM/DD/YYYY_hh:mm format. 
+C            * Midnight is 24:00
+C
+C-------------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-------------------------------------------------------------------------------
+     10/31/1920_24:00           / BDT 
+     09/30/2015_24:00           / EDT
+     1MON                       / UNITT
+C******************************************************************************
+C******************************************************************************
+C                         Physical System
+C
+C    NREGN  ; Number of sub-regions modeled in the system
+C
+C-----------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-----------------------------------------------------------------------------
+         35                     / NREGN
+C******************************************************************************
+C*******************************************************************************
+C                         Sub-region Names
+C   
+C   The following lists the names for each sub-region.  These names are 
+C   used during the print-out of the simulation results.
+C    
+C--------------------------------------------------------------------------------
+C
+C   RNAME; Sub-region name (max. 15 characters)
+C
+C--------------------------------------------------------------------------------
+C   VALUE                        DESCRIPTION
+C--------------------------------------------------------------------------------
+08N_PR1		    /RNAME1	
+08N_PR2		    /RNAME2	
+08S_PR		    /RNAME3	
+09_PR		    /RNAME4	
+11_PR		    /RNAME5	
+17N_NR		    /RNAME6	
+17N_PR		    /RNAME7	
+17S_PR		    /RNAME8	
+63_PR1		    /RNAME9
+63_PR2		    /RNAME10
+63_PR3		    /RNAME11
+72_PR1		    /RNAME12
+72_PR2		    /RNAME13
+72_PR3		    /RNAME14
+72_PR4		    /RNAME15
+72_PR5		    /RNAME16
+72_PR6		    /RNAME17
+91_PR1		    /RNAME18
+05_NA		    /RNAME19
+08N_PA		    /RNAME20
+08N_SA1		    /RNAME21
+08N_SA2		    /RNAME22
+08S_PA		    /RNAME23
+08S_SA1		    /RNAME24
+08S_SA2		    /RNAME25
+09_NA		    /RNAME26
+09_SA2		    /RNAME27
+10_NA		    /RNAME28
+11_NA		    /RNAME29
+11_SA1		    /RNAME30
+11_SA2		    /RNAME31
+11_SA3		    /RNAME32
+11_SA4		    /RNAME33
+12_NA		    /RNAME34
+21_PA		    /RNAME35
+C*****************************************************************************

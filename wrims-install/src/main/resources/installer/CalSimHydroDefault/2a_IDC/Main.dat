@@ -1,0 +1,395 @@
+C*******************************************************************************
+C
+C                          IWFM DEMAND CALCULATOR (IDC)
+C                              *** Version 2.1 ***
+C
+C*******************************************************************************
+C
+C                            MAIN INPUT FILE
+C
+C
+C             Project :  Calsim 3.0 Hydrology Development
+C             Filename:  Main.in
+C
+C*******************************************************************************
+C                              File Description
+C
+C    This file contains the main simulation control data that includes
+C    the names and descriptions of all simulation files; simulation period; output 
+C    conversion factors and the codes for the agricultural crops and subregions.
+C
+C*****************************************************************************
+C                            File Description
+C
+C  *Listed below are all input and output file names used when running the
+C   utility.  
+C  *Each file name has a maximum length of 100 characters
+C  *If a file does not exist for a project, leave the filename blank
+C
+C-------------------------------------------------------------------------------
+C    FILE NAME                                      DESCRIPTION
+C---------------------------------------------------------------------------------------------
+  .\2a_IDC\INITIAL.DAT  		                             / 1: INITIAL CONDITIONS DATA FILE  (REQUIRED, INPUT)
+  .\2a_IDC\PARAMETER.DAT                                         / 2: PARAMETER DATA FILE  (REQUIRED, INPUT)
+  .\2a_IDC\ELandUse.dat	                                     / 3: LAND USE DATA FILE (REQUIRED, INPUT)
+  .\2a_IDC\OutputPathnames.DAT                                   / 4: STANDARD OUTPUT PATHNAMES DATA FILE  (REQUIRED, INPUT) 
+  .\2a_IDC\Precip.dat                                            / 5: PRECIPITATION DATA FILE  (REQUIRED, INPUT)
+  .\2a_IDC\InfiltrationExist.dat                                 / 6: INFILTRATION OF PRECIPITATION DATA FILE (OPTIONAL, INPUT)
+  .\2a_IDC\MINMOISTURE.DAT                                       / 7: MINIMUM SOIL MOISTURE REQUIREMENT DATA FILE  (REQUIRED, INPUT)
+  .\2a_IDC\IrigEfficiency.dat                                    / 8: CROP SEASONAL EFFICIENCY DATA FILE (REQUIRED, INPUT)
+  .\2a_IDC\URBANSPEC.DAT                                         / 9: URBAN WATER USE SPECIFICATION DATA FILE  (OPTIONAL, INPUT)
+  .\2a_IDC\UrbanDemand.dat                                       /10: URBAN WATER DEMAND FILE  (OPTIONAL, INPUT)
+  .\2a_IDC\ET.DAT                                                /11: EVAPOTRANSPIRATION DATA FILE  (REQUIRED, INPUT)
+  .\2a_IDC\ReturnFlowFactor.dat                                  /12: RETURN FLOW FRACTION DATA FILE (REQUIRED, INPUT)
+  .\2a_IDC\Reuse.dat                                             /13: APPLIED WATER RE-USE FACTOR DATA FILE  (OPTIONAL, INPUT)
+  IDCOutput.dss                                                                      /14: STANDARD DSS OUTPUT FILE  (REQUIRED, OUTPUT)
+  IDC_BUDGET.DSS                                                                     /15: DSS FILE FOR ROOT ZONE BUDGET  (OPTIONAL, OUTPUT)
+/ POTCUAW.DSS     					                             /16: DSS FILE FOR POTENTIAL CUAW OUTPUT (OPTIONAL, OUTPUT)
+C*******************************************************************************
+C                         Model Simulation Period
+C
+C   The following lists the simulation beginning time, ending time and time step length.  
+C
+C   BDT    ; Beginning simulation date and time. Use MM/DD/YYYY_hh:mm format. 
+C             * Midnight is 24:00
+C   EDT   ; Ending simulation date and time.  Use MM/DD/YYYY_hh:mm format. 
+C            * Midnight is 24:00
+C   UNITT  ; Time step length and unit. Choose one of the following:
+C                  1MIN
+C                  2MIN
+C                  3MIN
+C                  4MIN
+C                  5MIN
+C                  10MIN
+C                  15MIN
+C                  20MIN
+C                  30MIN
+C                  1HOUR
+C                  2HOUR
+C                  3HOUR
+C                  4HOUR
+C                  6HOUR
+C                  8HOUR
+C                  12HOUR
+C                  1DAY
+C                  1WEEK
+C                  1MON
+C                  1YEAR
+C
+C-------------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-------------------------------------------------------------------------------
+     09/30/1920_24:00           / BDT 
+     09/30/2015_24:00           / EDT
+     1MON                       / UNITT
+C******************************************************************************
+C                         Physical System
+C
+C    NREGN  ; Number of sub-regions modeled in the system
+C    NCROP  ; Number of agricultural crops modeled
+C    KINFILT; Flag for the computation of the infiltration due to precipitation
+C              0 = Infiltration of precipitation is computed 
+C              1 = Infiltration of precipitation is read in as input; 
+C                   supply infiltration of precipitation data file
+C
+C-----------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-----------------------------------------------------------------------------
+         230                      / NREGN
+         20                       / NCROP
+         1                        / KINFILT
+C******************************************************************************
+C                   Output Control Options
+C
+C    CACHE   ; Cache size in terms of number of values stored for time series data output
+C    FACTAROU; Factor to convert simulation unit of area into intended output unit of area
+C    UNITAROU; Output unit of area (max. 8 characters long)
+C    FACTVLOU; Factor to convert simulation unit of volume into intended output unit of volume
+C    UNITVLOU; Output unit of volume (max. 8 characters long)
+C
+C-----------------------------------------------------------------------------
+C       VALUE                   DESCRIPTION
+C-----------------------------------------------------------------------------
+       50000000                 / CACHE  (50million)
+       2.2956841E-5             / FACTAROU  
+       ACRES                    / UNITAROU
+       2.2956841E-5             / FACTVLOU  
+       AC.FT.                   / UNITVLOU
+C*******************************************************************************
+C                       Agricultural Crop Codes
+C   
+C   The following lists the codes for each agricultural crop.  These codes are 
+C   used during the print-out of the simulation results.
+C
+C    *Note* DO NOT enter codes for urban and native vegetation
+C    
+C--------------------------------------------------------------------------------
+C
+C   CCODE; Crop code (max. 5 characters)
+C
+C--------------------------------------------------------------------------------
+C   VALUE                        DESCRIPTION
+C--------------------------------------------------------------------------------
+     AL		/ CCODE1	ALFALFA
+     AP		/ CCODE2	ALMONDS AND PISTACHIO
+     CO		/ CCODE3	COTTON
+     CR		/ CCODE4	CORN
+     CU		/ CCODE5	CUCURBITS
+     DB		/ CCODE6	DRY BEANS
+     FI		/ CCODE7	OTHER FIELD
+     GR		/ CCODE8	GRAIN
+     OG		/ CCODE9	ONIONS AND GARLIC
+     OR		/ CCODE10	OTHER DECID.
+     PA		/ CCODE11	PASTURE
+     PO		/ CCODE12	POTATOES
+     RI		/ CCODE13	RICE
+     SB		/ CCODE14	SUGAR BEETS
+     SF		/ CCODE15	SAFFLOWER
+     SO		/ CCODE16	SUBTROPICAL
+     TH		/ CCODE17	FRESH TOMATOES
+     TM		/ CCODE18	PROCESS TOMATOES
+     TR		/ CCODE19	OTHER TRUCK
+     VI		/ CCODE20	VINEYARDS                              
+C*******************************************************************************
+C                         Sub-region Names
+C   
+C   The following lists the names for each sub-region.  These names are 
+C   used during the print-out of the simulation results.
+C    
+C--------------------------------------------------------------------------------
+C
+C   RNAME; Sub-region name (max. 15 characters)
+C
+C--------------------------------------------------------------------------------
+C   VALUE                        DESCRIPTION
+C--------------------------------------------------------------------------------
+02_NA		   /RNAME1					
+02_PA		   /RNAME2					
+02_SA		   /RNAME3					
+02_NU		   /RNAME4					
+02_PU		   /RNAME5					
+02_SU		   /RNAME6					
+03_NA		   /RNAME7					
+03_PA		   /RNAME8					
+03_SA		   /RNAME9					
+03_NU		   /RNAME10					
+03_PU1		   /RNAME11					
+03_PU2		   /RNAME12					
+03_PU3		   /RNAME13					
+03_SU		   /RNAME14					
+04_NA		   /RNAME15					
+04_PA1		   /RNAME16					
+04_PA2		   /RNAME17					
+04_NU1		   /RNAME18					
+04_NU2		   /RNAME19					
+05_NA		   /RNAME20					
+05_NU		   /RNAME21					
+06_NA		   /RNAME22					
+06_PA		   /RNAME23					
+06_NU		   /RNAME24					
+07N_NA		   /RNAME25					
+07N_PA		   /RNAME26					
+07N_NU		   /RNAME27					
+07S_NA		   /RNAME28					
+07S_PA		   /RNAME29					
+07S_NU		   /RNAME30					
+08N_NA		   /RNAME31					
+08N_PA		   /RNAME32					
+08N_SA1		   /RNAME33					
+08N_SA2		   /RNAME34					
+08N_PR1		   /RNAME35					
+08N_PR2		   /RNAME36					
+08N_NU		   /RNAME37					
+08S_NA1		   /RNAME38					
+08S_NA2		   /RNAME39					
+08S_PA		   /RNAME40					
+08S_SA1		   /RNAME41					
+08S_SA2		   /RNAME42					
+08S_SA3		   /RNAME43					
+08S_PR		   /RNAME44					
+08S_NU		   /RNAME45					
+09_NA		   /RNAME46					
+09_SA1		   /RNAME47					
+09_SA2		   /RNAME48					
+09_PR		   /RNAME49					
+09_NU		   /RNAME50					
+10_NA		   /RNAME51					
+10_NU1		   /RNAME52					
+10_NU2		   /RNAME53					
+11_NA		   /RNAME54					
+11_SA1		   /RNAME55					
+11_SA2		   /RNAME56					
+11_SA3		   /RNAME57					
+11_SA4		   /RNAME58					
+11_PR		   /RNAME59					
+11_NU1		   /RNAME60					
+11_NU2		   /RNAME61					
+12_NA		   /RNAME62					
+12_SA		   /RNAME63					
+12_NU1		   /RNAME64					
+12_NU2		   /RNAME65					
+13_NA		   /RNAME66					
+13_NU1		   /RNAME67					
+13_NU2		   /RNAME68					
+14_NA		   /RNAME69					
+14_NU		   /RNAME70	14_NU is renamed from 14_NU2				
+15N_NA1		   /RNAME71	14_NU1 is removed				
+15N_NA2		   /RNAME72					
+15N_SA		   /RNAME73					
+15N_NU		   /RNAME74					
+15S_NA1		   /RNAME75					
+15S_NA2		   /RNAME76					
+15S_SA		   /RNAME77					
+15S_NU		   /RNAME78					
+16_NA1		   /RNAME79					
+16_NA2		   /RNAME80					
+16_PA		   /RNAME81					
+16_SA		   /RNAME82					
+16_NU		   /RNAME83					
+16_PU		   /RNAME84					
+17N_NA		   /RNAME85					
+17N_NR		   /RNAME86					
+17N_PR		   /RNAME87					
+17N_NU		   /RNAME88					
+17S_NA		   /RNAME89					
+17S_SA		   /RNAME90					
+17S_PR		   /RNAME91					
+17S_NU		   /RNAME92					
+18_NA		   /RNAME93					
+18_SA		   /RNAME94					
+18_NU		   /RNAME95					
+19_SA		   /RNAME96					
+19_NU		   /RNAME97					
+20_NA1		   /RNAME98					
+20_NA2		   /RNAME99					
+20_PA		   /RNAME100					
+20_NU1		   /RNAME101	20_NU is splited into 20_NU1 and 20_NU2 for Davis-Woodland project				
+20_NU2		   /RNAME102					
+21_NA		   /RNAME103					
+21_PA		   /RNAME104					
+21_SA		   /RNAME105					
+21_PU		   /RNAME106					
+21_NU		   /RNAME107					
+22_NA		   /RNAME108					
+22_SA1		   /RNAME109					
+22_SA2		   /RNAME110					
+22_NU		   /RNAME111					
+23_NA		   /RNAME112					
+23_NU		   /RNAME113					
+24_NA1		   /RNAME114					
+24_NA2		   /RNAME115					
+24_NA3		   /RNAME116					
+24_NU1		   /RNAME117					
+24_NU2		   /RNAME118					
+24_NU3		   /RNAME119					
+24_NU4		   /RNAME120					
+25_NA		   /RNAME121					
+25_PA1		   /RNAME122					
+25_PA2		   /RNAME123					
+25_NU		   /RNAME124					
+25_PU		   /RNAME125					
+26N_NA		   /RNAME126					
+26N_NU1		   /RNAME127					
+26N_NU2		   /RNAME128					
+26N_NU3		   /RNAME129					
+26N_NU4		   /RNAME130					
+26N_NU5		   /RNAME131					
+26N_PU1		   /RNAME132					
+26N_PU2		   /RNAME133					
+26N_PU3		   /RNAME134					
+26S_NA		   /RNAME135					
+26S_NU1		   /RNAME136					
+26S_NU2		   /RNAME137					
+26S_NU3		   /RNAME138					
+26S_NU4		   /RNAME139					
+26S_PU1		   /RNAME140					
+26S_PU2		   /RNAME141					
+26S_PU3		   /RNAME142					
+26S_PU4		   /RNAME143					
+26S_PU5		   /RNAME144					
+26S_PU6		   /RNAME145					
+60N_NA1		   /RNAME146					
+60N_NA2		   /RNAME147					
+60N_NA3		   /RNAME148					
+60N_NA4		   /RNAME149					
+60N_NA5		   /RNAME150					
+60N_NU1		   /RNAME151					
+60N_NU2		   /RNAME152					
+60N_PU		   /RNAME153					
+60S_NA1		   /RNAME154					
+60S_NA2		   /RNAME155					
+60S_PA1		   /RNAME156					
+60S_PA2		   /RNAME157					
+60S_NU1		   /RNAME158					
+60S_NU2		   /RNAME159					
+61_NA1		   /RNAME160					
+61_NA2		   /RNAME161					
+61_NA3		   /RNAME162					
+61_NA4		   /RNAME163					
+61_NA5		   /RNAME164					
+61_NA6		   /RNAME165					
+61_PA1		   /RNAME166					
+61_PA2		   /RNAME167					
+61_NU3		   /RNAME168					
+61_NU2		   /RNAME169					
+61_NU1		   /RNAME170					
+62_NA1		   /RNAME171					
+62_NA2		   /RNAME172					
+62_NA3		   /RNAME173					
+62_NA4		   /RNAME174					
+62_NA5		   /RNAME175					
+62_NA6		   /RNAME176					
+62_NU		   /RNAME177					
+63_NA1		   /RNAME178					
+63_NA2		   /RNAME179					
+63_NA3		   /RNAME180					
+63_NA4		   /RNAME181					
+63_PR1		   /RNAME182					
+63_PR2		   /RNAME183					
+63_PR3		   /RNAME184					
+63_NU		   /RNAME185					
+64_NA1		   /RNAME186					
+64_NA2		   /RNAME187					
+64_PA1		   /RNAME188					
+64_PA2		   /RNAME189					
+64_PA3		   /RNAME190					
+64_XA		   /RNAME191					
+64_NU		   /RNAME192					
+71_NA1		   /RNAME193					
+71_NA2		   /RNAME194					
+71_NA3		   /RNAME195					
+71_PA1		   /RNAME196					
+71_PA2		   /RNAME197					
+71_PA3		   /RNAME198					
+71_PA4		   /RNAME199					
+71_PA5		   /RNAME200					
+71_PA6		   /RNAME201					
+71_PA7		   /RNAME202					
+71_PA8		   /RNAME203					
+71_NU		   /RNAME204					
+71_PU2		   /RNAME205					
+71_PU1		   /RNAME206					
+72_NA1		   /RNAME207					
+72_NA2		   /RNAME208					
+72_PA		   /RNAME209					
+72_XA1		   /RNAME210					
+72_XA2		   /RNAME211					
+72_XA3		   /RNAME212					
+72_PR1		   /RNAME213					
+72_PR2		   /RNAME214					
+72_PR3		   /RNAME215					
+72_PR4		   /RNAME216					
+72_PR5		   /RNAME217					
+72_PR6		   /RNAME218					
+72_PU		   /RNAME219					
+72_NU		   /RNAME220					
+73_NA		   /RNAME221					
+73_PA1		   /RNAME222					
+73_PA2		   /RNAME223					
+73_PA3		   /RNAME224					
+73_XA		   /RNAME225					
+73_NU		   /RNAME226					
+90_NA		   /RNAME227					
+90_PA1		   /RNAME228					
+90_PA2		   /RNAME229					
+90_PU		   /RNAME230					
