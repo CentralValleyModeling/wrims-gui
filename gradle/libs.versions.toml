@@ -1,5 +1,5 @@
 [versions]
-wrims-engine = "3.0.0-alpha.5"
+wrims-engine = "3.0.0-alpha.7"
 commons-io = "2.20.0"
 junit_5 = "5.11.3"
 antlr = "3.5.2"
