@@ -6,6 +6,11 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
 env:
   WRIMS_ENGINE_DEPENDENCIES: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
 
