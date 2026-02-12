@@ -12,6 +12,7 @@ guice = "7.0.0"
 log4j = "1.2.17"
 mssql_jdbc = "12.10.1.jre11"
 hec-monolith = "6.0.0"
+lookup = "4.0.0"
 dssgui = "3.4.18"
 javaHeclib = "7-IU-4-win-x86_64"
 antlr-generator = "3.2.1"
@@ -54,6 +55,7 @@ javax-activation = "1.1.1"
 wrims-core = { module = "gov.ca.water:wrims-core", version.ref = "wrims-engine" }
 wrims-engine-bom = { module = "gov.ca.water:wrims-engine-bom", version.ref = "wrims-engine" }
 hec-monolith = { module = "mil.army.usace.hec:hec-monolith", version.ref = "hec-monolith" }
+lookup-compat = { module = "mil.army.usace.hec:lookup-compat", version.ref = "lookup" }
 dssgui = { module = "mil.army.usace.hec:dssgui", version.ref = "dssgui" }
 commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
 junit-5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit_5" }
