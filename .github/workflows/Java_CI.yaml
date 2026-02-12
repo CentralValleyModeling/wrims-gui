@@ -16,12 +16,15 @@ jobs:
     runs-on: windows-2022
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Verify token access to wrims-engine-dependencies
         shell: bash
+        env:
+          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
-          curl --fail -i -u "dwr-wrims-build:${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}" \
+          curl --fail -i -u "dwr-wrims-build:$DEP_TOKEN" \
             https://maven.pkg.github.com/CentralValleyModeling/wrims-engine-dependencies/com.google.ortools/linearsolver/2013-01-10/linearsolver-2013-01-10.jar
 
       - name: Set up JDK 21
@@ -33,33 +36,45 @@ jobs:
 
       - name: Ensure old Lookup library is not resolved (WRIMS IDE)
         shell: bash
+        env:
+          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
-          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}" \
+          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN" \
             :wrims-ide:dependencyInsight --dependency lookup --configuration runtimeClasspath \
             | grep -qE "^mil\.army\.usace\.hec:lookup:[^:\s]+$" && exit 1 || exit 0
 
       - name: Ensure old Lookup library is not resolved (WRIMS INSTALL)
         shell: bash
+        env:
+          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
-          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}" \
+          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN" \
             :wrims-install:dependencyInsight --dependency lookup --configuration runtimeClasspath \
-            | grep -F "^mil\.army\.usace\.hec:lookup:[^:\s]+$" && exit 1 || exit 0
+            | grep -qE "^mil\.army\.usace\.hec:lookup:[^:\s]+$" && exit 1 || exit 0
 
       - name: Ensure old Lookup library is not resolved (DWR HECDSSVue)
         shell: bash
+        env:
+          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
-          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}" \
+          ./gradlew -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN" \
             :dwr-hecdssvue:dependencyInsight --dependency lookup --configuration runtimeClasspath \
-            | grep -F "^mil\.army\.usace\.hec:lookup:[^:\s]+$" && exit 1 || exit 0
+            | grep -qE "^mil\.army\.usace\.hec:lookup:[^:\s]+$" && exit 1 || exit 0
 
       - name: Build with Gradle
+        shell: bash
+        env:
+          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
-          ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
-          ./gradlew build -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
+          ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN"
+          ./gradlew build -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN"
           
       - name: Gather Code Coverage into single report
+        shell: bash
+        env:
+          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
-          ./gradlew codeCoverageReport --info -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
+          ./gradlew codeCoverageReport --info -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN"
 
       - name: Upload Code Coverage Report
         uses: actions/upload-artifact@v4.6.2
