@@ -50,7 +50,6 @@ jaxb-api = "2.3.1"
 jaxb-core = "2.3.0.1"
 jaxb-impl = "2.3.2"
 javax-activation = "1.1.1"
-gurobi = "5.0"
 
 [libraries]
 wrims-core = { module = "gov.ca.water:wrims-core", version.ref = "wrims-engine" }
@@ -92,7 +91,7 @@ kryo = { module = "com.esotericsoftware.kryo:kryo"}
 linearsolver = { module = "com.google.ortools:linearsolver"}
 calsurrogate = { module = "gov.ca.dwr.deltamodeling:calsurrogate"}
 xaoptimizer = { module = "com.sunsetsoft.xa:xaoptimizer"}
-gurobi = { module = "gurobi:gurobi", version.ref = "gurobi"}
+gurobi = { module = "com.gurobi:gurobi"}
 
 cb-dll = { module = "dwr.win.x64:cb", version.ref = "x64-dll" }
 jep-dll = { module = "dwr.win.x64:jep", version.ref = "x64-dll" }
