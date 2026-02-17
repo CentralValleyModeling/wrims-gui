@@ -77,8 +77,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           REVISION: ${{ github.sha }}
         run: |
-          ./gradlew sonar `
-                  -PcvmUserId="dwr-wrims-build" `
-                  -PcvmPassword="$DEP_TOKEN" `
-                  --info `
+          ./gradlew sonar \
+                  -PcvmUserId="dwr-wrims-build" \
+                  -PcvmPassword="$DEP_TOKEN" \
+                  --info \
                   "-Dsonar.scm.revision=$REVISION"
