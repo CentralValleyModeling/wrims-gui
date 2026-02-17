@@ -51,12 +51,13 @@ sonar {
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.pullrequest.provider", "GitHub"
         property "sonar.pullrequest.github.repository", "CentralValleyModeling/wrims-gui"
-        property "sonar.coverage.jacoco.xmlReportPaths", "$rootDir/wrims-ide/build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${layout.getBuildDirectory().get()}/reports/jacoco/test/jacocoTestReport.xml"
     }
 }
 
-tasks.matching {task -> task.name == "sonar"}.configureEach {
+tasks.named("sonar").configure {
     dependsOn tasks.named("compileJava")
+    dependsOn tasks.named("jacocoTestReport")
 }
 
 jacoco {
