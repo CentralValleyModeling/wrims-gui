@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - main
+env:
+  DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
 
 jobs:
   Sonar:
@@ -25,10 +27,8 @@ jobs:
             0
       - name: Verify token access to wrims-engine-dependencies
         shell: bash
-        env:
-          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
-          curl --fail -i -u "dwr-wrims-build:$DEP_TOKEN" \
+          curl --fail -i -u dwr-wrims-build:$DEP_TOKEN \
             https://maven.pkg.github.com/CentralValleyModeling/wrims-engine-dependencies/com.google.ortools/linearsolver/2013-01-10/linearsolver-2013-01-10.jar
       - name: Set up JDK 21
         uses: actions/setup-java@v4.7.1
@@ -36,13 +36,20 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: 'gradle'
-      - name: Build with Gradle
-        shell: bash
-        env:
-          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
-        run: |
-          ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN"
-          ./gradlew build -x test -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN"
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5.0.0
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
       - name: Analyze Workflow Run
         shell: bash
         if: github.event_name == 'workflow_run'
@@ -53,15 +60,14 @@ jobs:
           REQUEST_NUM: ${{ github.event.workflow_run.pull_requests[0].number }}
           REQUEST_BRANCH: ${{ github.event.workflow_run.pull_requests[0].head.ref }}
           BASE_BRANCH: ${{ github.event.workflow_run.pull_requests[0].base.ref }}
-          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
-          ./gradlew sonar `
-                  -PcvmUserId="dwr-wrims-build" `
-                  -PcvmPassword="$DEP_TOKEN" `
-                  --info `
-                  "-Dsonar.scm.revision=$REVISION" `
-                  "-Dsonar.pullrequest.key=$REQUEST_NUM" `
-                  "-Dsonar.pullrequest.branch=$REQUEST_BRANCH" `
+          ./gradlew sonar \
+                  -PcvmUserId="dwr-wrims-build" \
+                  -PcvmPassword="$DEP_TOKEN" \
+                  --info \
+                  "-Dsonar.scm.revision=$REVISION" \
+                  "-Dsonar.pullrequest.key=$REQUEST_NUM" \
+                  "-Dsonar.pullrequest.branch=$REQUEST_BRANCH" \
                   "-Dsonar.pullrequest.base=$BASE_BRANCH"
       - name: Analyze Push to Main
         shell: bash
@@ -70,7 +76,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           REVISION: ${{ github.sha }}
-          DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
         run: |
           ./gradlew sonar `
                   -PcvmUserId="dwr-wrims-build" `

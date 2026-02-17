@@ -1,3 +1,10 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CentralValleyModeling_wrims-gui&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=CentralValleyModeling_wrims-gui)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=CentralValleyModeling_wrims-gui&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=CentralValleyModeling_wrims-gui)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=CentralValleyModeling_wrims-gui&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=CentralValleyModeling_wrims-gui)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=CentralValleyModeling_wrims-gui&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=CentralValleyModeling_wrims-gui)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=CentralValleyModeling_wrims-gui&metric=coverage)](https://sonarcloud.io/summary/new_code?id=CentralValleyModeling_wrims-gui)
+
+
 # WRIMS: Water Resource Integrated Modeling System
 a generalized water resources modeling system for evaluating operational alternatives of large, complex river basins. WRIMS integrates a simulation language for flexible operational criteria specification, a linear programming solver for efficient water allocation decisions, and graphics capabilities for ease of use. These combined capabilities provide a comprehensive and powerful modeling tool for water resource systems simulation.
 - https://water.ca.gov/Library/Modeling-and-Analysis/Modeling-Platforms/Water-Resource-Integrated-Modeling-System
