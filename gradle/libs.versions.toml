@@ -1,5 +1,5 @@
 [versions]
-wrims-engine = "3.0.0-alpha.5"
+wrims-engine = "3.0.0-alpha.7"
 commons-io = "2.20.0"
 junit_5 = "5.11.3"
 antlr = "3.5.2"
@@ -91,7 +91,7 @@ kryo = { module = "com.esotericsoftware.kryo:kryo"}
 linearsolver = { module = "com.google.ortools:linearsolver"}
 calsurrogate = { module = "gov.ca.dwr.deltamodeling:calsurrogate"}
 xaoptimizer = { module = "com.sunsetsoft.xa:xaoptimizer"}
-gurobi = { module = "gurobi:gurobi"}
+gurobi = { module = "com.gurobi:gurobi"}
 
 cb-dll = { module = "dwr.win.x64:cb", version.ref = "x64-dll" }
 jep-dll = { module = "dwr.win.x64:jep", version.ref = "x64-dll" }
