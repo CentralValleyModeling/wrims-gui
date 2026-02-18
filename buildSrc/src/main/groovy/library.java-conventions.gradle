@@ -4,7 +4,6 @@
 plugins {
     id 'java-library'
     id 'jacoco'
-    id 'org.sonarqube'
 }
 
 compileJava {
@@ -42,22 +41,6 @@ tasks.withType(Jar).configureEach {
             rename { 'LICENSE' }
         }
     }
-}
-
-sonar {
-    properties {
-        property "sonar.projectKey", "CentralValleyModeling_wrims-gui"
-        property "sonar.organization", "dwr-cvm"
-        property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.pullrequest.provider", "GitHub"
-        property "sonar.pullrequest.github.repository", "CentralValleyModeling/wrims-gui"
-        property "sonar.coverage.jacoco.xmlReportPaths", "${layout.getBuildDirectory().get()}/reports/jacoco/test/jacocoTestReport.xml"
-    }
-}
-
-tasks.named("sonar").configure {
-    dependsOn tasks.named("compileJava")
-    dependsOn tasks.named("jacocoTestReport")
 }
 
 jacoco {

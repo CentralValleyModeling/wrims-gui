@@ -5,6 +5,7 @@ plugins {
     id "com.palantir.git-version" version "3.0.0"
     id 'base'
     id 'eclipse'
+    id 'org.sonarqube' version '6.3.1.5724'
     id 'library.deps-conventions'
     id 'jacoco'
 }
@@ -26,6 +27,17 @@ def versionLabel(gitInfo) {
     }
     // tag is returned as is. Branch may need cleanup
     return branch == null ? tag : defaultVersion
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "CentralValleyModeling_wrims-gui"
+        property "sonar.organization", "dwr-cvm"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.pullrequest.provider", "GitHub"
+        property "sonar.pullrequest.github.repository", "CentralValleyModeling/wrims-gui"
+        property "sonar.coverage.jacoco.xmlReportPaths", "$rootDir/wrims-ide/build/reports/jacoco/test/jacocoTestReport.xml"
+    }
 }
 
 allprojects {
@@ -66,4 +78,12 @@ tasks.register('codeCoverageReport', JacocoReport) {
     classDirectories.setFrom(files(classDirectories.files.collect {
         fileTree(dir: it)
     }))
+}
+
+subprojects {
+    sonar {
+        properties {
+            property "sonar.coverage.jacoco.xmlReportPaths", "$rootDir/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+        }
+    }
 }
