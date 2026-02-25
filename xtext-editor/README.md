@@ -12,8 +12,8 @@ from the grammar definition files (`.g` files).
 
 ## Background
 
-Unfortunately, the Xtext binaries were compiled using a project build definition configured
-for a deprecated Xtext version that is challenging to configure, as it requires a specific version
+The Xtext binaries were compiled using a project build definition configured for a 
+now deprecated Xtext version that is challenging to configure, as it requires a specific version
 of the Eclipse platform along with specific version-matched Xtext plugins. The current generation 
 definition file is estimated to be compatible with a legacy Xtext compiler released as an early
 version 2 (e.g., 2.1.0) and can be viewed 
