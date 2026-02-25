@@ -14,11 +14,18 @@ from the grammar definition files (`.g` files).
 
 Unfortunately, the Xtext binaries were compiled using a project build definition configured
 for a deprecated Xtext version that is challenging to configure, as it requires a specific version
-of the Eclipse platform along with specific version-matched Xtext plugins. The Xtext
-installer is configured to provide assistance with installing the latest compatible Xtext build 
-environment but proves to be unreliable at installing legacy Xtext plugins. Attempts at doing so
-have resulted in mismatched package versions that do not permit the successful compilation 
-of the Xtext grammar files.
+of the Eclipse platform along with specific version-matched Xtext plugins. The current generation 
+definition file is estimated to be compatible with a legacy Xtext compiler released as an early
+version 2 (e.g., 2.1.0) and can be viewed 
+[here](./src/main/resources/gov/ca/dwr/wresl/xtext/editor/GenerateWreslEditor.mwe2).
+The current Xtext (v2.42.0) build environment has restructured the generator definition file
+as can be seen in the 
+[documentation](https://eclipse.dev/Xtext/documentation/302_configuration.html).
+
+The Xtext installer is configured to provide assistance with installing the latest compatible 
+Xtext build environment but proves to be unreliable at installing legacy Xtext plugins. Attempts 
+at doing so have resulted in mismatched package versions that do not permit the successful 
+compilation of the Xtext grammar files.
 
 This module therefore retains the legacy package naming convention to ensure that the Xtext
 grammar files are accessible to the Xtext compiler.
@@ -28,9 +35,9 @@ grammar files are accessible to the Xtext compiler.
 Further development of the WRESL grammar will require the configuration of a new Xtext build
 environment. Such a build environment is recommended to be configured with a modern version of
 the Eclipse platform and the latest Xtext plugins, preferably matching the version of Eclipse used
-by WRIMS 3. This will allow for the generation of new Xtext grammar binary files that are
-compatible with the latest Xtext features and improvements. However, this will also require
-updating the package naming convention to align with the new package naming structure 
-of this project (`gov.ca.water.wresl.xtext.*`). The package renaming effort will involve
+by WRIMS 3 (currently Eclipse RCP 2025.06). This will allow for the generation of new Xtext grammar
+binary files that are compatible with the latest Xtext features and improvements. However, this 
+will also require updating the package naming convention to align with the new package naming 
+structure of this project (`gov.ca.water.wresl.xtext.*`). The package renaming effort will involve
 refactoring the two Xtext modules (`xtext-editor` and `xtext-editor-ui`) as well as the
 Xtext grammar files, which contain references to the legacy package naming convention.
