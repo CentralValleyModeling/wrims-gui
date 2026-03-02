@@ -1,1 +1,0 @@
-..\vista\bin\vscript Main.py
