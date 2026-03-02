@@ -1,7 +1,8 @@
 [versions]
 wrims-engine = "3.0.0-alpha.7"
 commons-io = "2.20.0"
-junit_5 = "5.11.3"
+junit_5 = "5.13.4"
+junit_5_platform = "1.13.4"
 antlr = "3.5.2"
 itext = "2009.09.21"
 jfreechart = "1.5.6"
@@ -61,6 +62,8 @@ commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
 junit-5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit_5" }
 junit-5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit_5" }
 junit-5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit_5" }
+junit-5-platform-engine = { module = "org.junit.platform:junit-platform-engine", version.ref = "junit_5_platform" }
+junit-5-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit_5_platform" }
 antlr = { module = "org.antlr:antlr", version.ref = "antlr" }
 antlr-runtime = { module = "org.antlr:antlr-runtime", version.ref = "antlr" }
 jfreechart = { module = "org.jfree:jfreechart", version.ref = "jfreechart" }
@@ -130,4 +133,4 @@ jaxb-impl = { module = 'com.sun.xml.bind:jaxb-impl', version.ref = "jaxb-impl" }
 javax-activation = { module = 'javax.activation:activation', version.ref = "javax-activation" }
 
 [bundles]
-junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params" ]
+junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params", "junit-5-platform-engine", "junit-5-platform-launcher" ]
