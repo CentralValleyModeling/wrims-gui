@@ -46,7 +46,7 @@ jobs:
       - name: Download test + coverage reports from Java CI run
         uses: actions/download-artifact@v4
         with:
-          name: test-and-coverage-reports
+          name: coverage
           path: .
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
