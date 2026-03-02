@@ -3,9 +3,6 @@ on:
   workflow_run:
     workflows: ["Java CI"]
     type: [completed]
-  push:
-    branches:
-      - main
 env:
   DEP_TOKEN: ${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}
 
