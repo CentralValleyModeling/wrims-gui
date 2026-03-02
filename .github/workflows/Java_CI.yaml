@@ -78,7 +78,7 @@ jobs:
           name: coverage
           path: |
             ./**/build/**/jacoco*.xml
-            ./build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml
+            ./build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml
 
       - name: Upload Wrims-IDE jar
         if: startsWith(github.ref, 'refs/tags/')
