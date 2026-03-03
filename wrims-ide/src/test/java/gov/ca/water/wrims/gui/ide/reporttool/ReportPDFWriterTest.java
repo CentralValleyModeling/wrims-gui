@@ -84,10 +84,10 @@ final class ReportPDFWriterTest {
 
 
         ArrayList tsArray = new ArrayList<>();
-        tsArray.add(new double[] {1.0, 100.0, 90.0});
-        tsArray.add(new double[] {2.0, 110.0, 95.0});
-        tsArray.add(new double[] {3.0, 120.0, 100.0});
-        tsArray.add(new double[] {4.0, 130.0, 105.0});
+        tsArray.add(new double[] {1704067200000.0, 100.0, 90.0});
+        tsArray.add(new double[] {1706745600000.0, 110.0, 95.0});
+        tsArray.add(new double[] {1709251200000.0, 120.0, 100.0});
+        tsArray.add(new double[] {1711929600000.0, 130.0, 105.0});
 
         String[] tsSeriesName = {"Series 1", "Series 2"};
 
