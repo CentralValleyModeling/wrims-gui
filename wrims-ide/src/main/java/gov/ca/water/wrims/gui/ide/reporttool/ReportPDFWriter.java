@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2026, California Department of Water Resources
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package gov.ca.water.wrims.gui.ide.reporttool;
 
 import com.lowagie.text.Document;
@@ -47,12 +71,9 @@ public class ReportPDFWriter implements Writer {
 	private PdfPTable summaryTable;
 	private Font bigFont;
 	private Font subtitleFont;
-	private Font smallBoldFont;
-	private String dateStr;
 
-	private Font tableFont;
+    private Font tableFont;
 	private Font tableBoldFont;
-	//private static Logger log = Logger.getLogger(ReportPDFWriter.class.getName());
 
 	public ReportPDFWriter() {
 
@@ -84,7 +105,7 @@ public class ReportPDFWriter implements Writer {
 		// Check if file is already open
 
 		bigFont = FontFactory.getFont("Arial", 12);
-		smallBoldFont = FontFactory.getFont("Arial", 10);
+        Font smallBoldFont = FontFactory.getFont("Arial", 10);
 		smallBoldFont.setStyle(Font.BOLD);
 		subtitleFont = FontFactory.getFont("Arial", 10);
 		subtitleFont.setStyle(Font.BOLD);
@@ -118,7 +139,7 @@ public class ReportPDFWriter implements Writer {
 			Paragraph pauthor = new Paragraph("\n\n" + "Author: " + author, FontFactory.getFont("Arial", 16, Font.BOLD));
 			pauthor.setAlignment(Element.ALIGN_CENTER);
 			document.add(pauthor);
-			dateStr = new SimpleDateFormat("dd-MMM-yyyy").format(new Date());
+            String dateStr = new SimpleDateFormat("dd-MMM-yyyy").format(new Date());
 			Paragraph pdate = new Paragraph("\n" + "Generated on " + dateStr);
 			pdate.setAlignment(Element.ALIGN_CENTER);
 			document.add(pdate);
@@ -261,7 +282,7 @@ public class ReportPDFWriter implements Writer {
 				setColumnBoundaries(dataCells, 4);
 				setCellPadding(dataCells, 3, 2);
 			}
-			PdfPRow lastRow = rows.get(rows.size() - 1);
+			PdfPRow lastRow = rows.getLast();
 			cells = lastRow.getCells();
 			setRightAndLeftBorders(cells);
 			setColumnBoundaries(cells, 4);
@@ -325,7 +346,7 @@ public class ReportPDFWriter implements Writer {
 			dataset.addSeries(seriesName[i], seriesData);
 		}
 
-		PlotOrientation orientation=PlotOrientation.HORIZONTAL;
+		PlotOrientation orientation=PlotOrientation.VERTICAL;
 		final JFreeChart xyLineChart = ChartFactory.createXYLineChart(title, xAxisLabel, yAxisLabel, dataset, orientation, true, true, true);
 		XYPlot xyPlot = xyLineChart.getXYPlot();
 		ValueAxis domainAxis = xyPlot.getDomainAxis();
@@ -346,13 +367,12 @@ public class ReportPDFWriter implements Writer {
 			TimeSeries ts = new TimeSeries(seriesName[i]);
 			datasets.addSeries(ts);
 		}
-		for (int j = 0; j < buildDataArray.size(); j++) {
-			double[] dataArray = buildDataArray.get(j);
-			Month m = new Month(new Date(Math.round(dataArray[0])));
-			for (int i = 0; i < seriesName.length; i++) {
-				datasets.getSeries(i).add(m, dataArray[seriesName.length-i], false);
-			}
-		}
+        for (double[] dataArray : buildDataArray) {
+            Month m = new Month(new Date(Math.round(dataArray[0])));
+            for (int i = 0; i < seriesName.length; i++) {
+                datasets.getSeries(i).add(m, dataArray[seriesName.length - i], false);
+            }
+        }
 		final JFreeChart tsChart = ChartFactory.createTimeSeriesChart(title, xAxisLabel, yAxisLabel, datasets, true, true, true);
 		XYPlot xyPlot = tsChart.getXYPlot();
 		xyPlot.setRenderer(new XYStepRenderer());
