@@ -50,7 +50,7 @@ jobs:
       - name: Build with Gradle
         shell: bash
         run: |
-          ./gradlew clean build -x test -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN"
+          ./gradlew build -x test -PcvmUserId="dwr-wrims-build" -PcvmPassword="$DEP_TOKEN"
       - name: Analyze Workflow Run
         shell: bash
         if: github.event_name == 'workflow_run'
