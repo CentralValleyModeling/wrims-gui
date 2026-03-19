@@ -1,7 +1,7 @@
 [versions]
 wrims-engine = "3.0.0-alpha.7"
 commons-io = "2.20.0"
-junit_5 = "5.13.4"
+junit_5 = "6.0.3"
 junit_5_platform = "1.13.4"
 antlr = "3.5.3"
 itext = "2009.09.21"
