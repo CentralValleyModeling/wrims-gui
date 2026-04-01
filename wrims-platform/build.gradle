@@ -1,12 +1,17 @@
-rootProject.name = 'wrims-gui'
-include 'third-party'
-include 'wrims-ide'
-include 'dwr-hecdssvue'
-include 'jdiagram'
-include 'xtext-editor'
-include 'xtext-editor-ui'
-include 'wrims-install'
-include 'wrims-platform'
+plugins {
+    id 'library.deps-conventions'
+    id 'library.java-conventions'
+    id "org.standardout.bnd-platform" version "3.2.1"
+}
+
+dependencies {
+    implementation project(':third-party')
+    implementation project(':wrims-ide')
+    implementation project(':dwr-hecdssvue')
+    implementation project(':jdiagram')
+    implementation project(':xtext-editor')
+    implementation project(':xtext-editor-ui')
+}
 
 /*
  * MIT License
@@ -32,16 +37,11 @@ include 'wrims-platform'
  * SOFTWARE.
  */
 
-/// DEVELOPER IDE BUILDING FROM SOURCE ///
-if(hasProperty('librarySourcesDir')) {
-    def externalDir = new File("$librarySourcesDir")
-    if (externalDir.exists()) {
-        externalDir.eachDir() { directory ->
-            def dwrExtFile = new File(directory, "dwr-build-ext.gradle")
-            if (dwrExtFile.exists()) {
-                gradle.ext.externalLibDir = directory
-                apply from: dwrExtFile
-            }
-        }
-    }
-}
+//bndPlatform {
+//    eclipseMirror  "https://download.eclipse.org/releases/2024-06"
+//    fetchSources = false
+//    featureVersion = '3.33.100'
+//    feature (id: "wrims.all.feature", name: "WRIMS", version: version) {
+//        includes ["wrims-ide", "third-party", "xtext-editor", "xtext-editor-ui", "jdiagram", "dwr-hecdssvue"]
+//    }
+//}
