@@ -1,0 +1,122 @@
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2026, California Department of Water Resources
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example.osgi</groupId>
+    <artifactId>tycho-build</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- ========================= -->
+    <!-- PROPERTIES -->
+    <!-- ========================= -->
+    <properties>
+        <tycho.version>5.0.2</tycho.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- ========================= -->
+    <!-- MODULES -->
+    <!-- ========================= -->
+    <modules>
+        <module>p2-bridge</module>
+        <module>wrims-feature</module>
+        <module>repository</module>
+    </modules>
+
+    <!-- ========================= -->
+    <!-- P2 REPOSITORY INPUT -->
+    <!-- ========================= -->
+    <repositories>
+        <!-- Your generated p2 repo from mavenLocal -->
+        <repository>
+            <id>internal-bnd</id>
+            <layout>p2</layout>
+            <url>file:${project.basedir}/../p2-bridge/target/repository</url>
+        </repository>
+
+        <!-- Eclipse baseline (optional but typical) -->
+        <repository>
+            <id>eclipse-release</id>
+            <layout>p2</layout>
+            <url>https://download.eclipse.org/releases/latest</url>
+        </repository>
+    </repositories>
+
+    <!-- ========================= -->
+    <!-- BUILD -->
+    <!-- ========================= -->
+    <build>
+        <plugins>
+
+            <!-- Enable Tycho -->
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <version>${tycho.version}</version>
+                <extensions>true</extensions>
+            </plugin>
+
+            <!-- Target platform config -->
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>target-platform-configuration</artifactId>
+                <version>${tycho.version}</version>
+                <configuration>
+
+                    <!-- optional: strict resolution -->
+                    <resolver>p2</resolver>
+
+                    <!-- environments -->
+                    <environments>
+                        <environment>
+                            <os>win32</os>
+                            <ws>win32</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>macosx</os>
+                            <ws>cocoa</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                    </environments>
+
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
