@@ -1,8 +1,9 @@
-WRIMS GUI
-============
+.. _index:
 
-.. note::
-    This documentation is under active development.
+**********
+Site Index
+**********
 
-Contents
---------
+.. toctree::
+
+    Home<home>
