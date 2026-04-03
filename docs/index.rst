@@ -5,5 +5,8 @@ Site Index
 **********
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-    Home<home>
+   Home<home>
+   GUI User Guide<gui_user_guide>
