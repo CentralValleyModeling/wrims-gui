@@ -1,0 +1,243 @@
+.. _2-concepts-and-interface:
+
+Concepts and Interface
+======================
+
+.. _existing-studies-and-new-studies:
+
+Existing Studies and New Studies
+--------------------------------
+
+In **WRIMS 2 GUI**, a study is typically represented as a project in **Project Explorer**.
+
+- An **existing study** is a study folder that has already been imported into WRIMS 2 and contains a ``.project`` file in its main folder.
+- A **new study** is a study folder that has not yet been imported into WRIMS 2 GUI and therefore does not contain a ``.project`` file.
+
+In practice, a study without a ``.project`` file is treated as a new study. After it has been loaded once, WRIMS 2 GUI creates a ``.project`` file and the study is then treated as an existing study from the GUI perspective.
+
+The examples below illustrate the distinction.
+
+.. image:: diagrams/frames/01_Basic_LoadExistingStudy/01_Basic_LoadExistingStudy_2040.png
+
+.. image:: diagrams/frames/02_Basic_NewStudy/02_Basic_NewStudy_600.png
+
+
+.. _launch-files-and-run-modes:
+
+Launch Files and Run Modes
+--------------------------
+
+A **launch file** stores the configuration used to run or debug a study. The same launch configuration can be used in either **Run** mode or **Debug** mode.
+
+- **Run** executes the study continuously at normal speed.
+- **Debug** allows the study to be paused so that variables, goals, and model behavior can be inspected during execution.
+
+For portability, launch files are easier to manage when they are saved with the study as a **Shared File** and when referenced files use relative paths instead of absolute paths.
+
+The following images show the launch-configuration context and the storage and path choices that matter most.
+
+.. image:: diagrams/frames/03_Basic_CreateLaunchFile/03_Basic_CreateLaunchFile_3360.png
+
+.. image:: diagrams/frames/03_Basic_CreateLaunchFile/03_Basic_CreateLaunchFile_10920.png
+
+.. image:: diagrams/frames/03_Basic_CreateLaunchFile/03_Basic_CreateLaunchFile_14520.png
+
+.. image:: diagrams/frames/03_Basic_CreateLaunchFile/03_Basic_CreateLaunchFile_15240.png
+
+
+.. _variable-and-goal-views:
+
+Variable and Goal Views
+-----------------------
+
+When a study is paused in **Debug** mode, WRIMS 2 GUI provides both file-specific views and model-wide views.
+
+- **Variables** and **Goal View** depend on the file currently open in the editor.
+- **All Variables** and **All Goals** show the full model at the current time step and cycle.
+
+This distinction is important when interpreting paused results, because a file can be open in the editor even when it is not active in the current cycle.
+
+The following images illustrate the main views used during paused inspection.
+
+.. image:: diagrams/frames/09_Debug_PauseVariableGoalView/09_Debug_PauseVariableGoalView_6600.png
+
+.. image:: diagrams/frames/09_Debug_PauseVariableGoalView/09_Debug_PauseVariableGoalView_7440.png
+
+.. image:: diagrams/frames/09_Debug_PauseVariableGoalView/09_Debug_PauseVariableGoalView_8400.png
+
+.. image:: diagrams/frames/09_Debug_PauseVariableGoalView/09_Debug_PauseVariableGoalView_8760.png
+
+
+.. _controlling-goals-and-goal-tolerance:
+
+Controlling Goals and Goal Tolerance
+------------------------------------
+
+In the **Goal View** panel, a goal is marked as controlling when the left-hand side is equal to the right-hand side. A filtering file provides another way to evaluate controlling goals by allowing optional tolerances.
+
+- If no tolerance is provided, the goal is treated as controlling only when both sides are exactly equal.
+- If a tolerance is provided, the goal can still be treated as controlling when the difference is within the specified tolerance.
+
+This concept is used later in the goal-filter workflow.
+
+The images below show both the visual controlling-goal indicator and the filtering-file approach.
+
+.. image:: diagrams/frames/09_Debug_PauseVariableGoalView/09_Debug_PauseVariableGoalView_7680.png
+
+.. image:: diagrams/frames/21_Debug_FilterGoals/21_Debug_FilterGoals_1680.png
+
+.. image:: diagrams/frames/21_Debug_FilterGoals/21_Debug_FilterGoals_1800.png
+
+
+.. _05-basic-perspectives:
+
+05. Basic Perspectives
+----------------------
+
+**Purpose**
+
+This chapter introduces the different perspectives available in **WRIMS 2 GUI**.
+
+**Before you start**
+
+- **WRIMS 2 GUI** is open.
+- You want to understand which perspective to use for editing, debugging, plotting, or DSS analysis.
+
+**Procedure**
+
+**WRIMS 2 GUI** includes several perspectives. A **perspective** is a task-oriented arrangement of views and tools designed for a particular type of work.
+
+The perspectives shown in this chapter include:
+
+- **IDE Perspective**
+- **DSS Perspective**
+- **Schematic**
+- **Schematic Editor**
+- **CalSim Hydro**
+- **Database Development**
+
+.. image:: diagrams/frames/05_Basic_Perspectives/05_Basic_Perspectives_1680.png
+
+**IDE Perspective**
+
+Use the **IDE Perspective** to:
+
+- edit WRESL code;
+- debug the model;
+- run the model;
+- launch the study;
+- view runtime data during execution.
+
+**DSS Perspective**
+
+Use the **DSS Perspective** to display DSS data.
+
+Because one of the outputs of WRIMS 2 is **HEC-DSS**, this perspective is used to visualize DSS time series in:
+
+- tables
+- charts
+
+.. image:: diagrams/frames/05_Basic_Perspectives/05_Basic_Perspectives_1920.png
+
+**Schematic**
+
+Use the **Schematic** perspective to display schematic diagrams and related data.
+
+.. image:: diagrams/frames/05_Basic_Perspectives/05_Basic_Perspectives_2640.png
+
+**Schematic Editor**
+
+Use the **Schematic Editor** perspective to edit the schematic.
+
+.. image:: diagrams/frames/05_Basic_Perspectives/05_Basic_Perspectives_3000.png
+
+**CalSim Hydro**
+
+In the **CalSim Hydro** perspective, a default CalSim Hydro study is included with the package so that users can work with CalSim Hydro directly from the GUI.
+
+.. image:: diagrams/frames/05_Basic_Perspectives/05_Basic_Perspectives_3240.png
+
+**Database Development**
+
+Use the **Database Development** perspective to connect to databases such as:
+
+- SQL Server
+- MySQL
+
+.. image:: diagrams/frames/05_Basic_Perspectives/05_Basic_Perspectives_3720.png
+
+This perspective is used to:
+
+- visualize data;
+- manage data;
+- connect to databases;
+- work with outputs written to a SQL database.
+
+**Notes**
+
+- A perspective is a task-oriented arrangement of views and tools.
+- The **IDE Perspective** is mainly used for code editing, running, and debugging.
+- The **DSS Perspective** is mainly used for time-series inspection and comparison.
+
+**Related sections**
+
+- :ref:`27. DSS Wrims DSS Perspective <27-dss-wrims-dss-perspective>`
+- :ref:`13. Debug Compare Existing Studies <13-debug-compare-existing-studies>`
+- :ref:`23. Advanced Batch Run GUI <23-advanced-batch-run-gui>`
+
+
+.. _08-basic-outline:
+
+08. Basic Outline
+-----------------
+
+**Purpose**
+
+This chapter explains the **Outline** panel.
+
+**Before you start**
+
+- A WRESL file is open in the editor.
+
+**Procedure**
+
+The **Outline** panel lists all variables and goals in the WRESL file currently open in the editor.
+
+.. image:: diagrams/frames/08_Basic_Outline/08_Basic_Outline_960.png
+
+When a file is open, the **Outline** panel can show:
+
+- decision variables;
+- state variables;
+- aliases;
+- goals.
+
+The symbols mean:
+
+- **D** = decision variable
+- **S** = state variable
+- **A** = alias
+- **G** = goal
+
+Selecting an item in the **Outline** panel moves the editor to the definition of that variable, alias, or goal.
+
+This allows you to navigate directly to:
+
+- a selected goal;
+- an alias definition.
+
+.. image:: diagrams/frames/08_Basic_Outline/08_Basic_Outline_1320.png
+
+If you open another file, the **Outline** panel updates automatically to match the file currently open in the editor.
+
+.. image:: diagrams/frames/08_Basic_Outline/08_Basic_Outline_2160.png
+
+**Notes**
+
+- The **Outline** panel is especially useful when a WRESL file is too long to navigate efficiently by scrolling.
+
+**Related sections**
+
+- :ref:`06. Basic WRESL Plus <06-basic-wresl-plus>`
+- :ref:`17. Debug Find Reference <17-debug-find-reference>`
+- :ref:`20. Debug Study Cycle WRESL <20-debug-study-cycle-wresl>`
