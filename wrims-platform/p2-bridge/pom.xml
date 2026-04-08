@@ -26,42 +26,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>com.example.osgi</groupId>
-        <artifactId>tycho-build</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>gov.ca.water</groupId>
+        <artifactId>wrims-install-generator</artifactId>
+        <version>wrims-version-SNAPSHOT</version>
     </parent>
     <artifactId>p2-bridge</artifactId>
-
     <packaging>pom</packaging>
-
     <name>Gradle Bundles → p2 Repository</name>
-
     <properties>
         <tycho.version>5.0.2</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <build>
         <plugins>
-
-            <!-- Required to enable Tycho -->
             <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>tycho-maven-plugin</artifactId>
                 <version>${tycho.version}</version>
                 <extensions>true</extensions>
             </plugin>
-
-            <!-- THIS is the key plugin -->
             <plugin>
                 <groupId>org.eclipse.tycho.extras</groupId>
                 <artifactId>tycho-p2-extras-plugin</artifactId>
                 <version>${tycho.version}</version>
-
                 <executions>
                     <execution>
                         <id>publish-bundles</id>
@@ -69,33 +58,24 @@
                         <goals>
                             <goal>publish-features-and-bundles</goal>
                         </goals>
-
                         <configuration>
-
-                            <!-- INPUT: your Gradle-built jars -->
+                            <!-- INPUT: Gradle-built jars -->
                             <sourceLocation>
                                 ${project.build.directory}/bundles
                             </sourceLocation>
-
                             <!-- OUTPUT: generated p2 repo -->
                             <metadataRepositoryLocation>
                                 ${project.build.directory}/repository
                             </metadataRepositoryLocation>
-
                             <artifactRepositoryLocation>
                                 ${project.build.directory}/repository
                             </artifactRepositoryLocation>
-
-                            <!-- recommended -->
                             <compress>true</compress>
                             <publishArtifacts>true</publishArtifacts>
-
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

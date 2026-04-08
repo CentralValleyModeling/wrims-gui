@@ -1,2 +1,12 @@
-
 //TODO call against maven projects and passing in the version number
+
+tasks.register('mavenClean', Exec) {
+    workingDir = projectDir
+    commandLine 'mvn', 'clean', '-Dversion=' + project.version
+}
+
+tasks.register('mavenWrapper', Exec) {
+    workingDir = projectDir
+    commandLine 'mvn', '-N', 'wrapper:wrapper', '-Dmaven=3.9.14'
+}
+

@@ -26,15 +26,14 @@
 <feature
         id="gov.ca.water.wrims"
         label="WRIMS"
-        version="1.0.0.qualifier"
+        version="${project.version}"
         provider-name="CA DWR Central Valley Modeling">
 
-    <!-- Your OSGi bundles -->
-    <plugin id="jdiagram" version="0.0.0"/>
-    <plugin id="dwr-hecdssvue" version="0.0.0"/>
-    <plugin id="xtext-editor" version="0.0.0"/>
-    <plugin id="xtext-editor-ui" version="0.0.0"/>
-    <plugin id="third-party" version="0.0.0"/>
-    <plugin id="wrims-ide" version="0.0.0"/>
-
+    <!-- OSGi bundles from gradle output-->
+    <plugin id="jdiagram" version="${project.version}"/>
+    <plugin id="dwr-hecdssvue" version="${project.version}"/>
+    <plugin id="xtext-editor" version="${project.version}"/>
+    <plugin id="xtext-editor-ui" version="${project.version}"/>
+    <plugin id="third-party" version="${project.version}"/>
+    <plugin id="wrims-ide" version="${project.version}"/>
 </feature>
