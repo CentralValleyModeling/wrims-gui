@@ -1,6 +1,6 @@
 Bundle-SymbolicName: wrims-ide;singleton:=true
 Bundle-Name: wrims-ide
-Bundle-Version: 1.0.0.0
+Bundle-Version: ${project.version}
 Bundle-ManifestVersion: 2.0
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Bundle-Activator: gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin
@@ -16,7 +16,7 @@ Require-Bundle: \
     org.eclipse.ui.views.properties.tabbed,\
     org.eclipse.draw2d,\
     org.eclipse.datatools.connectivity,\
-    third-party;bundle-version="1.0.0"
+    third-party;bundle-version="${project.version}"
 
 Import-Package: \
     org.apache.commons.io,\

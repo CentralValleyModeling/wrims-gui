@@ -26,9 +26,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.example.osgi</groupId>
-        <artifactId>tycho-build</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>gov.ca.water</groupId>
+        <artifactId>wrims-install-generator</artifactId>
+        <version>wrims-version-SNAPSHOT</version>
     </parent>
 
     <artifactId>com.example.repository</artifactId>

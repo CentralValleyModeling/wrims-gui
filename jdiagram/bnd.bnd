@@ -1,6 +1,6 @@
 Bundle-SymbolicName: jdiagram;singleton:=true
 Bundle-Name: jdiagram
-Bundle-Version: 1.0.0.0
+Bundle-Version: ${project.version}
 Bundle-ManifestVersion: 2.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
@@ -15,9 +15,9 @@ Require-Bundle: \
     org.eclipse.ui.views,\
     org.eclipse.ui.navigator,\
     org.eclipse.ui.navigator.resources,\
-    third-party;bundle-version="1.0.0",\
-    wrims-ide;bundle-version="1.0.0",\
-    dwr-hecdssvue;bundle-version="1.0.0"
+    third-party;bundle-version="${project.version}",\
+    wrims-ide;bundle-version="${project.version}",\
+    dwr-hecdssvue;bundle-version="${project.version}"
 
 Import-Package: \
     com.mindfusion.drawing,\
@@ -36,4 +36,3 @@ Export-Package: \
   plugin.xml = plugin.xml,\
   contexts.xml = contexts.xml,\
   icons = icons
-

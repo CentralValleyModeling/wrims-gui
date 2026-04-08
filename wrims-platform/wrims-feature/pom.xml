@@ -26,44 +26,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>com.example.osgi</groupId>
-        <artifactId>tycho-build</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>gov.ca.water</groupId>
+        <artifactId>wrims-install-generator</artifactId>
+        <version>wrims-version-SNAPSHOT</version>
     </parent>
-
     <artifactId>gov.ca.water.wrims</artifactId>
-
-    <!-- THIS makes it a feature -->
     <packaging>eclipse-feature</packaging>
-
-    <!-- ========================= -->
-    <!-- THIS IS THE IMPORTANT PART -->
-    <!-- ========================= -->
-    <!-- Your local/generated p2 repo -->
     <repositories>
+        <!-- local/generated p2 repo from gradle output-->
         <repository>
             <id>local-bundles</id>
             <layout>p2</layout>
             <url>file:${project.basedir}/../p2-bridge/target/repository</url>
         </repository>
     </repositories>
-
     <build>
         <plugins>
-
-            <!-- Enable Tycho -->
             <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>tycho-maven-plugin</artifactId>
                 <version>${tycho.version}</version>
                 <extensions>true</extensions>
             </plugin>
-
-            <!-- Target platform (resolver config) -->
             <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>target-platform-configuration</artifactId>
@@ -72,8 +58,6 @@
                     <resolver>p2</resolver>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>
