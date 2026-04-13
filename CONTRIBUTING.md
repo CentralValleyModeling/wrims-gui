@@ -188,3 +188,13 @@ in the following files:
 - [General Tests](wrims-ide/src/test/resources/test-ide.md)
 - [JDiagram Schematic Tests](jdiagram/src/main/resources/Test_Schematics.md)
 - [DSS Tests](dwr-hecdssvue/src/test/resources/Test_DSS.md)
+
+
+## Creating releases
+
+Published releases are available to all users, regardless of their role. Users do not need to be logged in to download a release.
+
+To create, edit, or delete a release, you must have write permissions or either the "Maintain" or "Admin" role. If you are interested in becoming a maintainer, please reach out to [wrims_development_application@water.ca.gov](mailto:wrims_development_application@water.ca.gov?subject=GitHub%20Permissions%20Request)
+See [GitHub Documentation - Repository roles for an organization](https://docs.github.com/en/enterprise-server@3.17/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization) for more details on permissions.
+
+For details on navigating the release process, see [GitHub Documentation - Managing releases in a repository](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
