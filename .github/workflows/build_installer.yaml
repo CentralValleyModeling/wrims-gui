@@ -34,7 +34,7 @@ jobs:
           ./gradlew :wrims-install:zipWrimsGui -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"  
 
       - name: Upload Installer .zip artifact to Action Workflow
-        uses: actions/upload-artifact@v7.0.0
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: wrims-gui
           path: |
