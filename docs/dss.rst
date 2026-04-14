@@ -1,12 +1,14 @@
 .. _8-dss-review-and-results:
 
-DSS Review and Results
-======================
+8. DSS Review and Results
+=========================
 
-.. _27-dss-wrims-dss-perspective:
 
-27. DSS Wrims DSS Perspective
+.. _81-dss-wrims-dss-perspective:
+
+8.1 DSS Wrims DSS Perspective
 -----------------------------
+
 
 **Purpose**
 
@@ -14,12 +16,14 @@ This chapter explains how to use the **DSS Perspective** to compare studies.
 
 **Before you start**
 
+
 - You have DSS files or study results ready to compare.
 - You can switch to **DSS Perspective**.
 
 **Procedure**
 
-WRIMS 2 may reopen in the perspective that was active during the previous session. If it does not open in **DSS Perspective**, switch to that perspective first.
+
+WRIMS 3 may reopen in the perspective that was active during the previous session. If it does not open in **DSS Perspective**, switch to that perspective first.
 
 This workflow compares two studies by loading their DSS files.
 
@@ -28,11 +32,10 @@ For comparison:
 - one study is treated as the **base**;
 - the other is treated as the **alternative**.
 
-Differences are then shown as:
-
-**alternative - base**
+Differences are then shown as: **alternative - base**
 
 **Load DSS files**
+
 
 Load the relevant DSS files for the two studies being compared.
 
@@ -46,9 +49,11 @@ Load the relevant DSS files for the two studies being compared.
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_3720.png
 
+
 If multiple studies are loaded, select the two studies you want to compare and click **OK**.
 
 **Filter records**
+
 
 Once the files are loaded, use the catalog view to filter DSS records by path parts, especially:
 
@@ -59,9 +64,11 @@ Entering a B part, for example, filters the record list to matching variables.
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_6840.png
 
+
 **View plots and tables**
 
-After selecting a variable, WRIMS 2 GUI can display:
+
+After selecting a variable, WRIMS 3 GUI can display:
 
 - a plot;
 - a time-series table;
@@ -73,9 +80,11 @@ After selecting a variable, WRIMS 2 GUI can display:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_9360.png
 
+
 The example shown here covers the full model period from October 1921 through September 2003.
 
 **Difference view**
+
 
 Difference view can display:
 
@@ -93,6 +102,7 @@ Color coding is also used:
 
 **Different chart types**
 
+
 The **DSS Perspective** also supports:
 
 - plots;
@@ -108,7 +118,9 @@ The **DSS Perspective** also supports:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_13560.png
 
+
 **Shortcut buttons**
+
 
 Shortcut buttons can be used to select outputs by system feature or location, but they depend on choosing the correct CalSim type first.
 
@@ -124,7 +136,9 @@ Shortcut buttons can then be used for:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_15000.png
 
+
 **Save and reopen DSS compare projects**
+
 
 To avoid reloading the same DSS files repeatedly, save the DSS compare setup as a project file.
 
@@ -139,23 +153,28 @@ To save:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_21120.png
 
+
 To reopen it later:
 
 1. Click **Open Project**.
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_22080.png
 
+
 2. Select the saved project file.
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_22200.png
+
 
 3. Click **Open**.
 
 **Month filters**
 
+
 The **DSS Perspective** can also filter by month.
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_23040.png
+
 
 You can:
 
@@ -167,9 +186,11 @@ You can:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_23640.png
 
+
 This is useful when focusing on specific seasons or operational periods.
 
 **Reporting year type**
+
 
 The **DSS Perspective** supports different year types:
 
@@ -183,6 +204,7 @@ The **DSS Perspective** supports different year types:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_26160.png
 
+
 Typical uses include:
 
 - water year for most hydrologic analysis;
@@ -190,6 +212,7 @@ Typical uses include:
 - March to February for CVP deliveries and shortages.
 
 **Time window**
+
 
 The time window can also be changed.
 
@@ -201,7 +224,9 @@ Historical periods can be isolated, such as:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_27120.png
 
+
 **Units**
+
 
 Units can be changed, for example between:
 
@@ -210,7 +235,9 @@ Units can be changed, for example between:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_30960.png
 
+
 **Multiple-variable filter operators**
+
 
 The filter field also supports:
 
@@ -221,19 +248,24 @@ The filter field also supports:
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_34320.png
 
+
 **Water year type caution**
+
 
 Use preloaded water-type information carefully, especially for climate-change scenario comparisons, because the built-in water-year typing may reflect existing climate conditions rather than the scenario being analyzed.
 
 .. image:: diagrams/frames/27_DSS_WrimsDssPerspective/27_DSS_WrimsDssPerspective_35880.png
 
+
 **Notes**
+
 
 - Difference view is typically shown as **alternative - base**.
 - Use caution with built-in water-year typing when analyzing climate-change scenarios or other nonstandard contexts.
 
 **Related sections**
 
-- :ref:`05. Basic Perspectives <05-basic-perspectives>`
-- :ref:`13. Debug Compare Existing Studies <13-debug-compare-existing-studies>`
-- :ref:`25. Advanced Multi Study Run <25-advanced-multi-study-run>`
+
+- :ref:`2.5 Basic Perspectives <25-basic-perspectives>`
+- :ref:`5.1 Debug Compare Existing Studies <51-debug-compare-existing-studies>`
+- :ref:`7.3 Special Multi Study Run <73-special-multi-study-run>`
