@@ -5,11 +5,11 @@
 Proposed
 
 ## Context and Problem Statement
-WRIMS-GUI requires Python interoperability for certain computation capabilities, library 
-dependencies, and legacy UI features. Multiple Python runtime integrations are currently 
-present in the project: ** JEP (Java Embedded Python) **, ** JPY **, ** JPython **, 
-and ** Jython **. There is a need to decide which integrations to keep and which to remove, 
-with the goal of consolidating the project's Python usage.
+
+WRIMS-GUI requires Python interoperability for certain computation capabilities, library dependencies, and legacy UI features. 
+Multiple Python runtime integrations are currently present in the project: 
+**JEP (Java Embedded Python)**, **JPY**, and legacy dependencies such as **JPython/Jython**. 
+There is a need to decide which integrations to retain and which to remove, with the goal of consolidating Python usage within the project.
 
 > Note: More information on Python usage within WRIMS-Engine can be found in its respective documentation.
 
@@ -18,24 +18,79 @@ The initial dependency analysis report on Python usage within the WRIMS project 
 
 > Note: Some information in the linked discussion report may be outdated.
 
+## Decision Scope / Boundary
+
+This ADR defines how Python is used within the WRIMS Application (WRIMS-GUI).
+
+### In Scope
+- GUI-initiated Python usage  
+- GUI–Python integration  
+- User-facing scripting and orchestration  
+
+### Out of Scope
+- Python usage internal to WRIMS-Engine  
+- Engine runtime decisions  
+
+The WRIMS-Engine ADR defines Python usage within the compute layer.
+
+## Relationship to WRIMS-Engine Python ADR
+
+This ADR defines how Python is used within WRIMS-GUI. A separate ADR defines how Python is used within 
+[WRIMS-Engine](https://github.com/CentralValleyModeling/wrims-engine/blob/main/docs/design-records/python-usage.md).
+
+- The WRIMS-Engine ADR governs Python execution within the compute layer.  
+- This ADR focuses on Python usage in GUI-driven workflows and user interaction.
+
+Where possible, WRIMS-GUI should use Python integration approaches that are compatible with the WRIMS-Engine runtime. 
+Differences are acceptable when required by user workflows or tooling needs.
+
+## User Interaction Model
+
+Python usage within WRIMS-GUI is primarily user-driven and workflow-oriented.
+
+### Expected Usage Patterns
+- Execution of user-defined scripts for pre-processing, post-processing, and analysis  
+- Integration with model workflows launched through the GUI  
+- Support for interactive and exploratory modeling tasks  
+
+### Design Considerations
+- Python usage should minimize required environment setup for end users where possible  
+- Where users rely on external Python environments, integration should be predictable and well-defined  
+- GUI-driven Python execution should prioritize transparency and debuggability  
+
+These usage patterns differ from WRIMS-Engine, where Python (if used) is part of the internal execution model rather than a user-facing workflow tool.
+
 ## Decision Drivers
-- Maintainability: prefer a single, well-supported Python integration.
-- Test coverage: any replacement must not introduce untested regressions.
-- Dependency management: prefer dependencies available via Maven/Gradle.
-- Future extensibility: prefer the integration that offers the broadest future applicability.
+- Maintainability: Prefer a single, well-supported Python integration.
+- Test coverage: Ensure replacements do not introduce untested regressions.
+- Dependency management: Prefer dependencies available via Maven/Gradle.
+- Future extensibility: Prefer the integration that offers the broadest future applicability.
+
+## Unknowns and Validation Needs
+
+### Unknowns
+- Current Python usage in WRIMS workflows is not fully documented  
+- GraalPy compatibility with existing user scripts and libraries is not fully validated  
+- User expectations regarding Python environment control (system Python vs bundled runtime) are unclear  
+
+### Recommended Validation
+- Workflow assessment: collect or survey current model workflows using Python  
+- Library validation: validate key libraries (e.g., DSS, ANN tools, post-processing scripts)  
+- Environment requirements: confirm whether users require direct access to CPython environments  
 
 ## Considered Options
-1. Consolidate all Python usage to a single integration. Preferred candidate is GraalPy.
+1. Consolidate all Python usage to a single integration. GraalPy is evaluated as the leading candidate.
 2. Retain multiple integrations but update to the latest versions and remove those that are no longer needed.
 3. Maintain the status quo.
 
-## Decision Outcome
+## Recommendations
 
 **Chosen option: TBD** *(to be decided)*
 
 This ADR is currently in a **Proposed** state. The recommended path is to standardize
-on **GraalPy** (Option 1) when adequate test coverage can be established for Python usages within
-WRIMS.
+on **GraalPy** (Option 1) once adequate test coverage is established for existing Python usages within
+WRIMS, to reduce regression risk and support the maintainability, dependency management, 
+and extensibility goals identified in this ADR.
 
 ### Positive Consequences
 
@@ -43,47 +98,58 @@ WRIMS.
 
 ### Negative Consequences
 
-- Existing Python usages currently have **no test coverage**, making a safe
-  refactor difficult to verify.
-- Until tests are written, there is a regression risk.
+- Lack of test coverage makes changes difficult to verify safely
+- Until tests are written, migration carries regression risk
 
-### Option 1: Consolidate all Python usage to a single integration
+### Option 1: Consolidate all Python usage to a single integration, with GraalPy evaluated as the leading candidate
+In this option, Python usage within WRIMS-GUI is consolidated to a single runtime, 
+with GraalPy used as the primary integration approach for GUI-driven workflows 
+and user-initiated execution.
+
 GraalPy is a Python runtime included in the WRIMS-Engine project. It is supported by Oracle 
-and has a clear upgrade path. See: [GraalPy Documentation](https://www.graalvm.org/python/docs/).
+and has a clear upgrade path, and it reduces reliance on native libraries (e.g., JEP DLLs), 
+uses existing project dependencies, and simplifies long-term dependency management. 
+See: [GraalPy Documentation](https://www.graalvm.org/python/docs/).
 
-<u>JEP (Java Embedded Python)</u>
-Usages of the JEP interface may be refactored within WRIMS-Engine to use GraalPy’s interfaces.
+**JEP (Java Embedded Python)**  
+Existing usages of the JEP interface would be evaluated for migration to GraalPy. 
+This may require corresponding changes in WRIMS-Engine to maintain compatibility.
 An important note is that JEP does not share the bidirectionality of Java and Python
 interoperability present in both JPY and GraalPy. Additionally, there is limited developer
 support for both JEP and JPY when compared to the Graal ecosystem, which Oracle supports.
 
-<u>JPY</u>
-JPY is used by the Vista dependency for its Python installation. Inclusion of GraalPy in this
-project should allow for Vista to use the GraalPy Python runtime until Vista is refactored/replaced.
+**JPY**  
+JPY is included as part of the Vista dependency and supports Python integration for that component.
+Its continued use is tied to the presence of Vista within WRIMS.
 
-<u>JPython</u>
-JPython is included in the third-party module dependencies but is not included in the bundle.
-Removal of this dependency is recommended.
+**JPython / Jython**  
+Legacy dependencies such as JPython/Jython are not actively used in the bundled runtime and
+are candidates for removal under a consolidated integration approach.
 
 #### Pros:
-- A single Python runtime reduces dependency complexity.
-- GraalPy has extensive documentation and is well-supported.
-- GraalPy is already an existing Gradle dependency in the WRIMS-Engine project.
+- A single Python runtime reduces dependency complexity
+- Aligns with the WRIMS-Engine Python integration approach
+- GraalPy is well-supported and actively maintained
+- Reduces reliance on native libraries (e.g., JEP DLLs)
+- Simplifies long-term dependency management
 
 #### Cons:
-- No test coverage for existing Python usages.
-- Until tests are written, there is a regression risk.
-- Dependent on update to WRIMS-Engine to use GraalPy.
-- Requires additional effort to migrate existing Python usages.
-- Requires additional manual testing to verify no regressions are introduced for UI components and functionality.
-- Some current integrations may not be fully replaceable by GraalPy.
+- Lack of test coverage makes migration difficult to validate
+- Until tests are written, migration carries regression risk
+- Requires additional effort to migrate existing Python usages
+- May require coordination with WRIMS-Engine
+- Some current integrations may not be fully replaceable by GraalPy
+- Requires validation of compatibility with user scripts and libraries
 
-### Option 2: Retain multiple integrations but update to the latest versions and remove those that are no longer needed
+### Option 2: Retain multiple integrations with updates and selective removal
+In this option, WRIMS-GUI continues to support multiple Python integrations, with updates applied
+to supported libraries and removal of unused or deprecated dependencies.
+
 Current integrations have a variety of project statuses, and some may not be easily upgraded without 
 a significant refactor.
 
-<u>JEP (Java Embedded Python)</u>
-
+#### Integration Considerations
+**JEP (Java Embedded Python)**  
 JEP (Java Embedded Python) is a JNI-based library which loads CPython within the WRIMS process
 at runtime and is used in the Java code as an interface to Python. JEP currently provides 
 interoperability between Java and Python code within the WRIMS application. The JEP DLL is 
@@ -92,8 +158,7 @@ calls used within WRIMS-Engine. These methods interact with the CalLite
 ANN (Artificial Neural Network) interface to process model calculations. A newer version of 
 JEP is available via Maven.
 
-<u>JPY</u>
-
+**JPY**  
 JPY is included in the third-party module dependencies. There are no direct dependencies on the
 JPY dependency specifically. However, this JAR is still important for its Python installation.
 It is present for support of Vista's Python exception handling using the
@@ -131,7 +196,7 @@ dependency by the HEC-Monolith library. No change is necessary.
 - Requires continued inclusion of JEP DLL in the third-party bundle.
 - Higher maintenance burden.
 
-## Option 3: Maintain the status quo
+### Option 3: Maintain the status quo
 All currently present Python integrations are maintained.
 
 #### Pros:
