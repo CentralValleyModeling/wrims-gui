@@ -1,12 +1,14 @@
 .. _3-model-structure-and-source-navigation:
 
-WRESL Editor and Source Navigation
-==================================
+3. Model Structure and Source Navigation
+========================================
 
-.. _06-basic-wresl-plus:
 
-06. Basic WRESL Plus
+.. _31-basic-wresl-plus:
+
+3.1 Basic WRESL Plus
 --------------------
+
 
 **Purpose**
 
@@ -14,9 +16,11 @@ This chapter shows how to turn **WRESL Plus** on or off.
 
 **Before you start**
 
+
 - A WRESL file is open in the editor.
 
 **Procedure**
+
 
 Some models use **WRESL**, while others use **WRESL Plus**, which supports extended language features.
 
@@ -26,19 +30,22 @@ To turn the feature on or off:
 
 .. image:: diagrams/frames/06_Basic_WRESLPlus/06_Basic_WRESLPlus_960.png
 
+
 2. Select the launch file.
 3. Open the **Configuration** tab.
 
 .. image:: diagrams/frames/06_Basic_WRESLPlus/06_Basic_WRESLPlus_1560.png
+
 
 4. Locate the **WRESL Plus** option.
 5. Turn it on or off as needed.
 
 .. image:: diagrams/frames/06_Basic_WRESLPlus/06_Basic_WRESLPlus_2160.png
 
+
 6. Click **Apply**.
 
-If the model was written in **WRESL Plus**, this option must be enabled so that WRIMS 2 GUI can parse the model correctly.
+If the model was written in **WRESL Plus**, this option must be enabled so that WRIMS 3 GUI can parse the model correctly.
 
 This behavior can also be confirmed in **Debug** mode:
 
@@ -49,26 +56,32 @@ This behavior can also be confirmed in **Debug** mode:
 
 .. image:: diagrams/frames/06_Basic_WRESLPlus/06_Basic_WRESLPlus_4800.png
 
+
 If the model uses regular WRESL instead, the console shows **WRESL parsing completed**.
 
 At the end of the run, terminating the study saves the results to DSS and ends execution.
 
+
 **Notes**
+
 
 - This setting affects model parsing behavior in the editor and launch configuration.
 - Use **WRESL Plus** only when the model requires the extended language features.
 
+
 **Related sections**
 
-- :ref:`08. Basic Outline <08-basic-outline>`
-- :ref:`09. Debug Pause Variable Goal View <09-debug-pause-variable-goal-view>`
-- :ref:`17. Debug Find Reference <17-debug-find-reference>`
+
+- :ref:`2.6 Basic Outline Panel for the WRESL File <26-basic-outline-panel-for-the-wresl-file>`
+- :ref:`4.1 Debug Pause Variable Goal View <41-debug-pause-variable-goal-view>`
+- :ref:`3.2 Debug Find Reference <32-debug-find-reference>`
 
 
-.. _17-debug-find-reference:
+.. _32-debug-find-reference:
 
-17. Debug Find Reference
+3.2 Debug Find Reference
 ------------------------
+
 
 **Purpose**
 
@@ -76,19 +89,23 @@ This chapter explains how to use **Find Reference** in the WRESL editor.
 
 **Before you start**
 
+
 - A WRESL file is open in the editor.
 
 **Procedure**
+
 
 In the WRESL editor, point to a variable, right-click it, and choose **Find Reference**.
 
 .. image:: diagrams/frames/17_Debug_FindReference/17_Debug_FindReference_840.png
 
-WRIMS 2 GUI then lists all locations where that exact variable is used.
+
+WRIMS 3 GUI then lists all locations where that exact variable is used.
 
 The example shown here uses a variable such as ``s_shsta``.
 
 .. image:: diagrams/frames/17_Debug_FindReference/17_Debug_FindReference_1680.png
+
 
 The results list:
 
@@ -98,6 +115,7 @@ The results list:
 Selecting a result opens the file and highlights the variable occurrence.
 
 **Find Reference vs Search**
+
 
 **Find Reference** and regular **Search** behave differently:
 
@@ -109,21 +127,26 @@ Selecting a result opens the file and highlights the variable occurrence.
 
 Use **Find Reference** when precision is required.
 
+
 **Notes**
+
 
 - This feature is useful when tracing model logic before editing or debugging a variable.
 
+
 **Related sections**
 
-- :ref:`06. Basic WRESL Plus <06-basic-wresl-plus>`
-- :ref:`08. Basic Outline <08-basic-outline>`
-- :ref:`15. Debug Error Source Code Link <15-debug-error-source-code-link>`
+
+- :ref:`3.1 Basic WRESL Plus <31-basic-wresl-plus>`
+- :ref:`2.6 Basic Outline Panel for the WRESL File <26-basic-outline-panel-for-the-wresl-file>`
+- :ref:`4.6 Debug Error Source Code Link <46-debug-error-source-code-link>`
 
 
-.. _20-debug-study-cycle-wresl:
+.. _33-debug-study-cycle-wresl:
 
-20. Debug Study Cycle WRESL
+3.3 Debug Study Cycle WRESL
 ---------------------------
+
 
 **Purpose**
 
@@ -131,10 +154,12 @@ This chapter explains how to display the WRESL files used by the study as a whol
 
 **Before you start**
 
+
 - A study is loaded.
 - You want to know which WRESL files are included globally or for a specific cycle.
 
 **Procedure**
+
 
 Start from the **main WRESL file**.
 
@@ -145,13 +170,16 @@ When you right-click the main file, two options are available:
 
 .. image:: diagrams/frames/20_Debug_StudyCycleWRESL/20_Debug_StudyCycleWRESL_960.png
 
+
 **Study WRESL**
 
-If you choose **Study WRESL**, WRIMS 2 GUI parses the main file and determines all WRESL files used by the study.
+
+If you choose **Study WRESL**, WRIMS 3 GUI parses the main file and determines all WRESL files used by the study.
 
 The results are displayed in the **WRESL Included** panel.
 
 .. image:: diagrams/frames/20_Debug_StudyCycleWRESL/20_Debug_StudyCycleWRESL_3120.png
+
 
 The included list may contain folders such as:
 
@@ -166,25 +194,32 @@ Selecting a file in the **WRESL Included** panel opens it in the editor.
 
 .. image:: diagrams/frames/20_Debug_StudyCycleWRESL/20_Debug_StudyCycleWRESL_3480.png
 
+
 **Cycle WRESL**
 
-If you choose **Cycle WRESL**, WRIMS 2 GUI prompts you to select the cycle to inspect.
+
+If you choose **Cycle WRESL**, WRIMS 3 GUI prompts you to select the cycle to inspect.
 
 .. image:: diagrams/frames/20_Debug_StudyCycleWRESL/20_Debug_StudyCycleWRESL_4320.png
 
-After you select a cycle, WRIMS 2 GUI parses the study and determines only the WRESL files used in that cycle.
+
+After you select a cycle, WRIMS 3 GUI parses the study and determines only the WRESL files used in that cycle.
 
 The results again appear in the **WRESL Included** panel, but this time only the files active in the selected cycle are shown.
 
 .. image:: diagrams/frames/20_Debug_StudyCycleWRESL/20_Debug_StudyCycleWRESL_6720.png
 
+
 **Notes**
+
 
 - **Study WRESL** shows the full included set.
 - **Cycle WRESL** narrows the list to files active in the selected cycle.
 
+
 **Related sections**
 
-- :ref:`08. Basic Outline <08-basic-outline>`
-- :ref:`15. Debug Error Source Code Link <15-debug-error-source-code-link>`
-- :ref:`21. Debug Filter Goals <21-debug-filter-goals>`
+
+- :ref:`2.6 Basic Outline Panel for the WRESL File <26-basic-outline-panel-for-the-wresl-file>`
+- :ref:`4.6 Debug Error Source Code Link <46-debug-error-source-code-link>`
+- :ref:`5.2 Debug Filter Goals <52-debug-filter-goals>`
