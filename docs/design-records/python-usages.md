@@ -11,7 +11,8 @@ Multiple Python runtime integrations are currently present in the project:
 **JEP (Java Embedded Python)**, **JPY**, and legacy dependencies such as **JPython/Jython**. 
 There is a need to decide which integrations to retain and which to remove, with the goal of consolidating Python usage within the project.
 
-> Note: More information on Python usage within WRIMS-Engine can be found in its respective documentation.
+> [!NOTE]
+> More information on Python usage within WRIMS-Engine can be found in its respective documentation.
 
 The initial dependency analysis report on Python usage within the WRIMS project can be found here:
 [GitHub Discussion #82](https://github.com/CentralValleyModeling/wrims-engine/discussions/82).
