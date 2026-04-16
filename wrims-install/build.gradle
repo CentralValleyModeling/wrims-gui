@@ -237,9 +237,6 @@ tasks.register('copyResources', Copy) {
     dependsOn copyThirdPartyToLib
     from("src/main/resources/installer")
     into("${buildDir}/installer/${wrimsGuiFolder}")
-    filter { line ->
-        line.replace('${WRIMS_VERSION}', version)
-    }
 }
 
 //Copy LICENSE file:
