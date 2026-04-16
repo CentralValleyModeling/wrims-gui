@@ -12,12 +12,8 @@ Multiple Python runtime integrations are currently present in the project:
 There is a need to decide which integrations to retain and which to remove, with the goal of consolidating Python usage within the project.
 
 > [!NOTE]
-> More information on Python usage within WRIMS-Engine can be found in its respective documentation.
-
-The initial dependency analysis report on Python usage within the WRIMS project can be found here:
-[GitHub Discussion #82](https://github.com/CentralValleyModeling/wrims-engine/discussions/82).
-
-> Note: Some information in the linked discussion report may be outdated.
+> See the [References](#references) for Python usage within WRIMS-Engine and the initial dependency analysis report on
+> Python usage within WRIMS.
 
 ## Decision Scope / Boundary
 
@@ -205,7 +201,7 @@ In this option, all currently present Python integrations are retained without m
 - Continued reliance on legacy libraries with limited support and documentation  
 
 ## References
-- [GitHub Discussion #82 — Python Dependency Report](https://github.com/CentralValleyModeling/wrims-engine/discussions/82)
+- [GitHub Discussion #82 — Python Dependency Report](https://github.com/CentralValleyModeling/wrims-engine/discussions/82) - This report may be contain outdated information
 - [WRIMS-Engine Python ADR](https://github.com/CentralValleyModeling/wrims-engine/blob/main/docs/design-records/python-usage.md)
 - [GraalPy Documentation](https://www.graalvm.org/python/docs/)
 - [JEP Project on GitHub](https://github.com/ninia/jep)
