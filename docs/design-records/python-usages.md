@@ -61,10 +61,10 @@ Python usage within WRIMS-GUI is primarily user-driven and workflow-oriented.
 These usage patterns differ from WRIMS-Engine, where Python (if used) is part of the internal execution model rather than a user-facing workflow tool.
 
 ## Decision Drivers
-- Maintainability: Prefer a single, well-supported Python integration.
-- Test coverage: Ensure replacements do not introduce untested regressions.
-- Dependency management: Prefer dependencies available via Maven/Gradle.
-- Future extensibility: Prefer the integration that offers the broadest future applicability.
+- Maintainability: Prefer a single, well-supported Python integration
+- Test coverage: Ensure replacements do not introduce untested regressions
+- Dependency management: Prefer dependencies available via Maven/Gradle
+- Future extensibility: Prefer the integration that offers the broadest future applicability
 
 ## Unknowns and Validation Needs
 
@@ -79,7 +79,7 @@ These usage patterns differ from WRIMS-Engine, where Python (if used) is part of
 - Environment requirements: confirm whether users require direct access to CPython environments  
 
 ## Considered Options
-1. Consolidate all Python usage to a single integration. GraalPy is evaluated as the leading candidate.
+1. Consolidate all Python usage to a single integration. 
 2. Retain multiple integrations but update to the latest versions and remove those that are no longer needed.
 3. Maintain the status quo.
 
@@ -98,10 +98,10 @@ and extensibility goals identified in this ADR.
 
 ### Negative Consequences
 
-- Lack of test coverage makes changes difficult to verify safely
+- Lack of test coverage makes changes difficult to validate
 - Until tests are written, migration carries regression risk
 
-### Option 1: Consolidate all Python usage to a single integration, with GraalPy evaluated as the leading candidate
+### Option 1: Consolidate all Python usage to a single integration (GraalPy)
 In this option, Python usage within WRIMS-GUI is consolidated to a single runtime, 
 with GraalPy used as the primary integration approach for GUI-driven workflows 
 and user-initiated execution.
@@ -112,11 +112,10 @@ uses existing project dependencies, and simplifies long-term dependency manageme
 See: [GraalPy Documentation](https://www.graalvm.org/python/docs/).
 
 **JEP (Java Embedded Python)**  
-Existing usages of the JEP interface would be evaluated for migration to GraalPy. 
+Existing usages of the JEP would be migrated to GraalPy. 
 This may require corresponding changes in WRIMS-Engine to maintain compatibility.
-An important note is that JEP does not share the bidirectionality of Java and Python
-interoperability present in both JPY and GraalPy. Additionally, there is limited developer
-support for both JEP and JPY when compared to the Graal ecosystem, which Oracle supports.
+JEP does not share the bidirectionality of Java and Python interoperability present in both JPY and GraalPy.
+Additionally, there is limited developer support for both JEP and JPY when compared to the Graal ecosystem, which Oracle supports.
 
 **JPY**  
 JPY is included as part of the Vista dependency and supports Python integration for that component.
@@ -145,74 +144,69 @@ are candidates for removal under a consolidated integration approach.
 In this option, WRIMS-GUI continues to support multiple Python integrations, with updates applied
 to supported libraries and removal of unused or deprecated dependencies.
 
-Current integrations have a variety of project statuses, and some may not be easily upgraded without 
-a significant refactor.
+Current integrations vary in maturity and may require significant refactoring to upgrade.
 
 #### Integration Considerations
 **JEP (Java Embedded Python)**  
-JEP (Java Embedded Python) is a JNI-based library which loads CPython within the WRIMS process
-at runtime and is used in the Java code as an interface to Python. JEP currently provides 
-interoperability between Java and Python code within the WRIMS application. The JEP DLL is 
-included in the third-party bundle. This provides support for the native function method 
-calls used within WRIMS-Engine. These methods interact with the CalLite 
-ANN (Artificial Neural Network) interface to process model calculations. A newer version of 
-JEP is available via Maven.
+JEP is a JNI-based library that loads CPython natively within the WRIMS process at runtime and provides Java–Python interoperability.  
+This introduces native runtime dependencies and tighter coupling to platform-specific packaging and deployment requirements.  
+The JEP DLL is included in the third-party bundle, requiring distribution of platform-specific binaries with WRIMS-GUI.  
+
+A newer version is available via Maven, but upgrading may require refactoring due to API changes.  
+
+JEP supports integration between WRIMS-GUI and external components, including WRIMS-Engine and related model workflows such as ANN-based calculations.  
+Changes to this integration may affect interoperability with existing modules that depend on this interface.  
 
 **JPY**  
-JPY is included in the third-party module dependencies. There are no direct dependencies on the
-JPY dependency specifically. However, this JAR is still important for its Python installation.
-It is present for support of Vista's Python exception handling using the
-PyException class. The presence of Vista in WRIMS requires the inclusion of a Python
-installation in the third-party bundle. This usage can be seen in these two examples:
-[RegularTimeSeries](https://github.com/CADWRDeltaModeling/dsm2-vista/blob/5115fbae9edae5fa1d90ed795687fd74e69d5051/vista/src/vista/set/RegularTimeSeries.java#L348)
-[TimeFactory](https://github.com/CADWRDeltaModeling/dsm2-vista/blob/5115fbae9edae5fa1d90ed795687fd74e69d5051/vista/src/vista/time/TimeFactory.java#L255)
+JPY is included as part of the Vista dependency and provides Python integration for that component.  
+Its presence requires a Python runtime to be included in the WRIMS-GUI distribution.  
 
-Vista is planned to be refactored/replaced soon. The process will involve the removal of Python
-exception handling, which will eliminate the need for JPY and its associated Python installation
-to be included in the bundle.
+The continued use of JPY is tied to the presence of Vista within WRIMS, which is planned to be refactored or replaced.  
+Removal of JPY may be possible once Vista is no longer required.
 
-<u>JPython</u>
+**JPython / Jython**
+JPython is included in the third-party module dependencies but is not included in the bundled runtime. 
+This dependency is significantly outdated and has since been renamed to Jython. 
 
-JPython is included in the third-party module dependencies but is not included in the bundle. This
-dependency is significantly outdated, and the project has since been renamed to Jython. Replacement
-with Jython may be possible but is also likely unnecessary. Initial testing suggests this 
-dependency can be removed without impact, but further smoke testing should be conducted to 
-confirm no regressions are introduced. Removal of this dependency is recommended.
+Jython is being excluded from the project, as it would otherwise be included via a transitive dependency 
+from the HEC-Monolith library. 
 
-<u>Jython</u>
-
-Jython is being excluded from the project, as it would otherwise be included via transitive
-dependency by the HEC-Monolith library. No change is necessary.
+Initial testing suggests that this dependency can be removed without impact, but further smoke testing 
+should be conducted to confirm no regressions are introduced. Removal of this dependency is recommended.
 
 #### Pros:
-- Updates dependencies to more recent versions.
-- Minimal refactoring is required.
-- Removes unused integrations.
-
+- Maintains compatibility with existing integrations and workflows  
+- Allows incremental updates with lower immediate migration effort  
+- Removes unused or deprecated dependencies where possible  
+- Preserves existing integration paths while reducing some dependency risk
+  
 #### Cons:
-- No test coverage for existing Python usages.
-- Until tests are written, there is a regression risk.
-- Retains multiple Python integrations
-- Requires continued inclusion of JEP DLL in the third-party bundle.
-- Higher maintenance burden.
+- Retains multiple Python integrations  
+- Continues native dependency and packaging complexity (e.g., JEP DLL and bundled Python runtime)  
+- Increases long-term maintenance burden  
+- Lack of test coverage makes changes difficult to validate  
+- Until tests are written, changes carry regression risk
 
 ### Option 3: Maintain the status quo
-All currently present Python integrations are maintained.
+In this option, all currently present Python integrations are retained without modification.
 
 #### Pros:
-- No changes are required.
-- No refactoring is required.
-- No additional dependencies are required.
+- No changes are required  
+- Preserves current functionality and behavior  
+- No immediate development effort required
 
 #### Cons:
-- No test coverage for existing Python usages.
-- Until tests are written, there is a regression risk.
-- Retains multiple Python integrations
-- Requires continued inclusion of JEP DLL in the third-party bundle.
-- Higher maintenance burden.
-- Continued use of legacy libraries with limited support and documentation.
+- Retains multiple Python integrations  
+- Continues native dependency and packaging complexity (e.g., JEP DLL)  
+- Increases long-term maintenance burden  
+- Lack of test coverage makes current behavior difficult to validate  
+- Until tests are written, continued use carries regression risk  
+- Continued reliance on legacy libraries with limited support and documentation  
 
 ## References
 - [GitHub Discussion #82 — Python Dependency Report](https://github.com/CentralValleyModeling/wrims-engine/discussions/82)
+- [WRIMS-Engine Python ADR](https://github.com/CentralValleyModeling/wrims-engine/blob/main/docs/design-records/python-usage.md)
 - [GraalPy Documentation](https://www.graalvm.org/python/docs/)
 - [JEP Project on GitHub](https://github.com/ninia/jep)
+- [JPY Project](https://github.com/bcdev/jpy)
+- [Jython Project](https://www.jython.org/)
