@@ -252,7 +252,7 @@ tasks.register('writeVersionProperties', DefaultTask) {
     dependsOn copyResources
     doLast {
         def propsFile = file("${buildDir}/installer/${wrimsGuiFolder}/version.properties")
-        propsFile.text = "version=${version}\nbuild.date=${new Date().format('MM/dd/yyyy')}\nengine.version=${libs.versions.wrims.engine.get()}\napplication.name=WRIMS\n"
+        propsFile.text = "version=${version}\nbuild.date=${new Date().format('MM/dd/yyyy')}\nengine.version=${libs.versions.wrims.engine.get()}\napplication.name=WRIMS 3\n"
     }
 }
 

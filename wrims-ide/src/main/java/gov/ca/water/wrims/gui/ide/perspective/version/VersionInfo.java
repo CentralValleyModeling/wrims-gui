@@ -33,7 +33,7 @@ public final class VersionInfo {
 	private void loadVersionInfo() {
 		Properties props = new Properties();
 		Path propertiesPath = Path.of(VERSION_PROPERTIES).toAbsolutePath();
-		LOGGER.atFiner().log("Loading version info from: " + propertiesPath.toString());
+		LOGGER.atFiner().log("Loading version info from: " + propertiesPath);
 		try (InputStream is = new FileInputStream(propertiesPath.toFile())) {
 			if (is.available() != 0) {
 				props.load(is);
