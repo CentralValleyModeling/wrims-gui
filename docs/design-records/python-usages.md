@@ -71,9 +71,9 @@ These usage patterns differ from WRIMS-Engine, where Python (if used) is part of
 - User expectations regarding Python environment control (system Python vs bundled runtime) are unclear  
 
 ### Recommended Validation
-- Workflow assessment: collect or survey current model workflows using Python  
-- Library validation: validate key libraries (e.g., DSS, ANN tools, post-processing scripts)  
-- Environment requirements: confirm whether users require direct access to CPython environments  
+- Workflow assessment: Collect or survey current model workflows using Python  
+- Library validation: Validate key libraries (e.g., DSS, ANN tools, post-processing scripts)  
+- Environment requirements: Confirm whether users require direct access to CPython environments  
 
 ## Considered Options
 1. Consolidate all Python usage to a single integration. 
@@ -109,14 +109,15 @@ uses existing project dependencies, and simplifies long-term dependency manageme
 See: [GraalPy Documentation](https://www.graalvm.org/python/docs/).
 
 **JEP (Java Embedded Python)**  
-Existing usages of the JEP would be migrated to GraalPy. 
+Existing usages of JEP would be migrated to GraalPy. 
 This may require corresponding changes in WRIMS-Engine to maintain compatibility.
 JEP does not share the bidirectionality of Java and Python interoperability present in both JPY and GraalPy.
 Additionally, there is limited developer support for both JEP and JPY when compared to the Graal ecosystem, which Oracle supports.
 
 **JPY**  
-JPY is included as part of the Vista dependency and supports Python integration for that component.
-Its continued use is tied to the presence of Vista within WRIMS.
+JPY currently provides the Python runtime dependency used by Vista within WRIMS-GUI.  
+
+Under this option, Vista would continue to rely on a provided Python runtime until it is refactored or replaced.
 
 **JPython / Jython**  
 Legacy dependencies such as JPython/Jython are not actively used in the bundled runtime and
@@ -155,11 +156,11 @@ JEP supports integration between WRIMS-GUI and external components, including WR
 Changes to this integration may affect interoperability with existing modules that depend on this interface.  
 
 **JPY**  
-JPY is included as part of the Vista dependency and provides Python integration for that component.  
-Its presence requires a Python runtime to be included in the WRIMS-GUI distribution.  
+JPY provides the Python runtime dependency used by Vista within WRIMS-GUI.  
+Vista depends on Python, but the Vista dependency does not itself bundle either JPY or the Python runtime.  
 
-The continued use of JPY is tied to the presence of Vista within WRIMS, which is planned to be refactored or replaced.  
-Removal of JPY may be possible once Vista is no longer required.
+This means WRIMS-GUI must continue to provide that runtime dependency while Vista remains in use.  
+Removal of JPY may be possible once Vista is refactored or replaced.
 
 **JPython / Jython**
 JPython is included in the third-party module dependencies but is not included in the bundled runtime. 
