@@ -19,7 +19,7 @@ public final class VersionView extends VersionBase
 {
 	public static final String ID = VersionView.class.getCanonicalName();
 	private static final String WRIMS_ENGINE_VERSION = "Engine Version: ";
-	private static final String WRIMS_GUI_VERSION = "Version: ";
+	private static final String WRIMS_GUI_VERSION = "GUI Version: ";
 	private static final int CURRENT_YEAR = ZonedDateTime.now().getYear();
 	private static final String COPYRIGHT = String.format("© %d California Department of Water Resources", CURRENT_YEAR);
 	private static final String FONT = "Arial";
@@ -91,12 +91,12 @@ public final class VersionView extends VersionBase
 		versionInfoPanel.add(versionLabelGUI);
 		versionInfoPanel.add(Box.createVerticalStrut(10));
 		versionInfoPanel.add(versionLabel);
-		versionInfoPanel.add(Box.createVerticalStrut(20));
+		versionInfoPanel.add(Box.createVerticalStrut(10));
 		versionInfoPanel.add(buildDateLabel);
+		versionInfoPanel.add(Box.createVerticalStrut(10));
+		versionInfoPanel.add(copyrightLabel);
 		versionInfoPanel.add(Box.createVerticalStrut(20));
 		versionInfoPanel.add(systemInfoPanel);
-		versionInfoPanel.add(Box.createVerticalStrut(20));
-		versionInfoPanel.add(copyrightLabel);
 
 		// Add to main panel
 		mainPanel.add(titleLabel, BorderLayout.NORTH);
