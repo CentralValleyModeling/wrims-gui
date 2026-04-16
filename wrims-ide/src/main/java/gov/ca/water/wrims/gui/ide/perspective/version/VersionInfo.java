@@ -1,5 +1,6 @@
 package gov.ca.water.wrims.gui.ide.perspective.version;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -32,20 +33,18 @@ public final class VersionInfo {
 	private void loadVersionInfo() {
 		Properties props = new Properties();
 		Path propertiesPath = Path.of(VERSION_PROPERTIES).toAbsolutePath();
-		LOGGER.atInfo().log("Loading version info from: " + propertiesPath);
-		LOGGER.atInfo().log("Is a file?: " + propertiesPath.toFile().isFile());
-		try (InputStream is = getClass().getResourceAsStream(propertiesPath.toString())) {
-			if (is != null) {
+		LOGGER.atFiner().log("Loading version info from: " + propertiesPath.toString());
+		try (InputStream is = new FileInputStream(propertiesPath.toFile())) {
+			if (is.available() != 0) {
 				props.load(is);
-				LOGGER.atInfo().log("Version info loaded");
-				LOGGER.atInfo().log(props.toString());
+				LOGGER.atFiner().log("Version info loaded: %s", props);
 				version = props.getProperty("version", VERSION_FALLBACK);
 				buildDate = props.getProperty("build.date", VERSION_FALLBACK);
 				engineVersion = props.getProperty("engine.version", VERSION_FALLBACK);
 				applicationName = props.getProperty("application.name", "WRIMS GUI");
 			} else {
 				// Fallback values if properties file is not found
-				LOGGER.atInfo().log("Version info not found, using fallback values");
+				LOGGER.atFiner().log("Version info not found, using fallback values");
 				setDefaultValues();
 			}
 		} catch (IOException e) {
@@ -74,9 +73,5 @@ public final class VersionInfo {
 
 	public String getApplicationName() {
 		return applicationName;
-	}
-
-	public String getFullVersionString() {
-		return applicationName + " " + version + " (Engine: " + engineVersion + ", Build: " + buildDate + ")";
 	}
 }
