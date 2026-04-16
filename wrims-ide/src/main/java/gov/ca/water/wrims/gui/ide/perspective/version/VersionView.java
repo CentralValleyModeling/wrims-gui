@@ -18,8 +18,8 @@ import org.eclipse.swt.widgets.Composite;
 public final class VersionView extends VersionBase
 {
 	public static final String ID = VersionView.class.getCanonicalName();
-	private static final String WRIMS_ENGINE_VERSION = "WRIMS Engine Version: ";
-	private static final String WRIMS_GUI_VERSION = "WRIMS GUI Version: ";
+	private static final String WRIMS_ENGINE_VERSION = "Engine Version: ";
+	private static final String WRIMS_GUI_VERSION = "Version: ";
 	private static final int CURRENT_YEAR = ZonedDateTime.now().getYear();
 	private static final String COPYRIGHT = String.format("© %d California Department of Water Resources", CURRENT_YEAR);
 	private static final String FONT = "Arial";
@@ -52,7 +52,7 @@ public final class VersionView extends VersionBase
 		mainPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
 		// Create title label
-		JLabel titleLabel = new JLabel(applicationName, SwingConstants.CENTER);
+		JLabel titleLabel = new JLabel(applicationName, SwingConstants.LEFT);
 		titleLabel.setFont(new Font(FONT, Font.BOLD, 24));
 		titleLabel.setForeground(new Color(0, 102, 153));
 
@@ -64,29 +64,30 @@ public final class VersionView extends VersionBase
 		// Version number
 		JLabel versionLabelGUI = new JLabel(WRIMS_GUI_VERSION + wrimsGuiVersion, SwingConstants.CENTER);
 		versionLabelGUI.setFont(new Font(FONT, Font.PLAIN, 16));
-		versionLabelGUI.setAlignmentX(Component.CENTER_ALIGNMENT);
+		versionLabelGUI.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		// Version number
 		JLabel versionLabel = new JLabel(WRIMS_ENGINE_VERSION + wrimsEngineVersion, SwingConstants.CENTER);
 		versionLabel.setFont(new Font(FONT, Font.PLAIN, 16));
-		versionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		versionLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		// Build date
 		JLabel buildDateLabel = new JLabel("Build Date: " + buildDate, SwingConstants.CENTER);
-		buildDateLabel.setFont(new Font(FONT, Font.PLAIN, 12));
+		buildDateLabel.setFont(new Font(FONT, Font.PLAIN, 14));
 		buildDateLabel.setForeground(Color.GRAY);
-		buildDateLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		buildDateLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		// Copyright
 		JLabel copyrightLabel = new JLabel(COPYRIGHT, SwingConstants.CENTER);
-		copyrightLabel.setFont(new Font(FONT, Font.PLAIN, 12));
+		copyrightLabel.setFont(new Font(FONT, Font.PLAIN, 14));
 		copyrightLabel.setForeground(Color.GRAY);
-		copyrightLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		copyrightLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		// System information
 		JPanel systemInfoPanel = createSystemInfoPanel();
 
 		// Add components to version info panel
+		versionInfoPanel.add(Box.createVerticalStrut(20));
 		versionInfoPanel.add(versionLabelGUI);
 		versionInfoPanel.add(Box.createVerticalStrut(10));
 		versionInfoPanel.add(versionLabel);
@@ -115,18 +116,18 @@ public final class VersionView extends VersionBase
 		// Java version
 		String javaVersion = System.getProperty("java.version");
 		JLabel javaLabel = new JLabel("Java Version: " + javaVersion);
-		javaLabel.setFont(new Font(FONT, Font.PLAIN, 12));
+		javaLabel.setFont(new Font(FONT, Font.PLAIN, 14));
 
 		// Operating system
 		String osName = System.getProperty("os.name");
 		String osVersion = System.getProperty("os.version");
 		JLabel osLabel = new JLabel("OS: " + osName + " " + osVersion);
-		osLabel.setFont(new Font(FONT, Font.PLAIN, 12));
+		osLabel.setFont(new Font(FONT, Font.PLAIN, 14));
 
 		// Architecture
 		String osArch = System.getProperty("os.arch");
 		JLabel archLabel = new JLabel("Architecture: " + osArch);
-		archLabel.setFont(new Font(FONT, Font.PLAIN, 12));
+		archLabel.setFont(new Font(FONT, Font.PLAIN, 14));
 
 		// Memory info
 		Runtime runtime = Runtime.getRuntime();
@@ -135,7 +136,7 @@ public final class VersionView extends VersionBase
 		long freeMemory = runtime.freeMemory() / (1024 * 1024);
 		JLabel memoryLabel = new JLabel(String.format("Memory: %d MB used, %d MB total, %d MB max",
 				(totalMemory - freeMemory), totalMemory, maxMemory));
-		memoryLabel.setFont(new Font(FONT, Font.PLAIN, 12));
+		memoryLabel.setFont(new Font(FONT, Font.PLAIN, 14));
 
 		systemPanel.add(javaLabel);
 		systemPanel.add(osLabel);
