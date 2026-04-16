@@ -245,12 +245,23 @@ tasks.register('copyLicense', Copy) {
     into("${buildDir}/installer/${wrimsGuiFolder}")
 }
 
+// Write version information to a properties file for use in the installer
+tasks.register('writeVersionProperties', DefaultTask) {
+    group 'install'
+    description 'Writes version information to a properties file for use in the installer.'
+    dependsOn copyResources
+    doLast {
+        def propsFile = file("${buildDir}/installer/${wrimsGuiFolder}/version.properties")
+        propsFile.text = "version=${version}\nbuild.date=${new Date().format('MM/dd/yyyy')}\nengine.version=${libs.versions.wrims.engine.get()}\napplication.name=WRIMS GUI\n"
+    }
+}
+
 //Add the release date to the installer
 //generate a releasedate.log file that contains the current date in MM/DD/YYYY format
 tasks.register('buildWrimsInstall', DefaultTask) {
     group 'install'
     description 'Builds the complete WRIMS3 application'
-    dependsOn copyResources
+    dependsOn writeVersionProperties
     doLast {
         def releaseDateFile = file("${buildDir}/installer/${wrimsGuiFolder}/releasedate.log")
         releaseDateFile.text = new Date().format('MM/dd/yyyy')
