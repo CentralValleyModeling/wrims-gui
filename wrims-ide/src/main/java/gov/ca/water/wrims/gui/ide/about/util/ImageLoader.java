@@ -13,8 +13,8 @@ import org.eclipse.swt.graphics.ImageData;
 public final class ImageLoader {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	public static final Path LOGO_PATH
-			= Path.of(String.format("..%1$swrims-install%1$ssrc%1$smain%1$sresources%1$sbranding%1$ssplash.bmp",
-					File.pathSeparator)).toAbsolutePath();
+			= Path.of(String.format("plugins%1$sorg.eclipse.epp.package.common_4.36.0.20250605-1300%1$ssplash.bmp",
+					File.separator)).toAbsolutePath();
 	private static ImageLoader instance;
 	private Image image;
 
@@ -34,11 +34,13 @@ public final class ImageLoader {
 	}
 
 	private void loadImage() {
+		LOGGER.atFiner().log("Loading image from: " + LOGO_PATH);
 		try (InputStream in = new FileInputStream(LOGO_PATH.toString())) {
 			ImageData data = new ImageData(in);
+			LOGGER.atFiner().log("Image data loaded");
 			image = new Image(null, data);
 		} catch (IOException ex) {
-			LOGGER.atFiner().log("Could not load image", ex);
+			LOGGER.atFiner().withCause(ex).log("Could not load image");
 			image = null;
 		}
 	}
