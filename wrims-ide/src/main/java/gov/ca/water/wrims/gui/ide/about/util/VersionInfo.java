@@ -1,4 +1,4 @@
-package gov.ca.water.wrims.gui.ide.perspective.version;
+package gov.ca.water.wrims.gui.ide.about.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
