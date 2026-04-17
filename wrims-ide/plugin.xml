@@ -711,31 +711,6 @@
           </instanceof></enablement>
     </consolePageParticipant>
  </extension>
-<extension point="org.eclipse.ui.views">
-	<category
-			id="wpp.category.wrims3"
-			name="WRIMS2">
-	</category>
-	<view
-			category="wpp.category.wrims3"
-			class="gov.ca.water.wrims.gui.ide.perspective.version.VersionView"
-			id="gov.ca.water.wrims.gui.ide.perspective.version.VersionView"
-			name="Version Information"
-			restorable="true">
-	</view>
-</extension>
-<extension
-		point="org.eclipse.ui.perspectiveExtensions">
-	<perspectiveExtension
-			targetID="org.eclipse.jdt.ui.JavaPerspective">
-		<view
-				id="gov.ca.water.wrims.gui.ide.perspective.version.VersionView"
-				ratio="0.5"
-				relationship="right"
-				relative="org.eclipse.ui.views.TaskList">
-		</view>
-	</perspectiveExtension>
-</extension>
  <extension
          point="org.eclipse.ui.perspectives">
       <perspective
@@ -743,13 +718,27 @@
             id="wpp.ideperspective"
             name="IDE"/>
  </extension>
-<extension
-		point="org.eclipse.ui.perspectives">
-	<perspective
-			class="gov.ca.water.wrims.gui.ide.perspective.VersionPerspectiveFactory"
-			fixed="false"
-			id="gov.ca.water.wrims.gui.ide.perspective.VersionPerspective"
-			name="Version Information">
-	</perspective>
-</extension>
+	<extension point="org.eclipse.ui.commands">
+		<command
+				id="gov.ca.water.wrims.gui.ide.about"
+				name="About WRIMS"
+				description="Show WRIMS version information">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+				commandId="gov.ca.water.wrims.gui.ide.about"
+				class="gov.ca.water.wrims.gui.ide.about.handler.AboutHandler">
+		</handler>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="menu:help">
+			<command
+					commandId="gov.ca.water.wrims.gui.ide.about"
+					label="About WRIMS"
+					style="push"
+					icon="icons/wpp_icon.png">
+			</command>
+		</menuContribution>
+	</extension>
 </plugin>
