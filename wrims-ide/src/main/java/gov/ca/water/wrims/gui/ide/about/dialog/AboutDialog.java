@@ -38,8 +38,7 @@ public class AboutDialog extends Dialog {
 	private final Font fontBold14pt = new Font(null, FONT, 14, SWT.BOLD);
 	private final Font font10pt = new Font(null, FONT, 10, SWT.NORMAL);
 
-	public AboutDialog(Shell parentShell)
-	{
+	public AboutDialog(Shell parentShell) {
 		super(parentShell);
 		VersionInfo versionInfo = VersionInfo.getInstance();
 		wrimsEngineVersion = versionInfo.getEngineVersion();
@@ -50,8 +49,7 @@ public class AboutDialog extends Dialog {
 	}
 
 	@Override
-	protected void configureShell(Shell shell)
-	{
+	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		VersionInfo versionInfo = VersionInfo.getInstance();
 		shell.setText("About " + versionInfo.getApplicationName());
@@ -59,8 +57,7 @@ public class AboutDialog extends Dialog {
 	}
 
 	@Override
-	protected Control createDialogArea(Composite parent)
-	{
+	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite) super.createDialogArea(parent);
 
 		if(image != null) {
@@ -91,26 +88,61 @@ public class AboutDialog extends Dialog {
 
 		// Build date
 		Label buildLabel = new Label(container, SWT.NONE);
-		buildLabel.setText("Build Date: " + buildDate);
+		String buildText = "Build Date: " + buildDate;
+		buildLabel.setText(buildText);
+		buildLabel.addPaintListener(e -> {
+			e.gc.setFont(fontBold10pt);
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+			e.gc.drawText(buildText, e.x + 1, e.y + 1, true);
+
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
+			e.gc.drawText(buildText, e.x, e.y, true);
+		});
 		buildLabel.setFont(fontBold10pt);
 		buildLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Version
 		Label versionLabel = new Label(container, SWT.NONE);
-		versionLabel.setText(WRIMS_GUI_VERSION + wrimsGuiVersion);
+		String versionText = WRIMS_GUI_VERSION + wrimsGuiVersion;
+		versionLabel.setText(versionText);
 		versionLabel.setFont(fontBold10pt);
+		versionLabel.addPaintListener(e -> {
+			e.gc.setFont(fontBold10pt);
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+			e.gc.drawText(versionText, e.x + 1, e.y + 1, true);
+
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
+			e.gc.drawText(versionText, e.x, e.y, true);
+		});
 		versionLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Engine version
 		Label engineLabel = new Label(container, SWT.NONE);
-		engineLabel.setText(WRIMS_ENGINE_VERSION + wrimsEngineVersion);
+		String engineText = WRIMS_ENGINE_VERSION + wrimsEngineVersion;
+		engineLabel.setText(engineText);
 		engineLabel.setFont(fontBold10pt);
+		engineLabel.addPaintListener(e -> {
+			e.gc.setFont(fontBold10pt);
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+			e.gc.drawText(engineText, e.x + 1, e.y + 1, true);
+
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
+			e.gc.drawText(engineText, e.x, e.y, true);
+		});
 		engineLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Copyright
 		Label copyrightLabel = new Label(container, SWT.NONE);
 		copyrightLabel.setText(COPYRIGHT);
 		copyrightLabel.setFont(font10pt);
+		copyrightLabel.addPaintListener(e -> {
+			e.gc.setFont(font10pt);
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+			e.gc.drawText(COPYRIGHT, e.x + 1, e.y + 1, true);
+
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
+			e.gc.drawText(COPYRIGHT, e.x, e.y, true);
+		});
 		copyrightLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 		createSystemInfoPanel(container);
 
@@ -134,60 +166,91 @@ public class AboutDialog extends Dialog {
 		// Java version
 		String javaVersion = System.getProperty("java.version");
 		Label javaLabel = new Label(systemGroup, SWT.NONE);
-		javaLabel.setText("Java Version: " + javaVersion);
+		String versionText = "Java Version: " + javaVersion;
+		javaLabel.setText(versionText);
 		javaLabel.setFont(font10pt);
+		javaLabel.addPaintListener(e -> {
+			e.gc.setFont(font10pt);
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+			e.gc.drawText(versionText, e.x + 1, e.y + 1, true);
+
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
+			e.gc.drawText(versionText, e.x, e.y, true);
+		});
 		javaLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Operating system
 		String osName = System.getProperty("os.name");
 		String osVersion = System.getProperty("os.version");
 		Label osLabel = new Label(systemGroup, SWT.NONE);
-		osLabel.setText("OS: " + osName + " " + osVersion);
+		String osText = "OS: " + osName + " " + osVersion;
+		osLabel.setText(osText);
 		osLabel.setFont(font10pt);
+		osLabel.addPaintListener(e -> {
+			e.gc.setFont(font10pt);
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+			e.gc.drawText(osText, e.x + 1, e.y + 1, true);
+
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
+			e.gc.drawText(osText, e.x, e.y, true);
+		});
 		osLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Architecture
 		String osArch = System.getProperty("os.arch");
 		Label archLabel = new Label(systemGroup, SWT.NONE);
-		archLabel.setText("Architecture: " + osArch);
+		String archText = "Architecture: " + osArch;
+		archLabel.setText(archText);
 		archLabel.setFont(font10pt);
+		archLabel.addPaintListener(e -> {
+			e.gc.setFont(font10pt);
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+			e.gc.drawText(archText, e.x + 1, e.y + 1, true);
+
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
+			e.gc.drawText(archText, e.x, e.y, true);
+		});
 		archLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Memory info
 		Runtime runtime = Runtime.getRuntime();
 		long maxMemory = runtime.maxMemory() / (1024 * 1024);
 		Label memoryLabel = new Label(systemGroup, SWT.NONE);
-		memoryLabel.setText(String.format("Memory: %d MB max", maxMemory));
+		String memoryText = String.format("Memory: %d MB max", maxMemory);
+		memoryLabel.setText(memoryText);
 		memoryLabel.setFont(font10pt);
+		memoryLabel.addPaintListener(e -> {
+			e.gc.setFont(font10pt);
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
+			e.gc.drawText(memoryText, e.x + 1, e.y + 1, true);
+
+			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
+			e.gc.drawText(memoryText, e.x, e.y, true);
+		});
 		memoryLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 	}
 
 	@Override
-	protected void createButtonsForButtonBar(Composite parent)
-	{
+	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 		createButton(parent, IDialogConstants.DETAILS_ID, "Terms and Conditions", false).addSelectionListener(new Listener());
 	}
 
-	private class Listener implements SelectionListener
-	{
+	private class Listener implements SelectionListener {
 		@Override
-		public void widgetSelected(SelectionEvent e)
-		{
+		public void widgetSelected(SelectionEvent e) {
 			TermsDialog termsDialog = new TermsDialog(getShell());
 			termsDialog.open();
 		}
 
 		@Override
-		public void widgetDefaultSelected(SelectionEvent e)
-		{
+		public void widgetDefaultSelected(SelectionEvent e) {
 			// NO OP
 		}
 	}
 
 	@Override
-	public boolean close()
-	{
+	public boolean close() {
 		if (font10pt != null) {
 			font10pt.dispose();
 		}
