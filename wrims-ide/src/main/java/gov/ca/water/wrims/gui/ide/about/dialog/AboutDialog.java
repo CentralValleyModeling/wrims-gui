@@ -160,7 +160,8 @@ public class AboutDialog extends Dialog {
 
 		GridLayout groupLayout = new GridLayout(1, false);
 		groupLayout.marginWidth = 10;
-		groupLayout.marginHeight = 5;
+		groupLayout.marginHeight = 2;
+		groupLayout.marginBottom = 5;
 		systemGroup.setLayout(groupLayout);
 
 		// Java version
@@ -251,19 +252,10 @@ public class AboutDialog extends Dialog {
 
 	@Override
 	public boolean close() {
-		if (font10pt != null) {
-			font10pt.dispose();
-		}
-		if (fontBold10pt != null) {
-			fontBold10pt.dispose();
-		}
-		if (fontBold12pt != null) {
-			fontBold12pt.dispose();
-		}
-		if (fontBold14pt != null) {
-			fontBold14pt.dispose();
-		}
-
+		font10pt.dispose();
+		fontBold10pt.dispose();
+		fontBold12pt.dispose();
+		fontBold14pt.dispose();
 		return super.close();
 	}
 
