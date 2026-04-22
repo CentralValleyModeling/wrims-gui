@@ -34,6 +34,8 @@ public class AboutDialog extends Dialog {
 	private static final int CURRENT_YEAR = ZonedDateTime.now().getYear();
 	private static final String COPYRIGHT = String.format("© %d California Department of Water Resources", CURRENT_YEAR);
 	private static final String FONT = "Arial";
+	private static final int WIDTH = 900;
+	private static final int HEIGHT = 600;
 
 	private final String wrimsEngineVersion;
 	private final String buildDate;
@@ -70,8 +72,7 @@ public class AboutDialog extends Dialog {
 		Composite container = (Composite) super.createDialogArea(parent);
 
 		// Remove margins to use full image space
-		GridLayout layout = new GridLayout(3, false);
-		layout.marginWidth = 10;
+		GridLayout layout = new GridLayout(2, false);
 		container.setLayout(layout);
 
 		createImageColumn(container);
@@ -85,8 +86,8 @@ public class AboutDialog extends Dialog {
 
 	private void createImageColumn(Composite container) {
 		Composite imageColumn = new Composite(container, SWT.NONE);
-		GridData imageColumnData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
-		imageColumnData.widthHint = 450;
+		GridData imageColumnData = new GridData(SWT.LEFT, SWT.CENTER, false, true);
+		imageColumnData.widthHint = WIDTH / 2;
 		imageColumn.setLayoutData(imageColumnData);
 
 		GridLayout layout = new GridLayout(1, false);
@@ -94,13 +95,14 @@ public class AboutDialog extends Dialog {
 
 		Label imageLabel = new Label(imageColumn, SWT.NONE);
 		imageLabel.setImage(image);
-		imageLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, true));
+		imageLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true));
 	}
 
 	private void createInfoColumn(Composite container) {
 		Composite infoColumn = new Composite(container, SWT.NONE);
 
 		GridData infoColumnData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		infoColumnData.widthHint = WIDTH / 2;
 		infoColumn.setLayoutData(infoColumnData);
 
 		GridLayout layout = new GridLayout(1, false);
@@ -119,7 +121,7 @@ public class AboutDialog extends Dialog {
 			e.gc.drawText(buildText, e.x, e.y, true);
 		});
 		buildLabel.setFont(fontBold12pt);
-		GridData buildGD = new GridData(SWT.LEFT, SWT.CENTER, false, false);
+		GridData buildGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		buildLabel.setLayoutData(buildGD);
 
 		// Version
@@ -135,7 +137,7 @@ public class AboutDialog extends Dialog {
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
 			e.gc.drawText(versionText, e.x, e.y, true);
 		});
-		GridData versionGD = new GridData(SWT.LEFT, SWT.CENTER, false, false);
+		GridData versionGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		versionGD.verticalIndent = 10;
 		versionLabel.setLayoutData(versionGD);
 
@@ -152,7 +154,7 @@ public class AboutDialog extends Dialog {
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
 			e.gc.drawText(engineText, e.x, e.y, true);
 		});
-		GridData engineGD = new GridData(SWT.LEFT, SWT.CENTER, false, false);
+		GridData engineGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		engineGD.verticalIndent = 10;
 		engineLabel.setLayoutData(engineGD);
 
@@ -168,8 +170,8 @@ public class AboutDialog extends Dialog {
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
 			e.gc.drawText(COPYRIGHT, e.x, e.y, true);
 		});
-		GridData copyrightGD = new GridData(SWT.LEFT, SWT.CENTER, false, false);
-		copyrightGD.verticalIndent = 10;
+		GridData copyrightGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		copyrightGD.verticalIndent = 20;
 		copyrightLabel.setLayoutData(copyrightGD);
 		createSystemInfoPanel(infoColumn);
 	}
@@ -179,7 +181,7 @@ public class AboutDialog extends Dialog {
 		Group systemGroup = new Group(parent, SWT.NONE);
 		systemGroup.setText("System Information");
 		systemGroup.setFont(fontBold10pt);
-		GridData gd = new GridData(SWT.FILL, SWT.FILL, false, false);
+		GridData gd = new GridData(SWT.LEFT, SWT.CENTER, false, false);
 		gd.widthHint = 200;
 		gd.verticalIndent = 20;
 		systemGroup.setLayoutData(gd);
@@ -257,11 +259,12 @@ public class AboutDialog extends Dialog {
 	private void createTextColumn(Composite parent) {
 		Composite textColumn = new Composite(parent, SWT.NONE);
 		GridData textColumnData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		textColumnData.widthHint = 300;
+		textColumnData.widthHint = WIDTH - 10;
+		textColumnData.horizontalSpan = 2;
 		textColumn.setLayoutData(textColumnData);
 
 		GridLayout layout = new GridLayout(1, false);
-		layout.marginWidth = 0;
+		layout.marginWidth = 10;
 		layout.marginHeight = 0;
 		textColumn.setLayout(layout);
 
@@ -344,6 +347,7 @@ public class AboutDialog extends Dialog {
 	@Override
 	public boolean close() {
 		font10pt.dispose();
+		font12pt.dispose();
 		fontBold10pt.dispose();
 		fontBold12pt.dispose();
 		fontBold14pt.dispose();
@@ -352,9 +356,6 @@ public class AboutDialog extends Dialog {
 
 	@Override
 	protected Point getInitialSize() {
-		// Add some padding for the button bar and margins
-		int width = 1100; // Add margin padding
-		int height = 400; // Add space for button bar
-		return new Point(width, height);
+		return new Point(WIDTH, HEIGHT);
 	}
 }
