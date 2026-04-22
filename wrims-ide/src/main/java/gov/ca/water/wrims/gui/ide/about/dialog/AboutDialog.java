@@ -34,8 +34,8 @@ public class AboutDialog extends Dialog {
 	private static final int CURRENT_YEAR = ZonedDateTime.now().getYear();
 	private static final String COPYRIGHT = String.format("© %d California Department of Water Resources", CURRENT_YEAR);
 	private static final String FONT = "Arial";
-	private static final int WIDTH = 900;
-	private static final int HEIGHT = 600;
+	private static final int WIDTH = 880;
+	private static final int HEIGHT = 580;
 
 	private final String wrimsEngineVersion;
 	private final String buildDate;
@@ -106,6 +106,7 @@ public class AboutDialog extends Dialog {
 		infoColumn.setLayoutData(infoColumnData);
 
 		GridLayout layout = new GridLayout(1, false);
+		layout.marginLeft = 20;
 		infoColumn.setLayout(layout);
 
 		// Build date
