@@ -12,12 +12,16 @@ public final class VersionInfo {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	private static final String VERSION_PROPERTIES = "version.properties";
 	private static final String VERSION_FALLBACK = "unknown";
+	private static final String ABOUT_TEXT_FALLBACK = "WRIMS (Water Resources Integrated Modeling System) is a"
+			+ "generalized water resources modeling system for evaluating operational alternatives of large,"
+			+ "complex river basins.";
 	private static VersionInfo instance;
 
 	private String version;
 	private String buildDate;
 	private String engineVersion;
 	private String applicationName;
+	private String aboutText;
 
 	private VersionInfo() {
 		loadVersionInfo();
@@ -42,6 +46,7 @@ public final class VersionInfo {
 				buildDate = props.getProperty("build.date", VERSION_FALLBACK);
 				engineVersion = props.getProperty("engine.version", VERSION_FALLBACK);
 				applicationName = props.getProperty("application.name", "WRIMS GUI");
+				aboutText = props.getProperty("about.text", ABOUT_TEXT_FALLBACK);
 			} else {
 				// Fallback values if properties file is not found
 				LOGGER.atFiner().log("Version info not found, using fallback values");
@@ -57,6 +62,7 @@ public final class VersionInfo {
 		buildDate = VERSION_FALLBACK;
 		engineVersion = VERSION_FALLBACK;
 		applicationName = "WRIMS GUI";
+		aboutText = "";
 	}
 
 	public String getVersion() {
@@ -73,5 +79,9 @@ public final class VersionInfo {
 
 	public String getApplicationName() {
 		return applicationName;
+	}
+
+	public String getAboutText() {
+		return aboutText;
 	}
 }
