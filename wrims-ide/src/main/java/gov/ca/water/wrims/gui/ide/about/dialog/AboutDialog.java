@@ -1,8 +1,11 @@
 package gov.ca.water.wrims.gui.ide.about.dialog;
 
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.ZonedDateTime;
 
+import com.google.common.flogger.FluentLogger;
 import gov.ca.water.wrims.gui.ide.about.util.ImageLoader;
 import gov.ca.water.wrims.gui.ide.about.util.VersionInfo;
 import org.eclipse.jface.dialogs.Dialog;
@@ -13,16 +16,19 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.internal.about.AboutUtils;
+import org.eclipse.ui.internal.about.InstallationDialog;
 
 public class AboutDialog extends Dialog {
+	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	private static final String WRIMS_ENGINE_VERSION = "Engine Version: ";
 	private static final String WRIMS_GUI_VERSION = "GUI Version: ";
 	private static final int CURRENT_YEAR = ZonedDateTime.now().getYear();
@@ -33,10 +39,12 @@ public class AboutDialog extends Dialog {
 	private final String buildDate;
 	private final String wrimsGuiVersion;
 	private final Image image;
+	private final String aboutText;
 	private final Font fontBold10pt = new Font(null, FONT, 10, SWT.BOLD);
 	private final Font fontBold12pt = new Font(null, FONT, 12, SWT.BOLD);
 	private final Font fontBold14pt = new Font(null, FONT, 14, SWT.BOLD);
 	private final Font font10pt = new Font(null, FONT, 10, SWT.NORMAL);
+	private final Font font12pt = new Font(null, FONT, 12, SWT.NORMAL);
 
 	public AboutDialog(Shell parentShell) {
 		super(parentShell);
@@ -46,6 +54,7 @@ public class AboutDialog extends Dialog {
 		buildDate = versionInfo.getBuildDate();
 		ImageLoader loader = ImageLoader.getInstance();
 		image = loader.getImage();
+		aboutText = versionInfo.getAboutText();
 	}
 
 	@Override
@@ -60,79 +69,95 @@ public class AboutDialog extends Dialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite) super.createDialogArea(parent);
 
-		if(image != null) {
-			Rectangle imageBounds = image.getBounds();
+		// Remove margins to use full image space
+		GridLayout layout = new GridLayout(3, false);
+		layout.marginWidth = 10;
+		container.setLayout(layout);
 
-			// Remove margins to use full image space
-			GridLayout layout = new GridLayout(1, false);
-			layout.marginWidth = 10;
-			container.setLayout(layout);
+		createImageColumn(container);
 
-			container.setBackgroundImage(image);
+		createInfoColumn(container);
 
-			// Set container to exact image size
-			GridData containerData = new GridData(SWT.FILL, SWT.FILL, true, true);
-			containerData.widthHint = imageBounds.width;
-			containerData.heightHint = imageBounds.height;
-			container.setLayoutData(containerData);
-		} else {
-			GridLayout layout = new GridLayout(1, false);
-			layout.marginWidth = 20;
-			container.setLayout(layout);
-		}
+		createTextColumn(container);
 
-		Label spacer = new Label(container, SWT.NONE);
-		GridData gd = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		gd.verticalIndent = 90;
-		spacer.setLayoutData(gd);
+		return container;
+	}
+
+	private void createImageColumn(Composite container) {
+		Composite imageColumn = new Composite(container, SWT.NONE);
+		GridData imageColumnData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		imageColumnData.widthHint = 450;
+		imageColumn.setLayoutData(imageColumnData);
+
+		GridLayout layout = new GridLayout(1, false);
+		imageColumn.setLayout(layout);
+
+		Label imageLabel = new Label(imageColumn, SWT.NONE);
+		imageLabel.setImage(image);
+		imageLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, true));
+	}
+
+	private void createInfoColumn(Composite container) {
+		Composite infoColumn = new Composite(container, SWT.NONE);
+
+		GridData infoColumnData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
+		infoColumn.setLayoutData(infoColumnData);
+
+		GridLayout layout = new GridLayout(1, false);
+		infoColumn.setLayout(layout);
 
 		// Build date
-		Label buildLabel = new Label(container, SWT.NONE);
+		Label buildLabel = new Label(infoColumn, SWT.NONE);
 		String buildText = "Build Date: " + buildDate;
 		buildLabel.setText(buildText);
 		buildLabel.addPaintListener(e -> {
-			e.gc.setFont(fontBold10pt);
+			e.gc.setFont(fontBold12pt);
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
 			e.gc.drawText(buildText, e.x + 1, e.y + 1, true);
 
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
 			e.gc.drawText(buildText, e.x, e.y, true);
 		});
-		buildLabel.setFont(fontBold10pt);
-		buildLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
+		buildLabel.setFont(fontBold12pt);
+		GridData buildGD = new GridData(SWT.LEFT, SWT.CENTER, false, false);
+		buildLabel.setLayoutData(buildGD);
 
 		// Version
-		Label versionLabel = new Label(container, SWT.NONE);
+		Label versionLabel = new Label(infoColumn, SWT.NONE);
 		String versionText = WRIMS_GUI_VERSION + wrimsGuiVersion;
 		versionLabel.setText(versionText);
-		versionLabel.setFont(fontBold10pt);
+		versionLabel.setFont(fontBold12pt);
 		versionLabel.addPaintListener(e -> {
-			e.gc.setFont(fontBold10pt);
+			e.gc.setFont(fontBold12pt);
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
 			e.gc.drawText(versionText, e.x + 1, e.y + 1, true);
 
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
 			e.gc.drawText(versionText, e.x, e.y, true);
 		});
-		versionLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
+		GridData versionGD = new GridData(SWT.LEFT, SWT.CENTER, false, false);
+		versionGD.verticalIndent = 10;
+		versionLabel.setLayoutData(versionGD);
 
 		// Engine version
-		Label engineLabel = new Label(container, SWT.NONE);
+		Label engineLabel = new Label(infoColumn, SWT.NONE);
 		String engineText = WRIMS_ENGINE_VERSION + wrimsEngineVersion;
 		engineLabel.setText(engineText);
-		engineLabel.setFont(fontBold10pt);
+		engineLabel.setFont(fontBold12pt);
 		engineLabel.addPaintListener(e -> {
-			e.gc.setFont(fontBold10pt);
+			e.gc.setFont(fontBold12pt);
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
 			e.gc.drawText(engineText, e.x + 1, e.y + 1, true);
 
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
 			e.gc.drawText(engineText, e.x, e.y, true);
 		});
-		engineLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
+		GridData engineGD = new GridData(SWT.LEFT, SWT.CENTER, false, false);
+		engineGD.verticalIndent = 10;
+		engineLabel.setLayoutData(engineGD);
 
 		// Copyright
-		Label copyrightLabel = new Label(container, SWT.NONE);
+		Label copyrightLabel = new Label(infoColumn, SWT.NONE);
 		copyrightLabel.setText(COPYRIGHT);
 		copyrightLabel.setFont(font10pt);
 		copyrightLabel.addPaintListener(e -> {
@@ -143,25 +168,23 @@ public class AboutDialog extends Dialog {
 			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
 			e.gc.drawText(COPYRIGHT, e.x, e.y, true);
 		});
-		copyrightLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
-		createSystemInfoPanel(container);
-
-		return container;
+		GridData copyrightGD = new GridData(SWT.LEFT, SWT.CENTER, false, false);
+		copyrightGD.verticalIndent = 10;
+		copyrightLabel.setLayoutData(copyrightGD);
+		createSystemInfoPanel(infoColumn);
 	}
 
-	private void createSystemInfoPanel(Composite parent)
-	{
+	private void createSystemInfoPanel(Composite parent) {
 		// Create a group for system information with a border
 		Group systemGroup = new Group(parent, SWT.NONE);
 		systemGroup.setText("System Information");
 		systemGroup.setFont(fontBold10pt);
-		GridData gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		GridData gd = new GridData(SWT.FILL, SWT.FILL, false, false);
+		gd.widthHint = 200;
+		gd.verticalIndent = 20;
 		systemGroup.setLayoutData(gd);
 
 		GridLayout groupLayout = new GridLayout(1, false);
-		groupLayout.marginWidth = 10;
-		groupLayout.marginHeight = 2;
-		groupLayout.marginBottom = 5;
 		systemGroup.setLayout(groupLayout);
 
 		// Java version
@@ -231,10 +254,44 @@ public class AboutDialog extends Dialog {
 		memoryLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 	}
 
+	private void createTextColumn(Composite parent) {
+		Composite textColumn = new Composite(parent, SWT.NONE);
+		GridData textColumnData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		textColumnData.widthHint = 300;
+		textColumn.setLayoutData(textColumnData);
+
+		GridLayout layout = new GridLayout(1, false);
+		layout.marginWidth = 0;
+		layout.marginHeight = 0;
+		textColumn.setLayout(layout);
+
+		// Custom text group
+		Group customGroup = new Group(textColumn, SWT.NONE);
+		customGroup.setFont(fontBold10pt);
+		customGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+		GridLayout customLayout = new GridLayout(1, false);
+		customLayout.marginWidth = 10;
+		customLayout.marginHeight = 10;
+		customGroup.setLayout(customLayout);
+
+		// Get custom text from gradle.properties or use default
+
+		Link textWidget = new Link(customGroup, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
+		textWidget.setText(aboutText);
+		textWidget.setFont(font12pt);
+		textWidget.addSelectionListener(new LinkListener());
+		textWidget.setForeground(textWidget.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		GridData textData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		textData.heightHint = 150;
+		textWidget.setLayoutData(textData);
+	}
+
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		createButton(parent, IDialogConstants.DETAILS_ID, "Installation Details", false).addSelectionListener(new InstallListener());
 		createButton(parent, IDialogConstants.DETAILS_ID, "Terms and Conditions", false).addSelectionListener(new Listener());
+		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 	}
 
 	private class Listener implements SelectionListener {
@@ -242,6 +299,40 @@ public class AboutDialog extends Dialog {
 		public void widgetSelected(SelectionEvent e) {
 			TermsDialog termsDialog = new TermsDialog(getShell());
 			termsDialog.open();
+		}
+
+		@Override
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// NO OP
+		}
+	}
+
+	private class LinkListener implements SelectionListener
+	{
+		@Override
+		public void widgetSelected(SelectionEvent e)
+		{
+			try
+			{
+				AboutUtils.openBrowser(getShell(), URI.create(e.text).toURL());
+			}
+			catch(MalformedURLException ex)
+			{
+				LOGGER.atSevere().withCause(ex).log("Error opening URL: %s", e.text);
+			}
+		}
+
+		@Override
+		public void widgetDefaultSelected(SelectionEvent e) {
+			// NO OP
+		}
+	}
+
+	private class InstallListener implements SelectionListener {
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			InstallationDialog installationDialog = new InstallationDialog(getShell(), null);
+			installationDialog.open();
 		}
 
 		@Override
@@ -261,13 +352,9 @@ public class AboutDialog extends Dialog {
 
 	@Override
 	protected Point getInitialSize() {
-		if (image != null) {
-			Rectangle imageBounds = image.getBounds();
-			// Add some padding for the button bar and margins
-			int width = imageBounds.width + 12; // Add margin padding
-			int height = imageBounds.height + 90; // Add space for button bar
-			return new Point(width, height);
-		}
-		return super.getInitialSize();
+		// Add some padding for the button bar and margins
+		int width = 1100; // Add margin padding
+		int height = 400; // Add space for button bar
+		return new Point(width, height);
 	}
 }

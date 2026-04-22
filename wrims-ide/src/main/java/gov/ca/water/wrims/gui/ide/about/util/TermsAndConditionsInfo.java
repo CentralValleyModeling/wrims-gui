@@ -33,7 +33,7 @@ public final class TermsAndConditionsInfo
 
 	private void loadTerms() {
 		Path termsPath = Path.of(TERMS_AND_CONDITIONS).toAbsolutePath();
-		LOGGER.atInfo().log("Loading terms and conditions from: " + termsPath);
+		LOGGER.atFiner().log("Loading terms and conditions from: " + termsPath);
 		try (InputStream is = new FileInputStream(termsPath.toFile())) {
 			if(is.available() != 0) {
 				termsAndConditions = IOUtils.toString(is, StandardCharsets.UTF_8);

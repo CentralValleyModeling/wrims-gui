@@ -251,8 +251,11 @@ tasks.register('writeVersionProperties', DefaultTask) {
     description 'Writes version information to a properties file for use in the installer.'
     dependsOn copyResources
     doLast {
+        def aboutText = project.findProperty('install.about.text') ?: 'WRIMS 3 - Water Resources Integrated Modeling System'
         def propsFile = file("${buildDir}/installer/${wrimsGuiFolder}/version.properties")
-        propsFile.text = "version=${version}\nbuild.date=${new Date().format('MM/dd/yyyy')}\nengine.version=${libs.versions.wrims.engine.get()}\napplication.name=WRIMS 3\n"
+        propsFile.text = "version=${version}\nbuild.date=${new Date().format('MM/dd/yyyy')}\n" +
+                "engine.version=${libs.versions.wrims.engine.get()}\napplication.name=WRIMS 3\n" +
+                "about.text=${aboutText}\n"
     }
 }
 
