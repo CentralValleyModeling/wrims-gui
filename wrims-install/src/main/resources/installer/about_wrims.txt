@@ -1,0 +1,3 @@
+WRIMS (Water Resources Integrated Modeling System) is a generalized water resources modeling system for evaluating operational alternatives of large, complex river basins.
+
+The project homepage can be found on the <a href="https://github.com/CentralValleyModeling/wrims-gui">WRIMS GUI GitHub page</a> with more information available on the <a href="https://water.ca.gov/">DWR homepage</a>.

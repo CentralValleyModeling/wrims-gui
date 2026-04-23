@@ -9,20 +9,19 @@ import java.nio.file.Path;
 import com.google.common.flogger.FluentLogger;
 import org.apache.commons.io.IOUtils;
 
-public final class TermsAndConditionsInfo
-{
+public final class TermsAndConditionsLoader {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	private static final String TERMS_AND_CONDITIONS = "terms_and_conditions.txt";
-	private static TermsAndConditionsInfo instance;
+	private static TermsAndConditionsLoader instance;
 	private String termsAndConditions;
 
-	private TermsAndConditionsInfo() {
+	private TermsAndConditionsLoader() {
 		loadTerms();
 	}
 
-	public static TermsAndConditionsInfo getInstance() {
+	public static TermsAndConditionsLoader getInstance() {
 		if (instance == null) {
-			instance = new TermsAndConditionsInfo();
+			instance = new TermsAndConditionsLoader();
 		}
 		return instance;
 	}

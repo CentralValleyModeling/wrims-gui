@@ -1,6 +1,6 @@
 package gov.ca.water.wrims.gui.ide.about.dialog;
 
-import gov.ca.water.wrims.gui.ide.about.util.TermsAndConditionsInfo;
+import gov.ca.water.wrims.gui.ide.about.util.TermsAndConditionsLoader;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
@@ -14,7 +14,7 @@ public final class TermsDialog extends Dialog {
 
 	public TermsDialog(Shell parentShell) {
 		super(parentShell);
-		TermsAndConditionsInfo loader = TermsAndConditionsInfo.getInstance();
+		TermsAndConditionsLoader loader = TermsAndConditionsLoader.getInstance();
 		this.terms = loader.getTermsAndConditions();
 	}
 
