@@ -56,10 +56,11 @@ The installer and patch zip will be automatically generated and added to the new
 
 ## Version Dialog Configuration
 The information provided in the `About WRIMS` dialog box within the WRIMS GUI application can be
-configured via the `gradle.properties` file. The version numbers and build date are gathered from
-the Gradle build. To set the about text, use the `install.about.text`
-property, providing the text you'd like to display. Links can be provided using HTML tags (`<a href=""></a>`).
-Newlines must be escaped using `\\n`, as they will otherwise be treated as line breaks.
+configured via the `about_wrims.txt` file located in `wrims-install/src/main/resources/installer/`.
+The version numbers and build date are gathered from the Gradle build. 
+To set the about text, add the content to the specified file, providing the text you'd like to display. 
+Please note that the file contents will be placed in the about window using the exact formatting provided,
+including line breaks and indentation. Links can be provided using HTML tags (`<a href=""></a>`).
 
 > [!NOTE]
 > The version properties are written out to the `version.properties` file in the root of the 

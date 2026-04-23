@@ -6,6 +6,7 @@ import java.net.URI;
 import java.time.ZonedDateTime;
 
 import com.google.common.flogger.FluentLogger;
+import gov.ca.water.wrims.gui.ide.about.util.AboutInfoLoader;
 import gov.ca.water.wrims.gui.ide.about.util.ImageLoader;
 import gov.ca.water.wrims.gui.ide.about.util.VersionInfo;
 import org.eclipse.jface.dialogs.Dialog;
@@ -56,7 +57,8 @@ public class AboutDialog extends Dialog {
 		buildDate = versionInfo.getBuildDate();
 		ImageLoader loader = ImageLoader.getInstance();
 		image = loader.getImage();
-		aboutText = versionInfo.getAboutText();
+		AboutInfoLoader aboutLoader = AboutInfoLoader.getInstance();
+		aboutText = aboutLoader.getAboutText();
 	}
 
 	@Override
