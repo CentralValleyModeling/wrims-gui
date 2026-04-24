@@ -13,6 +13,8 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
@@ -288,19 +290,46 @@ public class AboutDialog extends Dialog {
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 
-		Link textWidget = new Link(scrolledComposite, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
+		// Create a container for the Link widget
+		Composite contentComposite = new Composite(scrolledComposite, SWT.NONE);
+		GridLayout contentLayout = new GridLayout(1, false);
+		contentLayout.marginWidth = 0;
+		contentLayout.marginHeight = 0;
+		contentComposite.setLayout(contentLayout);
+
+		Link textWidget = new Link(contentComposite, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
 		textWidget.setText(aboutText);
 		textWidget.setFont(font12pt);
 		textWidget.addSelectionListener(new LinkListener());
 		textWidget.setForeground(textWidget.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 
-		GridLayout widgetLayout = new GridLayout(1, false);
-		widgetLayout.marginWidth = 10;
-		widgetLayout.marginHeight = 10;
-		textWidget.setLayoutData(widgetLayout);
+		GridData linkData = new GridData(SWT.FILL, SWT.TOP, true, false);
+		textWidget.setLayoutData(linkData);
 
 		scrolledComposite.setContent(textWidget);
-		scrolledComposite.setMinSize(textWidget.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+
+		// Add a resize listener to update the minimum size when the scrolled composite resizes
+		scrolledComposite.addControlListener(new ControlAdapter() {
+			@Override
+			public void controlResized(ControlEvent e) {
+				int width = scrolledComposite.getClientArea().width;
+				if (width > 0) {
+					Point size = contentComposite.computeSize(width, SWT.DEFAULT);
+					scrolledComposite.setMinSize(size);
+					contentComposite.setSize(size);
+				}
+			}
+		});
+
+		// Initial size calculation
+		scrolledComposite.getDisplay().asyncExec(() -> {
+			int width = scrolledComposite.getClientArea().width;
+			if (width > 0) {
+				Point size = contentComposite.computeSize(width, SWT.DEFAULT);
+				scrolledComposite.setMinSize(size);
+				contentComposite.setSize(size);
+			}
+		});
 	}
 
 	@Override
