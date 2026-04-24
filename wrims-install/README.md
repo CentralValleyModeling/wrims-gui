@@ -62,6 +62,12 @@ To set the about text, add the content to the specified file, providing the text
 Please note that the file contents will be placed in the about window using the exact formatting provided,
 including line breaks and indentation. Links can be provided using HTML tags (`<a href=""></a>`).
 
+To configure the terms and conditions text, use the `terms_and_conditions.txt` 
+file located in the same directory.
+
+Any text that is longer than the display area of the dialog will be wrapped to the next line
+and a scroll bar will be displayed.
+
 > [!NOTE]
 > The version properties are written out to the `version.properties` file in the root of the 
 > WRIMS GUI install directory.
