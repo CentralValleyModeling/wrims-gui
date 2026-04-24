@@ -1,13 +1,11 @@
 package gov.ca.water.wrims.gui.ide.about.dialog;
 
 
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.time.ZonedDateTime;
 
-import com.google.common.flogger.FluentLogger;
 import gov.ca.water.wrims.gui.ide.about.util.AboutInfoLoader;
 import gov.ca.water.wrims.gui.ide.about.util.ImageLoader;
+import gov.ca.water.wrims.gui.ide.about.util.LinkListener;
 import gov.ca.water.wrims.gui.ide.about.util.VersionInfo;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -28,11 +26,9 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.internal.about.AboutUtils;
 import org.eclipse.ui.internal.about.InstallationDialog;
 
 public class AboutDialog extends Dialog {
-	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	private static final String WRIMS_ENGINE_VERSION = "Engine Version: ";
 	private static final String WRIMS_GUI_VERSION = "GUI Version: ";
 	private static final int CURRENT_YEAR = ZonedDateTime.now().getYear();
@@ -300,7 +296,7 @@ public class AboutDialog extends Dialog {
 		Link textWidget = new Link(contentComposite, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
 		textWidget.setText(aboutText);
 		textWidget.setFont(font12pt);
-		textWidget.addSelectionListener(new LinkListener());
+		textWidget.addSelectionListener(new LinkListener(getShell()));
 		textWidget.setForeground(textWidget.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 
 		GridData linkData = new GridData(SWT.FILL, SWT.TOP, true, false);
@@ -335,36 +331,15 @@ public class AboutDialog extends Dialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.DETAILS_ID, "Installation Details", false).addSelectionListener(new InstallListener());
-		createButton(parent, IDialogConstants.DETAILS_ID, "Terms and Conditions", false).addSelectionListener(new Listener());
+		createButton(parent, IDialogConstants.DETAILS_ID, "Terms and Conditions", false).addSelectionListener(new TermsListener());
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 	}
 
-	private class Listener implements SelectionListener {
+	private class TermsListener implements SelectionListener {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			TermsDialog termsDialog = new TermsDialog(getShell());
 			termsDialog.open();
-		}
-
-		@Override
-		public void widgetDefaultSelected(SelectionEvent e) {
-			// NO OP
-		}
-	}
-
-	private class LinkListener implements SelectionListener
-	{
-		@Override
-		public void widgetSelected(SelectionEvent e)
-		{
-			try
-			{
-				AboutUtils.openBrowser(getShell(), URI.create(e.text).toURL());
-			}
-			catch(MalformedURLException ex)
-			{
-				LOGGER.atSevere().withCause(ex).log("Error opening URL: %s", e.text);
-			}
 		}
 
 		@Override
