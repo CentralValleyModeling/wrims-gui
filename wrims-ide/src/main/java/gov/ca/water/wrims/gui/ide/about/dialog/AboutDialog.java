@@ -12,6 +12,7 @@ import gov.ca.water.wrims.gui.ide.about.util.VersionInfo;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
@@ -271,7 +272,6 @@ public class AboutDialog extends Dialog {
 		layout.marginHeight = 0;
 		textColumn.setLayout(layout);
 
-		// Custom text group
 		Group customGroup = new Group(textColumn, SWT.NONE);
 		customGroup.setFont(fontBold10pt);
 		customGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -281,16 +281,26 @@ public class AboutDialog extends Dialog {
 		customLayout.marginHeight = 10;
 		customGroup.setLayout(customLayout);
 
-		// Get custom text from gradle.properties or use default
+		ScrolledComposite scrolledComposite = new ScrolledComposite(customGroup, SWT.V_SCROLL);
+		GridData scrollData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		scrollData.heightHint = 150;
+		scrolledComposite.setLayoutData(scrollData);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
 
-		Link textWidget = new Link(customGroup, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
+		Link textWidget = new Link(scrolledComposite, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
 		textWidget.setText(aboutText);
 		textWidget.setFont(font12pt);
 		textWidget.addSelectionListener(new LinkListener());
 		textWidget.setForeground(textWidget.getDisplay().getSystemColor(SWT.COLOR_WHITE));
-		GridData textData = new GridData(SWT.FILL, SWT.FILL, true, true);
-		textData.heightHint = 150;
-		textWidget.setLayoutData(textData);
+
+		GridLayout widgetLayout = new GridLayout(1, false);
+		widgetLayout.marginWidth = 10;
+		widgetLayout.marginHeight = 10;
+		textWidget.setLayoutData(widgetLayout);
+
+		scrolledComposite.setContent(textWidget);
+		scrolledComposite.setMinSize(textWidget.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 	}
 
 	@Override
