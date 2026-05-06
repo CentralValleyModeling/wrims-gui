@@ -45,7 +45,7 @@ eclipse-xtext = "2.39.0"
 eclipse-xtext-ui = "2.10.0"
 eclipse-emf-edit = "2.23.0"
 eclipse-emf-edit-ui = "2.26.0"
-eclipse-ltk-core-refactoring = "3.15.0"
+eclipse-ltk-core-refactoring = "3.15.100"
 
 jaxb-api = "2.3.1"
 jaxb-core = "4.0.7"
