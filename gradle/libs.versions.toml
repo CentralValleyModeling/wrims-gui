@@ -48,7 +48,7 @@ eclipse-emf-edit-ui = "2.26.0"
 eclipse-ltk-core-refactoring = "3.15.100"
 
 jaxb-api = "2.3.1"
-jaxb-core = "4.0.7"
+jaxb-core = "4.0.8"
 jaxb-impl = "4.0.8"
 javax-activation = "1.1.1"
 
