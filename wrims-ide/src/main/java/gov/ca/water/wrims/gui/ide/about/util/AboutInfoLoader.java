@@ -11,7 +11,8 @@ import org.apache.commons.io.IOUtils;
 
 public class AboutInfoLoader {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
-	private static final String ABOUT_FILE = "about_wrims.txt";
+	public static final String SYSTEM_PROPERTY = "gov.ca.water.wrims.about";
+	private static final String ABOUT_FILE = System.getProperty(SYSTEM_PROPERTY, "about_wrims.txt");
 	private static final String ABOUT_TEXT_FALLBACK = "WRIMS (Water Resources Integrated Modeling System) is a"
 			+ "generalized water resources modeling system for evaluating operational alternatives of large,"
 			+ "complex river basins.";

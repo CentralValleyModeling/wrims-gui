@@ -11,7 +11,9 @@ import org.apache.commons.io.IOUtils;
 
 public final class TermsAndConditionsLoader {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
-	private static final String TERMS_AND_CONDITIONS = "terms_and_conditions.txt";
+	public static final String SYSTEM_PROPERTY = "gov.ca.water.wrims.terms.conditions";
+	private static final String TERMS_AND_CONDITIONS = System.getProperty(SYSTEM_PROPERTY,
+			"terms_and_conditions.txt");
 	private static TermsAndConditionsLoader instance;
 	private String termsAndConditions;
 

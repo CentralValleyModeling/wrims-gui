@@ -12,9 +12,10 @@ import org.eclipse.swt.graphics.ImageData;
 
 public final class ImageLoader {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
-	public static final Path LOGO_PATH
-			= Path.of(String.format("plugins%1$sorg.eclipse.epp.package.common_4.36.0.20250605-1300%1$sunversioned_splash.bmp",
-					File.separator)).toAbsolutePath();
+	public static final String SYSTEM_PROPERTY = "gov.ca.water.wrims.image";
+	public static final String LOGO_FILE = System.getProperty(SYSTEM_PROPERTY,
+			String.format("plugins%1$sorg.eclipse.epp.package.common_4.36.0.20250605-1300%1$sunversioned_splash.bmp",
+					File.separator));
 	private static ImageLoader instance;
 	private Image image;
 
@@ -34,8 +35,9 @@ public final class ImageLoader {
 	}
 
 	private void loadImage() {
-		LOGGER.atFiner().log("Loading image from: " + LOGO_PATH);
-		try (InputStream in = new FileInputStream(LOGO_PATH.toString())) {
+		Path logoPath = Path.of(LOGO_FILE).toAbsolutePath();
+		LOGGER.atFiner().log("Loading image from: " + logoPath);
+		try (InputStream in = new FileInputStream(logoPath.toString())) {
 			ImageData data = new ImageData(in);
 			LOGGER.atFiner().log("Image data loaded");
 			image = new Image(null, data);
@@ -44,6 +46,4 @@ public final class ImageLoader {
 			image = null;
 		}
 	}
-
-
 }
