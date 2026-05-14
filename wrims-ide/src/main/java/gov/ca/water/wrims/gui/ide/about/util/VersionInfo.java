@@ -10,7 +10,8 @@ import com.google.common.flogger.FluentLogger;
 
 public final class VersionInfo {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
-	private static final String VERSION_PROPERTIES = "version.properties";
+	public static final String SYSTEM_PROPERTY = "gov.ca.water.wrims.version.properties";
+	private static final String VERSION_PROPERTIES = System.getProperty(SYSTEM_PROPERTY, "version.properties");
 	private static final String VERSION_FALLBACK = "unknown";
 	private static VersionInfo instance;
 
