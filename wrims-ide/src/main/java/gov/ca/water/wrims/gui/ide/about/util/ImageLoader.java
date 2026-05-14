@@ -13,7 +13,7 @@ import org.eclipse.swt.graphics.ImageData;
 public final class ImageLoader {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	public static final Path LOGO_PATH
-			= Path.of(String.format("plugins%1$sorg.eclipse.epp.package.common_4.36.0.20250605-1300%1$ssplash.bmp",
+			= Path.of(String.format("plugins%1$sorg.eclipse.epp.package.common_4.36.0.20250605-1300%1$sunversioned_splash.bmp",
 					File.separator)).toAbsolutePath();
 	private static ImageLoader instance;
 	private Image image;
