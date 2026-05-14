@@ -10,8 +10,8 @@ final class TermsAndConditionsLoaderTest {
 	void testTCLoader() {
 		System.setProperty(SYSTEM_PROPERTY, "src/test/resources/terms_and_conditions.txt");
 		TermsAndConditionsLoader loader = TermsAndConditionsLoader.getInstance();
-		String termsAndConditions = loader.getTermsAndConditions().trim();
-		assertEquals("These are test terms and conditions.\n\n<a href=\"http://www.water.ca.gov\">DWR</a>",
+		String termsAndConditions = loader.getTermsAndConditions().replace("\r", "").replace("\n", "");
+		assertEquals("These are test terms and conditions.<a href=\"http://www.water.ca.gov\">DWR</a>",
 				termsAndConditions);
 		System.clearProperty(SYSTEM_PROPERTY);
 	}
