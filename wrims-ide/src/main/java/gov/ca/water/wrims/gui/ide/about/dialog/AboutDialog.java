@@ -3,6 +3,7 @@ package gov.ca.water.wrims.gui.ide.about.dialog;
 
 import java.time.ZonedDateTime;
 
+import com.google.common.flogger.FluentLogger;
 import gov.ca.water.wrims.gui.ide.about.util.AboutInfoLoader;
 import gov.ca.water.wrims.gui.ide.about.util.ImageLoader;
 import gov.ca.water.wrims.gui.ide.about.util.LinkListener;
@@ -26,9 +27,13 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.about.InstallationDialog;
+import org.eclipse.ui.themes.IThemeManager;
 
 public class AboutDialog extends Dialog {
+	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	private static final String WRIMS_ENGINE_VERSION = "Engine Version: ";
 	private static final String WRIMS_GUI_VERSION = "GUI Version: ";
 	private static final int CURRENT_YEAR = ZonedDateTime.now().getYear();
@@ -42,11 +47,12 @@ public class AboutDialog extends Dialog {
 	private final String wrimsGuiVersion;
 	private final Image image;
 	private final String aboutText;
-	private final Font fontBold10pt = new Font(null, FONT, 10, SWT.BOLD);
-	private final Font fontBold12pt = new Font(null, FONT, 12, SWT.BOLD);
-	private final Font fontBold14pt = new Font(null, FONT, 14, SWT.BOLD);
-	private final Font font10pt = new Font(null, FONT, 10, SWT.NORMAL);
-	private final Font font12pt = new Font(null, FONT, 12, SWT.NORMAL);
+	private final boolean darkTheme = isDarkTheme();
+	private final Font fontBold10pt = new Font(null, FONT, 10, SWT.BOLD | SWT.READ_ONLY);
+	private final Font fontBold12pt = new Font(null, FONT, 12, SWT.BOLD | SWT.READ_ONLY);
+	private final Font fontBold14pt = new Font(null, FONT, 14, SWT.BOLD | SWT.READ_ONLY);
+	private final Font font10pt = new Font(null, FONT, 10, SWT.NORMAL | SWT.READ_ONLY);
+	private final Font font12pt = new Font(null, FONT, 12, SWT.NORMAL | SWT.READ_ONLY);
 
 	public AboutDialog(Shell parentShell) {
 		super(parentShell);
@@ -111,67 +117,47 @@ public class AboutDialog extends Dialog {
 		infoColumn.setLayout(layout);
 
 		// Build date
-		Label buildLabel = new Label(infoColumn, SWT.NONE);
+		Text buildLabel = new Text(infoColumn, SWT.READ_ONLY);
+		buildLabel.setForeground(buildLabel.getDisplay().getSystemColor(getColor()));
+		buildLabel.setBackground(buildLabel.getParent().getBackground());
 		String buildText = "Build Date: " + buildDate;
 		buildLabel.setText(buildText);
-		buildLabel.addPaintListener(e -> {
-			e.gc.setFont(fontBold12pt);
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-			e.gc.drawText(buildText, e.x + 1, e.y + 1, true);
-
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
-			e.gc.drawText(buildText, e.x, e.y, true);
-		});
+		buildLabel.setSize(WIDTH / 2, 20);
 		buildLabel.setFont(fontBold12pt);
 		GridData buildGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		buildLabel.setLayoutData(buildGD);
 
 		// Version
-		Label versionLabel = new Label(infoColumn, SWT.NONE);
+		Text versionLabel = new Text(infoColumn,SWT.READ_ONLY);
+		versionLabel.setBackground(versionLabel.getParent().getBackground());
+		versionLabel.setForeground(versionLabel.getDisplay().getSystemColor(getColor()));
 		String versionText = WRIMS_GUI_VERSION + wrimsGuiVersion;
 		versionLabel.setText(versionText);
+		versionLabel.setSize(WIDTH / 2, 20);
 		versionLabel.setFont(fontBold12pt);
-		versionLabel.addPaintListener(e -> {
-			e.gc.setFont(fontBold12pt);
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-			e.gc.drawText(versionText, e.x + 1, e.y + 1, true);
-
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
-			e.gc.drawText(versionText, e.x, e.y, true);
-		});
 		GridData versionGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		versionGD.verticalIndent = 10;
 		versionLabel.setLayoutData(versionGD);
 
 		// Engine version
-		Label engineLabel = new Label(infoColumn, SWT.NONE);
+		Text engineLabel = new Text(infoColumn, SWT.READ_ONLY);
+		engineLabel.setBackground(engineLabel.getParent().getBackground());
+		engineLabel.setForeground(engineLabel.getDisplay().getSystemColor(getColor()));
 		String engineText = WRIMS_ENGINE_VERSION + wrimsEngineVersion;
 		engineLabel.setText(engineText);
 		engineLabel.setFont(fontBold12pt);
-		engineLabel.addPaintListener(e -> {
-			e.gc.setFont(fontBold12pt);
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-			e.gc.drawText(engineText, e.x + 1, e.y + 1, true);
-
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
-			e.gc.drawText(engineText, e.x, e.y, true);
-		});
+		engineLabel.setSize(WIDTH / 2, 20);
 		GridData engineGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		engineGD.verticalIndent = 10;
 		engineLabel.setLayoutData(engineGD);
 
 		// Copyright
-		Label copyrightLabel = new Label(infoColumn, SWT.NONE);
+		Text copyrightLabel = new Text(infoColumn, SWT.READ_ONLY);
+		copyrightLabel.setForeground(copyrightLabel.getDisplay().getSystemColor(getColor()));
+		copyrightLabel.setBackground(copyrightLabel.getParent().getBackground());
 		copyrightLabel.setText(COPYRIGHT);
 		copyrightLabel.setFont(font10pt);
-		copyrightLabel.addPaintListener(e -> {
-			e.gc.setFont(font10pt);
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-			e.gc.drawText(COPYRIGHT, e.x + 1, e.y + 1, true);
-
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
-			e.gc.drawText(COPYRIGHT, e.x, e.y, true);
-		});
+		copyrightLabel.setSize(WIDTH / 2, 20);
 		GridData copyrightGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		copyrightGD.verticalIndent = 20;
 		copyrightLabel.setLayoutData(copyrightGD);
@@ -193,68 +179,48 @@ public class AboutDialog extends Dialog {
 
 		// Java version
 		String javaVersion = System.getProperty("java.version");
-		Label javaLabel = new Label(systemGroup, SWT.NONE);
+		Text javaLabel = new Text(systemGroup, SWT.READ_ONLY);
+		javaLabel.setForeground(javaLabel.getDisplay().getSystemColor(getColor()));
+		javaLabel.setBackground(javaLabel.getParent().getBackground());
 		String versionText = "Java Version: " + javaVersion;
 		javaLabel.setText(versionText);
 		javaLabel.setFont(font10pt);
-		javaLabel.addPaintListener(e -> {
-			e.gc.setFont(font10pt);
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-			e.gc.drawText(versionText, e.x + 1, e.y + 1, true);
-
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
-			e.gc.drawText(versionText, e.x, e.y, true);
-		});
+		javaLabel.setSize(WIDTH / 2, 20);
 		javaLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Operating system
 		String osName = System.getProperty("os.name");
 		String osVersion = System.getProperty("os.version");
-		Label osLabel = new Label(systemGroup, SWT.NONE);
+		Text osLabel = new Text(systemGroup, SWT.READ_ONLY);
+		osLabel.setForeground(osLabel.getDisplay().getSystemColor(getColor()));
+		osLabel.setBackground(osLabel.getParent().getBackground());
 		String osText = "OS: " + osName + " " + osVersion;
 		osLabel.setText(osText);
+		osLabel.setSize(WIDTH / 2, 20);
 		osLabel.setFont(font10pt);
-		osLabel.addPaintListener(e -> {
-			e.gc.setFont(font10pt);
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-			e.gc.drawText(osText, e.x + 1, e.y + 1, true);
-
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
-			e.gc.drawText(osText, e.x, e.y, true);
-		});
 		osLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Architecture
 		String osArch = System.getProperty("os.arch");
-		Label archLabel = new Label(systemGroup, SWT.NONE);
+		Text archLabel = new Text(systemGroup, SWT.READ_ONLY);
+		archLabel.setForeground(archLabel.getDisplay().getSystemColor(getColor()));
+		archLabel.setBackground(archLabel.getParent().getBackground());
 		String archText = "Architecture: " + osArch;
 		archLabel.setText(archText);
+		archLabel.setSize(WIDTH / 2, 20);
 		archLabel.setFont(font10pt);
-		archLabel.addPaintListener(e -> {
-			e.gc.setFont(font10pt);
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-			e.gc.drawText(archText, e.x + 1, e.y + 1, true);
-
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
-			e.gc.drawText(archText, e.x, e.y, true);
-		});
 		archLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Memory info
 		Runtime runtime = Runtime.getRuntime();
 		long maxMemory = runtime.maxMemory() / (1024 * 1024);
-		Label memoryLabel = new Label(systemGroup, SWT.NONE);
+		Text memoryLabel = new Text(systemGroup, SWT.READ_ONLY);
+		memoryLabel.setForeground(memoryLabel.getDisplay().getSystemColor(getColor()));
+		memoryLabel.setBackground(memoryLabel.getParent().getBackground());
 		String memoryText = String.format("Memory: %d MB max", maxMemory);
 		memoryLabel.setText(memoryText);
 		memoryLabel.setFont(font10pt);
-		memoryLabel.addPaintListener(e -> {
-			e.gc.setFont(font10pt);
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_BLACK));
-			e.gc.drawText(memoryText, e.x + 1, e.y + 1, true);
-
-			e.gc.setForeground(e.display.getSystemColor(SWT.COLOR_WHITE));
-			e.gc.drawText(memoryText, e.x, e.y, true);
-		});
+		memoryLabel.setSize(WIDTH / 2, 20);
 		memoryLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 	}
 
@@ -297,7 +263,7 @@ public class AboutDialog extends Dialog {
 		textWidget.setText(aboutText);
 		textWidget.setFont(font12pt);
 		textWidget.addSelectionListener(new LinkListener(getShell()));
-		textWidget.setForeground(textWidget.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		textWidget.setForeground(textWidget.getDisplay().getSystemColor(getColor()));
 
 		GridData linkData = new GridData(SWT.FILL, SWT.TOP, true, false);
 		textWidget.setLayoutData(linkData);
@@ -308,12 +274,12 @@ public class AboutDialog extends Dialog {
 		scrolledComposite.addControlListener(new ControlAdapter() {
 			@Override
 			public void controlResized(ControlEvent e) {
-				int width = scrolledComposite.getClientArea().width;
-				if (width > 0) {
-					Point size = contentComposite.computeSize(width, SWT.DEFAULT);
-					scrolledComposite.setMinSize(size);
-					contentComposite.setSize(size);
-				}
+			int width = scrolledComposite.getClientArea().width;
+			if (width > 0) {
+				Point size = contentComposite.computeSize(width, SWT.DEFAULT);
+				scrolledComposite.setMinSize(size);
+				contentComposite.setSize(size);
+			}
 			}
 		});
 
@@ -359,6 +325,22 @@ public class AboutDialog extends Dialog {
 		public void widgetDefaultSelected(SelectionEvent e) {
 			// NO OP
 		}
+	}
+
+	private boolean isDarkTheme() {
+		boolean isDarkTheme = false;
+		try {
+			IThemeManager themeManager = PlatformUI.getWorkbench().getThemeManager();
+			String activeTheme = themeManager.getCurrentTheme().getId();
+			isDarkTheme = activeTheme != null && activeTheme.contains("dark");
+		} catch (Exception e) {
+			LOGGER.atFiner().withCause(e).log("Error checking UI theme.");
+		}
+		return isDarkTheme;
+	}
+
+	private int getColor() {
+		return darkTheme ? SWT.COLOR_WHITE : SWT.COLOR_BLACK;
 	}
 
 	@Override

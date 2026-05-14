@@ -191,7 +191,7 @@ tasks.register('updateBundlesInfo') {
 //Task to copy the splash.bmp file from branding into plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300
 tasks.register('copySplash', Copy) {
     dependsOn updateBundlesInfo
-    from("src/main/resources/branding/splash.bmp")
+    from("src/main/resources/branding/splash.bmp", "src/main/resources/branding/unversioned_splash.bmp")
     into("${buildDir}/installer/${wrimsGuiFolder}/plugins/org.eclipse.epp.package.common_4.36.0.20250605-1300")
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
