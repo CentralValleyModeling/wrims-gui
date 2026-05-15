@@ -9,7 +9,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.internal.about.AboutUtils;
 
-public class LinkListener implements SelectionListener {
+public final class LinkListener implements SelectionListener {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	private final Shell shell;
 
@@ -19,14 +19,14 @@ public class LinkListener implements SelectionListener {
 	}
 
 	@Override
-	public void widgetSelected(SelectionEvent e)
-	{
-		try
-		{
-			AboutUtils.openBrowser(shell, URI.create(e.text).toURL());
-		}
-		catch(MalformedURLException ex)
-		{
+	public void widgetSelected(SelectionEvent e) {
+		try {
+			if ( e.text != null && !e.text.isEmpty()) {
+				AboutUtils.openBrowser(shell, URI.create(e.text).toURL());
+			} else {
+				throw new MalformedURLException("URL is empty");
+			}
+		} catch(MalformedURLException ex) {
 			LOGGER.atSevere().withCause(ex).log("Error opening URL: %s", e.text);
 		}
 	}

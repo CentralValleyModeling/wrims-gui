@@ -9,14 +9,14 @@ import java.nio.file.Path;
 import com.google.common.flogger.FluentLogger;
 import org.apache.commons.io.IOUtils;
 
-public class AboutInfoLoader {
+public final class AboutInfoLoader {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	public static final String SYSTEM_PROPERTY = "gov.ca.water.wrims.about";
 	private static final String ABOUT_FILE = System.getProperty(SYSTEM_PROPERTY, "about_wrims.txt");
 	private static final String ABOUT_TEXT_FALLBACK = "WRIMS (Water Resources Integrated Modeling System) is a"
-			+ "generalized water resources modeling system for evaluating operational alternatives of large,"
-			+ "complex river basins.";
-	private static AboutInfoLoader instance;
+			+ " generalized water resources modeling system for evaluating operational alternatives of large,"
+			+ " complex river basins.";
+	private static final AboutInfoLoader instance = new AboutInfoLoader();
 	private String aboutText;
 
 	private AboutInfoLoader() {
@@ -24,9 +24,6 @@ public class AboutInfoLoader {
 	}
 
 	public static AboutInfoLoader getInstance() {
-		if (instance == null) {
-			instance = new AboutInfoLoader();
-		}
 		return instance;
 	}
 
@@ -38,13 +35,13 @@ public class AboutInfoLoader {
 		Path aboutPath = Path.of(ABOUT_FILE).toAbsolutePath();
 		LOGGER.atFiner().log("Loading about panel text content from: " + aboutPath);
 		try (InputStream is = new FileInputStream(aboutPath.toFile())) {
-			if(is.available() != 0) {
-				aboutText = IOUtils.toString(is, StandardCharsets.UTF_8);
-			} else {
+			aboutText = IOUtils.toString(is, StandardCharsets.UTF_8);
+			if (aboutText.isEmpty() || aboutText.isBlank()) {
 				LOGGER.atFiner().log("About text not found, using fallback values");
 				setDefaultValues();
 			}
 		} catch(IOException e) {
+			LOGGER.atFiner().withCause(e).log("Could not load about panel text content");
 			setDefaultValues();
 		}
 	}

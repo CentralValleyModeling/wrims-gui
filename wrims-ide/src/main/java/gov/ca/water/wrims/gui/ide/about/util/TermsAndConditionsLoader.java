@@ -14,7 +14,7 @@ public final class TermsAndConditionsLoader {
 	public static final String SYSTEM_PROPERTY = "gov.ca.water.wrims.terms.conditions";
 	private static final String TERMS_AND_CONDITIONS = System.getProperty(SYSTEM_PROPERTY,
 			"terms_and_conditions.txt");
-	private static TermsAndConditionsLoader instance;
+	private static final TermsAndConditionsLoader instance = new TermsAndConditionsLoader();
 	private String termsAndConditions;
 
 	private TermsAndConditionsLoader() {
@@ -22,9 +22,6 @@ public final class TermsAndConditionsLoader {
 	}
 
 	public static TermsAndConditionsLoader getInstance() {
-		if (instance == null) {
-			instance = new TermsAndConditionsLoader();
-		}
 		return instance;
 	}
 
@@ -36,9 +33,8 @@ public final class TermsAndConditionsLoader {
 		Path termsPath = Path.of(TERMS_AND_CONDITIONS).toAbsolutePath();
 		LOGGER.atFiner().log("Loading terms and conditions from: " + termsPath);
 		try (InputStream is = new FileInputStream(termsPath.toFile())) {
-			if(is.available() != 0) {
-				termsAndConditions = IOUtils.toString(is, StandardCharsets.UTF_8);
-			} else {
+			termsAndConditions = IOUtils.toString(is, StandardCharsets.UTF_8);
+			if (termsAndConditions.isEmpty() || termsAndConditions.isBlank()) {
 				LOGGER.atFiner().log("Terms and conditions not found, using fallback values");
 				setDefaultValues();
 			}
