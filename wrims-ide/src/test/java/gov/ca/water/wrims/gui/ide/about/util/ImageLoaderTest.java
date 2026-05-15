@@ -17,7 +17,7 @@ final class ImageLoaderTest {
 	void testLoader()
 	{
 		System.setProperty(SYSTEM_PROPERTY, "src/test/resources/TEST_images/AllGoals.png");
-		ImageLoader loader = ImageLoader.getInstance();
+		ImageLoader loader = ImageLoader.getInstance("");
 		Image image = loader.getImage();
 		assertNotNull(image);
 		assertEquals(412, image.getImageData().width);
@@ -29,8 +29,8 @@ final class ImageLoaderTest {
 	@Test
 	void testSingleton() {
 		System.setProperty(SYSTEM_PROPERTY, "src/test/resources/TEST_images/AllGoals.png");
-		ImageLoader loader = ImageLoader.getInstance();
-		ImageLoader loader2 = ImageLoader.getInstance();
+		ImageLoader loader = ImageLoader.getInstance("");
+		ImageLoader loader2 = ImageLoader.getInstance("");
 		assertEquals(loader, loader2);
 		Image image = loader.getImage();
 		Image image2 = loader2.getImage();
@@ -46,7 +46,7 @@ final class ImageLoaderTest {
 		String path = "src/test/resources/TEST_images/AllGoals.png";
 		System.setProperty(SYSTEM_PROPERTY, path);
 		// Load the image using the loader
-		ImageLoader loader = ImageLoader.getInstance();
+		ImageLoader loader = ImageLoader.getInstance("");
 		Image image = loader.getImage();
 		assertNotNull(image, "Image should not be null");
 
