@@ -10,6 +10,10 @@ import gov.ca.water.wrims.gui.ide.about.util.LinkListener;
 import gov.ca.water.wrims.gui.ide.about.util.VersionInfo;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.resource.FontDescriptor;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.LocalResourceManager;
+import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ControlAdapter;
@@ -51,6 +55,8 @@ public final class AboutDialog extends Dialog {
 	private final ImageLoader imageLoader;
 	private final boolean darkTheme = isDarkTheme();
 
+	private final ResourceManager resourceManager;
+
 	public AboutDialog(Shell parentShell) {
 		super(parentShell);
 		versionInfo = VersionInfo.getInstance();
@@ -61,6 +67,8 @@ public final class AboutDialog extends Dialog {
 		image = imageLoader.getImage();
 		AboutInfoLoader aboutLoader = AboutInfoLoader.getInstance();
 		aboutText = aboutLoader.getAboutText();
+
+		resourceManager = new LocalResourceManager(JFaceResources.getResources());
 	}
 
 	@Override
@@ -68,6 +76,12 @@ public final class AboutDialog extends Dialog {
 		super.configureShell(shell);
 		shell.setText("About " + versionInfo.getApplicationName());
 		shell.setBackgroundMode(SWT.INHERIT_FORCE);
+	}
+
+	// Helper method to create and track fonts
+	private Font createFont(int size, int style) {
+		FontDescriptor fontDesc = FontDescriptor.createFrom(FONT, size, style);
+		return resourceManager.create(fontDesc);
 	}
 
 	@Override
@@ -119,7 +133,7 @@ public final class AboutDialog extends Dialog {
 		String buildText = "Build Date: " + buildDate;
 		buildLabel.setText(buildText);
 		buildLabel.setSize(WIDTH / 2, 20);
-		buildLabel.setFont(new Font(null, FONT, 12, SWT.BOLD));
+		buildLabel.setFont(createFont(12, SWT.BOLD));
 		GridData buildGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		buildLabel.setLayoutData(buildGD);
 
@@ -130,7 +144,7 @@ public final class AboutDialog extends Dialog {
 		String versionText = WRIMS_GUI_VERSION + wrimsGuiVersion;
 		versionLabel.setText(versionText);
 		versionLabel.setSize(WIDTH / 2, 20);
-		versionLabel.setFont(new Font(null, FONT, 12, SWT.BOLD));
+		versionLabel.setFont(createFont(12, SWT.BOLD));
 		GridData versionGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		versionGD.verticalIndent = 10;
 		versionLabel.setLayoutData(versionGD);
@@ -141,7 +155,7 @@ public final class AboutDialog extends Dialog {
 		engineLabel.setForeground(engineLabel.getDisplay().getSystemColor(getColor()));
 		String engineText = WRIMS_ENGINE_VERSION + wrimsEngineVersion;
 		engineLabel.setText(engineText);
-		engineLabel.setFont(new Font(null, FONT, 12, SWT.BOLD));
+		engineLabel.setFont(createFont(12, SWT.BOLD));
 		engineLabel.setSize(WIDTH / 2, 20);
 		GridData engineGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		engineGD.verticalIndent = 10;
@@ -152,7 +166,7 @@ public final class AboutDialog extends Dialog {
 		copyrightLabel.setForeground(copyrightLabel.getDisplay().getSystemColor(getColor()));
 		copyrightLabel.setBackground(copyrightLabel.getParent().getBackground());
 		copyrightLabel.setText(COPYRIGHT);
-		copyrightLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
+		copyrightLabel.setFont(createFont(10, SWT.NORMAL));
 		copyrightLabel.setSize(WIDTH / 2, 20);
 		GridData copyrightGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		copyrightGD.verticalIndent = 20;
@@ -164,7 +178,7 @@ public final class AboutDialog extends Dialog {
 		// Create a group for system information with a border
 		Group systemGroup = new Group(parent, SWT.NONE);
 		systemGroup.setText("System Information");
-		systemGroup.setFont(new Font(null, FONT, 10, SWT.BOLD));
+		systemGroup.setFont(createFont(10, SWT.BOLD));
 		GridData gd = new GridData(SWT.LEFT, SWT.CENTER, false, false);
 		gd.widthHint = 200;
 		gd.verticalIndent = 20;
@@ -180,7 +194,7 @@ public final class AboutDialog extends Dialog {
 		javaLabel.setBackground(javaLabel.getParent().getBackground());
 		String versionText = "Java Version: " + javaVersion;
 		javaLabel.setText(versionText);
-		javaLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
+		javaLabel.setFont(createFont(10, SWT.NORMAL));
 		javaLabel.setSize(WIDTH / 2, 20);
 		javaLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
@@ -193,7 +207,7 @@ public final class AboutDialog extends Dialog {
 		String osText = "OS: " + osName + " " + osVersion;
 		osLabel.setText(osText);
 		osLabel.setSize(WIDTH / 2, 20);
-		osLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
+		osLabel.setFont(createFont(10, SWT.NORMAL));
 		osLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Architecture
@@ -204,7 +218,7 @@ public final class AboutDialog extends Dialog {
 		String archText = "Architecture: " + osArch;
 		archLabel.setText(archText);
 		archLabel.setSize(WIDTH / 2, 20);
-		archLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
+		archLabel.setFont(createFont(10, SWT.NORMAL));
 		archLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Memory info
@@ -215,7 +229,7 @@ public final class AboutDialog extends Dialog {
 		memoryLabel.setBackground(memoryLabel.getParent().getBackground());
 		String memoryText = String.format("Memory: %d MB max", maxMemory);
 		memoryLabel.setText(memoryText);
-		memoryLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
+		memoryLabel.setFont(createFont(10, SWT.NORMAL));
 		memoryLabel.setSize(WIDTH / 2, 20);
 		memoryLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 	}
@@ -233,7 +247,7 @@ public final class AboutDialog extends Dialog {
 		textColumn.setLayout(layout);
 
 		Group customGroup = new Group(textColumn, SWT.NONE);
-		customGroup.setFont(new Font(null, FONT, 10, SWT.BOLD));
+		customGroup.setFont(createFont(10, SWT.BOLD));
 		customGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		GridLayout customLayout = new GridLayout(1, false);
@@ -257,7 +271,7 @@ public final class AboutDialog extends Dialog {
 
 		Link textWidget = new Link(contentComposite, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
 		textWidget.setText(aboutText);
-		textWidget.setFont(new Font(null, FONT, 12, SWT.NORMAL));
+		textWidget.setFont(createFont(12, SWT.NORMAL));
 		textWidget.addSelectionListener(new LinkListener(getShell()));
 		textWidget.setForeground(textWidget.getDisplay().getSystemColor(getColor()));
 
@@ -341,13 +355,21 @@ public final class AboutDialog extends Dialog {
 	}
 
 	@Override
-	public boolean close() {
-		imageLoader.dispose();
-		return super.close();
+	protected Point getInitialSize() {
+		return new Point(WIDTH, HEIGHT);
 	}
 
 	@Override
-	protected Point getInitialSize() {
-		return new Point(WIDTH, HEIGHT);
+	public boolean close() {
+		if (resourceManager != null) {
+			resourceManager.dispose();
+		}
+
+		// Dispose image loader
+		if (imageLoader != null) {
+			imageLoader.dispose();
+		}
+
+		return super.close();
 	}
 }

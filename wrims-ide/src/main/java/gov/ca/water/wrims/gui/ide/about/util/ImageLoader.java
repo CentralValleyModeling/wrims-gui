@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.Display;
 public final class ImageLoader {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	public static final String SYSTEM_PROPERTY = "gov.ca.water.wrims.image";
-	public static String LOGO_FILE;
-	private static final String IMAGE_NAME = "unversioned_splash.bmp";
+	public static String SPLASH_IMAGE_FILE;
+	private static final String SPLASH_IMAGE_NAME = "unversioned_splash.bmp";
 	private static ImageLoader instance;
 	private Image image;
 
@@ -24,9 +24,9 @@ public final class ImageLoader {
 	}
 
 	public static ImageLoader getInstance(String imagePluginName) {
-		LOGO_FILE = System.getProperty(SYSTEM_PROPERTY,
+		SPLASH_IMAGE_FILE = System.getProperty(SYSTEM_PROPERTY,
 				String.format("plugins%1$s%2$s%1$s%3$s",
-						File.separator, imagePluginName, IMAGE_NAME));
+						File.separator, imagePluginName, SPLASH_IMAGE_NAME));
 		if (instance == null) {
 			instance = new ImageLoader();
 		}
@@ -45,7 +45,7 @@ public final class ImageLoader {
 	}
 
 	private void loadImage() {
-		Path logoPath = Path.of(LOGO_FILE).toAbsolutePath();
+		Path logoPath = Path.of(SPLASH_IMAGE_FILE).toAbsolutePath();
 		LOGGER.atFiner().log("Loading image from: " + logoPath);
 		try (InputStream in = new FileInputStream(logoPath.toString())) {
 			ImageData data = new ImageData(in);
