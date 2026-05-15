@@ -32,7 +32,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.internal.about.InstallationDialog;
 import org.eclipse.ui.themes.IThemeManager;
 
-public class AboutDialog extends Dialog {
+public final class AboutDialog extends Dialog {
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	private static final String WRIMS_ENGINE_VERSION = "Engine Version: ";
 	private static final String WRIMS_GUI_VERSION = "GUI Version: ";
@@ -47,21 +47,18 @@ public class AboutDialog extends Dialog {
 	private final String wrimsGuiVersion;
 	private final Image image;
 	private final String aboutText;
+	private final VersionInfo versionInfo;
+	private final ImageLoader imageLoader;
 	private final boolean darkTheme = isDarkTheme();
-	private final Font fontBold10pt = new Font(null, FONT, 10, SWT.BOLD | SWT.READ_ONLY);
-	private final Font fontBold12pt = new Font(null, FONT, 12, SWT.BOLD | SWT.READ_ONLY);
-	private final Font fontBold14pt = new Font(null, FONT, 14, SWT.BOLD | SWT.READ_ONLY);
-	private final Font font10pt = new Font(null, FONT, 10, SWT.NORMAL | SWT.READ_ONLY);
-	private final Font font12pt = new Font(null, FONT, 12, SWT.NORMAL | SWT.READ_ONLY);
 
 	public AboutDialog(Shell parentShell) {
 		super(parentShell);
-		VersionInfo versionInfo = VersionInfo.getInstance();
+		versionInfo = VersionInfo.getInstance();
 		wrimsEngineVersion = versionInfo.getEngineVersion();
 		wrimsGuiVersion = versionInfo.getVersion();
 		buildDate = versionInfo.getBuildDate();
-		ImageLoader loader = ImageLoader.getInstance();
-		image = loader.getImage();
+		imageLoader = ImageLoader.getInstance(versionInfo.getImagePlugin());
+		image = imageLoader.getImage();
 		AboutInfoLoader aboutLoader = AboutInfoLoader.getInstance();
 		aboutText = aboutLoader.getAboutText();
 	}
@@ -69,7 +66,6 @@ public class AboutDialog extends Dialog {
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		VersionInfo versionInfo = VersionInfo.getInstance();
 		shell.setText("About " + versionInfo.getApplicationName());
 		shell.setBackgroundMode(SWT.INHERIT_FORCE);
 	}
@@ -123,7 +119,7 @@ public class AboutDialog extends Dialog {
 		String buildText = "Build Date: " + buildDate;
 		buildLabel.setText(buildText);
 		buildLabel.setSize(WIDTH / 2, 20);
-		buildLabel.setFont(fontBold12pt);
+		buildLabel.setFont(new Font(null, FONT, 12, SWT.BOLD));
 		GridData buildGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		buildLabel.setLayoutData(buildGD);
 
@@ -134,7 +130,7 @@ public class AboutDialog extends Dialog {
 		String versionText = WRIMS_GUI_VERSION + wrimsGuiVersion;
 		versionLabel.setText(versionText);
 		versionLabel.setSize(WIDTH / 2, 20);
-		versionLabel.setFont(fontBold12pt);
+		versionLabel.setFont(new Font(null, FONT, 12, SWT.BOLD));
 		GridData versionGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		versionGD.verticalIndent = 10;
 		versionLabel.setLayoutData(versionGD);
@@ -145,7 +141,7 @@ public class AboutDialog extends Dialog {
 		engineLabel.setForeground(engineLabel.getDisplay().getSystemColor(getColor()));
 		String engineText = WRIMS_ENGINE_VERSION + wrimsEngineVersion;
 		engineLabel.setText(engineText);
-		engineLabel.setFont(fontBold12pt);
+		engineLabel.setFont(new Font(null, FONT, 12, SWT.BOLD));
 		engineLabel.setSize(WIDTH / 2, 20);
 		GridData engineGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		engineGD.verticalIndent = 10;
@@ -156,7 +152,7 @@ public class AboutDialog extends Dialog {
 		copyrightLabel.setForeground(copyrightLabel.getDisplay().getSystemColor(getColor()));
 		copyrightLabel.setBackground(copyrightLabel.getParent().getBackground());
 		copyrightLabel.setText(COPYRIGHT);
-		copyrightLabel.setFont(font10pt);
+		copyrightLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
 		copyrightLabel.setSize(WIDTH / 2, 20);
 		GridData copyrightGD = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		copyrightGD.verticalIndent = 20;
@@ -168,7 +164,7 @@ public class AboutDialog extends Dialog {
 		// Create a group for system information with a border
 		Group systemGroup = new Group(parent, SWT.NONE);
 		systemGroup.setText("System Information");
-		systemGroup.setFont(fontBold10pt);
+		systemGroup.setFont(new Font(null, FONT, 10, SWT.BOLD));
 		GridData gd = new GridData(SWT.LEFT, SWT.CENTER, false, false);
 		gd.widthHint = 200;
 		gd.verticalIndent = 20;
@@ -184,7 +180,7 @@ public class AboutDialog extends Dialog {
 		javaLabel.setBackground(javaLabel.getParent().getBackground());
 		String versionText = "Java Version: " + javaVersion;
 		javaLabel.setText(versionText);
-		javaLabel.setFont(font10pt);
+		javaLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
 		javaLabel.setSize(WIDTH / 2, 20);
 		javaLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
@@ -197,7 +193,7 @@ public class AboutDialog extends Dialog {
 		String osText = "OS: " + osName + " " + osVersion;
 		osLabel.setText(osText);
 		osLabel.setSize(WIDTH / 2, 20);
-		osLabel.setFont(font10pt);
+		osLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
 		osLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Architecture
@@ -208,7 +204,7 @@ public class AboutDialog extends Dialog {
 		String archText = "Architecture: " + osArch;
 		archLabel.setText(archText);
 		archLabel.setSize(WIDTH / 2, 20);
-		archLabel.setFont(font10pt);
+		archLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
 		archLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 
 		// Memory info
@@ -219,7 +215,7 @@ public class AboutDialog extends Dialog {
 		memoryLabel.setBackground(memoryLabel.getParent().getBackground());
 		String memoryText = String.format("Memory: %d MB max", maxMemory);
 		memoryLabel.setText(memoryText);
-		memoryLabel.setFont(font10pt);
+		memoryLabel.setFont(new Font(null, FONT, 10, SWT.NORMAL));
 		memoryLabel.setSize(WIDTH / 2, 20);
 		memoryLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 	}
@@ -237,7 +233,7 @@ public class AboutDialog extends Dialog {
 		textColumn.setLayout(layout);
 
 		Group customGroup = new Group(textColumn, SWT.NONE);
-		customGroup.setFont(fontBold10pt);
+		customGroup.setFont(new Font(null, FONT, 10, SWT.BOLD));
 		customGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		GridLayout customLayout = new GridLayout(1, false);
@@ -261,14 +257,14 @@ public class AboutDialog extends Dialog {
 
 		Link textWidget = new Link(contentComposite, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
 		textWidget.setText(aboutText);
-		textWidget.setFont(font12pt);
+		textWidget.setFont(new Font(null, FONT, 12, SWT.NORMAL));
 		textWidget.addSelectionListener(new LinkListener(getShell()));
 		textWidget.setForeground(textWidget.getDisplay().getSystemColor(getColor()));
 
 		GridData linkData = new GridData(SWT.FILL, SWT.TOP, true, false);
 		textWidget.setLayoutData(linkData);
 
-		scrolledComposite.setContent(textWidget);
+		scrolledComposite.setContent(contentComposite);
 
 		// Add a resize listener to update the minimum size when the scrolled composite resizes
 		scrolledComposite.addControlListener(new ControlAdapter() {
@@ -296,35 +292,36 @@ public class AboutDialog extends Dialog {
 
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.DETAILS_ID, "Installation Details", false).addSelectionListener(new InstallListener());
-		createButton(parent, IDialogConstants.DETAILS_ID, "Terms and Conditions", false).addSelectionListener(new TermsListener());
+		createButton(parent, IDialogConstants.DETAILS_ID, "Installation Details", false)
+			.addSelectionListener(new SelectionListener()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// Uses internal Eclipse dialog API that could change or be removed in the future
+				InstallationDialog installationDialog = new InstallationDialog(getShell(), null);
+				installationDialog.open();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// NO OP
+			}
+		});
+		createButton(parent, 120, "Terms and Conditions", false)
+			.addSelectionListener(new SelectionListener()
+		{
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				TermsDialog termsDialog = new TermsDialog(getShell());
+				termsDialog.open();
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// NO OP
+			}
+		});
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
-	}
-
-	private class TermsListener implements SelectionListener {
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			TermsDialog termsDialog = new TermsDialog(getShell());
-			termsDialog.open();
-		}
-
-		@Override
-		public void widgetDefaultSelected(SelectionEvent e) {
-			// NO OP
-		}
-	}
-
-	private class InstallListener implements SelectionListener {
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			InstallationDialog installationDialog = new InstallationDialog(getShell(), null);
-			installationDialog.open();
-		}
-
-		@Override
-		public void widgetDefaultSelected(SelectionEvent e) {
-			// NO OP
-		}
 	}
 
 	private boolean isDarkTheme() {
@@ -345,11 +342,7 @@ public class AboutDialog extends Dialog {
 
 	@Override
 	public boolean close() {
-		font10pt.dispose();
-		font12pt.dispose();
-		fontBold10pt.dispose();
-		fontBold12pt.dispose();
-		fontBold14pt.dispose();
+		imageLoader.dispose();
 		return super.close();
 	}
 

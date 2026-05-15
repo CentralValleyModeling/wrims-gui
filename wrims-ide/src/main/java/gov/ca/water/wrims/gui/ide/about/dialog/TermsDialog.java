@@ -16,29 +16,25 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 
-public final class TermsDialog extends Dialog
-{
+public final class TermsDialog extends Dialog {
 	private static final int WIDTH = 500;
 	private static final int HEIGHT = 400;
 	private final String terms;
 
-	public TermsDialog(Shell parentShell)
-	{
+	public TermsDialog(Shell parentShell) {
 		super(parentShell);
 		TermsAndConditionsLoader loader = TermsAndConditionsLoader.getInstance();
 		this.terms = loader.getTermsAndConditions();
 	}
 
 	@Override
-	protected void configureShell(Shell shell)
-	{
+	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		shell.setText("WRIMS Terms and Conditions");
 	}
 
 	@Override
-	protected Control createDialogArea(Composite parent)
-	{
+	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite) super.createDialogArea(parent);
 		container.setLayout(new GridLayout(1, false));
 
@@ -57,7 +53,7 @@ public final class TermsDialog extends Dialog
 		contentLayout.marginHeight = 10;
 		contentComposite.setLayout(contentLayout);
 
-		Link text = new Link(contentComposite, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
+		Link text = new Link(contentComposite, SWT.MULTI | SWT.WRAP);
 		text.setText(terms);
 		text.addSelectionListener(new LinkListener(getShell()));
 
@@ -68,12 +64,12 @@ public final class TermsDialog extends Dialog
 		scrolledComposite.setContent(contentComposite);
 
 		// Add a resize listener to update the minimum size when the scrolled composite resizes
-		scrolledComposite.addControlListener(new ControlAdapter()
-		{
+		scrolledComposite.addControlListener(new ControlAdapter() {
 			@Override
-			public void controlResized(ControlEvent e)
-			{
-				updateScrolledCompositeSize(scrolledComposite, contentComposite);
+			public void controlResized(ControlEvent e) {
+				if (!scrolledComposite.isDisposed() && !contentComposite.isDisposed()) {
+					updateScrolledCompositeSize(scrolledComposite, contentComposite);
+				}
 			}
 		});
 
@@ -83,11 +79,9 @@ public final class TermsDialog extends Dialog
 		return container;
 	}
 
-	private void updateScrolledCompositeSize(ScrolledComposite scrolledComposite, Composite contentComposite)
-	{
+	private void updateScrolledCompositeSize(ScrolledComposite scrolledComposite, Composite contentComposite) {
 		int availableWidth = scrolledComposite.getClientArea().width;
-		if(availableWidth > 0)
-		{
+		if(availableWidth > 0) {
 			// Calculate the preferred size for the content
 			Point contentSize = contentComposite.computeSize(availableWidth, SWT.DEFAULT);
 
@@ -100,14 +94,12 @@ public final class TermsDialog extends Dialog
 	}
 
 	@Override
-	protected void createButtonsForButtonBar(Composite parent)
-	{
+	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 	}
 
 	@Override
-	protected Point getInitialSize()
-	{
+	protected Point getInitialSize() {
 		return new Point(WIDTH, HEIGHT);
 	}
 }
