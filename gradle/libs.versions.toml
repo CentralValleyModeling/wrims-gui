@@ -1,6 +1,6 @@
 [versions]
 wrims-engine = "3.0.0-alpha.10"
-commons-io = "2.20.0"
+commons-io = "2.22.0"
 junit_5 = "6.0.3"
 junit_5_platform = "6.0.3"
 antlr = "3.5.3"
