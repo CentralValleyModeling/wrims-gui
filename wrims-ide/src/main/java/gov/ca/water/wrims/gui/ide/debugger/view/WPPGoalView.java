@@ -186,7 +186,7 @@ public class WPPGoalView extends AbstractDebugView implements ISelectionListener
         getSite().setSelectionProvider(viewer);
         Table table = viewer.getTable();
         new TableColumn(table, SWT.LEFT).setText("Goal");
-        new TableColumn(table, SWT.LEFT).setText("Constarint");
+        new TableColumn(table, SWT.LEFT).setText("Constraint");
 
         // Pack the columns
         for (int i = 0, n = table.getColumnCount(); i < n; i++) {
