@@ -49,6 +49,7 @@ public final class VersionInfo {
 				setDefaultValues();
 			}
 		} catch (IOException e) {
+			LOGGER.atFiner().withCause(e).log("Could not load version info");
 			setDefaultValues();
 		}
 	}
