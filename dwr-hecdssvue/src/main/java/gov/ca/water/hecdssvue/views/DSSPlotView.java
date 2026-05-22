@@ -140,7 +140,10 @@ public class DSSPlotView extends AbstractDSSView {
 		viewPorts = plot.getViewports();
 		if (viewPorts.length>0) {
 			plot.setMouseAdapter(new G2dZoomAdapter(viewPorts[0], plot));
-		};
+		}
+		contentPane.invalidate();
+		contentPane.doLayout();
+		contentPane.repaint();
 	}
 	
 	public PairedDataContainer getExceedence(TimeSeriesContainer tsc) {
