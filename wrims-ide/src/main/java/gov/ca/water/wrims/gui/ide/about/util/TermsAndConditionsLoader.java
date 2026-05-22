@@ -39,6 +39,7 @@ public final class TermsAndConditionsLoader {
 				setDefaultValues();
 			}
 		} catch(IOException e) {
+			LOGGER.atFiner().withCause(e).log("Could not load terms and conditions");
 			setDefaultValues();
 		}
 	}
