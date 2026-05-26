@@ -30,10 +30,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.concurrent.CountDownLatch;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -76,7 +76,8 @@ import org.eclipse.ui.texteditor.ITextEditor;
 /**
  * WPP Debug Target
  */
-public class WPPDebugTarget extends WPPDebugElement implements IDebugTarget, IBreakpointManagerListener, IWPPEventListener {
+public class WPPDebugTarget extends WPPDebugElement
+	implements IDebugTarget, IBreakpointManagerListener, IWPPEventListener, AutoCloseable {
 	
 	// associated system process (VM)
 	private IProcess fProcess;
@@ -105,14 +106,16 @@ public class WPPDebugTarget extends WPPDebugElement implements IDebugTarget, IBr
 	private IWorkbenchPart fPart;
 	private IPartListener fPartListener;
 	private IPartListener2 fPartListener2;
-	public ArrayList<String> allVGLoadedViewNames=new ArrayList<String>(); 
+	public ArrayList<String> allVGLoadedViewNames=new ArrayList<String>();
 	private ArrayList<String> dataAvaialbeViewNames = new ArrayList<String>();
 	
 	// event dispatch job
 	private EventDispatchJob fEventDispatch;
 	// event listeners
 	private Vector fEventListeners = new Vector();
-	
+	private final CountDownLatch initialized = new CountDownLatch(1);
+	private volatile Exception initializationFailure;
+
 	/**
 	 * Listens to events from the WPP VM and fires corresponding 
 	 * debug events.
@@ -184,92 +187,68 @@ public class WPPDebugTarget extends WPPDebugElement implements IDebugTarget, IBr
 	public WPPDebugTarget(ILaunch launch, IProcess process, int requestPort, int eventPort) throws CoreException {
 		super(null);
 		DebugCorePlugin.target=this;
-		fLaunch = launch;
-		fProcess = process;
-		addEventListener(this);
 		try {
+			fLaunch = launch;
+			fProcess = process;
+			addEventListener(this);
 			// give interpreter a chance to start
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-			}
+			Thread.sleep(3000);
 			fRequestSocket = new Socket("localhost", requestPort);
 			fEventSocket = new Socket("localhost", eventPort);
 			fRequestWriter = new PrintWriter(fRequestSocket.getOutputStream());
 			fRequestReader = new BufferedReader(new InputStreamReader(fRequestSocket.getInputStream()));
 			fEventReader = new BufferedReader(new InputStreamReader(fEventSocket.getInputStream()));
-		} catch (UnknownHostException e) {
+			fThread = new WPPThread(this);
+			fThreads = new IThread[] {fThread};
+			fEventDispatch = new EventDispatchJob();
+			fEventDispatch.schedule();
+			IBreakpointManager breakpointManager = getBreakpointManager();
+			breakpointManager.addBreakpointListener(this);
+			breakpointManager.addBreakpointManagerListener(this);
+			installPartListener();
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			initializationFailure = e;
+			requestFailed("Debug target interrupted", e);
+		} catch (IOException | RuntimeException e) {
+			initializationFailure = e;
 			requestFailed("Unable to connect to WPP VM", e);
-		} catch (IOException e) {
-			requestFailed("Unable to connect to WPP VM", e);
+		} finally {
+			initialized.countDown();
 		}
-		fThread = new WPPThread(this);
-		fThreads = new IThread[] {fThread};
-		fEventDispatch = new EventDispatchJob();
-		fEventDispatch.schedule();
-		
-		IBreakpointManager breakpointManager = getBreakpointManager();
-        breakpointManager.addBreakpointListener(this);
-		breakpointManager.addBreakpointManagerListener(this);
-		
-		//installDeferredBreakpoints();
-		
-		installPartListener();
-		
-		getStart();
-		//System.out.println(data);
-		//data=sendRequest("variables:s_shsta#s_folsm");
-		//System.out.println(data);
-		
-		
-		/*
-		if (fTextEditor!=null) ((ITextEditor)fTextEditor).resetHighlightRange();
-		data=sendRequest("resume");
-		System.out.println(data);
-		
+	}
+
+	private boolean awaitInitialized() throws DebugException {
 		try {
-			Thread.sleep(5000);
+			initialized.await();
 		} catch (InterruptedException e) {
-			WPPException.handleException(e);
+			Thread.currentThread().interrupt();
+			requestFailed("Interrupted while waiting for debug target initialization", e);
 		}
-		
-		data=sendRequest("step");
-		System.out.println(data);
-		
-		if (fTextEditor!=null) ((ITextEditor)fTextEditor).resetHighlightRange();
-		data=sendRequest("resume");
-		System.out.println(data);
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			WPPException.handleException(e);
+
+        return initializationFailure == null;
+    }
+
+	@Override
+	public void close() throws Exception {
+		if (fProcess != null) {
+			fProcess.terminate();
 		}
-		
-		data=sendRequest("year:10001");
-		System.out.println(data);
-		
-		if (fTextEditor!=null) ((ITextEditor)fTextEditor).resetHighlightRange();
-		data=sendRequest("resume");
-		System.out.println(data);
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			WPPException.handleException(e);
+		if (fEventDispatch != null) {
+			fEventDispatch.cancel();
 		}
-		
-		
-		fProcess.terminate();
-		workbench.getDisplay().asyncExec(new Runnable(){
-			public void run(){
-				IWorkbenchWindow window=workbench.getActiveWorkbenchWindow();
-				if (window !=null){
-					window.getActivePage().removePartListener(fPartListener);
-				}
-			}
-		});
-		*/
+		if (fRequestSocket != null) {
+			fRequestSocket.close();
+		}
+		if (fEventSocket != null) {
+			fEventSocket.close();
+		}
+		if (fRequestWriter != null) {
+			fRequestWriter.close();
+		}
+		if (fRequestReader != null) {
+			fRequestReader.close();
+		}
 	}
 	
 	public void getStart() {
@@ -711,6 +690,8 @@ public class WPPDebugTarget extends WPPDebugElement implements IDebugTarget, IBr
 	 */
 	@Override
 	public String sendRequest(String request) throws DebugException {
+		if(!awaitInitialized()) return null;
+		if (fRequestSocket == null) return null;
 		synchronized (fRequestSocket) {
 			fRequestWriter.println(request);
 			fRequestWriter.flush();
