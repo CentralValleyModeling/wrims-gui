@@ -41,14 +41,17 @@ public class DSSTableView extends AbstractDSSView {
 			}
 		}
 
-		if (dataVector != null && dataVector.size() > 0) {
-			contentPane.removeAll();
-			table = new HecDataTable(contentPane);
-			table.setDateTimeAsTwoColumns(false);
-			table.setData(dataVector, true, 0);//TODO
+		if (!dataVector.isEmpty()) {
+			if (table == null) {
+				contentPane.removeAll();
+				table = new HecDataTable(contentPane);
+				table.setDateTimeAsTwoColumns(false);
+				pane = new JScrollPane(table);
+				contentPane.add(pane);
+			}
+			table.setData(dataVector, true, 0);
 			table.setEditable(DssPluginCore.dssEditable);
 			table.setDragEnabled(true);
-			contentPane.add(new JScrollPane(table));
 			contentPane.invalidate();
 			contentPane.doLayout();
 			contentPane.repaint();
