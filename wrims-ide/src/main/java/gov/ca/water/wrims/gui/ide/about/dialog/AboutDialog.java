@@ -18,8 +18,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -42,9 +42,9 @@ public final class AboutDialog extends Dialog {
 	private static final String WRIMS_GUI_VERSION = "GUI Version: ";
 	private static final int CURRENT_YEAR = ZonedDateTime.now().getYear();
 	private static final String COPYRIGHT = String.format("© %d California Department of Water Resources", CURRENT_YEAR);
-	private static final String FONT = "Arial";
 	private static final int WIDTH = 880;
 	private static final int HEIGHT = 580;
+	private static final int TERMS_AND_CONDITIONS_BUTTON_ID = IDialogConstants.CLIENT_ID + 120;
 
 	private final String wrimsEngineVersion;
 	private final String buildDate;
@@ -52,23 +52,22 @@ public final class AboutDialog extends Dialog {
 	private final Image image;
 	private final String aboutText;
 	private final VersionInfo versionInfo;
-	private final ImageLoader imageLoader;
 	private final boolean darkTheme = isDarkTheme();
 
 	private final ResourceManager resourceManager;
 
 	public AboutDialog(Shell parentShell) {
 		super(parentShell);
+		resourceManager = new LocalResourceManager(JFaceResources.getResources());
+
 		versionInfo = VersionInfo.getInstance();
 		wrimsEngineVersion = versionInfo.getEngineVersion();
 		wrimsGuiVersion = versionInfo.getVersion();
 		buildDate = versionInfo.getBuildDate();
-		imageLoader = ImageLoader.getInstance(versionInfo.getImagePlugin());
+		ImageLoader imageLoader = ImageLoader.getInstance(versionInfo.getImagePlugin(), resourceManager);
 		image = imageLoader.getImage();
 		AboutInfoLoader aboutLoader = AboutInfoLoader.getInstance();
 		aboutText = aboutLoader.getAboutText();
-
-		resourceManager = new LocalResourceManager(JFaceResources.getResources());
 	}
 
 	@Override
@@ -80,7 +79,8 @@ public final class AboutDialog extends Dialog {
 
 	// Helper method to create and track fonts
 	private Font createFont(int size, int style) {
-		FontDescriptor fontDesc = FontDescriptor.createFrom(FONT, size, style);
+		String font = JFaceResources.getDialogFont().getFontData()[0].getName();
+		FontDescriptor fontDesc = FontDescriptor.createFrom(font, size, style);
 		return resourceManager.create(fontDesc);
 	}
 
@@ -103,16 +103,20 @@ public final class AboutDialog extends Dialog {
 
 	private void createImageColumn(Composite container) {
 		Composite imageColumn = new Composite(container, SWT.NONE);
-		GridData imageColumnData = new GridData(SWT.LEFT, SWT.CENTER, false, true);
+		GridData imageColumnData = new GridData(SWT.LEFT, SWT.CENTER, true, true);
 		imageColumnData.widthHint = WIDTH / 2;
 		imageColumn.setLayoutData(imageColumnData);
 
 		GridLayout layout = new GridLayout(1, false);
 		imageColumn.setLayout(layout);
 
-		Label imageLabel = new Label(imageColumn, SWT.NONE);
-		imageLabel.setImage(image);
-		imageLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true));
+		try {
+			Label imageLabel = new Label(imageColumn, SWT.FILL);
+			imageLabel.setImage(image);
+			imageLabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, true));
+		} catch (IllegalArgumentException e) {
+			LOGGER.atWarning().withCause(e).log("Error creating image label");
+		}
 	}
 
 	private void createInfoColumn(Composite container) {
@@ -307,34 +311,22 @@ public final class AboutDialog extends Dialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.DETAILS_ID, "Installation Details", false)
-			.addSelectionListener(new SelectionListener()
-		{
+			.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// Uses internal Eclipse dialog API that could change or be removed in the future
 				InstallationDialog installationDialog = new InstallationDialog(getShell(), null);
 				installationDialog.open();
 			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// NO OP
-			}
 		});
-		createButton(parent, 120, "Terms and Conditions", false)
-			.addSelectionListener(new SelectionListener()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				TermsDialog termsDialog = new TermsDialog(getShell());
-				termsDialog.open();
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// NO OP
-			}
-		});
+		createButton(parent, TERMS_AND_CONDITIONS_BUTTON_ID, "Terms and Conditions", false)
+			.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					TermsDialog termsDialog = new TermsDialog(getShell());
+					termsDialog.open();
+				}
+			});
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 	}
 
@@ -364,12 +356,6 @@ public final class AboutDialog extends Dialog {
 		if (resourceManager != null) {
 			resourceManager.dispose();
 		}
-
-		// Dispose image loader
-		if (imageLoader != null) {
-			imageLoader.dispose();
-		}
-
 		return super.close();
 	}
 }

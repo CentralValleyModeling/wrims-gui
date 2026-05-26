@@ -7,51 +7,65 @@ import java.io.InputStream;
 import java.nio.file.Path;
 
 import com.google.common.flogger.FluentLogger;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
-import org.eclipse.swt.widgets.Display;
 
-public final class ImageLoader {
+public final class ImageLoader
+{
 	private static final FluentLogger LOGGER = FluentLogger.forEnclosingClass();
 	public static final String SYSTEM_PROPERTY = "gov.ca.water.wrims.image";
 	public static String SPLASH_IMAGE_FILE;
 	private static final String SPLASH_IMAGE_NAME = "unversioned_splash.bmp";
 	private static ImageLoader instance;
+	private static ResourceManager resourceManager;
+	private static final int WIDTH = 452;
+	private static final int HEIGHT = 302;
 	private Image image;
 
-	private ImageLoader() {
+	private ImageLoader()
+	{
 		loadImage();
 	}
 
-	public static ImageLoader getInstance(String imagePluginName) {
+	public static ImageLoader getInstance(String imagePluginName, ResourceManager manager)
+	{
 		SPLASH_IMAGE_FILE = System.getProperty(SYSTEM_PROPERTY,
 				String.format("plugins%1$s%2$s%1$s%3$s",
 						File.separator, imagePluginName, SPLASH_IMAGE_NAME));
-		if (instance == null) {
+		resourceManager = manager;
+		if(instance == null)
+		{
 			instance = new ImageLoader();
+		} else {
+			// Check if the image is disposed and reload if necessary
+			if (instance.image != null && instance.image.isDisposed()) {
+				instance.loadImage();
+			}
 		}
 		return instance;
 	}
 
-	public Image getImage() {
+	public Image getImage()
+	{
 		return image;
 	}
 
-	public void dispose() {
-		if (image != null && !image.isDisposed()) {
-			LOGGER.atFiner().log("Disposing image");
-			image.dispose();
-		}
-	}
-
-	private void loadImage() {
+	private void loadImage()
+	{
 		Path logoPath = Path.of(SPLASH_IMAGE_FILE).toAbsolutePath();
 		LOGGER.atFiner().log("Loading image from: " + logoPath);
-		try (InputStream in = new FileInputStream(logoPath.toString())) {
+		try(InputStream in = new FileInputStream(logoPath.toString()))
+		{
 			ImageData data = new ImageData(in);
+			ImageData scaledData = data.scaledTo(WIDTH - 20, HEIGHT - 20);
 			LOGGER.atFiner().log("Image data loaded");
-			image = new Image(Display.getCurrent(), data);
-		} catch (IOException ex) {
+			ImageDescriptor desc = ImageDescriptor.createFromImageData(scaledData);
+			image = resourceManager.create(desc);
+		}
+		catch(IOException ex)
+		{
 			LOGGER.atFiner().withCause(ex).log("Could not load image");
 			image = null;
 		}
