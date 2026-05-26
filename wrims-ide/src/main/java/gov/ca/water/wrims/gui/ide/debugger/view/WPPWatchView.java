@@ -230,15 +230,6 @@ public class WPPWatchView extends AbstractDebugView implements ISelectionListene
 	public void setInitialWatchVariables(Table table){
 		ArrayList<String> watchItems= ProcWatchItem.getLastWatchItems();
 		DebugCorePlugin.watchItems = watchItems;
-		int size = watchItems.size();
-		for (int i=0; i<size; i++){
-			String varGoalName=watchItems.get(i);
-			TableItem item = new TableItem(table, SWT.NONE);
-			String[] data=new String[2];
-			data[0]=varGoalName;
-			data[1]="";
-			item.setText(data);
-		}
 	}
 	
 	@Override
@@ -281,7 +272,7 @@ public class WPPWatchView extends AbstractDebugView implements ISelectionListene
 		TableViewer viewer=(TableViewer) getViewer();
 		IStructuredSelection oldSelection = ((IStructuredSelection)viewer.getSelection());
 		Table table=viewer.getTable();
-		table.removeAll();
+		table.setRedraw(false);
 		ProcessAltColumn.AdjustAltColumnNames(viewer, 1);
 		viewer.setInput(DebugCorePlugin.target);
 	    for (int i = 0, n = table.getColumnCount(); i < n; i++) {
@@ -289,17 +280,13 @@ public class WPPWatchView extends AbstractDebugView implements ISelectionListene
 	    }
 		viewer.refresh();
 		if (dataStack.length>0) new SetSelectionInTable(oldSelection, viewer, table);
+		table.setRedraw(true);
 		DebugCorePlugin.updateSelectedVariable=true;
 	}
 	
 	public void addWatched(String varGoalName){
 		TableViewer viewer=(TableViewer) getViewer();
-		Table table=viewer.getTable();
-		TableItem item = new TableItem(table, SWT.NONE);
-		String[] data=new String[2];
-		data[0]=varGoalName;
-		data[1]="";
-		item.setText(data);
+		viewer.refresh();
 	}
 	
 	public void deleteWatched(){

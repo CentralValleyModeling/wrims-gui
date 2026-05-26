@@ -20,6 +20,7 @@ public class ProcessAltColumn {
 	
 	public static void AdjustAltColumnNames(TableViewer viewer, int flag){
 		Table table=viewer.getTable();
+		table.setRedraw(false);
 		removeAltColumns(table);
 		addAltColumnNames(table, flag);
 		table.setRedraw(true);
