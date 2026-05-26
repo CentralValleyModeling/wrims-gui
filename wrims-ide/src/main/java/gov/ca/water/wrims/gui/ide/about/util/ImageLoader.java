@@ -20,8 +20,8 @@ public final class ImageLoader
 	private static final String SPLASH_IMAGE_NAME = "unversioned_splash.bmp";
 	private static ImageLoader instance;
 	private static ResourceManager resourceManager;
-	private static final int WIDTH = 452;
-	private static final int HEIGHT = 302;
+	static final int WIDTH = 452 - 20;
+	static final int HEIGHT = 302 - 20;
 	private Image image;
 
 	private ImageLoader()
@@ -59,7 +59,7 @@ public final class ImageLoader
 		try(InputStream in = new FileInputStream(logoPath.toString()))
 		{
 			ImageData data = new ImageData(in);
-			ImageData scaledData = data.scaledTo(WIDTH - 20, HEIGHT - 20);
+			ImageData scaledData = data.scaledTo(WIDTH, HEIGHT);
 			LOGGER.atFiner().log("Image data loaded");
 			ImageDescriptor desc = ImageDescriptor.createFromImageData(scaledData);
 			image = resourceManager.create(desc);
