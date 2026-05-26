@@ -74,7 +74,11 @@ public final class TermsDialog extends Dialog {
 		});
 
 		// Initial size calculation
-		scrolledComposite.getDisplay().asyncExec(() -> updateScrolledCompositeSize(scrolledComposite, contentComposite));
+		scrolledComposite.getDisplay().asyncExec(() -> {
+			if (!scrolledComposite.isDisposed() && !contentComposite.isDisposed()) {
+				updateScrolledCompositeSize(scrolledComposite, contentComposite);
+			}
+		});
 
 		return container;
 	}

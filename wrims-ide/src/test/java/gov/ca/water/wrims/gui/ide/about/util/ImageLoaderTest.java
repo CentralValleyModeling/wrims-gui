@@ -3,6 +3,9 @@ package gov.ca.water.wrims.gui.ide.about.util;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.LocalResourceManager;
+import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.junit.jupiter.api.Test;
@@ -16,8 +19,9 @@ final class ImageLoaderTest {
 	@Test
 	void testLoader()
 	{
+		ResourceManager manager = new LocalResourceManager(JFaceResources.getResources());
 		System.setProperty(SYSTEM_PROPERTY, "src/test/resources/TEST_images/AllGoals.png");
-		ImageLoader loader = ImageLoader.getInstance("");
+		ImageLoader loader = ImageLoader.getInstance("", manager);
 		Image image = loader.getImage();
 		assertNotNull(image);
 		assertEquals(412, image.getImageData().width);
@@ -29,8 +33,9 @@ final class ImageLoaderTest {
 	@Test
 	void testSingleton() {
 		System.setProperty(SYSTEM_PROPERTY, "src/test/resources/TEST_images/AllGoals.png");
-		ImageLoader loader = ImageLoader.getInstance("");
-		ImageLoader loader2 = ImageLoader.getInstance("");
+		ResourceManager manager = new LocalResourceManager(JFaceResources.getResources());
+		ImageLoader loader = ImageLoader.getInstance("", manager);
+		ImageLoader loader2 = ImageLoader.getInstance("", manager);
 		assertEquals(loader, loader2);
 		Image image = loader.getImage();
 		Image image2 = loader2.getImage();
@@ -43,10 +48,11 @@ final class ImageLoaderTest {
 	@Test
 	void testImageEquality() throws Exception
 	{
+		ResourceManager manager = new LocalResourceManager(JFaceResources.getResources());
 		String path = "src/test/resources/TEST_images/AllGoals.png";
 		System.setProperty(SYSTEM_PROPERTY, path);
 		// Load the image using the loader
-		ImageLoader loader = ImageLoader.getInstance("");
+		ImageLoader loader = ImageLoader.getInstance("", manager);
 		Image image = loader.getImage();
 		assertNotNull(image, "Image should not be null");
 
