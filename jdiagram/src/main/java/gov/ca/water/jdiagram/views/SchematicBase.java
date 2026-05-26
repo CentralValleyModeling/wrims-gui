@@ -259,7 +259,11 @@ public abstract class SchematicBase extends ViewPart {
 			} 
 
 			public void showDSS(String name){
-				final Vector<DataContainer> data=new Vector<DataContainer>();
+				if(name == null) {
+					return;
+				}
+				name = name.toLowerCase();
+				final Vector<DataContainer> data=new Vector<>();
 				for (int i=0; i<4; i++){
 					if (DssPluginCore.allSchematicVariableData[i].containsKey(name)){
 						try {
@@ -267,6 +271,9 @@ public abstract class SchematicBase extends ViewPart {
 						} catch (HecMathException e) {
 						}
 					}
+				}
+				if(data.isEmpty()) {
+					return;
 				}
 				final IWorkbench workbench = PlatformUI.getWorkbench();
 				workbench.getDisplay().asyncExec(new Runnable(){
@@ -277,10 +284,11 @@ public abstract class SchematicBase extends ViewPart {
 							dmv.showSelected(data);
 							
 							DSSPlotView dpv= (DSSPlotView)activePage.showView(DSSPlotView.ID);
-							dpv.showSelected(data);
-							
 							DSSTableView dtv= (DSSTableView)activePage.showView(DSSTableView.ID);
-							dtv.showSelected(data);
+							SwingUtilities.invokeLater(() -> {
+                                dpv.showSelected(data);
+                                dtv.showSelected(data);
+                            });
 						} catch (PartInitException e) {
 						}
 					}
