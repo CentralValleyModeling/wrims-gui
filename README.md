@@ -193,11 +193,12 @@ this program instead of the one in Settings` checkbox.
 10. Verify that the toolbar date dropdown is fully visible.
 
 
-## XText Project Conversion Dialog Guidance
+## Xtext Project Conversion Dialog Guidance
 
-If you encounter a dialog asking whether you would like to convert the project to the new 
-XText-based project format, please select the "Yes" option to accept the conversion. You may check 
-the "Remember my decision" option to avoid seeing these prompts in the future.
 
->!Note: Conversion to an XText project will add XText-specific configuration to the `.project` 
-> file, but will not negatively affect the project's functionality.
+When opening a WRESL file, you may encounter a dialogue with a suggestion to convert to an Xtext project.  
+Please select "No", as the WRESL editor does not require the nature.  
+You may check the "Remember my decision" option to avoid seeing these prompts in the future.
+
+>!Note: Conversion to an Xtext project will add Xtext-specific configuration to the `.project` 
+> file, but will not negatively affect the project's functionality. 
