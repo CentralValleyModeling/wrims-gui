@@ -166,7 +166,9 @@ For development-specific guidelines, please refer to the [CONTRIBUTING](CONTRIBU
 
 For instructions on GUI testing, refer to the [Validation Tests](https://github.com/CentralValleyModeling/wrims-gui/blob/main/CONTRIBUTING.md#validation-tests) section of the CONTRIBUTING file.
 
-# GUI Scaling Troubleshooting on High-DPI Displays with Windows
+# Troubleshooting
+
+## GUI Scaling Troubleshooting on High-DPI Displays with Windows
 
 Some users may experience issues with the GUI scaling. 
 
@@ -189,3 +191,14 @@ this program instead of the one in Settings` checkbox.
 12. Click `Apply` in the bottom-right corner of the window.
 13. Restart WRIMS if prompted.
 10. Verify that the toolbar date dropdown is fully visible.
+
+
+## Xtext Project Conversion Dialog Guidance
+
+
+When opening a WRESL file, you may encounter a dialogue with a suggestion to convert to an Xtext project.  
+Please select "No", as the WRESL editor does not require the nature.  
+You may check the "Remember my decision" option to avoid seeing these prompts in the future.
+
+>!Note: Conversion to an Xtext project will add Xtext-specific configuration to the `.project` 
+> file, but will not negatively affect the project's functionality. 
