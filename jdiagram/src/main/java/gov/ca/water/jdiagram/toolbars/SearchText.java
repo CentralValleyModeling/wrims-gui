@@ -19,6 +19,7 @@ public class SearchText extends
 	SchematicBase schematicView;
 	private Text text;
 	private Button search;
+	private Font font;
 	
 	public SearchText(SchematicBase schematicBase) {
 		this.schematicView=schematicBase;
@@ -37,7 +38,7 @@ public class SearchText extends
 		glReader1.heightHint=20;
 		search = new Button(container, SWT.BORDER|SWT.PUSH);
 		search.setText("Search");
-		Font font = new Font(container.getDisplay(), "Arial", 10, SWT.NONE );
+		font = new Font(container.getDisplay(), "Arial", 10, SWT.NONE );
 		search.setFont(font);
 		search.setLayoutData(glReader1);
 		search.addMouseListener(new MouseListener(){
@@ -67,5 +68,12 @@ public class SearchText extends
 		glReader2.heightHint=15;
 		text.setLayoutData(glReader2);
 		return container;
+	}
+
+	@Override
+	public void dispose() {
+		if (font != null) {
+			font.dispose();
+		}
 	}
 }
