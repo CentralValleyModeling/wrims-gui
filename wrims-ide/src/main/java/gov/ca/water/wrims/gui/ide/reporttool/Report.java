@@ -114,7 +114,6 @@ public final class Report implements IRunnableWithProgress {
 
         try {
             reportStatus("Generating report in background thread.");
-            Utils.clearMessages();
 
             LOG.fine("Parsing input template");
             reportStatus("Parsing input template.");
