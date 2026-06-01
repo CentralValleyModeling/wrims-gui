@@ -429,7 +429,7 @@ public class WPPConfigTab extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
-		configuration.setAttribute(DebugCorePlugin.ATTR_WPP_WRESLPLUS, "no");
+		configuration.setAttribute(DebugCorePlugin.ATTR_WPP_WRESLPLUS, "yes");
 		configuration.setAttribute(DebugCorePlugin.ATTR_WPP_ALLOWSVTSINIT, "no");
 		configuration.setAttribute(DebugCorePlugin.ATTR_WPP_ALLRESTARTFILES, "no");
 		configuration.setAttribute(DebugCorePlugin.ATTR_WPP_NUMBERRESTARTFILES, "12");
@@ -445,7 +445,7 @@ public class WPPConfigTab extends AbstractLaunchConfigurationTab {
 		currConfiguration=configuration;
 		String wreslPlus = null;
 		try {
-			wreslPlus = configuration.getAttribute(DebugCorePlugin.ATTR_WPP_WRESLPLUS, "no");
+			wreslPlus = configuration.getAttribute(DebugCorePlugin.ATTR_WPP_WRESLPLUS, "yes");
 			if (wreslPlus.equalsIgnoreCase("yes")){
 				wpButton.setSelection(true);
 			}else{
