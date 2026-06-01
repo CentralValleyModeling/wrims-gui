@@ -1,5 +1,6 @@
 package gov.ca.water.hecdssvue.components;
 
+import com.google.common.flogger.FluentLogger;
 import gov.ca.water.hecdssvue.DssPluginCore;
 import gov.ca.water.hecdssvue.views.DSSCatalogView;
 import gov.ca.water.hecdssvue.views.DSSMonthlyView;
@@ -14,6 +15,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 
 public class ShowSelected {
+	private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
 	public static void showSelected(){
 	
@@ -25,6 +27,10 @@ public class ShowSelected {
 						try {
 							DSSCatalogView catalogView = (DSSCatalogView) workbench.getActiveWorkbenchWindow()
 									.getActivePage().findView(DSSCatalogView.ID);
+							if (catalogView == null) {
+								logger.atFiner().log("Catalog view not found");
+								return;
+							}
 							Iterator iterator = ((IStructuredSelection) catalogView.getViewer().getSelection())
 									.iterator();
 							Vector<DataContainer> dataVector = new Vector();
@@ -44,8 +50,7 @@ public class ShowSelected {
 								}
 								dataVector.addAll(dataVector_path);
 							}
-					
-					
+
 							DSSPlotView dpv = (DSSPlotView) workbench.getActiveWorkbenchWindow()
 									.getActivePage().findView(DSSPlotView.ID);
 							dpv.showSelected(dataVector);
@@ -63,7 +68,7 @@ public class ShowSelected {
 					}
 				});
 			} catch (Exception e) {
-				e.printStackTrace();
+				WPPException.handleException(e);
 			}
 		}else{
 			new RetrieveCheckBoxTsData();
