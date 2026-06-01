@@ -185,7 +185,7 @@ Avoid the use of [namespace packages](https://docs.python.org/3/glossary.html#te
 In order to ensure that the code is working as intended, automated tests should be run. In addition, manual testing should 
 be performed to check for runtime errors and unexpected behavior. Instructions on the recommended runtime tests are provided
 in the following files:
-- [General Tests](wrims-ide/src/test/resources/test-ide1.md)
+- [General Tests](wrims-ide/src/test/resources/test-ide.md)
 - [JDiagram Schematic Tests](jdiagram/src/main/resources/Test_Schematics.md)
 - [DSS Tests](dwr-hecdssvue/src/test/resources/Test_DSS.md)
 
