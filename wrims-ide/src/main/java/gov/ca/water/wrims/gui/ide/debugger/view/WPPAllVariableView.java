@@ -255,16 +255,16 @@ public class WPPAllVariableView extends AbstractDebugView implements ISelectionL
 		dataStack=DebugCorePlugin.allVariableStack;
 		TableViewer viewer=(TableViewer) getViewer();
 		IStructuredSelection oldSelection = ((IStructuredSelection)viewer.getSelection());
-		Table table=viewer.getTable();
-		table.setRedraw(false);
+		Table viewerTable = viewer.getTable();
+		viewerTable.setRedraw(false);
 		viewer.setInput(DebugCorePlugin.target);
-		ProcessAltColumn.removeAltColumns(table);
-	    for (int i = 0, n = table.getColumnCount(); i < n; i++) {
-	    	table.getColumn(i).pack();
+		ProcessAltColumn.removeAltColumns(viewerTable);
+	    for (int i = 0, n = viewerTable.getColumnCount(); i < n; i++) {
+	    	viewerTable.getColumn(i).pack();
 	    }
 		viewer.refresh();
-		if (dataStack.length>0) new SetSelectionInTable(oldSelection, viewer, table);
-		table.setRedraw(true);
+		if (dataStack.length>0) new SetSelectionInTable(oldSelection, viewer, viewerTable);
+		viewerTable.setRedraw(true);
 		DebugCorePlugin.updateSelectedVariable=true;
 	}
 	
