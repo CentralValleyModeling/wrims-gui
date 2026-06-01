@@ -68,7 +68,6 @@ public class ShowSelected {
 					}
 				});
 			} catch (Exception e) {
-				logger.atWarning().withCause(e).log("Error displaying DSS data");
 				WPPException.handleException(e);
 			}
 		}else{
