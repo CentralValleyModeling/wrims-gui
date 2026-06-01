@@ -23,6 +23,7 @@ This chapter shows how to turn **WRESL Plus** on or off.
 
 
 Some models use **WRESL**, while others use **WRESL Plus**, which supports extended language features.
+WRIMS 3 now defaults to **WRESL Plus** support to ensure compatibility with all models.
 
 To turn the feature on or off:
 
