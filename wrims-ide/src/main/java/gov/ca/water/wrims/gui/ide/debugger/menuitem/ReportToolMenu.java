@@ -7,42 +7,32 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.PlatformUI;
+public final class ReportToolMenu implements IWorkbenchWindowActionDelegate {
 
+    private IWorkbenchWindow window;
+    private WPPReportToolDialog dialog;
 
-public class ReportToolMenu implements IWorkbenchWindowActionDelegate {
-	public ReportToolMenu(){
+    @Override
+    public void run(IAction action) {
+        if (dialog == null) {
+            dialog = new WPPReportToolDialog(window.getShell());
+        }
+        dialog.openDialog();
+    }
 
-	}
+    @Override
+    public void selectionChanged(IAction action, ISelection selection) {
+        //No-op
+    }
 
-	@Override
-	public void run(IAction action) {
-		final IWorkbench workbench=PlatformUI.getWorkbench();
-		workbench.getDisplay().asyncExec(new Runnable(){
-			public void run(){
-				Shell shell=workbench.getActiveWorkbenchWindow().getShell();
-				WPPReportToolDialog dialog= new WPPReportToolDialog(shell);
-				dialog.openDialog();
-				
-				
-			}
-		});
-	}
+    @Override
+    public void dispose() {
+        dialog = null;
+        window = null;
+    }
 
-	@Override
-	public void selectionChanged(IAction action, ISelection selection) {
-
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void init(IWorkbenchWindow window) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void init(IWorkbenchWindow window) {
+        this.window = window;
+    }
 }
