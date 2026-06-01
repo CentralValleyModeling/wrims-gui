@@ -41,6 +41,7 @@ import com.lowagie.text.pdf.PdfPRow;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.pdf.TextField;
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.wrims.gui.ide.reporttool.Report.Writer;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -100,10 +101,7 @@ public class ReportPDFWriter implements Writer {
 	}
 
 	@Override
-	public void startDocument(String filename) {
-
-		// Check if file is already open
-
+	public boolean startDocument(String filename) {
 		bigFont = FontFactory.getFont("Arial", 12);
         Font smallBoldFont = FontFactory.getFont("Arial", 10);
 		smallBoldFont.setStyle(Font.BOLD);
@@ -114,19 +112,21 @@ public class ReportPDFWriter implements Writer {
 		document.addCreationDate();
 		try {
 			writer = PdfWriter.getInstance(
-			// that listens to the document
-			        document,
-			        // and directs a PDF-stream to a file
-			        new FileOutputStream(filename));
+				// that listens to the document
+				document,
+				// and directs a PDF-stream to a file
+				new FileOutputStream(filename));
 			document.open();
 		} catch (DocumentException de) {
-			//log.debug(de.getMessage());
+			WPPException.handleException(de);
+			return false;
 		} catch (IOException ioe) {
-			//log.debug(ioe.getMessage());
+			WPPException.handleException(ioe);
 			JOptionPane.showMessageDialog(null, "Please close the file " + (new File(filename).getName()) + " if it is open.",
 			        "Warning!", JOptionPane.WARNING_MESSAGE);
-			return;
+			return false;
 		}
+		return true;
 	}
 
 	@Override
@@ -192,7 +192,7 @@ public class ReportPDFWriter implements Writer {
 	}
 
 	@Override
-	public void addTableHeader(ArrayList<String> headerRow, int[] columnSpans) {
+	public void addTableHeader(List<String> headerRow, int[] columnSpans) {
 		if (summaryTable == null) {
 			summaryTable = new PdfPTable(new float[] { 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 });
 			summaryTable.getDefaultCell().setBorder(Rectangle.NO_BORDER);
@@ -333,7 +333,7 @@ public class ReportPDFWriter implements Writer {
 	}
 
 	@Override
-	public void addExceedancePlot(ArrayList<double[]> buildDataArray, String title, String[] seriesName, String xAxisLabel,
+	public void addExceedancePlot(List<double[]> buildDataArray, String title, String[] seriesName, String xAxisLabel,
 	        String yAxisLabel) {
 		DefaultXYDataset dataset = new DefaultXYDataset();
 		for (int i = seriesName.length - 1; i >= 0; i--) {
@@ -360,7 +360,7 @@ public class ReportPDFWriter implements Writer {
 	}
 
 	@Override
-	public void addTimeSeriesPlot(ArrayList<double[]> buildDataArray, String title, String[] seriesName, String xAxisLabel,
+	public void addTimeSeriesPlot(List<double[]> buildDataArray, String title, String[] seriesName, String xAxisLabel,
 	        String yAxisLabel) {
 		TimeSeriesCollection datasets = new TimeSeriesCollection();
 		for (int i = seriesName.length - 1; i >= 0; i--) {
