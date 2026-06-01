@@ -27,17 +27,15 @@ public class AddWatch extends org.eclipse.core.commands.AbstractHandler {
 					UpdateView.updateWatchView(DebugCorePlugin.target);
 				}else{
 					final IWorkbench workbench=PlatformUI.getWorkbench();
-					workbench.getDisplay().asyncExec(new Runnable(){
-						public void run(){
-							WPPWatchView watchView;
-							try {
-								watchView = (WPPWatchView) workbench.getActiveWorkbenchWindow().getActivePage().showView(DebugCorePlugin.ID_WPP_WATCH_VIEW);
-								watchView.addWatched(hoverText);
-							} catch (PartInitException e) {
-								WPPException.handleException(e);
-							}
-						}
-					});
+					workbench.getDisplay().asyncExec(() -> {
+                        WPPWatchView watchView;
+                        try {
+                            watchView = (WPPWatchView) workbench.getActiveWorkbenchWindow().getActivePage().showView(DebugCorePlugin.ID_WPP_WATCH_VIEW);
+                            watchView.addWatched();
+                        } catch (PartInitException e) {
+                            WPPException.handleException(e);
+                        }
+                    });
 				}
 			}
 		}

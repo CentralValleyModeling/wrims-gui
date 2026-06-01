@@ -219,7 +219,7 @@ public class WPPWatchView extends AbstractDebugView implements ISelectionListene
 	    
 	    UpdateView.addNameSortListener(table, this);
 
-	    setInitialWatchVariables(table);
+	    setInitialWatchVariables();
 	    
 	    // Pack the window
 	    parent.pack();
@@ -227,7 +227,7 @@ public class WPPWatchView extends AbstractDebugView implements ISelectionListene
 		return viewer;
 	}
 
-	public void setInitialWatchVariables(Table table){
+	public void setInitialWatchVariables(){
 		ArrayList<String> watchItems= ProcWatchItem.getLastWatchItems();
 		DebugCorePlugin.watchItems = watchItems;
 	}
@@ -284,7 +284,7 @@ public class WPPWatchView extends AbstractDebugView implements ISelectionListene
 		DebugCorePlugin.updateSelectedVariable=true;
 	}
 	
-	public void addWatched(String varGoalName){
+	public void addWatched(){
 		TableViewer viewer=(TableViewer) getViewer();
 		viewer.refresh();
 	}
