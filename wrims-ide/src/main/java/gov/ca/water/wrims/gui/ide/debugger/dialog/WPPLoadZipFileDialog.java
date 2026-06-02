@@ -143,7 +143,15 @@ public class WPPLoadZipFileDialog extends Dialog {
 				if (!headDir.exists()) {
 					headDir.mkdir();
 				}
+
+				String extractionDirCanonicalPath = headDir.getCanonicalPath();
+
 				while (entry != null) {
+					if (!isValidZipEntry(entry, extractionDirCanonicalPath)) {
+						zipIn.close();
+						throw new SecurityException("Invalid zip entry, outside extraction path:" + entry.getName());
+					}
+
 					String filePath = headDir + File.separator + entry.getName();
 					if (!entry.isDirectory()) {
 						// Ensure parent directories exist
@@ -168,6 +176,40 @@ public class WPPLoadZipFileDialog extends Dialog {
 		} else {
 			return false;
 		}
+	}
+
+	private boolean isValidZipEntry(ZipEntry entry, String extractionDirCanonicalPath) throws IOException {
+		String entryName = entry.getName();
+
+		// Reject entries with null or empty names
+		if(entryName.trim().isEmpty())
+		{
+			return false;
+		}
+
+		// Reject entries that start with "/" (absolute paths)
+		if(entryName.startsWith("/"))
+		{
+			return false;
+		}
+
+		// Reject entries containing ".." path components
+		if(entryName.contains(".."))
+		{
+			return false;
+		}
+
+		// Additional validation: check the resolved path
+		File destFile = new File(headDir, entryName);
+		String destCanonicalPath = destFile.getCanonicalPath();
+
+		// Ensure the destination is within the extraction directory
+		if (!destCanonicalPath.startsWith(extractionDirCanonicalPath + File.separator) &&
+				!destCanonicalPath.equals(extractionDirCanonicalPath)) {
+			return false;
+		}
+
+		return true;
 	}
 	
 	private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
