@@ -226,6 +226,24 @@ If a launch file is included in the package, it is also available after the stud
 - After extraction, verify that the expected study structure appears in **Project Explorer**.
 - If there is no .project file in the zip file, unzip function will only unzip the zip file but not import to WRIMS GUI.
 
+** Troubleshooting **
+
+If you receive an error when attempting to load a zip file, the contents may exceed the default maximum file size limit for zip extraction.
+
+To resolve this:
+Use the following -D flag to increase the maximum file size limit for zip extraction.
+Append these flags to the command line call present in the `WRIMS3_GUI_Start.bat` script.
+
+MAX_EXTRACTED_SIZE_KEY: `gov.ca.water.wrims.zip.max.size`
+MAX_ENTRIES_KEY: `gov.ca.water.wrims.zip.max.entries`
+MAX_ENTRY_SIZE_KEY: `gov.ca.water.wrims.zip.max.entry.size`
+
+Both of the size limits are set in bytes, while the maximum entries limit is set in number of entries.
+
+For example, to set the maximum file size limit to 10 GB, you can use the following flag:
+`-Dgov.ca.water.wrims.zip.max.size=10737418240`
+
+
 
 **Related sections**
 

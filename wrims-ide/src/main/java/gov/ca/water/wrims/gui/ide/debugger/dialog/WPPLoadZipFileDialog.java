@@ -33,9 +33,18 @@ import org.eclipse.ui.PlatformUI;
 
 
 public class WPPLoadZipFileDialog extends Dialog {
-	private static final long MAX_EXTRACTED_SIZE = 20L * 1024L * 1024L * 1024L; // 20GB
-	private static final int MAX_ENTRIES = 10000;
-	private static final long MAX_ENTRY_SIZE = 1024L * 1024 * 1024L; // 1GB per entry
+	public static final String MAX_EXTRACTED_SIZE_KEY = "gov.ca.water.wrims.zip.max.size";
+	public static final String MAX_ENTRIES_KEY = "gov.ca.water.wrims.zip.max.entries";
+	public static final String MAX_ENTRY_SIZE_KEY = "gov.ca.water.wrims.zip.max.entry.size";
+	private static final long DEFAULT_MAX_EXTRACTED_SIZE = 20L * 1024L * 1024L * 1024L; // 20GB
+	private static final long DEFAULT_MAX_ENTRIES = 10000;
+	private static final long DEFAULT_MAX_ENTRY_SIZE = 1024L * 1024 * 1024L; // 1GB per entry
+	private static final long MAX_EXTRACTED_SIZE = Long.parseLong(System.getProperty(MAX_EXTRACTED_SIZE_KEY,
+			String.valueOf(DEFAULT_MAX_EXTRACTED_SIZE)));
+	private static final int MAX_ENTRIES = Integer.parseInt(System.getProperty(MAX_ENTRIES_KEY,
+			String.valueOf(DEFAULT_MAX_ENTRIES)));
+	private static final long MAX_ENTRY_SIZE = Long.parseLong(System.getProperty(MAX_ENTRY_SIZE_KEY,
+			String.valueOf(DEFAULT_MAX_ENTRY_SIZE)));
 
 	private long totalExtractedSize = 0;
 	private int entryCount = 0;
@@ -47,12 +56,12 @@ public class WPPLoadZipFileDialog extends Dialog {
 	private boolean projectExist;
 	
 	public WPPLoadZipFileDialog(Shell parentShell) {
-		super(parentShell, SWT.MIN|SWT.RESIZE);
+		super(parentShell, SWT.MIN | SWT.RESIZE);
 		setText("Load Zip File");
 	}
 
 	public void openDialog() {
-		Shell shell=new Shell(getParent(), getStyle());
+		Shell shell = new Shell(getParent(), getStyle());
 		shell.setText(getText());
 		createContents(shell);
 		shell.setSize(600, 200);
@@ -143,47 +152,49 @@ public class WPPLoadZipFileDialog extends Dialog {
 	
 	public boolean unzipFile() {
 		File zipFile = new File(fileName);
-		if (zipFile.exists()) {
-			try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFile))) {
-				ZipEntry entry = zipIn.getNextEntry();
-				String headPath = zipFile.getPath().replaceFirst("[.][^.]+$", "");
-				headDir = new File(headPath);
-				if (!headDir.exists()) {
-					headDir.mkdir();
-				}
-
-				while (entry != null) {
-					File destFile = new File(headDir, entry.getName());
-					// Validate to avoid zip slip attacks
-					if (!isValidZipPath(entry, destFile)) {
-						throw new SecurityException("Invalid zip entry, outside extraction path:" + entry.getName());
-					}
-					String filePath = destFile.getAbsolutePath();
-					if (!entry.isDirectory()) {
-						// Ensure parent directories exist
-						File parentDir = destFile.getParentFile();
-						if (!parentDir.exists()) {
-							parentDir.mkdirs();
-						}
-						if (destFile.getCanonicalPath().startsWith(headDir.getCanonicalPath())) {
-							extractFile(zipIn, filePath);
-						} else {
-							throw new SecurityException("Invalid zip entry, outside extraction path:" + entry.getName());
-						}
-					} else {
-						destFile.mkdirs();
-					}
-					zipIn.closeEntry();
-					entry = zipIn.getNextEntry();
-				}
-				return true;
-			} catch (Exception e) {
-				WPPException.handleException(e);
-				return false;
-			}
-		} else {
+		if (!zipFile.exists()) {
 			return false;
 		}
+		try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFile))) {
+			ZipEntry entry = zipIn.getNextEntry();
+			String headPath = zipFile.getPath().replaceFirst("[.][^.]+$", "");
+			headDir = new File(headPath);
+			if (!headDir.exists()) {
+				headDir.mkdir();
+			}
+			return unPackFilesFromZip(entry, zipIn);
+		} catch (Exception e) {
+			WPPException.handleException(e);
+			return false;
+		}
+	}
+
+	private boolean unPackFilesFromZip(ZipEntry entry, ZipInputStream zipIn) throws IOException {
+		while(entry != null) {
+			File destFile = new File(headDir, entry.getName());
+			// Validate to avoid zip slip attacks
+			if (!isValidZipPath(entry, destFile)) {
+				throw new SecurityException("Invalid zip entry, outside extraction path:" + entry.getName());
+			}
+			String filePath = destFile.getAbsolutePath();
+			if (!entry.isDirectory()) {
+				// Ensure parent directories exist
+				File parentDir = destFile.getParentFile();
+				if (!parentDir.exists()) {
+					parentDir.mkdirs();
+				}
+				if (destFile.getCanonicalPath().startsWith(headDir.getCanonicalPath())) {
+					extractFile(zipIn, filePath);
+				} else {
+					throw new SecurityException("Invalid zip entry, outside extraction path:" + entry.getName());
+				}
+			} else {
+				destFile.mkdirs();
+			}
+			zipIn.closeEntry();
+			entry = zipIn.getNextEntry();
+		}
+		return true;
 	}
 
 	private boolean isValidZipPath(ZipEntry entry, File destFile) throws IOException {
@@ -222,7 +233,7 @@ public class WPPLoadZipFileDialog extends Dialog {
 			byte[] bytesIn = new byte[BUFFER_SIZE];
 			int read = 0;
 			long entrySize = 0;
-			while((read = zipIn.read(bytesIn)) != -1) {
+			while ((read = zipIn.read(bytesIn)) != -1) {
 				entrySize += read;
 				totalExtractedSize += read;
 
@@ -257,11 +268,10 @@ public class WPPLoadZipFileDialog extends Dialog {
         	return;
         }
 
-        for ( File f : list ) {
-            if ( f.isDirectory() ) {
+        for (File f : list) {
+            if (f.isDirectory()) {
                 walk(f);
-            }
-            else {
+            } else {
                 if (f.getName().equalsIgnoreCase(".project")) {
                 	IProjectDescription description;
 					try {
@@ -282,7 +292,7 @@ public class WPPLoadZipFileDialog extends Dialog {
 	}
 	
 	public void showProjectNotFound() {
-		final IWorkbench workbench=PlatformUI.getWorkbench();
+		final IWorkbench workbench = PlatformUI.getWorkbench();
 		workbench.getDisplay().asyncExec(() -> {
 			Shell shell = workbench.getActiveWorkbenchWindow().getShell();
 			MessageBox messageBox = new MessageBox(shell, SWT.ICON_WARNING);
@@ -293,7 +303,7 @@ public class WPPLoadZipFileDialog extends Dialog {
 	}
 	
 	public void showUnzipFailed() {
-		final IWorkbench workbench=PlatformUI.getWorkbench();
+		final IWorkbench workbench = PlatformUI.getWorkbench();
 		workbench.getDisplay().asyncExec(() -> {
 			Shell shell = workbench.getActiveWorkbenchWindow().getShell();
 			MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR);
