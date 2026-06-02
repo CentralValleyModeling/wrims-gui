@@ -267,7 +267,7 @@ public class WPPVariableView extends AbstractDebugView implements ISelectionList
 		TableViewer viewer=(TableViewer) getViewer();
 		IStructuredSelection oldSelection = ((IStructuredSelection)viewer.getSelection());
 		Table table=viewer.getTable();
-		table.removeAll();
+		table.setRedraw(false);
 		ProcessAltColumn.AdjustAltColumnNames(viewer, 0);
 		viewer.setInput(DebugCorePlugin.target);
 	    for (int i = 0, n = table.getColumnCount(); i < n; i++) {
@@ -275,6 +275,7 @@ public class WPPVariableView extends AbstractDebugView implements ISelectionList
 	    }
 		viewer.refresh();
 		if (dataStack.length>0) new SetSelectionInTable(oldSelection, viewer, table);
+		table.setRedraw(true);
 	    DebugCorePlugin.updateSelectedVariable=true;
 	}
 	
