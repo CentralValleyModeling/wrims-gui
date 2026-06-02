@@ -33,9 +33,16 @@ import org.eclipse.ui.PlatformUI;
 
 
 public class WPPLoadZipFileDialog extends Dialog {
+	private static final long MAX_EXTRACTED_SIZE = 20L * 1024L * 1024L * 1024L; // 20GB
+	private static final int MAX_ENTRIES = 10000;
+	private static final long MAX_ENTRY_SIZE = 1024L * 1024 * 1024L; // 1GB per entry
+
+	private long totalExtractedSize = 0;
+	private int entryCount = 0;
+
 	private Text fileText;
 	private	String fileName = "";
-	private final int BUFFER_SIZE = 4096;
+	private static final int BUFFER_SIZE = 4096;
 	private File headDir;
 	private boolean projectExist;
 	
@@ -50,7 +57,6 @@ public class WPPLoadZipFileDialog extends Dialog {
 		createContents(shell);
 		shell.setSize(600, 200);
 		shell.setLocation(450, 300);
-		//shell.pack();
 		shell.open();
 	}
 
@@ -103,6 +109,7 @@ public class WPPLoadZipFileDialog extends Dialog {
 		gd3.horizontalSpan = 2;
 		ok.setLayoutData(gd3);
 		ok.addSelectionListener(new SelectionAdapter(){
+			@Override
 			public void widgetSelected(SelectionEvent event){
 				okPressed(shell);
 			}
@@ -113,8 +120,10 @@ public class WPPLoadZipFileDialog extends Dialog {
 		GridData gd4 = new GridData(GridData.FILL_HORIZONTAL);
 		gd4.horizontalSpan = 2;
 		cancel.setLayoutData(gd4);
-		cancel.addSelectionListener(new SelectionAdapter(){
-			public void widgetSelected(SelectionEvent event){
+		cancel.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent event)
+			{
 				shell.close();
 			}
 		});
@@ -135,8 +144,7 @@ public class WPPLoadZipFileDialog extends Dialog {
 	public boolean unzipFile() {
 		File zipFile = new File(fileName);
 		if (zipFile.exists()) {
-			try {
-				ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFile));
+			try (ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFile))) {
 				ZipEntry entry = zipIn.getNextEntry();
 				String headPath = zipFile.getPath().replaceFirst("[.][^.]+$", "");
 				headDir = new File(headPath);
@@ -144,30 +152,30 @@ public class WPPLoadZipFileDialog extends Dialog {
 					headDir.mkdir();
 				}
 
-				String extractionDirCanonicalPath = headDir.getCanonicalPath();
-
 				while (entry != null) {
-					if (!isValidZipEntry(entry, extractionDirCanonicalPath)) {
-						zipIn.close();
+					File destFile = new File(headDir, entry.getName());
+					// Validate to avoid zip slip attacks
+					if (!isValidZipPath(entry, destFile)) {
 						throw new SecurityException("Invalid zip entry, outside extraction path:" + entry.getName());
 					}
-
-					String filePath = headDir + File.separator + entry.getName();
+					String filePath = destFile.getAbsolutePath();
 					if (!entry.isDirectory()) {
 						// Ensure parent directories exist
-						File parentDir = new File(filePath).getParentFile();
+						File parentDir = destFile.getParentFile();
 						if (!parentDir.exists()) {
 							parentDir.mkdirs();
 						}
-						extractFile(zipIn, filePath);
+						if (destFile.getCanonicalPath().startsWith(headDir.getCanonicalPath())) {
+							extractFile(zipIn, filePath);
+						} else {
+							throw new SecurityException("Invalid zip entry, outside extraction path:" + entry.getName());
+						}
 					} else {
-						File dir = new File(filePath);
-						dir.mkdir();
+						destFile.mkdirs();
 					}
 					zipIn.closeEntry();
 					entry = zipIn.getNextEntry();
 				}
-				zipIn.close();
 				return true;
 			} catch (Exception e) {
 				WPPException.handleException(e);
@@ -178,48 +186,57 @@ public class WPPLoadZipFileDialog extends Dialog {
 		}
 	}
 
-	private boolean isValidZipEntry(ZipEntry entry, String extractionDirCanonicalPath) throws IOException {
+	private boolean isValidZipPath(ZipEntry entry, File destFile) throws IOException {
+		boolean isValid = true;
 		String entryName = entry.getName();
+		String extractionDirCanonicalPath = headDir.getCanonicalPath();
 
-		// Reject entries with null or empty names
-		if(entryName.trim().isEmpty())
-		{
-			return false;
+		if(entryName.trim().isEmpty()) {
+			isValid = false;
 		}
 
-		// Reject entries that start with "/" (absolute paths)
-		if(entryName.startsWith("/"))
-		{
-			return false;
+		if(entryName.startsWith("/")) {
+			isValid = false;
 		}
 
-		// Reject entries containing ".." path components
-		if(entryName.contains(".."))
-		{
-			return false;
+		if(entryName.contains("..")) {
+			isValid = false;
 		}
 
-		// Additional validation: check the resolved path
-		File destFile = new File(headDir, entryName);
 		String destCanonicalPath = destFile.getCanonicalPath();
-
-		// Ensure the destination is within the extraction directory
 		if (!destCanonicalPath.startsWith(extractionDirCanonicalPath + File.separator) &&
 				!destCanonicalPath.equals(extractionDirCanonicalPath)) {
-			return false;
+			isValid = false;
 		}
 
-		return true;
+		return isValid;
 	}
 	
 	private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
-		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
-		byte[] bytesIn = new byte[BUFFER_SIZE];
-		int read = 0;
-		while ((read = zipIn.read(bytesIn)) != -1) {
-			bos.write(bytesIn, 0, read);
+		entryCount++;
+		if (entryCount > MAX_ENTRIES) {
+			throw new IOException("Too many entries in the zip file: " + filePath);
 		}
-		bos.close();
+
+		try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath))) {
+			byte[] bytesIn = new byte[BUFFER_SIZE];
+			int read = 0;
+			long entrySize = 0;
+			while((read = zipIn.read(bytesIn)) != -1) {
+				entrySize += read;
+				totalExtractedSize += read;
+
+				if (entrySize > MAX_ENTRY_SIZE) {
+					throw new IOException("Entry size exceeds the maximum allowed size of " + MAX_ENTRY_SIZE + " bytes: " + filePath);
+				}
+
+				if (totalExtractedSize > MAX_EXTRACTED_SIZE) {
+					throw new IOException("Total extracted size exceeds the maximum allowed size of " + MAX_EXTRACTED_SIZE + " bytes");
+				}
+
+				bos.write(bytesIn, 0, read);
+			}
+		}
 	}
 	
 	public void loadStudy() {
