@@ -1,6 +1,5 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
-import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -33,7 +34,7 @@ import org.eclipse.ui.PlatformUI;
 
 public class WPPLoadZipFileDialog extends Dialog {
 	private Text fileText;
-	private	String fileName="";
+	private	String fileName = "";
 	private final int BUFFER_SIZE = 4096;
 	private File headDir;
 	private boolean projectExist;
@@ -43,7 +44,7 @@ public class WPPLoadZipFileDialog extends Dialog {
 		setText("Load Zip File");
 	}
 
-	public void openDialog(){
+	public void openDialog() {
 		Shell shell=new Shell(getParent(), getStyle());
 		shell.setText(getText());
 		createContents(shell);
@@ -56,10 +57,10 @@ public class WPPLoadZipFileDialog extends Dialog {
 	protected void createContents(final Shell shell) {
 		FillLayout fl = new FillLayout(SWT.VERTICAL);
 		shell.setLayout(fl);
-		fl.marginWidth=10;
-		fl.marginHeight=15;
+		fl.marginWidth = 10;
+		fl.marginHeight = 15;
 		
-		Label label1=new Label(shell, SWT.NONE);
+		Label label1 = new Label(shell, SWT.NONE);
 		label1.setText("Please select a zip file to load:");
 		
 		Composite fileSelection = new Composite(shell, SWT.NONE);
@@ -80,23 +81,21 @@ public class WPPLoadZipFileDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				final IWorkbench workbench=PlatformUI.getWorkbench();
-				workbench.getDisplay().asyncExec(new Runnable(){
-					public void run(){
-						Shell shell=workbench.getActiveWorkbenchWindow().getShell();
-						FileDialog dlg=new FileDialog(shell, SWT.OPEN);
-						dlg.setFilterNames(new String[]{"Zip Files (*.zip)", "All Files (*.*)"});
-						dlg.setFilterExtensions(new String[]{"*.zip", "*.*"});
-						dlg.setFileName(fileText.getText());
-						String file=dlg.open();
-						if (file !=null){
-							fileText.setText(file);
-						}
+				workbench.getDisplay().asyncExec(() -> {
+					Shell shell1 = workbench.getActiveWorkbenchWindow().getShell();
+					FileDialog dlg = new FileDialog(shell1, SWT.OPEN);
+					dlg.setFilterNames("Zip Files (*.zip)", "All Files (*.*)");
+					dlg.setFilterExtensions("*.zip", "*.*");
+					dlg.setFileName(fileText.getText());
+					String file = dlg.open();
+					if (file != null) {
+						fileText.setText(file);
 					}
 				});
 			}
 		});
 	
-		Composite okCancel=new Composite(shell, SWT.NONE);
+		Composite okCancel = new Composite(shell, SWT.NONE);
 		okCancel.setLayout(layout);
 		Button ok = new Button(okCancel, SWT.PUSH);
 		ok.setText("OK");
@@ -123,31 +122,35 @@ public class WPPLoadZipFileDialog extends Dialog {
 		shell.setDefaultButton(ok);
 	}
 	
-	public void okPressed(Shell shell){
+	public void okPressed(Shell shell) {
 		fileName=fileText.getText();
-		if (unzipFile()){
+		if (unzipFile()) {
 			loadStudy();
-		}else{
+		} else {
 			showUnzipFailed();
 		}
 		shell.close();
 	}
 	
-	public boolean unzipFile(){
+	public boolean unzipFile() {
 		File zipFile = new File(fileName);
-		if (zipFile.exists()){
-			try{
+		if (zipFile.exists()) {
+			try {
 				ZipInputStream zipIn = new ZipInputStream(new FileInputStream(zipFile));
 				ZipEntry entry = zipIn.getNextEntry();
-				String destPath=zipFile.getParent();
-				String headPath=zipFile.getPath().replaceFirst("[.][^.]+$", "");
+				String headPath = zipFile.getPath().replaceFirst("[.][^.]+$", "");
 				headDir = new File(headPath);
-				if (!headDir.exists()){
+				if (!headDir.exists()) {
 					headDir.mkdir();
 				}
 				while (entry != null) {
-					String filePath = destPath + File.separator + entry.getName();
+					String filePath = headDir + File.separator + entry.getName();
 					if (!entry.isDirectory()) {
+						// Ensure parent directories exist
+						File parentDir = new File(filePath).getParentFile();
+						if (!parentDir.exists()) {
+							parentDir.mkdirs();
+						}
 						extractFile(zipIn, filePath);
 					} else {
 						File dir = new File(filePath);
@@ -158,11 +161,11 @@ public class WPPLoadZipFileDialog extends Dialog {
 				}
 				zipIn.close();
 				return true;
-			}catch (Exception e){
+			} catch (Exception e) {
 				WPPException.handleException(e);
 				return false;
 			}
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -177,17 +180,17 @@ public class WPPLoadZipFileDialog extends Dialog {
 		bos.close();
 	}
 	
-	public void loadStudy(){
+	public void loadStudy() {
 		projectExist=false;
 		
 		walk(headDir);
 
-		if (!projectExist){
+		if (!projectExist) {
 			showProjectNotFound();
 		}
 	}
 		
-	public void walk(File file){
+	public void walk(File file) {
 		if (projectExist) return;
 		
 		File[] list = file.listFiles();
@@ -200,7 +203,7 @@ public class WPPLoadZipFileDialog extends Dialog {
                 walk(f);
             }
             else {
-                if (f.getName().toLowerCase().equals(".project")){
+                if (f.getName().equalsIgnoreCase(".project")) {
                 	IProjectDescription description;
 					try {
 						description = ResourcesPlugin
@@ -209,38 +212,35 @@ public class WPPLoadZipFileDialog extends Dialog {
 	                			   .getRoot().getProject(description.getName());
 	                			project.create(description, null);
 	                			project.open(null);
-	                	projectExist=true;
+	                	projectExist = true;
 	                	return;
 					} catch (CoreException e) {
+						WPPException.handleException(e);
 					}
                 }
             }
         }
 	}
 	
-	public void showProjectNotFound(){
+	public void showProjectNotFound() {
 		final IWorkbench workbench=PlatformUI.getWorkbench();
-		workbench.getDisplay().asyncExec(new Runnable(){
-			public void run(){
-				Shell shell=workbench.getActiveWorkbenchWindow().getShell();
-				MessageBox messageBox = new MessageBox(shell, SWT.ICON_WARNING);
-				messageBox.setText("Warning");
-				messageBox.setMessage("Project/study is not found in the zip file.");
-				messageBox.open();
-			}
+		workbench.getDisplay().asyncExec(() -> {
+			Shell shell = workbench.getActiveWorkbenchWindow().getShell();
+			MessageBox messageBox = new MessageBox(shell, SWT.ICON_WARNING);
+			messageBox.setText("Warning");
+			messageBox.setMessage("Project/study is not found in the zip file.");
+			messageBox.open();
 		});
 	}
 	
-	public void showUnzipFailed(){
+	public void showUnzipFailed() {
 		final IWorkbench workbench=PlatformUI.getWorkbench();
-		workbench.getDisplay().asyncExec(new Runnable(){
-			public void run(){
-				Shell shell=workbench.getActiveWorkbenchWindow().getShell();
-				MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR);
-				messageBox.setText("Error");
-				messageBox.setMessage("File unzip failed");
-				messageBox.open();
-			}
+		workbench.getDisplay().asyncExec(() -> {
+			Shell shell = workbench.getActiveWorkbenchWindow().getShell();
+			MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR);
+			messageBox.setText("Error");
+			messageBox.setMessage("File unzip failed");
+			messageBox.open();
 		});
 	}
 }
