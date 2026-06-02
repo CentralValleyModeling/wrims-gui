@@ -1,50 +1,281 @@
-Feature: Test debugging a study
-  As users of WRIMS, we want to launch a regular run a CalSim study in debug mode so that we can debug the study
+# WRIMS IDE Debugging Guide
 
-1. Start WRIMS GUI by clicking `WRIMS3_GUI_Start.bat` under the root folder of WRIMS 2 GUI package
-   
-2. Import the study/project e.g. `C:\9.3.1_danube_adj_hist` if `C:\9.3.1_danube_hist\.project` exists by click the menu of `File->Import...` and then select `General` and then `Existing Projects into Workspace` in the dialog of `Import` and then select the root directory of the project
-![ImportProject.png](TEST_images/ImportProject.png)
-    Otherwise, create a new project with `C:\9.3.1_danube_hist` by clicking the menu of `File->New->Project`, and then select `General Project` in the dialog of `New Project`; in the next page of the dialog, give a name of the project and then uncheck `Use default location` and select the root project folder as the location
-![NewProject.png](TEST_images/NewProject.png)
+This guide describes how to run a **CalSim study in debug mode** using the WRIMS IDE.
 
-After that, the Project Explorer of WRIMS GUI should look like the following:
-![ProjectExplorerAfterImport.png](TEST_images/ProjectExplorerAfterImport.png)
-    
-3. Set timestamp of year 1923 and month 10 and date 31 and cycle 1 as a breakpoint
-![Breakpoint.png](TEST_images/Breakpoint.png)
-4. Click the arrow on the left of the project `DCR2025_Hist` on the `Project Explorer` view to unfold the project. Right click the blank area of the `Project Explorer` view, in the popup menu, select `Debug As->Debug Configurations`, and at the `Debug Configurations` dialog select the launch configuration e.g. `CS3_Hist_Dev` under the `WRESL/WRIMS2 Application`; and then click `Debug` button
-![DebugConfigurations.png](TEST_images/DebugConfigurations.png)
+The debugging workflow allows users to:
 
-    After that, the study of `DCR2025_Hist` will run as follows:
-![BreakPointConsole.png](TEST_images/BreakPointConsole.png)
-   
-5. When the study reach the breakpoint; click `next step` button; then click `next cycle` button on the `Console` view
-![buttons.png](TEST_images/buttons.png)
- the study of `DCR2025_Hist` will run as follows:
-![NextCycle.png](TEST_images/NextCycle.png)
+- inspect variables
+- monitor goals
+- compare DSS values
+- step through model cycles
 
-6. Open a WRESL file on the WRESL Editor, e.g. `C:\9.3.1_danube_adj\Run\COA\coa.wresl`; then check the views of `Variables`, `Goals`, `All Variables`, and `All Goals` as follows:
-![variables-goals.png](TEST_images/variables.png)![Goals.png](TEST_images/Goals.png)![AllVariables.png](TEST_images/AllVariables.png)![AllGoals.png](TEST_images/AllGoals.png)
-That the `Goals` view has no items is because the file of `COA.wresl` is not used in this cycle and step. But that the `Variables` view shows items is because some of the variables in the file of `COA.wresl` is used in this cycle and step.
+---
 
-7. Click the menu of `Data\Load Dss/Studies` and load a dv dss file, .e.g. `DCR2023_DV_9.3.1_Danube_Hist_v1.7.dss` and a sv dss file, e.g. `DCR2023_SV_Danube_Hist_v1.7.dss`
-![LoadAltDssStudies.png](TEST_images/LoadAltDssStudies.png)
-After this operation, the `Variables` view should look like the following:
-![VariablesAlt.png](TEST_images/VariablesAlt.png)
+# Table of Contents
 
-8. Click `all variables from DSS` button in this view of `All Variables` to see all the values of `All Variables` in both current run and the alternatives
-![AllVariablesAlt.png](TEST_images/AllVariablesAlt.png)
-    
-9. Open the view of `All Goals` and click `Control Goals` button in this view to see all the control goals
-![controlgoals.png](TEST_images/controlgoals.png)
-10. Open the view of `Watch`, add a variable, e.g. `s_shsta` to the watch list; and add a constraint, e.g. `coa_cvp3` to the watch list; and then delete this constraint from watch list
-![watch.png](TEST_images/watch.png)
-11. Hove over on a variable .e.g. `I_SHSTA` in the WRESL file of `C:\9.3.1_danube_hist\Run\COA\coa.wresl`; and hove over on a constraint, e.g. `swp_storage_change` in the WRESL file `C:\9.3.1_danube_hist\Run\COA\coa.wresl`
-![hove-over.png](TEST_images/hove-over.png)
-12. Click `Resume` button and then click `Pause` button on the `Console` View after 2 second
-	
-13. Click the `Terminate` button to terminate the debug run
-![Terminate.png](TEST_images/Terminate.png)
-The `Console` view will look like the following after the 2 steps above:
-![TerminateConsole.png](TEST_images/TerminateConsole.png)
+1. Start WRIMS GUI
+2. Import Study
+3. Verify Project Explorer
+4. Set Breakpoint
+5. Run Debug Mode
+6. Inspect WRESL Variables
+7. Load DSS Files
+8. Watch Variables
+9. Resume / Pause Execution
+10. Terminate Debug Run
+
+---
+
+# 1. Start WRIMS GUI
+
+Start the WRIMS GUI by clicking:
+
+```
+WRIMS2_GUI_Start.bat
+```
+
+located in the **root folder of the WRIMS2 GUI package**.
+
+---
+
+# 2. Import Study
+
+Example study directory:
+
+```
+C:\9.3.1_danube_adj_hist
+```
+
+If the project file exists:
+
+```
+C:\9.3.1_danube_hist\.project
+```
+
+Import the project:
+
+1. Click **File → Import**
+2. Select **General**
+3. Select **Existing Projects into Workspace**
+4. Choose the root project directory
+
+![Import Project](TEST_images/ImportProject.png)
+
+---
+
+## Create a New Project (Alternative)
+
+If the project does not exist:
+
+1. Click **File → New → Project**
+2. Select **General Project**
+3. Enter the project name
+4. Uncheck **Use default location**
+5. Select the project folder
+
+![New Project](TEST_images/NewProject.png)
+
+---
+
+# 3. Verify Project Explorer
+
+After importing the project, the **Project Explorer** should appear as follows:
+
+![Project Explorer](TEST_images/ProjectExplorerAfterImport.png)
+
+---
+
+# 4. Set Breakpoint
+
+Set a breakpoint with the following values:
+
+| Parameter | Value |
+|-----------|------|
+| Year | 1923 |
+| Month | 10 |
+| Day | 31 |
+| Cycle | 1 |
+
+![Breakpoint](TEST_images/Breakpoint.png)
+
+---
+
+# 5. Run Debug Mode
+
+1. Expand project **DCR2025_Hist**
+2. Right click inside **Project Explorer**
+3. Select **Debug As → Debug Configurations**
+4. Choose launch configuration **CS3_Hist_Dev** under **WRESL / WRIMS2 Application**
+5. Click **Debug**
+
+![Debug Configuration](TEST_images/DebugConfigurations.png)
+
+---
+
+## Debug Console
+
+The study will begin execution:
+
+![Breakpoint Console](TEST_images/BreakPointConsole.png)
+
+---
+
+# 6. Continue Execution
+
+When the breakpoint is reached:
+
+1. Click **Next Step**
+2. Click **Next Cycle**
+
+![Console Buttons](TEST_images/buttons.png)
+
+The study continues running:
+
+![Next Cycle](TEST_images/NextCycle.png)
+
+---
+
+# 7. Inspect WRESL Variables
+
+Open a WRESL file such as:
+
+```
+C:\9.3.1_danube_adj\Run\COA\coa.wresl
+```
+
+Check the following views:
+
+- Variables
+- Goals
+- All Variables
+- All Goals
+
+![Variables](TEST_images/variables.png)
+
+![Goals](TEST_images/Goals.png)
+
+![All Variables](TEST_images/AllVariables.png)
+
+![All Goals](TEST_images/AllGoals.png)
+
+Notes:
+
+- **Goals view may be empty** if the file is not used in the current cycle.
+- **Variables view shows active variables** used in the run.
+
+---
+
+# 8. Load DSS Files
+
+Navigate to:
+
+```
+Data → Load Dss / Studies
+```
+
+Load the following files:
+
+DV DSS
+
+```
+DCR2023_DV_9.3.1_Danube_Hist_v1.7.dss
+```
+
+SV DSS
+
+```
+DCR2023_SV_Danube_Hist_v1.7.dss
+```
+
+![Load DSS](TEST_images/LoadAltDssStudies.png)
+
+The Variables view will update:
+
+![Variables Alt](TEST_images/VariablesAlt.png)
+
+---
+
+# 9. View All Variables
+
+Open the **All Variables** view and click **All Variables from DSS** to compare values across runs.
+
+![All Variables Alt](TEST_images/AllVariablesAlt.png)
+
+---
+
+# 10. View Control Goals
+
+Open **All Goals** view and click **Control Goals**.
+
+![Control Goals](TEST_images/controlgoals.png)
+
+---
+
+# 11. Watch Variables
+
+Open the **Watch** view.
+
+Add:
+
+Variable
+
+```
+s_shsta
+```
+
+Constraint
+
+```
+coa_cvp3
+```
+
+Then remove the constraint.
+
+![Watch View](TEST_images/watch.png)
+
+---
+
+# 12. Hover Variable Inspection
+
+Hover over:
+
+Variable
+
+```
+I_SHSTA
+```
+
+Constraint
+
+```
+swp_storage_change
+```
+
+inside
+
+```
+C:\9.3.1_danube_hist\Run\COA\coa.wresl
+```
+
+![Hover Example](TEST_images/hove-over.png)
+
+---
+
+# 13. Resume and Pause Execution
+
+1. Click **Resume**
+2. Wait approximately **2 seconds**
+3. Click **Pause**
+
+---
+
+# 14. Terminate Debug Run
+
+Click **Terminate** to stop execution.
+
+![Terminate](TEST_images/Terminate.png)
+
+Console output:
+
+![Terminate Console](TEST_images/TerminateConsole.png)
+
