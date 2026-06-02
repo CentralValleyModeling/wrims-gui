@@ -77,7 +77,7 @@ public class WPPAddWatchDialog extends Dialog {
 						workbench.getDisplay().asyncExec(new Runnable(){
 						public void run(){
 							WPPWatchView watchView = (WPPWatchView) workbench.getActiveWorkbenchWindow().getActivePage().findView(DebugCorePlugin.ID_WPP_WATCH_VIEW);
-							watchView.addWatched(varGoalName);
+							watchView.addWatched();
 						}
 					});
 					}

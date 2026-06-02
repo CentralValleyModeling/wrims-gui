@@ -27,6 +27,7 @@ package gov.ca.water.wrims.gui.ide.reporttool;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -123,8 +124,9 @@ final class ReportPDFWriterTest {
     }
 
     @Test
-    void setTableFontSize_withNonNumericInput_doesNotThrow() {
-        ReportPDFWriter writer = new ReportPDFWriter("test.pdf");
+    void setTableFontSize_withNonNumericInput_doesNotThrow() throws IOException {
+        String testFile = Files.createTempFile("setTableFontSize_withNonNumericInput_doesNotThrow", ".pdf").toString();
+        ReportPDFWriter writer = new ReportPDFWriter(testFile);
         assertDoesNotThrow(() -> writer.setTableFontSize("not-a-number"));
     }
 }

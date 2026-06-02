@@ -247,13 +247,15 @@ public class WPPAllGoalView extends AbstractDebugView implements ISelectionListe
 		goalStack=DebugCorePlugin.allGoalStack;
 		TableViewer viewer=(TableViewer) getViewer();
 		IStructuredSelection oldSelection = ((IStructuredSelection)viewer.getSelection());
-		viewer.setInput(DebugCorePlugin.target);
 		Table table=viewer.getTable();
+		table.setRedraw(false);
+		viewer.setInput(DebugCorePlugin.target);
 	    for (int i = 0, n = table.getColumnCount(); i < n; i++) {
 	    	table.getColumn(i).pack();
 	    }
 		viewer.refresh();
 	    if (goalStack.length>0) new SetSelectionInTable(oldSelection, viewer, table);
+	    table.setRedraw(true);
 	}
 	
 	/**

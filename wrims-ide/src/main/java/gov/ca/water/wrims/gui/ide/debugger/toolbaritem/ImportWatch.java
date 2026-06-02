@@ -42,7 +42,7 @@ public class ImportWatch extends ActionDelegate implements IViewActionDelegate{
 						try {
 							Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 							WPPWatchView watchView = (WPPWatchView) workbench.getActiveWorkbenchWindow().getActivePage().findView(DebugCorePlugin.ID_WPP_WATCH_VIEW);
-							watchView.setInitialWatchVariables(((TableViewer)watchView.getViewer()).getTable());
+							watchView.setInitialWatchVariables();
 						} catch (IOException e) {
 							WPPException.handleException(e);
 						}

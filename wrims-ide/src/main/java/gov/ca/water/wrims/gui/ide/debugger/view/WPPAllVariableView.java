@@ -255,14 +255,16 @@ public class WPPAllVariableView extends AbstractDebugView implements ISelectionL
 		dataStack=DebugCorePlugin.allVariableStack;
 		TableViewer viewer=(TableViewer) getViewer();
 		IStructuredSelection oldSelection = ((IStructuredSelection)viewer.getSelection());
+		Table viewerTable = viewer.getTable();
+		viewerTable.setRedraw(false);
 		viewer.setInput(DebugCorePlugin.target);
-		table=viewer.getTable();
-		ProcessAltColumn.removeAltColumns(table);
-	    for (int i = 0, n = table.getColumnCount(); i < n; i++) {
-	    	table.getColumn(i).pack();
+		ProcessAltColumn.removeAltColumns(viewerTable);
+	    for (int i = 0, n = viewerTable.getColumnCount(); i < n; i++) {
+	    	viewerTable.getColumn(i).pack();
 	    }
 		viewer.refresh();
-		if (dataStack.length>0) new SetSelectionInTable(oldSelection, viewer, table);
+		if (dataStack.length>0) new SetSelectionInTable(oldSelection, viewer, viewerTable);
+		viewerTable.setRedraw(true);
 		DebugCorePlugin.updateSelectedVariable=true;
 	}
 	
@@ -277,6 +279,7 @@ public class WPPAllVariableView extends AbstractDebugView implements ISelectionL
 	}
 	
 	public void fillDssAltData(){
+		table.setRedraw(false);
 		int size=table.getItemCount();
 		int numCol = table.getColumnCount();
 		for (int index=2; index<numCol; index++){
@@ -286,7 +289,9 @@ public class WPPAllVariableView extends AbstractDebugView implements ISelectionL
 				ti.setText(index, ProcessAltColumn.addAltColumnData(vn, 2, index));
 			}
 		}
+		table.setRedraw(true);
 		table.redraw();
+		table.update();
 	}
 	
 	/**
