@@ -16,11 +16,18 @@ import gov.ca.dsm2.input.parser.InputTable;
 import gov.ca.dsm2.input.parser.Parser;
 import gov.ca.dsm2.input.parser.Tables;
 import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
+import hec.heclib.dss.DSSPathname;
+import hec.heclib.dss.HecDSSUtilities;
+import hec.heclib.dss.HecDss;
+import hec.heclib.dss.HecTimeSeries;
+import hec.io.TimeSeriesContainer;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Paths;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,25 +47,13 @@ import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-import vista.db.dss.DSSUtil;
-import vista.report.TSMath;
-import vista.set.Constants;
-import vista.set.DataReference;
-import vista.set.DataSetElement;
-import vista.set.ElementFilterIterator;
-import vista.set.Group;
-import vista.set.MultiIterator;
-import vista.set.Pathname;
-import vista.set.RegularTimeSeries;
-import vista.set.Stats;
-import vista.set.TimeSeries;
 import vista.time.SubTimeFormat;
 import vista.time.Time;
 import vista.time.TimeFactory;
 import vista.time.TimeWindow;
 
 /**
- * Generates a report based on the template file instructions
+ * Generates a report based on the template file instructions.
  *
  * @author psandhu
  */
@@ -72,6 +67,10 @@ public final class Report implements IRunnableWithProgress {
     private static final String NAME_ALT = "NAME_ALT";
     private static final String NAME_BASE = "NAME_BASE";
     public static final String S_SEPT = "S_SEPT";
+
+    private static final double CFS_TO_TAF_MONTHLY = 1.9834710743801653 / 1000.0;
+    private static final double TAF_TO_CFS_MONTHLY = 1000.0 / 1.9834710743801653;
+
     private final List<String> messages = new ArrayList<>();
     private final InputStream inputStream;
     private IProgressMonitor monitor;
@@ -221,8 +220,10 @@ public final class Report implements IRunnableWithProgress {
 
             // open files 1 and file 2 and loop over to plot
             reportStatus("Processing template file.");
-            Group dssGroupBase = opendss(scalars.get(FILE_BASE));
-            Group dssGroupAlt = opendss(scalars.get(FILE_ALT));
+
+            DssFile dssBase = opendss(scalars.get(FILE_BASE));
+            DssFile dssAlt = opendss(scalars.get(FILE_ALT));
+
             ArrayList<TimeWindow> timewindows = new ArrayList<>();
             for (ArrayList<String> values : twValues) {
                 String v = values.get(1).replace("\"", "");
@@ -245,7 +246,7 @@ public final class Report implements IRunnableWithProgress {
 
             generateSummaryTable();
             int dataIndex = 0;
-            generatePlots(dssGroupBase, dssGroupAlt, tw, dataIndex);
+            generatePlots(dssBase, dssAlt, tw, dataIndex);
             checkInterrupt();
         } finally {
             if (writer != null) {
@@ -255,7 +256,7 @@ public final class Report implements IRunnableWithProgress {
         checkInterrupt();
     }
 
-    private void generatePlots(Group dssGroupBase, Group dssGroupAlt, TimeWindow tw, int dataIndex)
+    private void generatePlots(DssFile dssBase, DssFile dssAlt, TimeWindow tw, int dataIndex)
         throws InterruptedException {
         for (PathnameMap pathMap : pathnameMaps) {
             checkInterrupt();
@@ -271,40 +272,48 @@ public final class Report implements IRunnableWithProgress {
                 LOG.fine("Inserting header");
                 continue;
             }
-            processPlot(dssGroupBase, dssGroupAlt, tw, pathMap, calculateDts);
+
+            processPlot(dssBase, dssAlt, tw, pathMap, calculateDts);
         }
     }
 
-    private void processPlot(Group dssGroupBase, Group dssGroupAlt, TimeWindow tw, PathnameMap pathMap,
+    private void processPlot(DssFile dssBase, DssFile dssAlt, TimeWindow tw, PathnameMap pathMap,
         boolean calculateDts) throws InterruptedException {
-        if (pathMap.reportType.endsWith("_post")) {
-            calculateDts = true;
-        }
-        DataReference refBase = getReference(dssGroupBase, pathMap.pathBase, calculateDts);
-        DataReference refAlt = getReference(dssGroupAlt, pathMap.pathAlt, calculateDts);
-        if (refBase != null && refAlt != null) {
-            checkInterrupt();
-            // Switch order from original code to reverse legends ... LimnoTech
-            // 20110816
-            String[] seriesName = new String[] {scalars.get(NAME_ALT), scalars.get(NAME_BASE)};
-            if ("CFS2TAF".equals(pathMap.units)) {
-                TSMath.cfs2taf((RegularTimeSeries) refBase.getData());
-                TSMath.cfs2taf((RegularTimeSeries) refAlt.getData());
-            } else if ("TAF2CFS".equals(pathMap.units)) {
-                TSMath.taf2cfs((RegularTimeSeries) refBase.getData());
-                TSMath.taf2cfs((RegularTimeSeries) refAlt.getData());
+        try {
+            if (pathMap.reportType.endsWith("_post")) {
+                calculateDts = true;
             }
-            String dataUnits = getUnits(refBase, refAlt);
-            String dataType = getType(refBase, refAlt);
-            if (pathMap.plot) {
-                generatePlotForReportType(tw, pathMap, refBase, refAlt, seriesName, dataUnits, dataType);
+
+            DssSeries refBase = getReference(dssBase, pathMap.pathBase, calculateDts);
+            DssSeries refAlt = getReference(dssAlt, pathMap.pathAlt, calculateDts);
+            if (refBase != null && refAlt != null) {
+                checkInterrupt();
+
+                String[] seriesName = new String[] {scalars.get(NAME_ALT), scalars.get(NAME_BASE)};
+                if ("CFS2TAF".equals(pathMap.units)) {
+                    refBase = cfs2taf(refBase);
+                    refAlt = cfs2taf(refAlt);
+                } else if ("TAF2CFS".equals(pathMap.units)) {
+                    refBase = taf2cfs(refBase);
+                    refAlt = taf2cfs(refAlt);
+                }
+
+                String dataUnits = getUnits(refBase, refAlt);
+                String dataType = getType(refBase, refAlt);
+                if (pathMap.plot) {
+                    generatePlotForReportType(tw, pathMap, refBase, refAlt, seriesName, dataUnits, dataType);
+                }
             }
+        } catch (RuntimeException e) {
+            String msg = "Error generating plot for " + pathMap.varName + " using base path "
+                + pathMap.pathBase + " and alt path " + pathMap.pathAlt + ": " + e.getMessage();
+            addMessage(msg);
+            LOG.log(Level.FINE, msg, e);
         }
     }
 
-    private void generatePlotForReportType(TimeWindow tw, PathnameMap pathMap, DataReference refBase,
-        DataReference refAlt,
-        String[] seriesName, String dataUnits, String dataType) throws InterruptedException {
+    private void generatePlotForReportType(TimeWindow tw, PathnameMap pathMap, DssSeries refBase,
+        DssSeries refAlt, String[] seriesName, String dataUnits, String dataType) throws InterruptedException {
         if (pathMap.reportType.startsWith("average")) {
             generatePlot(buildDataArray(refAlt, refBase, tw),
                 "Average " + pathMap.varName.replace("\"", ""), seriesName,
@@ -344,8 +353,8 @@ public final class Report implements IRunnableWithProgress {
         writer.addTableSubTitle(scalars.get("ASSUMPTIONS").replace("\"", ""));
         writer.addTableSubTitle(" "); // add empty line to increase space
         // between title and table
-        Group dssGroupBase = opendss(scalars.get(FILE_BASE));
-        Group dssGroupAlt = opendss(scalars.get(FILE_ALT));
+        DssFile dssBase = opendss(scalars.get(FILE_BASE));
+        DssFile dssAlt = opendss(scalars.get(FILE_ALT));
         ArrayList<TimeWindow> timewindows = new ArrayList<>();
         for (ArrayList<String> values : twValues) {
             String v = values.get(1).replace("\"", "");
@@ -378,24 +387,24 @@ public final class Report implements IRunnableWithProgress {
             if (!categoryList.contains(pathMap.varCategory)) {
                 continue;
             }
-            firstDataRow = processSummaryForPath(dssGroupBase, dssGroupAlt, timewindows, firstDataRow, pathMap);
+            firstDataRow = processSummaryForPath(dssBase, dssAlt, timewindows, firstDataRow, pathMap);
         }
         writer.endTable();
     }
 
-    private boolean processSummaryForPath(Group dssGroupBase, Group dssGroupAlt, ArrayList<TimeWindow> timewindows,
+    private boolean processSummaryForPath(DssFile dssBase, DssFile dssAlt, ArrayList<TimeWindow> timewindows,
         boolean firstDataRow, PathnameMap pathMap) throws InterruptedException {
         try {
             ArrayList<String> rowData = new ArrayList<>();
             rowData.add(pathMap.varName);
             boolean calculateDts = pathMap.reportType.toLowerCase().endsWith("_post");
-            DataReference refBase = null;
-            DataReference refAlt = null;
+            DssSeries refBase = null;
+            DssSeries refAlt = null;
             if (!"ignore".equalsIgnoreCase(pathMap.pathBase)) {
-                refBase = getReference(dssGroupBase, pathMap.pathBase, calculateDts);
+                refBase = getReference(dssBase, pathMap.pathBase, calculateDts);
             }
             if (!"ignore".equalsIgnoreCase(pathMap.pathAlt)) {
-                refAlt = getReference(dssGroupAlt, pathMap.pathAlt, calculateDts);
+                refAlt = getReference(dssAlt, pathMap.pathAlt, calculateDts);
             }
             for (TimeWindow tw : timewindows) {
                 processSummaryTimeWindow(rowData, refBase, refAlt, tw);
@@ -420,18 +429,18 @@ public final class Report implements IRunnableWithProgress {
         return firstDataRow;
     }
 
-    private void processSummaryTimeWindow(ArrayList<String> rowData, DataReference refBase, DataReference refAlt,
+    private void processSummaryTimeWindow(ArrayList<String> rowData, DssSeries refBase, DssSeries refAlt,
         TimeWindow tw) {
         double avgBase = 0;
         double avgAlt = 0;
         if (refAlt != null) {
-            avgAlt = avg(cfs2taf((RegularTimeSeries) refAlt.getData()), tw);
+            avgAlt = avg(cfs2taf(refAlt), tw);
             rowData.add(formatDoubleValue(avgAlt));
         } else {
             rowData.add("");
         }
         if (refBase != null) {
-            avgBase = avg(cfs2taf((RegularTimeSeries) refBase.getData()), tw);
+            avgBase = avg(cfs2taf(refBase), tw);
             rowData.add(formatDoubleValue(avgBase));
         } else {
             rowData.add("");
@@ -469,23 +478,20 @@ public final class Report implements IRunnableWithProgress {
         }
     }
 
-    private ArrayList<double[]> buildDataArray(DataReference ref1, DataReference ref2, TimeWindow tw) {
+    private ArrayList<double[]> buildDataArray(DssSeries ref1, DssSeries ref2, TimeWindow tw) {
         ArrayList<double[]> dlist = new ArrayList<>();
         if ((ref1 == null) || (ref2 == null)) {
             return dlist;
         }
-        TimeSeries data1 = (TimeSeries) ref1.getData();
-        TimeSeries data2 = (TimeSeries) ref2.getData();
-        if (tw != null) {
-            data1 = data1.createSlice(tw);
-            data2 = data2.createSlice(tw);
-        }
-        MultiIterator iterator = new MultiIterator(new TimeSeries[] {data1, data2}, Constants.DEFAULT_FLAG_FILTER);
-        while (!iterator.atEnd()) {
-            DataSetElement e = iterator.getElement();
-            Date date = convertToDate(TimeFactory.getInstance().createTime(e.getXString()));
-            dlist.add(new double[] {date.getTime(), e.getX(1), e.getX(2)});
-            iterator.advance();
+
+        DssSeries data1 = slice(ref1, tw);
+        DssSeries data2 = slice(ref2, tw);
+
+        int n = Math.min(data1.values.length, data2.values.length);
+        for (int i = 0; i < n; i++) {
+            if (!isMissing(data1.values[i]) && !isMissing(data2.values[i])) {
+                dlist.add(new double[] {data1.times[i], data1.values[i], data2.values[i]});
+            }
         }
         return dlist;
     }
@@ -494,7 +500,7 @@ public final class Report implements IRunnableWithProgress {
         return new Date(timeVal.getDate().getTime() - TimeZone.getDefault().getRawOffset());
     }
 
-    private List<double[]> buildExceedanceArray(DataReference ref1, DataReference ref2, boolean endOfSept,
+    private List<double[]> buildExceedanceArray(DssSeries ref1, DssSeries ref2, boolean endOfSept,
         TimeWindow tw) {
         ArrayList<Double> x1 = sort(ref1, endOfSept, tw);
         ArrayList<Double> x2 = sort(ref2, endOfSept, tw);
@@ -508,36 +514,37 @@ public final class Report implements IRunnableWithProgress {
         return darray;
     }
 
-    private ArrayList<Double> sort(DataReference ref, boolean endOfSept, TimeWindow tw) {
-        TimeSeries data = (TimeSeries) ref.getData();
-        if (tw != null) {
-            data = data.createSlice(tw);
-        }
+    private ArrayList<Double> sort(DssSeries ref, boolean endOfSept, TimeWindow tw) {
+        DssSeries data = slice(ref, tw);
         ArrayList<Double> dx = new ArrayList<>();
-        ElementFilterIterator iter = new ElementFilterIterator(data.getIterator(), Constants.DEFAULT_FLAG_FILTER);
-        while (!iter.atEnd()) {
+
+        for (int i = 0; i < data.values.length; i++) {
+            if (isMissing(data.values[i])) {
+                continue;
+            }
+
             if (endOfSept) {
-                if (iter.getElement().getXString().contains("30SEP")) {
-                    dx.add(iter.getElement().getY());
+                ZonedDateTime dateTime = ZonedDateTime.ofInstant(
+                    java.time.Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault());
+                if (dateTime.getMonthValue() == 9 && dateTime.getDayOfMonth() == 30) {
+                    dx.add(data.values[i]);
                 }
             } else {
-                dx.add(iter.getElement().getY());
+                dx.add(data.values[i]);
             }
-            iter.advance();
         }
         Collections.sort(dx);
         return dx;
     }
 
-    private String getTypeOfReference(DataReference ref) {
+    private String getTypeOfReference(DssSeries ref) {
         if (ref != null) {
-            Pathname p = ref.getPathname();
-            return p.getPart(Pathname.C_PART);
+            return firstNonBlank(ref.type, getPathPart(ref.pathname, 3));
         }
         return "";
     }
 
-    private String getType(DataReference ref1, DataReference ref2) {
+    private String getType(DssSeries ref1, DssSeries ref2) {
         if (ref1 == null) {
             if (ref2 == null) {
                 return "";
@@ -550,95 +557,108 @@ public final class Report implements IRunnableWithProgress {
     }
 
     /**
-     * Retrieves the contents list for a dss file
+     * Opens a DSS file using HEC DSS classes.
      *
-     * @return a handle to the content listing for a dss file
+     * @return a handle to the DSS file and its catalog
      */
-    private Group opendss(String filename) {
-        return DSSUtil.createGroup("local", filename);
-    }
-
-    private RegularTimeSeries cfs2taf(RegularTimeSeries data) {
-        RegularTimeSeries dataTaf = (RegularTimeSeries) TSMath.createCopy(data);
-        TSMath.cfs2taf(dataTaf);
-        return dataTaf;
-    }
-
-    private double avg(RegularTimeSeries data, TimeWindow tw) {
+    private DssFile opendss(String filename) {
         try {
-            return Stats.avg(data.createSlice(tw)) * 12;
+            HecDss hecDss = HecDss.open(filename);
+            HecDSSUtilities utilities = (HecDSSUtilities) hecDss.getDataManager().dataManager();
+            String[] catalog = utilities.getCatalog(true, null);
+            return new DssFile(filename, hecDss, catalog);
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException("Unable to open DSS file: " + filename, e);
+        }
+    }
+
+    private DssSeries cfs2taf(DssSeries data) {
+        double[] converted = Arrays.copyOf(data.values, data.values.length);
+        for (int i = 0; i < converted.length; i++) {
+            if (!isMissing(converted[i])) {
+                converted[i] = converted[i] * CFS_TO_TAF_MONTHLY;
+            }
+        }
+        return data.withValues(converted, "TAF");
+    }
+
+    private DssSeries taf2cfs(DssSeries data) {
+        double[] converted = Arrays.copyOf(data.values, data.values.length);
+        for (int i = 0; i < converted.length; i++) {
+            if (!isMissing(converted[i])) {
+                converted[i] = converted[i] * TAF_TO_CFS_MONTHLY;
+            }
+        }
+        return data.withValues(converted, "CFS");
+    }
+
+    private double avg(DssSeries data, TimeWindow tw) {
+        try {
+            DssSeries sliced = slice(data, tw);
+            double sum = 0;
+            int count = 0;
+
+            for (double value : sliced.values) {
+                if (!isMissing(value)) {
+                    sum += value;
+                    count++;
+                }
+            }
+
+            if (count == 0) {
+                return Double.NaN;
+            }
+
+            return sum / count * 12;
         } catch (RuntimeException ex) {
             LOG.log(Level.FINE, ex.getMessage(), ex);
             return Double.NaN;
         }
     }
 
-    private DataReference getReference(Group group, String path, boolean calculateDts) throws InterruptedException {
+    private DssSeries getReference(DssFile dssFile, String path, boolean calculateDts) throws InterruptedException {
         if (calculateDts) {
-            return getDtsReference(group, path);
+            return getDtsReference(dssFile, path);
         } else {
-            return getTsReference(group, path);
+            return getTsReference(dssFile, path);
         }
     }
 
-    private DataReference getTsReference(Group group, String path) {
+    private DssSeries getTsReference(DssFile dssFile, String path) {
         try {
-            DataReference[] refs = findpath(group, path);
-            if (refs == null || refs.length == 0 || refs[0] == null) {
+            if ("ignore".equalsIgnoreCase(path)) {
+                return null;
+            }
+            String[] refs = findpath(dssFile, path);
+            if (refs.length == 0 || refs[0] == null) {
                 String msg = "No data found for " + path;
                 addMessage(msg);
                 LOG.log(Level.FINE, msg);
                 return null;
-            } else {
-                DataReference firstRef = refs[0];
-                DataReference retval = firstRef;
-                if (refs.length > 1) {
-                    DataReference lastRef = refs[refs.length - 1];
-                    String serverName = firstRef.getServername();
-                    String fileName = firstRef.getFilename();
-                    String firstDPart = firstRef.getPathname().getPart(Pathname.D_PART);
-                    if (firstDPart.contains("-")) {
-                        firstDPart = firstDPart.split("-")[0];
-                    }
-                    String lastDPart = lastRef.getPathname().getPart(Pathname.D_PART);
-                    if (lastDPart.contains("-")) {
-                        String[] split = lastDPart.split("-");
-                        lastDPart = split[split.length - 1];
-                    }
-                    String newDPart = firstDPart;
-                    if (!Objects.equals(firstDPart, lastDPart)) {
-                        newDPart = firstDPart + " - " + lastDPart;
-                    }
-                    Pathname pathname = Pathname.createPathname(new String[]
-                        {
-                            firstRef.getPathname().getPart(Pathname.A_PART),
-                            firstRef.getPathname().getPart(Pathname.B_PART),
-                            firstRef.getPathname().getPart(Pathname.C_PART),
-                            newDPart,
-                            firstRef.getPathname().getPart(Pathname.E_PART),
-                            firstRef.getPathname().getPart(Pathname.F_PART),
-                        });
-                    retval = DSSUtil.createDataReference(serverName, fileName, pathname);
-                }
-                return retval;
             }
+            var pathname = new DSSPathname(refs[0]);
+            pathname.setDPart("");
+            return readSeries(dssFile, pathname.getPathname());
         } catch (RuntimeException ex) {
-            String msg = "Exception while trying to retrieve " + path + " from " + group;
+            String msg = "Exception while trying to retrieve " + path + " from " + dssFile.filename;
             LOG.log(Level.FINE, msg, ex);
             addMessage(msg);
             return null;
         }
     }
 
-    private DataReference getDtsReference(Group group, String path) throws InterruptedException {
+    private DssSeries getDtsReference(DssFile dssFile, String path) throws InterruptedException {
         try {
             String bpart = path.split("/")[2];
             String[] vars = bpart.split("\\+");
-            DataReference ref = null;
+            DssSeries ref = null;
+
             for (String varname : vars) {
                 checkInterrupt();
                 String varPath = createPathFromVarname(path, varname);
-                DataReference xref = getReference(group, varPath, false);
+                DssSeries xref = getReference(dssFile, varPath, false);
                 if (xref == null) {
                     throw new IllegalArgumentException(
                         "Aborting calculation of " + path + " due to previous path missing");
@@ -646,7 +666,7 @@ public final class Report implements IRunnableWithProgress {
                 if (ref == null) {
                     ref = xref;
                 } else {
-                    ref = ref.__add__(xref);
+                    ref = ref.add(xref);
                 }
             }
             return ref;
@@ -658,21 +678,18 @@ public final class Report implements IRunnableWithProgress {
     }
 
     /*
-     * findpath(g,path,exact=1): this returns an array of matching data
-     * references g is the group returned from opendss function path is the
-     * dsspathname e.g. '//C6/FLOW-CHANNEL////' exact means that the exact
-     * string is matched as opposed to the reg. exp.
+     * findpath(file,path): this returns an array of matching DSS pathnames.
+     * path is the dss pathname e.g. '//C6/FLOW-CHANNEL////'.
      */
-    private DataReference[] findpath(Group g, String path) {
+    private String[] findpath(DssFile dssFile, String path) {
         String[] pa = new String[6];
-        for (int i = 0; i < 6; i++) {
-            pa[i] = "";
-        }
+        Arrays.fill(pa, "");
+
         int i = 0;
         String[] split = path.trim().split("/");
         for (String p : split) {
             if (i != 0) {
-                if (i >= pa.length) {
+                if (i >= pa.length + 1) {
                     break;
                 }
                 pa[i - 1] = p;
@@ -682,7 +699,97 @@ public final class Report implements IRunnableWithProgress {
             }
             i++;
         }
-        return g.find(pa);
+
+        return Arrays.stream(dssFile.catalog)
+            .filter(pathname -> pathnameMatches(pathname, pa))
+            .toArray(String[]::new);
+    }
+
+    private boolean pathnameMatches(String pathname, String[] partRegexes) {
+        for (int i = 0; i < partRegexes.length; i++) {
+            String regex = partRegexes[i];
+            if (regex == null || regex.isEmpty()) {
+                continue;
+            }
+
+            String actual = getPathPart(pathname, i + 1);
+            if (!actual.matches(regex)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private DssSeries readSeries(DssFile dssFile, String pathname) {
+        try {
+            TimeSeriesContainer container = new TimeSeriesContainer();
+            container.fullName = pathname;
+
+            HecTimeSeries timeSeries = new HecTimeSeries();
+            timeSeries.setDSSFileName(dssFile.filename);
+            int status = timeSeries.read(container, true);
+            if (status < 0) {
+                throw new IllegalStateException("HEC DSS retrieve failed with status " + status);
+            }
+
+            int numberValues = container.numberValues;
+            long[] times = new long[numberValues];
+            double[] values = new double[numberValues];
+
+            for (int i = 0; i < numberValues; i++) {
+                times[i] = getTimeMillis(container, i);
+                values[i] = container.values[i];
+            }
+
+            return new DssSeries(pathname, nullToBlank(container.units), nullToBlank(container.type), times, values);
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IllegalStateException("Unable to read DSS time series: " + pathname, e);
+        }
+    }
+
+    private long getTimeMillis(TimeSeriesContainer container, int index) {
+        if (container.times != null && index < container.times.length) {
+            return hecMinutesToMillis(container.times[index]);
+        }
+
+        if (container.julianBaseDate != 0 && container.interval != 0) {
+            int minutes = container.julianBaseDate * 1440 + index * container.interval;
+            return hecMinutesToMillis(minutes);
+        }
+
+        throw new IllegalStateException("Unable to determine time for DSS record: " + container.fullName);
+    }
+
+    private long hecMinutesToMillis(int hecMinutes) {
+        int julianDay = Math.floorDiv(hecMinutes, 1440);
+        int minuteOfDay = Math.floorMod(hecMinutes, 1440);
+
+        ZonedDateTime base = ZonedDateTime.of(1899, 12, 31, 0, 0, 0, 0, ZoneId.systemDefault());
+        return base.plusDays(julianDay).plusMinutes(minuteOfDay).toInstant().toEpochMilli();
+    }
+
+    private DssSeries slice(DssSeries data, TimeWindow tw) {
+        if (tw == null) {
+            return data;
+        }
+
+        long start = convertToDate(tw.getStartTime()).getTime();
+        long end = convertToDate(tw.getEndTime()).getTime();
+
+        ArrayList<Long> times = new ArrayList<>();
+        ArrayList<Double> values = new ArrayList<>();
+
+        for (int i = 0; i < data.values.length; i++) {
+            if (data.times[i] >= start && data.times[i] <= end) {
+                times.add(data.times[i]);
+                values.add(data.values[i]);
+            }
+        }
+
+        return new DssSeries(data.pathname, data.units, data.type, toLongArray(times), toDoubleArray(values));
     }
 
     private String createPathFromVarname(String path, String varname) {
@@ -714,14 +821,14 @@ public final class Report implements IRunnableWithProgress {
         return title;
     }
 
-    private String getUnitsForReference(DataReference ref) {
+    private String getUnitsForReference(DssSeries ref) {
         if (ref != null) {
-            return ref.getData().getAttributes().getYUnits();
+            return ref.units;
         }
         return "";
     }
 
-    private String getUnits(DataReference ref1, DataReference ref2) {
+    private String getUnits(DssSeries ref1, DssSeries ref2) {
         if (ref1 == null) {
             if (ref2 == null) {
                 return "";
@@ -731,6 +838,55 @@ public final class Report implements IRunnableWithProgress {
         } else {
             return getUnitsForReference(ref1);
         }
+    }
+
+    private String createPathname(String aPart, String bPart, String cPart, String dPart, String ePart, String fPart) {
+        return "/" + nullToBlank(aPart)
+            + "/" + nullToBlank(bPart)
+            + "/" + nullToBlank(cPart)
+            + "/" + nullToBlank(dPart)
+            + "/" + nullToBlank(ePart)
+            + "/" + nullToBlank(fPart)
+            + "/";
+    }
+
+    private String getPathPart(String pathname, int oneBasedPartNumber) {
+        String[] parts = pathname.split("/", -1);
+        if (oneBasedPartNumber >= 1 && oneBasedPartNumber < parts.length) {
+            return parts[oneBasedPartNumber];
+        }
+        return "";
+    }
+
+    private long[] toLongArray(List<Long> values) {
+        long[] array = new long[values.size()];
+        for (int i = 0; i < values.size(); i++) {
+            array[i] = values.get(i);
+        }
+        return array;
+    }
+
+    private double[] toDoubleArray(List<Double> values) {
+        double[] array = new double[values.size()];
+        for (int i = 0; i < values.size(); i++) {
+            array[i] = values.get(i);
+        }
+        return array;
+    }
+
+    private boolean isMissing(double value) {
+        return Double.isNaN(value) || value <= -3.4028234663852886E38;
+    }
+
+    private String firstNonBlank(String first, String second) {
+        if (first != null && !first.isBlank()) {
+            return first;
+        }
+        return nullToBlank(second);
+    }
+
+    private String nullToBlank(String value) {
+        return value == null ? "" : value;
     }
 
     private void addMessage(String msg) {
@@ -789,6 +945,32 @@ public final class Report implements IRunnableWithProgress {
 
         private PathnameMap(String varName) {
             this.varName = varName;
+        }
+    }
+
+    private record DssFile(String filename, HecDss hecDss, String[] catalog) {
+    }
+
+    private record DssSeries(String pathname, String units, String type, long[] times, double[] values) {
+
+        private DssSeries withValues(double[] newValues, String newUnits) {
+            return new DssSeries(pathname, newUnits, type, Arrays.copyOf(times, times.length), newValues);
+        }
+
+        private DssSeries add(DssSeries other) {
+            int n = Math.min(values.length, other.values.length);
+            long[] newTimes = Arrays.copyOf(times, n);
+            double[] newValues = new double[n];
+
+            for (int i = 0; i < n; i++) {
+                if (Double.isNaN(values[i]) || Double.isNaN(other.values[i])) {
+                    newValues[i] = Double.NaN;
+                } else {
+                    newValues[i] = values[i] + other.values[i];
+                }
+            }
+
+            return new DssSeries(pathname, units, type, newTimes, newValues);
         }
     }
 }
