@@ -273,7 +273,7 @@ public final class AboutDialog extends Dialog {
 		contentLayout.marginHeight = 0;
 		contentComposite.setLayout(contentLayout);
 
-		Link textWidget = new Link(contentComposite, SWT.MULTI | SWT.WRAP | SWT.READ_ONLY);
+		Link textWidget = new Link(contentComposite, SWT.MULTI | SWT.WRAP);
 		textWidget.setText(aboutText);
 		textWidget.setFont(createFont(12, SWT.NORMAL));
 		textWidget.addSelectionListener(new LinkListener(getShell()));
