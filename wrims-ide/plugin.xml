@@ -6,62 +6,62 @@
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
-           id="wpp.category.wrims2"
-           name="WRIMS2">
+           id="wpp.category.wrims3"
+           name="WRIMS3">
         </category>
         <view id="wpp.variableview"
              name="Variables"
-             category="wpp.category.wrims2"
+             category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPVariableView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
-           id="wpp.category.wrims2"
-           name="WRIMS2">
+           id="wpp.category.wrims3"
+           name="WRIMS3">
         </category>
         <view id="wpp.watchview"
              name="Watch"
-             category="wpp.category.wrims2"
+             category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPWatchView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
-           id="wpp.category.wrims2"
-           name="WRIMS2">
+           id="wpp.category.wrims3"
+           name="WRIMS3">
         </category>
         <view id="wpp.allvariableview"
              name="All Variables"
-             category="wpp.category.wrims2"
+             category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPAllVariableView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
-           id="wpp.category.wrims2"
-           name="WRIMS2">
+           id="wpp.category.wrims3"
+           name="WRIMS3">
         </category>
         <view id="wpp.goalview"
              name="Goals"
-             category="wpp.category.wrims2"
+             category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPGoalView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
-           id="wpp.category.wrims2"
-           name="WRIMS2">
+           id="wpp.category.wrims3"
+           name="WRIMS3">
         </category>
         <view id="wpp.allgoalview"
              name="All Goals"
-             category="wpp.category.wrims2"
+             category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPAllGoalView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
-           id="wpp.category.wrims2"
-           name="WRIMS2">
+           id="wpp.category.wrims3"
+           name="WRIMS3">
         </category>
         <view id="wpp.calsimhydroview"
              name="CalSimHydro"
-             category="wpp.category.wrims2"
+             category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.CalSimHydroView"/>
 </extension>
 <extension point="org.eclipse.ui.viewActions"> 
@@ -251,44 +251,44 @@
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
-           id="wpp.category.wrims2"
-           name="WRIMS2">
+           id="wpp.category.wrims3"
+           name="WRIMS3">
         </category>
         <view id="wpp.exceptionview"
              name="Exception"
-             category="wpp.category.wrims2"
+             category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPExceptionView"/>
 </extension>
 <extension point="org.eclipse.ui.views">
 	<category 
-         id="wpp.category.wrims2"
-         name="WRIMS2">
+         id="wpp.category.wrims3"
+         name="WRIMS3">
     </category>
 	<view name="Variable Detail"
-	      category="wpp.category.wrims2"
+	      category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPVarDetailView"
           id="wpp.vardetailview">
     </view>
 </extension>
 <extension point="org.eclipse.ui.views">
     <category 
-          id="wpp.category.wrims2"
-          name="WRIMS2">
+          id="wpp.category.wrims3"
+          name="WRIMS3">
     </category>	
 	<view name="Variable Monitor"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPVarMonitorView"
-          category="wpp.category.wrims2"
+          category="wpp.category.wrims3"
           id="wpp.varmonitorview">
     </view>
 </extension>
 <extension point="org.eclipse.ui.views">
         <category 
-           id="wpp.category.wrims2"
-           name="WRIMS2">
+           id="wpp.category.wrims3"
+           name="WRIMS3">
         </category>
         <view id="wpp.fileincexploreview"
              name="WRESL Included"
-             category="wpp.category.wrims2"
+             category="wpp.category.wrims3"
           class="gov.ca.water.wrims.gui.ide.debugger.view.WPPFileIncExploreView"/>
 </extension>
 <extension
@@ -424,7 +424,7 @@
    </extension>
  <extension point = "org.eclipse.debug.core.launchConfigurationTypes">
    <launchConfigurationType
-	   name="WRESL/WRIMS2 Application"
+	   name="WRESL/WRIMS3 Application"
 	   delegate="gov.ca.water.wrims.gui.ide.debugger.launcher.WPPLaunchDelegate"
 	   modes= "run, debug"
 	   id="wpp.launchType"
@@ -534,7 +534,7 @@
    <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
      <toolbar
            id="wpp.toolbar"
-           label="WRIMS2Debug">
+           label="WRIMS3Debug">
        <control
             class="gov.ca.water.wrims.gui.ide.debugger.toolbaritem.DebugSet"
             id="wpp.debugset">
@@ -545,7 +545,7 @@
  <extension
 	point="org.eclipse.ui.actionSets">
 	<actionSet
-		label="WRIMS2Debug"
+		label="WRIMS3Debug"
 		visible="true"
 		id="wpp.debugcontrol">
 		<action
@@ -718,4 +718,27 @@
             id="wpp.ideperspective"
             name="IDE"/>
  </extension>
+	<extension point="org.eclipse.ui.commands">
+		<command
+				id="gov.ca.water.wrims.gui.ide.about"
+				name="About WRIMS"
+				description="Show WRIMS version information">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+				commandId="gov.ca.water.wrims.gui.ide.about"
+				class="gov.ca.water.wrims.gui.ide.about.handler.AboutHandler">
+		</handler>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="menu:help">
+			<command
+					commandId="gov.ca.water.wrims.gui.ide.about"
+					label="About WRIMS"
+					style="push"
+					icon="icons/wpp_icon.png">
+			</command>
+		</menuContribution>
+	</extension>
 </plugin>
