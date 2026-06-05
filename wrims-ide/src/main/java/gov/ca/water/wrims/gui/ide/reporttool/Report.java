@@ -528,7 +528,7 @@ public final class Report implements IRunnableWithProgress {
             if (endOfSept) {
                 ZonedDateTime dateTime = ZonedDateTime.ofInstant(
                       Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault());
-                if (dateTime.getMonth() == Month.SEPTEMBER && dateTime.getDayOfMonth() == 30) {
+                if (dateTime.getMonth().equals(Month.SEPTEMBER) && dateTime.getDayOfMonth() == 30) {
                     dx.add(data.values[i]);
                 }
             } else {
