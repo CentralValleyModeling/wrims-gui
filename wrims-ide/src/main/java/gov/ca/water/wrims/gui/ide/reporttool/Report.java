@@ -34,7 +34,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.TimeZone;
 import java.util.logging.Level;
@@ -66,7 +65,8 @@ public final class Report implements IRunnableWithProgress {
     private static final String FILE_BASE = "FILE_BASE";
     private static final String NAME_ALT = "NAME_ALT";
     private static final String NAME_BASE = "NAME_BASE";
-    public static final String S_SEPT = "S_SEPT";
+    private static final String S_SEPT = "S_SEPT";
+    private static final String IGNORE = "ignore";
 
     private static final double CFS_TO_TAF_MONTHLY = 1.9834710743801653 / 1000.0;
     private static final double TAF_TO_CFS_MONTHLY = 1000.0 / 1.9834710743801653;
@@ -107,7 +107,7 @@ public final class Report implements IRunnableWithProgress {
 
     @Override
     public void run(IProgressMonitor monitor)
-        throws InvocationTargetException, InterruptedException {
+          throws InvocationTargetException, InterruptedException {
         this.monitor = monitor;
         monitor.beginTask("Generate PDF Report", 100);
 
@@ -162,7 +162,7 @@ public final class Report implements IRunnableWithProgress {
     }
 
     private void parseTemplateFile(InputStream templateFileStream)
-        throws IOException, InterruptedException {
+          throws IOException, InterruptedException {
 
         reportStatus("Parsing template file.");
 
@@ -177,7 +177,7 @@ public final class Report implements IRunnableWithProgress {
             ArrayList<String> row = scalarTable.getValues().get(i);
             int index = scalarTable.getHeaders().indexOf("NAME");
             String name = row.get(index);
-            ArrayList<String> copy = new ArrayList<>(row);
+            var copy = new ArrayList<>(row);
             copy.remove(index);
             String value = String.join(" ", copy);
             scalars.put(name, value.replace("\"", ""));
@@ -224,14 +224,14 @@ public final class Report implements IRunnableWithProgress {
             DssFile dssBase = opendss(scalars.get(FILE_BASE));
             DssFile dssAlt = opendss(scalars.get(FILE_ALT));
 
-            ArrayList<TimeWindow> timewindows = new ArrayList<>();
+            var timeWindows = new ArrayList<TimeWindow>();
             for (ArrayList<String> values : twValues) {
                 String v = values.get(1).replace("\"", "");
-                timewindows.add(TimeFactory.getInstance().createTimeWindow(v));
+                timeWindows.add(TimeFactory.getInstance().createTimeWindow(v));
             }
             TimeWindow tw = null;
-            if (!timewindows.isEmpty()) {
-                tw = timewindows.getFirst();
+            if (!timeWindows.isEmpty()) {
+                tw = timeWindows.getFirst();
             }
             String outputFile = scalars.get("OUTFILE");
             writer = new ReportPDFWriter();
@@ -241,7 +241,7 @@ public final class Report implements IRunnableWithProgress {
             }
             String author = scalars.get("MODELER").replace("\"", "");
             writer.addTitlePage(String.format("System Water Balance Report: %s vs %s", scalars.get(NAME_ALT),
-                scalars.get(NAME_BASE)), author, scalars.get(FILE_BASE), scalars.get(FILE_ALT));
+                  scalars.get(NAME_BASE)), author, scalars.get(FILE_BASE), scalars.get(FILE_ALT));
             writer.setAuthor(author);
 
             generateSummaryTable();
@@ -257,7 +257,7 @@ public final class Report implements IRunnableWithProgress {
     }
 
     private void generatePlots(DssFile dssBase, DssFile dssAlt, TimeWindow tw, int dataIndex)
-        throws InterruptedException {
+          throws InterruptedException {
         for (PathnameMap pathMap : pathnameMaps) {
             checkInterrupt();
             dataIndex = dataIndex + 1;
@@ -278,7 +278,7 @@ public final class Report implements IRunnableWithProgress {
     }
 
     private void processPlot(DssFile dssBase, DssFile dssAlt, TimeWindow tw, PathnameMap pathMap,
-        boolean calculateDts) throws InterruptedException {
+          boolean calculateDts) throws InterruptedException {
         try {
             if (pathMap.reportType.endsWith("_post")) {
                 calculateDts = true;
@@ -306,37 +306,37 @@ public final class Report implements IRunnableWithProgress {
             }
         } catch (RuntimeException e) {
             String msg = "Error generating plot for " + pathMap.varName + " using base path "
-                + pathMap.pathBase + " and alt path " + pathMap.pathAlt + ": " + e.getMessage();
+                  + pathMap.pathBase + " and alt path " + pathMap.pathAlt + ": " + e.getMessage();
             addMessage(msg);
             LOG.log(Level.FINE, msg, e);
         }
     }
 
     private void generatePlotForReportType(TimeWindow tw, PathnameMap pathMap, DssSeries refBase,
-        DssSeries refAlt, String[] seriesName, String dataUnits, String dataType) throws InterruptedException {
+          DssSeries refAlt, String[] seriesName, String dataUnits, String dataType) throws InterruptedException {
         if (pathMap.reportType.startsWith("average")) {
             generatePlot(buildDataArray(refAlt, refBase, tw),
-                "Average " + pathMap.varName.replace("\"", ""), seriesName,
-                dataType + "(" + dataUnits + ")", "Time", TIME_SERIES);
+                  "Average " + pathMap.varName.replace("\"", ""), seriesName,
+                  dataType + "(" + dataUnits + ")", "Time", TIME_SERIES);
         } else if (pathMap.reportType.startsWith(EXCEEDANCE)) {
             generatePlot(buildExceedanceArray(refAlt, refBase, S_SEPT.equals(pathMap.varCategory), tw),
-                getExceedancePlotTitle(pathMap), seriesName, dataType + "(" + dataUnits + ")",
-                "Percent at or above", EXCEEDANCE);
+                  getExceedancePlotTitle(pathMap), seriesName, dataType + "(" + dataUnits + ")",
+                  "Percent at or above", EXCEEDANCE);
         } else if (pathMap.reportType.startsWith("avg_excd")) {
             generatePlot(buildDataArray(refAlt, refBase, tw),
-                "Average " + pathMap.varName.replace("\"", ""), seriesName,
-                dataType + "(" + dataUnits + ")", "Time", TIME_SERIES);
+                  "Average " + pathMap.varName.replace("\"", ""), seriesName,
+                  dataType + "(" + dataUnits + ")", "Time", TIME_SERIES);
             generatePlot(buildExceedanceArray(refAlt, refBase, S_SEPT.equals(pathMap.varCategory), tw),
-                getExceedancePlotTitle(pathMap), seriesName, dataType + "(" + dataUnits + ")",
-                "Percent at or above", EXCEEDANCE);
+                  getExceedancePlotTitle(pathMap), seriesName, dataType + "(" + dataUnits + ")",
+                  "Percent at or above", EXCEEDANCE);
         } else if (pathMap.reportType.startsWith(TIME_SERIES)) {
             generatePlot(buildDataArray(refAlt, refBase, tw),
-                "Average " + pathMap.varName.replace("\"", ""), seriesName,
-                dataType + "(" + dataUnits + ")", "Time", TIME_SERIES);
+                  "Average " + pathMap.varName.replace("\"", ""), seriesName,
+                  dataType + "(" + dataUnits + ")", "Time", TIME_SERIES);
         } else if ("alloc".equals(pathMap.reportType)) {
             generatePlot(buildExceedanceArray(refAlt, refBase, true, tw),
-                "Exceedance " + pathMap.varName.replace("\"", ""), seriesName, "Allocation (%)",
-                "Probability", EXCEEDANCE);
+                  "Exceedance " + pathMap.varName.replace("\"", ""), seriesName, "Allocation (%)",
+                  "Probability", EXCEEDANCE);
         }
     }
 
@@ -347,29 +347,29 @@ public final class Report implements IRunnableWithProgress {
         writer.setTableFontSize(scalars.get("TABLE_FONT_SIZE"));
 
         writer.addTableTitle(
-            String.format("System Flow Comparision: %s vs %s", scalars.get(NAME_ALT),
-                scalars.get(NAME_BASE)));
+              String.format("System Flow Comparision: %s vs %s", scalars.get(NAME_ALT),
+                    scalars.get(NAME_BASE)));
         writer.addTableSubTitle(scalars.get("NOTE").replace("\"", ""));
         writer.addTableSubTitle(scalars.get("ASSUMPTIONS").replace("\"", ""));
         writer.addTableSubTitle(" "); // add empty line to increase space
         // between title and table
         DssFile dssBase = opendss(scalars.get(FILE_BASE));
         DssFile dssAlt = opendss(scalars.get(FILE_ALT));
-        ArrayList<TimeWindow> timewindows = new ArrayList<>();
+        var timeWindows = new ArrayList<TimeWindow>();
         for (ArrayList<String> values : twValues) {
             String v = values.get(1).replace("\"", "");
-            timewindows.add(TimeFactory.getInstance().createTimeWindow(v));
+            timeWindows.add(TimeFactory.getInstance().createTimeWindow(v));
         }
-        ArrayList<String> headerRow = new ArrayList<>();
+        var headerRow = new ArrayList<String>();
         headerRow.add("");
-        ArrayList<String> headerRow2 = new ArrayList<>();
+        var headerRow2 = new ArrayList<String>();
         headerRow2.add("");
 
-        for (TimeWindow tw : timewindows) {
+        for (TimeWindow tw : timeWindows) {
             headerRow.add(formatTimeWindowAsWaterYear(tw));
             headerRow2.addAll(Arrays.asList(scalars.get(NAME_ALT), scalars.get(NAME_BASE), "Diff", "% Diff"));
         }
-        int[] columnSpans = new int[timewindows.size() + 1];
+        int[] columnSpans = new int[timeWindows.size() + 1];
         columnSpans[0] = 1;
         for (int i = 1; i < columnSpans.length; i++) {
             columnSpans[i] = 4;
@@ -387,23 +387,23 @@ public final class Report implements IRunnableWithProgress {
             if (!categoryList.contains(pathMap.varCategory)) {
                 continue;
             }
-            firstDataRow = processSummaryForPath(dssBase, dssAlt, timewindows, firstDataRow, pathMap);
+            firstDataRow = processSummaryForPath(dssBase, dssAlt, timeWindows, firstDataRow, pathMap);
         }
         writer.endTable();
     }
 
     private boolean processSummaryForPath(DssFile dssBase, DssFile dssAlt, ArrayList<TimeWindow> timewindows,
-        boolean firstDataRow, PathnameMap pathMap) throws InterruptedException {
+          boolean firstDataRow, PathnameMap pathMap) throws InterruptedException {
         try {
-            ArrayList<String> rowData = new ArrayList<>();
+            var rowData = new ArrayList<String>();
             rowData.add(pathMap.varName);
             boolean calculateDts = pathMap.reportType.toLowerCase().endsWith("_post");
             DssSeries refBase = null;
             DssSeries refAlt = null;
-            if (!"ignore".equalsIgnoreCase(pathMap.pathBase)) {
+            if (!IGNORE.equalsIgnoreCase(pathMap.pathBase)) {
                 refBase = getReference(dssBase, pathMap.pathBase, calculateDts);
             }
-            if (!"ignore".equalsIgnoreCase(pathMap.pathAlt)) {
+            if (!IGNORE.equalsIgnoreCase(pathMap.pathAlt)) {
                 refAlt = getReference(dssAlt, pathMap.pathAlt, calculateDts);
             }
             for (TimeWindow tw : timewindows) {
@@ -411,7 +411,7 @@ public final class Report implements IRunnableWithProgress {
             }
             if ("B".equals(pathMap.rowType)) {
                 if (!firstDataRow) {
-                    ArrayList<String> blankRow = new ArrayList<>();
+                    var blankRow = new ArrayList<String>();
                     for (int i = 0; i < rowData.size(); i++) {
                         blankRow.add(" ");
                     }
@@ -430,7 +430,7 @@ public final class Report implements IRunnableWithProgress {
     }
 
     private void processSummaryTimeWindow(ArrayList<String> rowData, DssSeries refBase, DssSeries refAlt,
-        TimeWindow tw) {
+          TimeWindow tw) {
         double avgBase = 0;
         double avgAlt = 0;
         if (refAlt != null) {
@@ -464,7 +464,7 @@ public final class Report implements IRunnableWithProgress {
     }
 
     private void generatePlot(List<double[]> buildDataArray, String title, String[] seriesName,
-        String yAxisLabel, String xAxisLabel, String plotType) throws InterruptedException {
+          String yAxisLabel, String xAxisLabel, String plotType) throws InterruptedException {
         checkInterrupt();
         if (plotType.equals(TIME_SERIES)) {
             writer.addTimeSeriesPlot(buildDataArray, title, seriesName, xAxisLabel, yAxisLabel);
@@ -472,14 +472,14 @@ public final class Report implements IRunnableWithProgress {
             writer.addExceedancePlot(buildDataArray, title, seriesName, xAxisLabel, yAxisLabel);
         } else {
             String msg = "Requested unknown plot type: " + plotType + " for title: " + title + " seriesName: "
-                + seriesName[0] + ",..";
+                  + seriesName[0] + ",..";
             LOG.log(Level.FINE, msg);
             addMessage(msg);
         }
     }
 
     private ArrayList<double[]> buildDataArray(DssSeries ref1, DssSeries ref2, TimeWindow tw) {
-        ArrayList<double[]> dlist = new ArrayList<>();
+        var dlist = new ArrayList<double[]>();
         if ((ref1 == null) || (ref2 == null)) {
             return dlist;
         }
@@ -501,10 +501,10 @@ public final class Report implements IRunnableWithProgress {
     }
 
     private List<double[]> buildExceedanceArray(DssSeries ref1, DssSeries ref2, boolean endOfSept,
-        TimeWindow tw) {
+          TimeWindow tw) {
         ArrayList<Double> x1 = sort(ref1, endOfSept, tw);
         ArrayList<Double> x2 = sort(ref2, endOfSept, tw);
-        ArrayList<double[]> darray = new ArrayList<>();
+        var darray = new ArrayList<double[]>();
         int i = 0;
         int n = Math.min(x1.size(), x2.size());
         while (i < n) {
@@ -516,7 +516,7 @@ public final class Report implements IRunnableWithProgress {
 
     private ArrayList<Double> sort(DssSeries ref, boolean endOfSept, TimeWindow tw) {
         DssSeries data = slice(ref, tw);
-        ArrayList<Double> dx = new ArrayList<>();
+        var dx = new ArrayList<Double>();
 
         for (int i = 0; i < data.values.length; i++) {
             if (isMissing(data.values[i])) {
@@ -525,7 +525,7 @@ public final class Report implements IRunnableWithProgress {
 
             if (endOfSept) {
                 ZonedDateTime dateTime = ZonedDateTime.ofInstant(
-                    java.time.Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault());
+                      java.time.Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault());
                 if (dateTime.getMonthValue() == 9 && dateTime.getDayOfMonth() == 30) {
                     dx.add(data.values[i]);
                 }
@@ -628,7 +628,7 @@ public final class Report implements IRunnableWithProgress {
 
     private DssSeries getTsReference(DssFile dssFile, String path) {
         try {
-            if ("ignore".equalsIgnoreCase(path)) {
+            if (IGNORE.equalsIgnoreCase(path)) {
                 return null;
             }
             String[] refs = findpath(dssFile, path);
@@ -661,7 +661,7 @@ public final class Report implements IRunnableWithProgress {
                 DssSeries xref = getReference(dssFile, varPath, false);
                 if (xref == null) {
                     throw new IllegalArgumentException(
-                        "Aborting calculation of " + path + " due to previous path missing");
+                          "Aborting calculation of " + path + " due to previous path missing");
                 }
                 if (ref == null) {
                     ref = xref;
@@ -701,8 +701,8 @@ public final class Report implements IRunnableWithProgress {
         }
 
         return Arrays.stream(dssFile.catalog)
-            .filter(pathname -> pathnameMatches(pathname, pa))
-            .toArray(String[]::new);
+              .filter(pathname -> pathnameMatches(pathname, pa))
+              .toArray(String[]::new);
     }
 
     private boolean pathnameMatches(String pathname, String[] partRegexes) {
@@ -755,9 +755,10 @@ public final class Report implements IRunnableWithProgress {
             return hecMinutesToMillis(container.times[index]);
         }
 
-        if (container.julianBaseDate != 0 && container.interval != 0) {
-            int minutes = container.julianBaseDate * 1440 + index * container.interval;
-            return hecMinutesToMillis(minutes);
+        if (container.julianBaseDate != 0 && container.getTimeIntervalSeconds() != 0) {
+            long baseMillis = hecMinutesToMillis(container.julianBaseDate * 1440);
+            long intervalMillis = container.getTimeIntervalSeconds() * 1000L;
+            return baseMillis + index * intervalMillis;
         }
 
         throw new IllegalStateException("Unable to determine time for DSS record: " + container.fullName);
@@ -779,8 +780,8 @@ public final class Report implements IRunnableWithProgress {
         long start = convertToDate(tw.getStartTime()).getTime();
         long end = convertToDate(tw.getEndTime()).getTime();
 
-        ArrayList<Long> times = new ArrayList<>();
-        ArrayList<Double> values = new ArrayList<>();
+        var times = new ArrayList<Long>();
+        var values = new ArrayList<Double>();
 
         for (int i = 0; i < data.values.length; i++) {
             if (data.times[i] >= start && data.times[i] <= end) {
@@ -810,7 +811,7 @@ public final class Report implements IRunnableWithProgress {
     private String formatTimeWindowAsWaterYear(TimeWindow tw) {
         SubTimeFormat yearFormat = new SubTimeFormat("yyyy");
         return tw.getStartTime().__add__("3MON").format(yearFormat) + "-"
-            + tw.getEndTime().__add__("3MON").format(yearFormat);
+              + tw.getEndTime().__add__("3MON").format(yearFormat);
     }
 
     private String getExceedancePlotTitle(PathnameMap pathMap) {
@@ -838,16 +839,6 @@ public final class Report implements IRunnableWithProgress {
         } else {
             return getUnitsForReference(ref1);
         }
-    }
-
-    private String createPathname(String aPart, String bPart, String cPart, String dPart, String ePart, String fPart) {
-        return "/" + nullToBlank(aPart)
-            + "/" + nullToBlank(bPart)
-            + "/" + nullToBlank(cPart)
-            + "/" + nullToBlank(dPart)
-            + "/" + nullToBlank(ePart)
-            + "/" + nullToBlank(fPart)
-            + "/";
     }
 
     private String getPathPart(String pathname, int oneBasedPartNumber) {
@@ -921,10 +912,10 @@ public final class Report implements IRunnableWithProgress {
         void endTable();
 
         void addTimeSeriesPlot(List<double[]> buildDataArray, String title, String[] seriesName, String xAxisLabel,
-            String yAxisLabel);
+              String yAxisLabel);
 
         void addExceedancePlot(List<double[]> buildDataArray, String title, String[] seriesName, String xAxisLabel,
-            String yAxisLabel);
+              String yAxisLabel);
 
         void setAuthor(String author);
 
@@ -948,9 +939,11 @@ public final class Report implements IRunnableWithProgress {
         }
     }
 
+    @SuppressWarnings("java:S6218")
     private record DssFile(String filename, HecDss hecDss, String[] catalog) {
     }
 
+    @SuppressWarnings("java:S6218")
     private record DssSeries(String pathname, String units, String type, long[] times, double[] values) {
 
         private DssSeries withValues(double[] newValues, String newUnits) {
