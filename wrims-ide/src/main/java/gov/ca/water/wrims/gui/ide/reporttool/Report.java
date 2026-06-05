@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -525,8 +527,8 @@ public final class Report implements IRunnableWithProgress {
 
             if (endOfSept) {
                 ZonedDateTime dateTime = ZonedDateTime.ofInstant(
-                      java.time.Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault());
-                if (dateTime.getMonthValue() == 9 && dateTime.getDayOfMonth() == 30) {
+                      Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault());
+                if (dateTime.getMonth() == Month.SEPTEMBER && dateTime.getDayOfMonth() == 30) {
                     dx.add(data.values[i]);
                 }
             } else {
