@@ -1,6 +1,5 @@
 package gov.ca.water.wrims.gui.ide.debugger.dialog;
 
-import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
 import gov.ca.water.wrims.gui.ide.reporttool.Report;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -25,7 +24,18 @@ import org.eclipse.ui.PlatformUI;
 
 
 public class WPPReportToolDialog extends Dialog {
-	
+	//Keeping member state because we want to re-initialize to the same values when reopened
+	private String repTemplateFile="";
+	private String repBaseFile="";
+	private String repBaseAlias="Base";
+	private String repAltFile="";
+	private String repAltAlias="Alt";
+	private String repNote="";
+	private String repAssumption="";
+	private String repModeler="";
+	private String repFontSize="8";
+	private String reportFileName="";
+
 	private Text templateFileText;
 	private Text baseFileText;
 	private Text baseAliasText;
@@ -70,7 +80,7 @@ public class WPPReportToolDialog extends Dialog {
 		GridData gd1 = new GridData(GridData.FILL_HORIZONTAL);
 		gd1.horizontalSpan = 6;
 		templateFileText.setLayoutData(gd1);
-		templateFileText.setText(DebugCorePlugin.repTemplateFile);
+		templateFileText.setText(repTemplateFile);
 		
 		Button templateBrowserButton = new Button(shell, SWT.PUSH);
 		templateBrowserButton.setText("Browser");
@@ -91,7 +101,7 @@ public class WPPReportToolDialog extends Dialog {
 						String file=dlg.open();
 						if (file !=null){
 							templateFileText.setText(file);
-							DebugCorePlugin.repTemplateFile=file;
+							repTemplateFile=file;
 						}
 					}
 				});
@@ -108,7 +118,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd1 = new GridData(GridData.FILL_HORIZONTAL);
 		gd1.horizontalSpan = 6;
 		baseFileText.setLayoutData(gd1);
-		baseFileText.setText(DebugCorePlugin.repBaseFile);
+		baseFileText.setText(repBaseFile);
 		
 		Button baseBrowserButton = new Button(shell, SWT.PUSH);
 		baseBrowserButton.setText("Browser");
@@ -129,7 +139,7 @@ public class WPPReportToolDialog extends Dialog {
 						String file=dlg.open();
 						if (file !=null){
 							baseFileText.setText(file);
-							DebugCorePlugin.repBaseFile=file;
+							repBaseFile=file;
 						}
 					}
 				});
@@ -146,7 +156,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd1 = new GridData(GridData.FILL_HORIZONTAL);
 		gd1.horizontalSpan = 6;
 		baseAliasText.setLayoutData(gd1);
-		baseAliasText.setText(DebugCorePlugin.repBaseAlias);
+		baseAliasText.setText(repBaseAlias);
 		
 		Label l3a=new Label(shell, SWT.None);
 		l3a.setText("");
@@ -164,7 +174,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd1 = new GridData(GridData.FILL_HORIZONTAL);
 		gd1.horizontalSpan = 6;
 		altFileText.setLayoutData(gd1);
-		altFileText.setText(DebugCorePlugin.repAltFile);
+		altFileText.setText(repAltFile);
 		
 		Button altBrowserButton = new Button(shell, SWT.PUSH);
 		altBrowserButton.setText("Browser");
@@ -185,7 +195,7 @@ public class WPPReportToolDialog extends Dialog {
 						String file=dlg.open();
 						if (file !=null){
 							altFileText.setText(file);
-							DebugCorePlugin.repAltFile=file;
+							repAltFile=file;
 						}
 					}
 				});
@@ -202,7 +212,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd1 = new GridData(GridData.FILL_HORIZONTAL);
 		gd1.horizontalSpan = 6;
 		altAliasText.setLayoutData(gd1);
-		altAliasText.setText(DebugCorePlugin.repAltAlias);
+		altAliasText.setText(repAltAlias);
 		
 		Label l5a=new Label(shell, SWT.None);
 		l5a.setText("");
@@ -220,7 +230,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd1 = new GridData(GridData.FILL_HORIZONTAL);
 		gd1.horizontalSpan = 6;
 		reportFileText.setLayoutData(gd1);
-		reportFileText.setText(DebugCorePlugin.reportFileName);
+		reportFileText.setText(reportFileName);
 		
 		Button reportBrowserButton = new Button(shell, SWT.PUSH);
 		reportBrowserButton.setText("Browser");
@@ -241,7 +251,7 @@ public class WPPReportToolDialog extends Dialog {
 						String file=dlg.open();
 						if (file !=null){
 							reportFileText.setText(file);
-							DebugCorePlugin.reportFileName=file;
+							reportFileName=file;
 						}
 					}
 				});
@@ -259,7 +269,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd0.horizontalSpan = 8;
 		gd0.heightHint=100;
 		noteText.setLayoutData(gd0);
-		noteText.setText(DebugCorePlugin.repNote);
+		noteText.setText(repNote);
 		
 		Label l8=new Label(shell, SWT.None);
 		l8.setText("");
@@ -279,7 +289,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd0.horizontalSpan = 8;
 		gd0.heightHint=100;
 		assumptionText.setLayoutData(gd0);
-		assumptionText.setText(DebugCorePlugin.repAssumption);
+		assumptionText.setText(repAssumption);
 		
 		Label l10=new Label(shell, SWT.None);
 		l10.setText("");
@@ -298,7 +308,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd1 = new GridData(GridData.FILL_HORIZONTAL);
 		gd1.horizontalSpan = 6;
 		modelerText.setLayoutData(gd1);
-		modelerText.setText(DebugCorePlugin.repModeler);
+		modelerText.setText(repModeler);
 		
 		Label l11a=new Label(shell, SWT.None);
 		l11a.setText("");
@@ -316,7 +326,7 @@ public class WPPReportToolDialog extends Dialog {
 		gd1 = new GridData(GridData.FILL_HORIZONTAL);
 		gd1.horizontalSpan = 1;
 		fontSizeText.setLayoutData(gd1);
-		fontSizeText.setText(DebugCorePlugin.repFontSize);
+		fontSizeText.setText(repFontSize);
 		
 		Label l12a=new Label(shell, SWT.None);
 		l12a.setText("");
@@ -362,82 +372,127 @@ public class WPPReportToolDialog extends Dialog {
 	}
 
 	public void generateReport(Shell shell){
-		DebugCorePlugin.repTemplateFile=templateFileText.getText();
-		DebugCorePlugin.repBaseFile=baseFileText.getText();
-		DebugCorePlugin.repAltFile=altFileText.getText();
-		DebugCorePlugin.reportFileName=reportFileText.getText();
-		DebugCorePlugin.repBaseAlias=baseAliasText.getText();
-		DebugCorePlugin.repAltAlias=altAliasText.getText();
-		DebugCorePlugin.repNote=noteText.getText();
-		DebugCorePlugin.repAssumption=assumptionText.getText();
-		DebugCorePlugin.repModeler=modelerText.getText();
-		DebugCorePlugin.repFontSize=fontSizeText.getText();
-				
-		if (DebugCorePlugin.repTemplateFile.equals("") || DebugCorePlugin.repBaseFile.equals("") || DebugCorePlugin.repAltFile.equals("") || DebugCorePlugin.reportFileName.equals("")){
+		persistCurrentValues();
+
+		if (!validateReportInputs(shell)) {
+			return;
+		}
+
+		if (!confirmOverwrite(shell)) {
+			return;
+		}
+
+		try {
+			String reportTemplateText = buildReportTemplateText();
+			ByteArrayInputStream bs = new ByteArrayInputStream(reportTemplateText.getBytes());
+			Report.generateReport(bs, reportFileName);
+		} catch (IOException e) {
+			MessageDialog.openInformation(shell, "Exception", e.getMessage());
+		}
+	}
+
+	private void persistCurrentValues() {
+		repTemplateFile=templateFileText.getText();
+		repBaseFile=baseFileText.getText();
+		repAltFile=altFileText.getText();
+		reportFileName=reportFileText.getText();
+		repBaseAlias=baseAliasText.getText();
+		repAltAlias=altAliasText.getText();
+		repNote=noteText.getText();
+		repAssumption=assumptionText.getText();
+		repModeler=modelerText.getText();
+		repFontSize=fontSizeText.getText();
+	}
+
+	private boolean validateReportInputs(Shell shell) {
+		if (repTemplateFile.equals("") || repBaseFile.equals("") || repAltFile.equals("") || reportFileName.equals("")){
 			MessageDialog.openInformation(shell,
 					"Error", "You must specify the template file, the source DSS files, and the output PDF file");
-		}else if(!new File(DebugCorePlugin.repTemplateFile).exists()){
+			return false;
+		}
+
+		if(!new File(repTemplateFile).exists()){
 			MessageDialog.openInformation(shell,
 					"Error", "The template files doesn't exist");
-		}else if (!new File(DebugCorePlugin.repBaseFile).exists() && !new File(DebugCorePlugin.repAltFile).exists()){
+			return false;
+		}
+
+		boolean baseFileExists = new File(repBaseFile).exists();
+		boolean altFileExists = new File(repAltFile).exists();
+
+		if (!baseFileExists && !altFileExists){
 			MessageDialog.openInformation(shell,
 					"Error", "The source DSS files for the base and alternative studies don't exist");
-		}else if(!new File(DebugCorePlugin.repBaseFile).exists()){
-				MessageDialog.openInformation(shell,
-						"Error", "The source DSS file for the base study doesn't exist");
-		}else if(!new File(DebugCorePlugin.repAltFile).exists()){
+			return false;
+		}
+
+		if(!baseFileExists){
+			MessageDialog.openInformation(shell,
+					"Error", "The source DSS file for the base study doesn't exist");
+			return false;
+		}
+
+		if(!altFileExists){
 			MessageDialog.openInformation(shell,
 					"Error", "The source DSS file for the alternative study doesn't exist");
-		}else{
-			if (new File(DebugCorePlugin.reportFileName).exists()){
-				boolean overwrite=MessageDialog.openQuestion(shell, "Overwrite?", "Report file "+DebugCorePlugin.reportFileName+" exists. Do you want to overwrite it?");
-				if (!overwrite) return;
-			}
-			try {
-				// Create an inputstream from template file;
-				FileInputStream fin = new FileInputStream(DebugCorePlugin.repTemplateFile);
-				BufferedReader br = new BufferedReader(new InputStreamReader(fin));
-				// Open the template file
-				String theText = br.readLine() + "\n";
-				theText = theText + br.readLine() + "\n";
-				theText = theText + br.readLine() + "\n";
-				br.readLine();
-				theText = theText + "FILE_BASE\t" + DebugCorePlugin.repBaseFile + "\n";
-				br.readLine();
-				theText = theText + "NAME_BASE\t\"" + DebugCorePlugin.repBaseAlias + "\"\n";
-				br.readLine();
-				theText = theText + "FILE_ALT\t" + DebugCorePlugin.repAltFile + "\n";
-				br.readLine();
-				theText = theText + "NAME_ALT\t\"" + DebugCorePlugin.repAltAlias + "\"\n";
-				br.readLine();
-				theText = theText + "OUTFILE\t" + DebugCorePlugin.reportFileName + "\n";
-				br.readLine();
-				theText = theText + "NOTE\t\"" + DebugCorePlugin.repNote + "\"\n";
-				br.readLine();
-				theText = theText + "ASSUMPTIONS\t\"" + DebugCorePlugin.repAssumption + "\"\n";
-				br.readLine();
-				theText = theText + "MODELER\t\"" + DebugCorePlugin.repModeler + "\"\n";
+			return false;
+		}
 
-				theText = theText + "TABLE_FONT_SIZE\t" + DebugCorePlugin.repFontSize + "\n";
+		return true;
+	}
 
-				String aLine = br.readLine();
-				while (aLine != null) {
-					theText = theText + aLine + "\n";
-					aLine = br.readLine();
-				}
-				br.close();
-				theText = theText + "\n";
-				ByteArrayInputStream bs = new ByteArrayInputStream(theText.getBytes());
-				try {
-					Report report = new Report(bs, DebugCorePlugin.reportFileName);
-				} catch (IOException e1) {
-					MessageDialog.openInformation(shell,
-							"Exception", e1.getMessage());
-				}
-			} catch (IOException e1) {
-				MessageDialog.openInformation(shell,
-						"Exception", e1.getMessage());
+	private boolean confirmOverwrite(Shell shell) {
+		if (!new File(reportFileName).exists()){
+			return true;
+		}
+
+		return MessageDialog.openQuestion(shell,
+				"Overwrite?", "Report file "+reportFileName+" exists. Do you want to overwrite it?");
+	}
+
+	private String buildReportTemplateText() throws IOException {
+		try (FileInputStream fin = new FileInputStream(repTemplateFile);
+			 BufferedReader br = new BufferedReader(new InputStreamReader(fin))) {
+			StringBuilder theText = new StringBuilder();
+
+			theText.append(br.readLine()).append("\n");
+			theText.append(br.readLine()).append("\n");
+			theText.append(br.readLine()).append("\n");
+
+			br.readLine();
+			theText.append("FILE_BASE\t").append(repBaseFile).append("\n");
+
+			br.readLine();
+			theText.append("NAME_BASE\t\"").append(repBaseAlias).append("\"\n");
+
+			br.readLine();
+			theText.append("FILE_ALT\t").append(repAltFile).append("\n");
+
+			br.readLine();
+			theText.append("NAME_ALT\t\"").append(repAltAlias).append("\"\n");
+
+			br.readLine();
+			theText.append("OUTFILE\t").append(reportFileName).append("\n");
+
+			br.readLine();
+			theText.append("NOTE\t\"").append(repNote).append("\"\n");
+
+			br.readLine();
+			theText.append("ASSUMPTIONS\t\"").append(repAssumption).append("\"\n");
+
+			br.readLine();
+			theText.append("MODELER\t\"").append(repModeler).append("\"\n");
+
+			theText.append("TABLE_FONT_SIZE\t").append(repFontSize).append("\n");
+
+			String aLine = br.readLine();
+			while (aLine != null) {
+				theText.append(aLine).append("\n");
+				aLine = br.readLine();
 			}
+
+			theText.append("\n");
+			return theText.toString();
 		}
 	}
 }

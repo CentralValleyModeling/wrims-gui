@@ -276,17 +276,6 @@ public class DebugCorePlugin extends AbstractUIPlugin {
 	
 	public static boolean isDssInOp=false;
 	
-	public static String repTemplateFile="";
-	public static String repBaseFile="";
-	public static String repBaseAlias="Base";
-	public static String repAltFile="";
-	public static String repAltAlias="Alt";
-	public static String repNote="";
-	public static String repAssumption="";
-	public static String repModeler="";
-	public static String repFontSize="8";
-	public static String reportFileName="";
-	
 	public static String xmx="4096";
 	public static boolean outputCycleToDss=false;
 	public static boolean outputAllCycles=true;
