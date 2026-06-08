@@ -190,6 +190,35 @@ public class Utils {
 		}
 	}
 
+    public static String getYAxisLabelType(TimeSeriesContainer tsc) {
+        String defaultLabel = "VARIABLE VALUE";
+        if (tsc == null) {
+            return defaultLabel;
+        }
+
+        try {
+            String cPart = new DSSPathname(tsc.fullName).getCPart();
+            if (cPart != null) {
+                cPart = cPart.trim();
+                if (!cPart.isEmpty() && !"-".equals(cPart)) {
+                    return cPart;
+                }
+            }
+        } catch (Exception e) {
+            // Ignore malformed or incomplete paths and fall back below.
+        }
+
+        if (tsc.parameter != null && !tsc.parameter.isBlank()) {
+            return tsc.parameter;
+        }
+
+        if (tsc.type != null && !tsc.type.isBlank()) {
+            return tsc.type;
+        }
+
+        return defaultLabel;
+    }
+
 	public static String getExceedancePlotTitle(PathnameMap path_map) {
 		String title = "Exceedance " + path_map.var_name.replace("\"", "");
 		if (path_map.var_category.equalsIgnoreCase("S_Jan")) {
