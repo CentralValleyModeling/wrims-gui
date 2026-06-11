@@ -8,6 +8,7 @@
 # python modules
 import shutil
 import os
+import java
 import subprocess
 
 #CalsimWsiDi class imports
@@ -21,12 +22,13 @@ from java.util import *
 from javax.swing import *
 from java.lang import *
 
+RunEngine = java.type("gov.ca.water.wrims.gui.ide.wisidi.RunEngine")
 
 # StudyTabCl class
 class StudyTabCl:
 
    # constructor: initialize class parameters
-   def __init__(self):
+   def __init__(self, externalPath, configFilePath):
 
       # assign other class variables
       self.report = True
@@ -35,13 +37,18 @@ class StudyTabCl:
       self.hideWarnings = True
       self.hideProgressDetails = False
 
+      self.externalPath = externalPath
+      self.configFilePath = configFilePath
+
    ### FUNCTIONS
 
    # function to run CALSIM
    def execute(self):
       print "   Running Model"
-   
-      subprocess.call('WRIMSv2_Engine.bat')
+
+      engine_instance = RunEngine(self.externalPath, self.configFilePath)
+      engine_instance.execute()
+
       return 0
 
    # run WSI-DI procedure

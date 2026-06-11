@@ -10,6 +10,7 @@ osgi_core = "6.0.0"
 osgi_compendium = "5.0.0"
 slf4jnop = "2.0.18"
 guice = "7.0.0"
+graalvm = "25.0.3"
 log4j = "1.2.17"
 mssql_jdbc = "13.4.0.jre11"
 hec-monolith = "6.0.0"
@@ -126,6 +127,16 @@ eclipse-emf-edit-ui = { module = "org.eclipse:org.eclipse.emf.edit.ui", version.
 eclipse-xtext-ui = { module = "org.eclipse.xtext:org.eclipse.xtext.ui", version.ref = "eclipse-xtext-ui" }
 eclipse-ltk-core-refactoring = { module = "org.eclipse.platform:org.eclipse.ltk.core.refactoring", version.ref = "eclipse-ltk-core-refactoring" }
 
+graalvm-polyglot = { module = "org.graalvm.polyglot:polyglot", version.ref = "graalvm" }
+graalvm-polyglot-python = { module = "org.graalvm.polyglot:python", version.ref = "graalvm" }
+graalvm-embedding = { module = "org.graalvm.python:python-embedding", version.ref = "graalvm" }
+graalvm-sdk = { module = "org.graalvm.sdk:graal-sdk", version.ref = "graalvm" }
+graalvm-sdk-collections = { module = "org.graalvm.sdk:collections", version.ref = "graalvm" }
+graalvm-native = { module = "org.graalvm.nativeimage:native-image-base", version.ref = "graalvm" }
+graalvm-native-lib = { module = "org.graalvm.nativeimage:library-support", version.ref = "graalvm" }
+graalvm-truffle = { module = "org.graalvm.truffle:truffle-api", version.ref = "graalvm" }
+graalvm-python = { module = "org.graalvm.python:python", version.ref = "graalvm" }
+
 jaxb-api = { module = 'javax.xml.bind:jaxb-api', version.ref = "jaxb-api" }
 jaxb-core = { module = 'com.sun.xml.bind:jaxb-core', version.ref = "jaxb-core" }
 jaxb-impl = { module = 'com.sun.xml.bind:jaxb-impl', version.ref = "jaxb-impl" }
@@ -133,3 +144,5 @@ javax-activation = { module = 'javax.activation:activation', version.ref = "java
 
 [bundles]
 junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params", "junit-5-platform-engine", "junit-5-platform-launcher" ]
+graalvm-bnd = [ "graalvm-embedding", "graalvm-polyglot", "graalvm-polyglot-python", "graalvm-sdk",
+    "graalvm-sdk-collections", "graalvm-native", "graalvm-native-lib", "graalvm-truffle", "graalvm-python" ]
