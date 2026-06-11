@@ -6,11 +6,15 @@ plugins {
 
 configurations {
     windows_x64
+    graalvm
 }
 
 dependencies {
     windows_x64 "gov.ca.dwr:run-libs:0.1.0"
     implementation libs.wrims.core
+
+    // GraalPy
+    graalvm libs.bundles.graalvm.bnd
 }
 
 def date = new Date()
@@ -199,6 +203,135 @@ tasks.register('copySplash', Copy) {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
+
+tasks.register("copyGraalVMToPlugins", Copy) {
+    dependsOn copyThirdPartyToLib
+    from configurations.graalvm
+    into("${buildDir}/installer/${wrimsGuiFolder}/plugins")
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+    rename { fileName ->
+        // Define your renaming logic here
+        switch(fileName) {
+            case ~/polyglot-.*\.jar/:
+                return 'graalvm-polyglot.jar'
+            case ~/python-embedding-.*\.jar/:
+                return 'graalvm-python-embedding.jar'
+            case ~/python-embedding-.*\.jar/:
+                return 'graalvm-python-embedding.jar'
+            case ~/python-resources-.*\.jar/:
+                return 'graalvm-python-resources.jar'
+            case ~/graal-sdk-.*\.jar/:
+                return 'graalvm-sdk.jar'
+            case ~/compiler-.*\.jar/:
+                return 'graalvm-compiler.jar'
+            case ~/collections-.*\.jar/:
+                return 'graalvm-collections.jar'
+            case ~/espresso-svm-.*\.jar/:
+                return 'graalvm-espresso-svm.jar'
+            case ~/json-.*\.jar/:
+                return 'graalvm-json.jar'
+            case ~/library-support-.*\.jar/:
+                return 'graalvm-library-support.jar'
+            case ~/nativeimage-.*\.jar/:
+                return 'graalvm-native-image.jar'
+            case ~/native-image-base-.*\.jar/:
+                return 'graalvm-native-image-base.jar'
+            case ~/objectfile-.*\.jar/:
+                return 'graalvm-objectfile.jar'
+            case ~/pointsto-.*\.jar/:
+                return 'graalvm-pointsto.jar'
+            case ~/profiler-tool-.*\.jar/:
+                return 'graalvm-profiler-tool.jar'
+            case ~/python-language-.*\.jar/:
+                return 'graalvm-python-language.jar'
+            case ~/regex-.*\.jar/:
+                return 'graalvm-regex.jar'
+            case ~/svm-capnproto-runtime-.*\.jar/:
+                return 'graalvm-svm-runtime.jar'
+            case ~/svm-configure-.*\.jar/:
+                return 'graalvm-svm-configure.jar'
+            case ~/svm-.*\.jar/:
+                return 'graalvm-svm.jar'
+            case ~/truffle-api-.*\.jar/:
+                return 'graalvm-truffle-api.jar'
+            case ~/truffle-compiler-.*\.jar/:
+                return 'graalvm-truffle-compiler.jar'
+            case ~/truffle-runtime-.*\.jar/:
+                return 'graalvm-truffle-runtime.jar'
+            case ~/word-.*\.jar/:
+                return 'graalvm-word.jar'
+            case ~/xz-.*\.jar/:
+                return 'graalvm-xz.jar'
+            default:
+                return fileName // Keep original name for unmatched files
+        }
+    }
+}
+
+tasks.register("copyGraalVMToLib", Copy) {
+    dependsOn copyGraalVMToPlugins
+    from configurations.graalvm
+    into("${buildDir}/installer/${wrimsGuiFolder}/lib")
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+    rename { fileName ->
+        // Define your renaming logic here
+        switch(fileName) {
+            case ~/polyglot-.*\.jar/:
+                return 'graalvm-polyglot.jar'
+            case ~/python-embedding-.*\.jar/:
+                return 'graalvm-python-embedding.jar'
+            case ~/python-embedding-.*\.jar/:
+                return 'graalvm-python-embedding.jar'
+            case ~/python-resources-.*\.jar/:
+                return 'graalvm-python-resources.jar'
+            case ~/graal-sdk-.*\.jar/:
+                return 'graalvm-sdk.jar'
+            case ~/compiler-.*\.jar/:
+                return 'graalvm-compiler.jar'
+            case ~/collections-.*\.jar/:
+                return 'graalvm-collections.jar'
+            case ~/espresso-svm-.*\.jar/:
+                return 'graalvm-espresso-svm.jar'
+            case ~/json-.*\.jar/:
+                return 'graalvm-json.jar'
+            case ~/library-support-.*\.jar/:
+                return 'graalvm-library-support.jar'
+            case ~/nativeimage-.*\.jar/:
+                return 'graalvm-native-image.jar'
+            case ~/native-image-base-.*\.jar/:
+                return 'graalvm-native-image-base.jar'
+            case ~/objectfile-.*\.jar/:
+                return 'graalvm-objectfile.jar'
+            case ~/pointsto-.*\.jar/:
+                return 'graalvm-pointsto.jar'
+            case ~/profiler-tool-.*\.jar/:
+                return 'graalvm-profiler-tool.jar'
+            case ~/python-language-.*\.jar/:
+                return 'graalvm-python-language.jar'
+            case ~/regex-.*\.jar/:
+                return 'graalvm-regex.jar'
+            case ~/svm-.*\.jar/:
+                return 'graalvm-svm.jar'
+            case ~/svm-capnproto-runtime-.*\.jar/:
+                return 'graalvm-svm-runtime.jar'
+            case ~/svm-configure-.*\.jar/:
+                return 'graalvm-svm-configure.jar'
+            case ~/truffle-api-.*\.jar/:
+                return 'graalvm-truffle-api.jar'
+            case ~/truffle-compiler-.*\.jar/:
+                return 'graalvm-truffle-compiler.jar'
+            case ~/truffle-runtime-.*\.jar/:
+                return 'graalvm-truffle-runtime.jar'
+            case ~/word-.*\.jar/:
+                return 'graalvm-word.jar'
+            case ~/xz-.*\.jar/:
+                return 'graalvm-xz.jar'
+            default:
+                return fileName // Keep original name for unmatched files
+        }
+    }
+}
+
 //task to delete all contents of the ${buildDir}/installer/${wrimsGuiFolder}/libs folder
 tasks.register('cleanLibFolder', Delete) {
     dependsOn copySplash
@@ -237,7 +370,7 @@ tasks.register('copyThirdPartyToLib', Copy) {
 
 //Copies all updated resource files into the installer
 tasks.register('copyResources', Copy) {
-    dependsOn copyThirdPartyToLib
+    dependsOn copyGraalVMToLib
     from("src/main/resources/installer")
     into("${buildDir}/installer/${wrimsGuiFolder}")
 }
