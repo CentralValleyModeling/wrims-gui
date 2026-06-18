@@ -37,7 +37,7 @@ class StudyTabCl:
       self.externalPath = externalPath
       self.configFilePath = configFilePath
 
-      self.RunEngine = java.type("gov.ca.water.wrims.gui.ide.wisidi.RunEngine")
+      self.RunEngine = java.type("gov.ca.water.wrims.gui.ide.wsidi.RunEngine")
 
    ### FUNCTIONS
 
