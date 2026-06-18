@@ -19,10 +19,7 @@ from java.awt import *
 from java.awt.event import *
 from java.io import *
 from java.util import *
-from javax.swing import *
 from java.lang import *
-
-RunEngine = java.type("gov.ca.water.wrims.gui.ide.wisidi.RunEngine")
 
 # StudyTabCl class
 class StudyTabCl:
@@ -40,13 +37,15 @@ class StudyTabCl:
       self.externalPath = externalPath
       self.configFilePath = configFilePath
 
+      self.RunEngine = java.type("gov.ca.water.wrims.gui.ide.wisidi.RunEngine")
+
    ### FUNCTIONS
 
    # function to run CALSIM
    def execute(self):
       print("   Running Model")
 
-      engine_instance = RunEngine(self.externalPath, self.configFilePath)
+      engine_instance = self.RunEngine(self.externalPath, self.configFilePath)
       engine_instance.execute()
 
       return 0
