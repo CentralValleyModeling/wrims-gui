@@ -67,44 +67,24 @@ tasks.register('copyGraalPy', Copy) {
     include "icu4j-*.jar"
     include "truffle-api-*.jar"
     include "graal-*.jar"
-    include "svm-*.jar"
     include "truffle-*.jar"
-    include "compiler-*.jar"
-    include "collections-*.jar"
-    include "word-*.jar"
-    include "xz-*.jar"
-    include "native-image-base-*.jar"
-    include "nativeimage-*.jar"
-    include "espresso-*.jar"
     include "graalvm-*.jar"
     into layout.buildDirectory.dir('tmp/graalpy')
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
     rename { fileName ->
-        if (fileName.startsWith('polyglot-')) return 'graalvm-polyglot.jar'
+        if (fileName.startsWith('polyglot-')) {
+            if (fileName.contains('python')) return 'graalvm-polyglot-python.jar'
+            return 'graalvm-polyglot.jar'
+        }
         if (fileName.startsWith('python-embedding-')) return 'graalvm-python-embedding.jar'
         if (fileName.startsWith('python-language-')) return 'graalvm-python-language.jar'
         if (fileName.startsWith('python-resources-')) return 'graalvm-python-resources.jar'
         if (fileName.startsWith('graal-sdk-')) return 'graalvm-sdk.jar'
-        if (fileName.startsWith('compiler-')) return 'graalvm-compiler.jar'
-        if (fileName.startsWith('collections-')) return 'graalvm-collections.jar'
-        if (fileName.startsWith('espresso-svm-')) return 'graalvm-espresso-svm.jar'
-        if (fileName.startsWith('json-')) return 'graalvm-json.jar'
-        if (fileName.startsWith('library-support-')) return 'graalvm-library-support.jar'
-        if (fileName.startsWith('nativeimage-')) return 'graalvm-native-image.jar'
-        if (fileName.startsWith('native-image-base-')) return 'graalvm-native-image-base.jar'
-        if (fileName.startsWith('objectfile-')) return 'graalvm-objectfile.jar'
-        if (fileName.startsWith('pointsto-')) return 'graalvm-pointsto.jar'
-        if (fileName.startsWith('profiler-tool-')) return 'graalvm-profiler-tool.jar'
         if (fileName.startsWith('python-language-')) return 'graalvm-python-language.jar'
-        if (fileName.startsWith('regex-')) return 'graalvm-regex.jar'
-        if (fileName.startsWith('svm-')) return 'graalvm-svm.jar'
-        if (fileName.startsWith('svm-capnproto-runtime-')) return 'graalvm-svm-runtime.jar'
-        if (fileName.startsWith('svm-configure-')) return 'graalvm-svm-configure.jar'
         if (fileName.startsWith('truffle-api-')) return 'graalvm-truffle-api.jar'
         if (fileName.startsWith('truffle-compiler-')) return 'graalvm-truffle-compiler.jar'
         if (fileName.startsWith('truffle-runtime-')) return 'graalvm-truffle-runtime.jar'
-        if (fileName.startsWith('word-')) return 'graalvm-word.jar'
-        if (fileName.startsWith('xz-')) return 'graalvm-xz.jar'
+        if (fileName.startsWith('icu4j-')) return 'graalvm-icu4j.jar'
         return fileName
     }
 }

@@ -13,27 +13,13 @@ Bundle-ClassPath: .,\
     lib/graalvm-python-embedding.jar,\
     lib/graalvm-python-language.jar,\
     lib/graalvm-python-resources.jar,\
+    lib/graalvm-python.jar,\
     lib/graalvm-sdk.jar,\
-    lib/graalvm-compiler.jar,\
-    lib/graalvm-collections.jar,\
-    lib/graalvm-espresso-svm.jar,\
-    lib/graalvm-json.jar,\
-    lib/graalvm-library-support.jar,\
-    lib/graalvm-native-image.jar,\
-    lib/graalvm-native-image-base.jar,\
-    lib/graalvm-objectfile.jar,\
-    lib/graalvm-pointsto.jar,\
-    lib/graalvm-profiler-tool.jar,\
     lib/graalvm-python-language.jar,\
-    lib/graalvm-regex.jar,\
-    lib/graalvm-svm.jar,\
-    lib/graalvm-svm-runtime.jar,\
-    lib/graalvm-svm-configure.jar,\
     lib/graalvm-truffle-api.jar,\
     lib/graalvm-truffle-compiler.jar,\
     lib/graalvm-truffle-runtime.jar,\
-    lib/graalvm-word.jar,\
-    lib/graalvm-xz.jar
+    lib/graalvm-icu4j.jar
 
 Require-Bundle: \
     org.eclipse.ui,\
@@ -70,10 +56,10 @@ Import-Package: \
     org.eclipse.ui.texteditor,\
     org.osgi.framework,\
     org.graalvm.polyglot,\
-    org.graalvm.collections,\
     org.graalvm.nativeimage,\
     org.graalvm.truffle,\
-    org.graalvm.python
+    org.graalvm.python,\
+    org.graalvm.python.embedding
 
 Export-Package: \
     gov.ca.water.wrims.gui.ide.debugger,\
@@ -95,7 +81,9 @@ Export-Package: \
     org.graalvm.collections,\
     org.graalvm.nativeimage,\
     org.graalvm.truffle,\
-    org.graalvm.python
+    org.graalvm.python,\
+    org.graalvm.sdk,\
+    org.graalvm.python.embedding
 
 -includeresource: \
   plugin.xml = plugin.xml,\
@@ -106,3 +94,7 @@ Export-Package: \
   lib/graalvm-python-language.jar=build/tmp/graalpy/graalvm-python-language.jar;lib:=true,\
   lib/graalvm-python-resources.jar=build/tmp/graalpy/graalvm-python-resources.jar;lib:=true,\
   lib/graalvm-sdk.jar=build/tmp/graalpy/graalvm-sdk.jar;lib:=true,\
+  lib/graalvm-truffle-api.jar=build/tmp/graalpy/graalvm-truffle-api.jar;lib:=true,\
+  lib/graalvm-truffle-compiler.jar=build/tmp/graalpy/graalvm-truffle-compiler.jar;lib:=true,\
+  lib/graalvm-truffle-runtime.jar=build/tmp/graalpy/graalvm-truffle-runtime.jar;lib:=true,\
+  lib/graalvm-icu4j.jar=build/tmp/graalpy/graalvm-icu4j.jar;lib:=true

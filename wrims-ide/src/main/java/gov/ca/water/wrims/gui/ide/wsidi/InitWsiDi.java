@@ -1,13 +1,16 @@
 package gov.ca.water.wrims.gui.ide.wsidi;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import com.google.common.flogger.FluentLogger;
 import gov.ca.water.wrims.gui.ide.wsidi.WSIDIGenerator.Main;
 import org.graalvm.polyglot.Context;
 import org.graalvm.python.embedding.GraalPyResources;
 
 public final class InitWsiDi {
-	private static final String RESOURCE_PATH = "src/main/resources/WSIDIGenerator";
+	private static final FluentLogger logger = FluentLogger.forEnclosingClass();
+	private static final String RESOURCE_PATH = "WSIDIGenerator/";
 
 	private InitWsiDi() {}
 
@@ -21,13 +24,17 @@ public final class InitWsiDi {
 			context.eval("python", "import sys");
 			context.eval("python", "sys.path.append(sys_path)");
 
-			Main wsidiMain = context.eval("python", "from WSIDIGenerator.Main import Main; Main()").as(Main.class);
+			Main wsidiMain = context.eval("python", "from Main import Main; Main()").as(Main.class);
 
 			wsidiMain.main(studyDvName, lookupName, launchName, offset, externalPath, configFilePath);
 		}
 	}
 
 	private static Context createPythonContext() {
-		return GraalPyResources.contextBuilder(Path.of(RESOURCE_PATH)).allowAllAccess(true).build();
+		Path resourcePath = Paths.get(RESOURCE_PATH).toAbsolutePath();
+		logger.atInfo().log("WSIDI Generator resource path: %s", resourcePath.toAbsolutePath());
+		return GraalPyResources.contextBuilder(resourcePath)
+				.allowAllAccess(true)
+				.build();
 	}
 }
