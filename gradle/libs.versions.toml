@@ -136,6 +136,7 @@ graalvm-native = { module = "org.graalvm.nativeimage:native-image-base", version
 graalvm-native-lib = { module = "org.graalvm.nativeimage:library-support", version.ref = "graalvm" }
 graalvm-truffle = { module = "org.graalvm.truffle:truffle-api", version.ref = "graalvm" }
 graalvm-python = { module = "org.graalvm.python:python", version.ref = "graalvm" }
+graalvm-icu4j = { module = "org.graalvm.shadowed:icu4j", version.ref = "graalvm"}
 
 jaxb-api = { module = 'javax.xml.bind:jaxb-api', version.ref = "jaxb-api" }
 jaxb-core = { module = 'com.sun.xml.bind:jaxb-core', version.ref = "jaxb-core" }
@@ -145,4 +146,5 @@ javax-activation = { module = 'javax.activation:activation', version.ref = "java
 [bundles]
 junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params", "junit-5-platform-engine", "junit-5-platform-launcher" ]
 graalvm-bnd = [ "graalvm-embedding", "graalvm-polyglot", "graalvm-polyglot-python", "graalvm-sdk",
-    "graalvm-sdk-collections", "graalvm-native", "graalvm-native-lib", "graalvm-truffle", "graalvm-python" ]
+    "graalvm-sdk-collections", "graalvm-native", "graalvm-native-lib", "graalvm-truffle",
+    "graalvm-python", "graalvm-icu4j" ]
