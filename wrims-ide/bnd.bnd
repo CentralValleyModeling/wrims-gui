@@ -19,6 +19,7 @@ Bundle-ClassPath: .,\
     lib/graalvm-truffle-api.jar,\
     lib/graalvm-truffle-compiler.jar,\
     lib/graalvm-truffle-runtime.jar,\
+    lib/graalvm-regex.jar,\
     lib/graalvm-icu4j.jar
 
 Require-Bundle: \
@@ -59,6 +60,7 @@ Import-Package: \
     org.graalvm.nativeimage,\
     org.graalvm.truffle,\
     org.graalvm.python,\
+    org.graalvm.regex,\
     org.graalvm.python.embedding
 
 Export-Package: \
@@ -82,6 +84,7 @@ Export-Package: \
     org.graalvm.nativeimage,\
     org.graalvm.truffle,\
     org.graalvm.python,\
+    org.graalvm.regex,\
     org.graalvm.sdk,\
     org.graalvm.python.embedding
 
@@ -97,4 +100,5 @@ Export-Package: \
   lib/graalvm-truffle-api.jar=build/tmp/graalpy/graalvm-truffle-api.jar;lib:=true,\
   lib/graalvm-truffle-compiler.jar=build/tmp/graalpy/graalvm-truffle-compiler.jar;lib:=true,\
   lib/graalvm-truffle-runtime.jar=build/tmp/graalpy/graalvm-truffle-runtime.jar;lib:=true,\
-  lib/graalvm-icu4j.jar=build/tmp/graalpy/graalvm-icu4j.jar;lib:=true
+  lib/graalvm-icu4j.jar=build/tmp/graalpy/graalvm-icu4j.jar;lib:=true,\
+  lib/graalvm-regex.jar=build/tmp/graalpy/graalvm-regex.jar;lib:=true

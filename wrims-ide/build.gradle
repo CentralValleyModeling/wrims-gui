@@ -67,8 +67,10 @@ tasks.register('copyGraalPy', Copy) {
     include "icu4j-*.jar"
     include "truffle-api-*.jar"
     include "graal-*.jar"
-    include "truffle-*.jar"
+    include "truffle-compiler-*.jar"
+    include "truffle-runtime-*.jar"
     include "graalvm-*.jar"
+    include "regex-*.jar"
     into layout.buildDirectory.dir('tmp/graalpy')
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
     rename { fileName ->
@@ -85,6 +87,7 @@ tasks.register('copyGraalPy', Copy) {
         if (fileName.startsWith('truffle-compiler-')) return 'graalvm-truffle-compiler.jar'
         if (fileName.startsWith('truffle-runtime-')) return 'graalvm-truffle-runtime.jar'
         if (fileName.startsWith('icu4j-')) return 'graalvm-icu4j.jar'
+        if (fileName.startsWith('regex-')) return 'graalvm-regex.jar'
         return fileName
     }
 }

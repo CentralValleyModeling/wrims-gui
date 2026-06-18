@@ -203,40 +203,6 @@ tasks.register('copySplash', Copy) {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-tasks.register("copyGraalVMToLib", Copy) {
-    dependsOn copyThirdPartyToLib
-    from configurations.graalvm
-    into("${buildDir}/installer/${wrimsGuiFolder}/lib")
-    duplicatesStrategy DuplicatesStrategy.EXCLUDE
-    rename { fileName ->
-        // Define your renaming logic here
-        switch(fileName) {
-            case ~/polyglot-python-.*\.jar/:
-                return 'graalvm-polyglot-python.jar'
-            case ~/polyglot-.*\.jar/:
-                return 'graalvm-polyglot.jar'
-            case ~/python-embedding-.*\.jar/:
-                return 'graalvm-python-embedding.jar'
-            case ~/python-resources-.*\.jar/:
-                return 'graalvm-python-resources.jar'
-            case ~/graal-sdk-.*\.jar/:
-                return 'graalvm-sdk.jar'
-            case ~/python-language-.*\.jar/:
-                return 'graalvm-python-language.jar'
-            case ~/truffle-api-.*\.jar/:
-                return 'graalvm-truffle-api.jar'
-            case ~/truffle-compiler-.*\.jar/:
-                return 'graalvm-truffle-compiler.jar'
-            case ~/truffle-runtime-.*\.jar/:
-                return 'graalvm-truffle-runtime.jar'
-            case ~/icu4j-.*\.jar/:
-                return 'graalvm-icu4j.jar'
-            default:
-                return fileName // Keep original name for unmatched files
-        }
-    }
-}
-
 //task to delete all contents of the ${buildDir}/installer/${wrimsGuiFolder}/libs folder
 tasks.register('cleanLibFolder', Delete) {
     dependsOn copySplash

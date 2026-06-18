@@ -11,6 +11,7 @@ import org.graalvm.python.embedding.GraalPyResources;
 public final class InitWsiDi {
 	private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 	private static final String RESOURCE_PATH = "WSIDIGenerator/";
+	private static final String PYTHON = "python";
 
 	private InitWsiDi() {}
 
@@ -20,11 +21,11 @@ public final class InitWsiDi {
 		try(var context = createPythonContext())
 		{
 			// Configure the Python context to include the path to the Python resources, otherwise a ModuleNotFoundError will occur
-			context.getBindings("python").putMember("sys_path", RESOURCE_PATH);
-			context.eval("python", "import sys");
-			context.eval("python", "sys.path.append(sys_path)");
+			context.getBindings(PYTHON).putMember("sys_path", RESOURCE_PATH);
+			context.eval(PYTHON, "import sys");
+			context.eval(PYTHON, "sys.path.append(sys_path)");
 
-			Main wsidiMain = context.eval("python", "from Main import Main; Main()").as(Main.class);
+			Main wsidiMain = context.eval(PYTHON, "from Main import Main; Main()").as(Main.class);
 
 			wsidiMain.main(studyDvName, lookupName, launchName, offset, externalPath, configFilePath);
 		}
