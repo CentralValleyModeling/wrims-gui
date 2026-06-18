@@ -22,6 +22,8 @@ dependencies {
     implementation project(':third-party')
     implementation project(':xtext-editor')
 
+    implementation libs.antlr.runtime
+
     //eclipse libs
     implementation libs.eclipse.xtext
     implementation libs.eclipse.emf.ecore

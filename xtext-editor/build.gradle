@@ -21,6 +21,10 @@ dependencies {
     //additional dependencies
     implementation project(':third-party')
 
+    implementation libs.antlr.runtime
+    implementation libs.eclipse.emf.ecore
+    implementation libs.eclipse.core.runtime
+
     //eclipse libs
     implementation libs.eclipse.xtext
     implementation libs.eclipse.xtext.common.types
