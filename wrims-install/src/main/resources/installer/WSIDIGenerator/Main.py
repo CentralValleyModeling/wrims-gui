@@ -21,7 +21,7 @@ from java.lang import *
 
 class Main:
     # constructor: initialize class parameters
-    def main(studyDvName, lookupName, launchName, offset, externalPath, configFilePath):
+    def main(self, studyDvName, lookupName, launchName, offset, externalPath, configFilePath):
         # WSI-DI curve labels and DSS pathnames
         crvName = ['SWP','CVP_SYS']
         crvWsiVar = ['WSI_ACTUAL_SWP','WSI_ACT_CVP_SYS']
