@@ -17,7 +17,6 @@ from java.awt import *
 from java.awt.event import *
 from java.io import *
 from java.util import *
-from javax.swing import *
 from java.lang import *
 
 class Main:
