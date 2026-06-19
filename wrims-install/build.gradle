@@ -46,6 +46,7 @@ tasks.register('downloadWrimsGuiInstaller', Download) {
 
 //clear the installer directory
 tasks.register('clearInstallerFolder', Delete) {
+    group 'install'
     dependsOn downloadWrimsGuiInstaller
     delete "${buildDir}/installer"
 }
