@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.google.common.flogger.FluentLogger;
 import gov.ca.water.wrims.engine.core.components.ControllerBatch;
-import gov.ca.water.wrims.gui.ide.about.util.VersionInfo;
 
 public final class RunEngine {
 	private static final FluentLogger logger = FluentLogger.forEnclosingClass();
@@ -49,7 +48,7 @@ public final class RunEngine {
 		List<String> command = new ArrayList<>();
 
 		// Java executable
-		String jrePluginFolder = findJrePluginFolder("plugins");
+		String jrePluginFolder = findJrePluginFolder();
 		command.add("plugins\\" + jrePluginFolder + "\\jre\\bin\\java");
 
 		// JVM arguments
@@ -63,54 +62,21 @@ public final class RunEngine {
 		command.add("-Djava.library.path=" + libraryPath);
 
 		// Classpath
-		VersionInfo info = VersionInfo.getInstance();
-		String engineVer = info.getEngineVersion();
-		List<String> jars = new ArrayList<>();
-		jars.add("antlr-runtime-");
-		jars.add("slf4j-api-");
-		jars.add("slf4j-nop-");
-		jars.add("wrims-core-");
-		jars.add("commons-io-");
-		StringBuilder classpath = new StringBuilder(String.format("lib/wrims-core-%s.jar", engineVer));
-		for (String jar : jars) {
-			String foundJar = getJarFile(jar);
-			classpath.append(";lib/").append(foundJar);
-		}
 		command.add("-cp");
-		command.add(classpath.toString());
+		String classpath = String.format("%s;lib/*", externalPath);
+		command.add(classpath);
 
 		// Main class and arguments
 		command.add(ControllerBatch.class.getCanonicalName());
 		command.add("-config=" + configFilePath);
 
+		logger.atFiner().log("Executing command: %s", command);
+
 		return command;
 	}
 
-	private String getJarFile(String prefix) {
-		File libsDir = new File("lib");
-		if (!libsDir.exists() || !libsDir.isDirectory()) {
-			logger.atWarning().log("Library directory not found: %s", libsDir);
-			return null;
-		}
-
-		File[] jars = libsDir.listFiles(File::isFile);
-		if (jars == null) {
-			logger.atWarning().log("Failed to list jars in: %s", libsDir);
-			return null;
-		}
-
-		for (File jar : jars) {
-			if (jar.getName().startsWith(prefix) && jar.getName().endsWith(".jar")) {
-				logger.atFiner().log("Found jar: %s", jar.getName());
-				return jar.getName();
-			}
-		}
-
-		logger.atWarning().log("Jar with prefix '%s' not found in library directory", JRE_PLUGIN_PREFIX);
-		return null;
-	}
-
-	private String findJrePluginFolder(String pluginsPath) {
+	private String findJrePluginFolder() {
+		String pluginsPath = "plugins";
 		File pluginsDir = new File(pluginsPath);
 		if (!pluginsDir.exists() || !pluginsDir.isDirectory()) {
 			logger.atWarning().log("Plugins directory not found: %s", pluginsPath);
