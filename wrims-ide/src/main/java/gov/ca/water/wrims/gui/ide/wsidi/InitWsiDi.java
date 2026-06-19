@@ -33,7 +33,7 @@ public final class InitWsiDi {
 
 	private static Context createPythonContext() {
 		Path resourcePath = Paths.get(RESOURCE_PATH).toAbsolutePath();
-		logger.atInfo().log("WSIDI Generator resource path: %s", resourcePath.toAbsolutePath());
+		logger.atFiner().log("WSIDI Generator resource path: %s", resourcePath.toAbsolutePath());
 		return GraalPyResources.contextBuilder(resourcePath)
 				.allowAllAccess(true)
 				.build();
