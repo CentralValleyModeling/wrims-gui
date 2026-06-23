@@ -66,6 +66,8 @@ test {
 
 // Task to copy GraalPy JARs
 tasks.register('copyGraalPy', Sync) {
+    description "Copy GraalPy jars to a temporary directory to be picked up by the installer bundle. " +
+            "Necessary to avoid version-specific configuration of the bundle."
     from configurations.graalvm
     include "polyglot-*.jar"
     include "python-*.jar"
