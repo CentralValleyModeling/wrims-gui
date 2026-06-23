@@ -21,8 +21,8 @@ from java.io import *
 from java.util import *
 from java.lang import *
 
-# StudyTabCl class
-class StudyTabCl:
+# StudyTab class
+class StudyTab:
 
    # constructor: initialize class parameters
    def __init__(self, externalPath, configFilePath):
