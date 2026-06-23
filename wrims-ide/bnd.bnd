@@ -7,21 +7,6 @@ Bundle-Activator: gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin
 Bundle-ActivationPolicy: lazy
 -noee true
 
-# Add GraalVM libraries to the bundle classpath
-Bundle-ClassPath: .,\
-    lib/graalvm-polyglot.jar,\
-    lib/graalvm-python-embedding.jar,\
-    lib/graalvm-python-language.jar,\
-    lib/graalvm-python-resources.jar,\
-    lib/graalvm-python.jar,\
-    lib/graalvm-sdk.jar,\
-    lib/graalvm-python-language.jar,\
-    lib/graalvm-truffle-api.jar,\
-    lib/graalvm-truffle-compiler.jar,\
-    lib/graalvm-truffle-runtime.jar,\
-    lib/graalvm-regex.jar,\
-    lib/graalvm-icu4j.jar
-
 Require-Bundle: \
     org.eclipse.ui,\
     org.eclipse.core.resources,\

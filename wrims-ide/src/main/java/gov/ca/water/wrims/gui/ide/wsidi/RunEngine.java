@@ -34,7 +34,7 @@ public final class RunEngine {
 		writeToFile(command);
 
 		ProcessBuilder processBuilder = new ProcessBuilder();
-		processBuilder.command("cmd", "/c", "start", WPPSettings.WRIMS_ENGINE_BAT);
+		processBuilder.command("cmd", "/c", "start", "/wait", WPPSettings.WRIMS_ENGINE_BAT);
 
 		Process process = processBuilder.start();
 
