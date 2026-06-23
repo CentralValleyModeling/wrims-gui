@@ -39,7 +39,7 @@ def main():
 
     # maximum value(TAF) for WSI-DI curve; same value used for WSI and DO components
     crvMax = [20000,20000]
-    s=StudyTabCl()
+    s=StudyTab()
     s.runForWsi(studyDvName,crvName,crvWsiVar,crvDiVar,crvMax, lookupName, launchName, offset)
 
 def check_version():

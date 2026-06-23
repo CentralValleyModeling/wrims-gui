@@ -16,10 +16,8 @@ public final class InitWsiDi {
 	private InitWsiDi() {}
 
 	public static void run(String studyDvName, String lookupName, String launchName,
-			double offset, String externalPath, String configFilePath)
-	{
-		try(var context = createPythonContext())
-		{
+			double offset, String externalPath, String configFilePath) {
+		try(var context = createPythonContext()) {
 			// Configure the Python context to include the path to the Python resources, otherwise a ModuleNotFoundError will occur
 			context.getBindings(PYTHON).putMember("sys_path", RESOURCE_PATH);
 			context.eval(PYTHON, "import sys");
@@ -27,7 +25,8 @@ public final class InitWsiDi {
 
 			Main wsidiMain = context.eval(PYTHON, "from Main import Main; Main()").as(Main.class);
 
-			wsidiMain.main(studyDvName, lookupName, launchName, offset, externalPath, configFilePath);
+			// This call to Python will call back into Java via the RunEngine class
+			wsidiMain.runWSIDI(studyDvName, lookupName, launchName, offset, externalPath, configFilePath);
 		}
 	}
 

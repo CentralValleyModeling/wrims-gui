@@ -21,7 +21,7 @@ from java.lang import *
 
 class Main:
     # constructor: initialize class parameters
-    def main(self, studyDvName, lookupName, launchName, offset, externalPath, configFilePath):
+    def runWSIDI(self, studyDvName, lookupName, launchName, offset, externalPath, configFilePath):
         # WSI-DI curve labels and DSS pathnames
         crvName = ['SWP','CVP_SYS']
         crvWsiVar = ['WSI_ACTUAL_SWP','WSI_ACT_CVP_SYS']
@@ -29,5 +29,5 @@ class Main:
 
         # maximum value(TAF) for WSI-DI curve; same value used for WSI and DO components
         crvMax = [20000,20000]
-        s=StudyTabCl(externalPath, configFilePath)
+        s=StudyTab(externalPath, configFilePath)
         s.runForWsi(studyDvName,crvName,crvWsiVar,crvDiVar,crvMax, lookupName, launchName, offset)

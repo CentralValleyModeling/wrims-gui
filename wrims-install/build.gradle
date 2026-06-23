@@ -12,9 +12,6 @@ configurations {
 dependencies {
     windows_x64 "gov.ca.dwr:run-libs:0.1.0"
     implementation libs.wrims.core
-
-    // GraalPy
-    graalvm libs.bundles.graalvm.bnd
 }
 
 def date = new Date()

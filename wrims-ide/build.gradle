@@ -33,7 +33,7 @@ dependencies {
     testImplementation(libs.bundles.junit5)
 
     // GraalPy
-    implementation libs.bundles.graalvm.bnd
+    api libs.bundles.graalvm.api
 }
 
 configurations.configureEach {
@@ -60,7 +60,7 @@ test {
 }
 
 // Task to copy GraalPy JARs
-tasks.register('copyGraalPy', Copy) {
+tasks.register('copyGraalPy', Sync) {
     from configurations.runtimeClasspath
     include "polyglot-*.jar"
     include "python-*.jar"
