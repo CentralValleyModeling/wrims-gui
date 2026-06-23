@@ -139,4 +139,5 @@ javax-activation = { module = 'javax.activation:activation', version.ref = "java
 
 [bundles]
 junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params", "junit-5-platform-engine", "junit-5-platform-launcher" ]
-graalvm-api = [ "graalvm-embedding", "graalvm-polyglot", "graalvm-python", "graalvm-sdk"]
+graalvm-runtime = [ "graalvm-python", "graalvm-sdk" ]
+graalvm-api = [ "graalvm-embedding", "graalvm-polyglot" ]
