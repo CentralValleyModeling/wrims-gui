@@ -24,8 +24,8 @@ from java.lang import *
 
 tab = "   "
 
-# StudyTabCl class
-class StudyTabCl:
+# StudyTab class
+class StudyTab:
 
    # constructor: initialize class parameters
    def __init__(self):

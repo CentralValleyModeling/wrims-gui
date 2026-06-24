@@ -40,7 +40,13 @@ Import-Package: \
     org.eclipse.ui.ide,\
     org.eclipse.ui.part,\
     org.eclipse.ui.texteditor,\
-    org.osgi.framework
+    org.osgi.framework,\
+    org.graalvm.polyglot,\
+    org.graalvm.nativeimage,\
+    org.graalvm.truffle,\
+    org.graalvm.python,\
+    org.graalvm.regex,\
+    org.graalvm.python.embedding
 
 Export-Package: \
     gov.ca.water.wrims.gui.ide.debugger,\
@@ -56,9 +62,28 @@ Export-Package: \
     gov.ca.water.wrims.gui.ide.debugger.ui,\
     gov.ca.water.wrims.gui.ide.debugger.view,\
     gov.ca.water.wrims.gui.ide.presentation,\
-    gov.ca.water.wrims.gui.ide.tools
+    gov.ca.water.wrims.gui.ide.wsidi,\
+    gov.ca.water.wrims.gui.ide.tools,\
+    org.graalvm.polyglot,\
+    org.graalvm.collections,\
+    org.graalvm.nativeimage,\
+    org.graalvm.truffle,\
+    org.graalvm.python,\
+    org.graalvm.regex,\
+    org.graalvm.sdk,\
+    org.graalvm.python.embedding
 
 -includeresource: \
   plugin.xml = plugin.xml,\
   icons = icons,\
-  lib_x64/wrims-core.jar=build/tmp/wrims-core/wrims-core.jar;lib:=true
+  lib_x64/wrims-core.jar=build/tmp/wrims-core/wrims-core.jar;lib:=true,\
+  lib/graalvm-polyglot.jar=build/tmp/graalpy/graalvm-polyglot.jar;lib:=true,\
+  lib/graalvm-python-embedding.jar=build/tmp/graalpy/graalvm-python-embedding.jar;lib:=true,\
+  lib/graalvm-python-language.jar=build/tmp/graalpy/graalvm-python-language.jar;lib:=true,\
+  lib/graalvm-python-resources.jar=build/tmp/graalpy/graalvm-python-resources.jar;lib:=true,\
+  lib/graalvm-sdk.jar=build/tmp/graalpy/graalvm-sdk.jar;lib:=true,\
+  lib/graalvm-truffle-api.jar=build/tmp/graalpy/graalvm-truffle-api.jar;lib:=true,\
+  lib/graalvm-truffle-compiler.jar=build/tmp/graalpy/graalvm-truffle-compiler.jar;lib:=true,\
+  lib/graalvm-truffle-runtime.jar=build/tmp/graalpy/graalvm-truffle-runtime.jar;lib:=true,\
+  lib/graalvm-icu4j.jar=build/tmp/graalpy/graalvm-icu4j.jar;lib:=true,\
+  lib/graalvm-regex.jar=build/tmp/graalpy/graalvm-regex.jar;lib:=true

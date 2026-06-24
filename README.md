@@ -202,3 +202,23 @@ You may check the "Remember my decision" option to avoid seeing these prompts in
 
 >!Note: Conversion to an Xtext project will add Xtext-specific configuration to the `.project` 
 > file, but will not negatively affect the project's functionality. 
+
+
+## WSIDI Generation
+
+When using the WSIDI generator tool, some aspects of the WRIMS Engine Java compute can be adjusted.
+These settings include: 
+- The plugin directory prefix for the target JRE (located in the installer's `plugins` directory)
+- The Java heap size
+- The Java stack size
+- The time zone
+- The process name
+
+These can be configured with System Properties. 
+
+The following are the keys and value ranges:
+- gov.ca.water.wrims.jre.plugin.prefix - The string prefix of the target JRE plugin directory.
+- gov.ca.water.wrims.wsidi.gen.max.heap.size - The maximum heap size in MB (Default: 4096).
+- gov.ca.water.wrims.wsidi.gen.stack.size - The maximum stack size in KB (Default: 1024).
+- gov.ca.water.wrims.wsidi.gen.timezone - The time zone to use for the process (Default: UTC).
+- gov.ca.water.wrims.wsidi.gen.name - The name of the process (Default: 51677).

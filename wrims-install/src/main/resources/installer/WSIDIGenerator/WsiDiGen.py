@@ -319,14 +319,14 @@ class WsiDiGenCl:
       elif (wsi0 < (0.5*(self.wsiMax-self.wsiMin)+self.wsiMin)):
          offset *= 1.0
       else:
-	 offset *= 0.0
+         offset *= 0.0
       for i in range(self.ndata):
-    	 if (wsiin[i] > wsi0 and wsiin[i] <= (wsiend + self.lookahead)):
+         if (wsiin[i] > wsi0 and wsiin[i] <= (wsiend + self.lookahead)):
             npoints += 1
-	    delwsi = wsiin[i] - wsi0
-	    sumdelwsi = sumdelwsi + wsiin[i] - wsi0
-	    sumdiwsi = sumdiwsi + (diin[i]-offset)*delwsi
-	    sumwsi2 = sumwsi2 + delwsi*delwsi
+         delwsi = wsiin[i] - wsi0
+         sumdelwsi = sumdelwsi + wsiin[i] - wsi0
+         sumdiwsi = sumdiwsi + (diin[i]-offset)*delwsi
+         sumwsi2 = sumwsi2 + delwsi*delwsi
       if (npoints > 1 ):
          slope = (sumdiwsi - di0*sumdelwsi)/sumwsi2
       else:
@@ -358,14 +358,14 @@ class WsiDiGenCl:
       diin = self.getInputDi()
       for i in range(0,self.nseg):
          wsi0 = data[i][0]
-	 di0 = data[i][1]
-         for j in range(0,self.ndata):
-            if (wsiin[j] > wsi0 and wsiin[j] < (wsi0 + self.step)):
-               npoints += 1
- 	       slope = self.getSlope(wsi0,di0,0.0)
- 	       dist = diin[j] - (di0 + slope*(wsiin[j] - wsi0))
- 	       sumdist = sumdist + dist
- 	       sumdist2 = sumdist2 + dist*dist
+      di0 = data[i][1]
+      for j in range(0,self.ndata):
+         if (wsiin[j] > wsi0 and wsiin[j] < (wsi0 + self.step)):
+            npoints += 1
+         slope = self.getSlope(wsi0,di0,0.0)
+         dist = diin[j] - (di0 + slope*(wsiin[j] - wsi0))
+         sumdist = sumdist + dist
+         sumdist2 = sumdist2 + dist*dist
       if (npoints > 0):
          stdev = sqrt((npoints*sumdist2 - sumdist*sumdist)/(npoints*(npoints-1)))
       else:
@@ -380,8 +380,8 @@ class WsiDiGenCl:
       data.append((wsi0,di0))
       for i in range (1,self.nseg+1):
          data.append(self.getFunctionPair(wsi0,di0,0.0))
-	 wsi0 = data[i][0]
-	 di0 = data[i][1]
+         wsi0 = data[i][0]
+         di0 = data[i][1]
       stdev = self.getStandardDev(data)
       offset = self.mult*stdev
       wsi0 = 0.0
@@ -389,8 +389,8 @@ class WsiDiGenCl:
       data[0] = (wsi0,di0)
       for i in range (1,self.nseg+1):
          data[i] = self.getFunctionPair(wsi0,di0,offset)
-	 wsi0 = data[i][0]
-	 di0 = data[i][1]
+         wsi0 = data[i][0]
+         di0 = data[i][1]
       return data
 
    #save puts the wsi-di curve in the user specified *.table file
@@ -402,13 +402,13 @@ class WsiDiGenCl:
       pw.println("wsi_di_" + self.name)
       pw.println("wsi                   di")
       for i in range(0,self.nseg+1):
-	 #pw.println(str(int(round(data[i][0]))) + "        " + str(int(round(data[i][1]))))
-	 pw.println(str(data[i][0]) + "        " + str(data[i][1]))
+         #pw.println(str(int(round(data[i][0]))) + "        " + str(int(round(data[i][1]))))
+         pw.println(str(data[i][0]) + "        " + str(data[i][1]))
       pw.close()
 
    #execute is the function call to generate a wsi-di table
    def execute(self):
-      print tab + "Generating WSI_DI_" + self.name
+      print(tab + "Generating WSI_DI_" + self.name)
       output = self.getAllFunctionPairs()
       self.save(output)
 
