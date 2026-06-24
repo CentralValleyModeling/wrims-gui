@@ -11,6 +11,7 @@ configurations {
     windows_x64
     wrimsCore
     api.extendsFrom(wrimsCore)
+    graalvm
 }
 
 dependencies {
@@ -31,6 +32,13 @@ dependencies {
 
     windows_x64(libs.javaHeclib){artifact {type = 'zip'}}
     testImplementation(libs.bundles.junit5)
+
+    // GraalPy
+    runtimeOnly(libs.bundles.graalvm.runtime)
+    api libs.bundles.graalvm.api
+
+    graalvm libs.bundles.graalvm.api
+    graalvm libs.bundles.graalvm.runtime
 }
 
 configurations.configureEach {
@@ -56,8 +64,44 @@ test {
     systemProperty "java.library.path", "${layout.buildDirectory.asFile.get()}/lib"
 }
 
+// Task to copy GraalPy JARs
+tasks.register('copyGraalPy', Sync) {
+    description "Copy GraalPy jars to a temporary directory to be picked up by the installer bundle. " +
+            "Necessary to avoid version-specific configuration of the bundle."
+    from configurations.graalvm
+    include "polyglot-*.jar"
+    include "python-*.jar"
+    include "icu4j-*.jar"
+    include "truffle-api-*.jar"
+    include "graal-*.jar"
+    include "truffle-compiler-*.jar"
+    include "truffle-runtime-*.jar"
+    include "graalvm-*.jar"
+    include "regex-*.jar"
+    into layout.buildDirectory.dir('tmp/graalpy')
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+    rename { fileName ->
+        if (fileName.startsWith('polyglot-')) {
+            if (fileName.contains('python')) return 'graalvm-polyglot-python.jar'
+            return 'graalvm-polyglot.jar'
+        }
+        if (fileName.startsWith('python-embedding-')) return 'graalvm-python-embedding.jar'
+        if (fileName.startsWith('python-language-')) return 'graalvm-python-language.jar'
+        if (fileName.startsWith('python-resources-')) return 'graalvm-python-resources.jar'
+        if (fileName.startsWith('graal-sdk-')) return 'graalvm-sdk.jar'
+        if (fileName.startsWith('python-language-')) return 'graalvm-python-language.jar'
+        if (fileName.startsWith('truffle-api-')) return 'graalvm-truffle-api.jar'
+        if (fileName.startsWith('truffle-compiler-')) return 'graalvm-truffle-compiler.jar'
+        if (fileName.startsWith('truffle-runtime-')) return 'graalvm-truffle-runtime.jar'
+        if (fileName.startsWith('icu4j-')) return 'graalvm-icu4j.jar'
+        if (fileName.startsWith('regex-')) return 'graalvm-regex.jar'
+        return fileName
+    }
+}
+
 jar {
     dependsOn tasks.named('copyWrimsCore')
+    dependsOn tasks.named('copyGraalPy')
 
     bundle {
         // Ensure classpath is ready before bundling

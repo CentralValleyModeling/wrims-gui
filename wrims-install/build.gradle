@@ -6,6 +6,7 @@ plugins {
 
 configurations {
     windows_x64
+    graalvm
 }
 
 dependencies {
@@ -42,6 +43,7 @@ tasks.register('downloadWrimsGuiInstaller', Download) {
 
 //clear the installer directory
 tasks.register('clearInstallerFolder', Delete) {
+    group 'install'
     dependsOn downloadWrimsGuiInstaller
     delete "${buildDir}/installer"
 }

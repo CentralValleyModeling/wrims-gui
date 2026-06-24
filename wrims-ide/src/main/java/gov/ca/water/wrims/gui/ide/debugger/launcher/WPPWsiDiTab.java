@@ -6,15 +6,14 @@ import gov.ca.water.wrims.gui.ide.debugger.dialog.ConfigTab;
 import gov.ca.water.wrims.gui.ide.debugger.exception.WPPException;
 import gov.ca.water.wrims.gui.ide.tools.DataProcess;
 import gov.ca.water.wrims.gui.ide.tools.TimeOperation;
-import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
 import java.io.PrintWriter;
+
+import gov.ca.water.wrims.gui.ide.wsidi.InitWsiDi;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
@@ -42,6 +41,8 @@ public class WPPWsiDiTab extends AbstractLaunchConfigurationTab {
 	private Button outputWsidiDvOnlyBut;
 	private WPPMainTab mainTab;
 	private String externalPath="";
+	private String wsidiDvarPath;
+	private String lookupPath;
 	
 	public WPPWsiDiTab(WPPMainTab mainTab){
 		this.mainTab=mainTab;
@@ -166,16 +167,10 @@ public class WPPWsiDiTab extends AbstractLaunchConfigurationTab {
 	}
 	
 	public void wsidigenerator(){
-		String engineFileFullPath = WPPSettings.WRIMS_ENGINE_BAT;
-		try {
-			String configFilePath = generateWsiDiConfigFile();
-			FileWriter engineFile = new FileWriter(engineFileFullPath);
-			PrintWriter out = new PrintWriter(engineFile);
-			generateBatch(out, configFilePath);
-			Process process = Runtime.getRuntime().exec("cmd /c start " + "WSIDIGenerator\\wsidi_generator.bat");
-		}catch (IOException e) {
-			WPPException.handleException(e);
-		}
+		String configFilePath = generateWsiDiConfigFile();
+		InitWsiDi.run(wsidiDvarPath, lookupPath,
+				launchConfig.getFile().getLocation().toFile().getAbsolutePath(),
+				Double.parseDouble(offsetText.getText()), externalPath, configFilePath);
 	}
 	
 	public String generateWsiDiConfigFile(){
@@ -234,7 +229,8 @@ public class WPPWsiDiTab extends AbstractLaunchConfigurationTab {
 				wsidiDvarPath=wsidiDvarPath.substring(0, wsidiDvarPath.lastIndexOf(".dss"))+".csv";
 				String lookupPath=getLookupFolderPath(mainFileAbsPath);
 				out.println("DvarFile           "+wsidiDvarPath);
-				createWsiDiMain(wsidiDvarPath, lookupPath);
+				this.wsidiDvarPath = wsidiDvarPath;
+				this.lookupPath = lookupPath;
 			}else{
 				String procDvarPath=procRelativePath(dvarFile);
 				//String wsidiDvarFile=getWsiDiDvarFilePath(procDvarFile);
@@ -242,7 +238,8 @@ public class WPPWsiDiTab extends AbstractLaunchConfigurationTab {
 				wsidiDvarPath=wsidiDvarPath.substring(0, wsidiDvarPath.lastIndexOf(".dss"))+".csv";
 				String lookupFolder=getLookupFolderPath(mainFileAbsPath);
 				out.println("DvarFile           " + wsidiDvarPath.toLowerCase());
-				createWsiDiMain(wsidiDvarPath, lookupFolder);
+				this.wsidiDvarPath = wsidiDvarPath;
+				this.lookupPath = lookupFolder;
 			}
 			String svarFile = mainTab.fSvarFileText.getText();
 			if (new File(svarFile).isAbsolute()){
@@ -388,68 +385,6 @@ public class WPPWsiDiTab extends AbstractLaunchConfigurationTab {
 		} catch (IOException e) {
 			WPPException.handleException(e);
 		}
-	}
-	
-	public void generateBatch(PrintWriter out, String configFilePath){
-		String freeXA;
-		//freeXA = launchConfig.getAttribute(DebugCorePlugin.ATTR_WPP_FREEXA, "no");
-		freeXA="no";
-		String jarXA;
-		if (freeXA.equalsIgnoreCase("yes")){
-			jarXA="CalLiteV16.jar";
-		}else{
-			jarXA="XAOptimizer.jar";
-		}
-		out.println("@echo off");
-		out.println();
-		out.println("set path=" + externalPath + ";"+"lib;%path%");
-		out.println("set temp_wrims2=jre\\bin");
-		out.println("set TF_CPP_MIN_LOG_LEVEL=2");
-		out.println();
-		/*
-		String xmx="1280m";
-		if (System.getProperty("os.arch").equalsIgnoreCase("amd64")){
-			xmx="4096m";
-		}
-		*/
-		out.println("jre\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.components.ControllerBatch "+"-config="+configFilePath);
-		out.close();
-	}
-	
-	public void createWsiDiMain(String dvarPath, String lookupPath){
-		String wsidiMainTemplate = ".\\WSIDIGenerator\\Main_template.py";
-		String wsidiMainFile = ".\\WSIDIGenerator\\Main.py";
-		try {
-	         FileInputStream fs= new FileInputStream(wsidiMainTemplate);
-	         BufferedReader br = new BufferedReader(new InputStreamReader(fs));
-	         LineNumberReader reader = new LineNumberReader(br);
-	         FileWriter writer = new FileWriter(wsidiMainFile);
-	         String line;
-	         int count =0;
-	         while((line = br.readLine())!=null){
-	              count++;
-	              if(count==28){
-	            	  writer.write("        studyDvName=r\""+dvarPath+"\"\n");
-	              }else if (count==29){
-	            	  writer.write("        lookupName=r\""+lookupPath+"\"\n");
-	              }else if (count==30){
-	            	  writer.write("        launchName=r\""+launchConfig.getFile().getLocation().toFile().getAbsolutePath()+"\"\n");
-	         	  }else if (count==31){
-	         		  writer.write("        offset="+offsetText.getText()+"\n");
-	         	  }else{
-	                  writer.append(line+"\n");
-	              }
-	         }
-	         writer.close();
-	    }
-	    catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	}
-	
-	public String getWsiDiDvarFilePath(String dvFileName){
-		File dvFile=new File(dvFileName);
-		return dvFile.getParentFile().getAbsolutePath()+"\\genwsidi_dv.dss";
 	}
 	
 	public String getLookupFolderPath(String mainFilePath){
