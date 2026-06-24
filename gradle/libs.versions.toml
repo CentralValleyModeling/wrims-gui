@@ -131,7 +131,6 @@ graalvm-polyglot = { module = "org.graalvm.polyglot:polyglot", version.ref = "gr
 graalvm-embedding = { module = "org.graalvm.python:python-embedding", version.ref = "graalvm" }
 graalvm-python = { module = "org.graalvm.python:python", version.ref = "graalvm" }
 graalvm-sdk = { module = "org.graalvm.sdk:graal-sdk", version.ref = "graalvm" }
-graalvm-jni = { module = "org.graalvm.sdk:jniutils", version.ref = "graalvm"}
 
 jaxb-api = { module = 'javax.xml.bind:jaxb-api', version.ref = "jaxb-api" }
 jaxb-core = { module = 'com.sun.xml.bind:jaxb-core', version.ref = "jaxb-core" }
@@ -140,5 +139,5 @@ javax-activation = { module = 'javax.activation:activation', version.ref = "java
 
 [bundles]
 junit5 = [ "junit-5-engine", "junit-5-api", "junit-5-params", "junit-5-platform-engine", "junit-5-platform-launcher" ]
-graalvm-runtime = [ "graalvm-python", "graalvm-sdk", "graalvm-jni" ]
+graalvm-runtime = [ "graalvm-python", "graalvm-sdk" ]
 graalvm-api = [ "graalvm-embedding", "graalvm-polyglot" ]
