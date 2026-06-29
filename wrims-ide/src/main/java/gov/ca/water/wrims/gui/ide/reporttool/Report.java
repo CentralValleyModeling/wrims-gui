@@ -540,10 +540,19 @@ public final class Report implements IRunnableWithProgress {
     }
 
     private String getTypeOfReference(DssSeries ref) {
-        if (ref != null) {
-            return firstNonBlank(ref.type, getPathPart(ref.pathname, 3));
+        if (ref == null) {
+            return "";
         }
-        return "";
+
+        String cPart = getPathPart(ref.pathname, 3);
+        if (cPart != null) {
+            cPart = cPart.trim();
+            if (!cPart.isEmpty() && !"-".equals(cPart)) {
+                return cPart;
+            }
+        }
+
+        return firstNonBlank(ref.parameter, ref.type);
     }
 
     private String getType(DssSeries ref1, DssSeries ref2) {
@@ -744,7 +753,7 @@ public final class Report implements IRunnableWithProgress {
                 values[i] = container.values[i];
             }
 
-            return new DssSeries(pathname, nullToBlank(container.units), nullToBlank(container.type), times, values);
+            return new DssSeries(pathname, nullToBlank(container.units), nullToBlank(container.parameter), nullToBlank(container.type), times, values);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
@@ -792,7 +801,7 @@ public final class Report implements IRunnableWithProgress {
             }
         }
 
-        return new DssSeries(data.pathname, data.units, data.type, toLongArray(times), toDoubleArray(values));
+        return new DssSeries(data.pathname, data.units, data.parameter, data.type, toLongArray(times), toDoubleArray(values));
     }
 
     private String createPathFromVarname(String path, String varname) {
@@ -946,10 +955,11 @@ public final class Report implements IRunnableWithProgress {
     }
 
     @SuppressWarnings("java:S6218")
-    private record DssSeries(String pathname, String units, String type, long[] times, double[] values) {
+    private record DssSeries(String pathname, String units, String parameter, String type, long[] times,
+          double[] values) {
 
         private DssSeries withValues(double[] newValues, String newUnits) {
-            return new DssSeries(pathname, newUnits, type, Arrays.copyOf(times, times.length), newValues);
+            return new DssSeries(pathname, newUnits, parameter, type, Arrays.copyOf(times, times.length), newValues);
         }
 
         private DssSeries add(DssSeries other) {
@@ -965,7 +975,7 @@ public final class Report implements IRunnableWithProgress {
                 }
             }
 
-            return new DssSeries(pathname, units, type, newTimes, newValues);
+            return new DssSeries(pathname, units, parameter, type, newTimes, newValues);
         }
     }
 }
