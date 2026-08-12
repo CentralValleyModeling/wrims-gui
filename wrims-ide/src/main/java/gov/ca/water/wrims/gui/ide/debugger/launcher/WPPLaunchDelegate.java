@@ -179,25 +179,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		try {
 			if (mode.equals("debug")){
 				DebugCorePlugin.debugSet.reset();
-				Process process = null;
-				IProcess p = null;
-				boolean targetRegistered = false;
-				try {
-					process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
-					p = DebugPlugin.newProcess(launch, process, "DebugWPP");
-					try(WPPDebugTarget target = new WPPDebugTarget(launch, p, requestPort, eventPort)) {
-						target.getStart();
-						launch.addDebugTarget(target);
-						targetRegistered = true;
-						process.waitFor();
-						terminateCode = process.exitValue();
-					}
-				} catch (Exception e) {
-					if (!targetRegistered) {
-						cleanupStartedDebugProcess(p, process);
-					}
-					throw e;
-				}
+				terminateCode = runDebugSession(launch, requestPort, eventPort, false);
 			}else{
 				Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
 				IProcess p = DebugPlugin.newProcess(launch, process, "RunWPP");
@@ -208,8 +190,35 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		} catch (Exception e) {
 			WPPException.handleException(e);
 		}
-		
+
 		return terminateCode;
+	}
+
+	private int runDebugSession(ILaunch launch, int requestPort, int eventPort, boolean removeTargetAfterCompletion) throws Exception {
+		Process process = null;
+		IProcess eclipseProcess = null;
+		boolean targetRegistered = false;
+		try {
+			process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
+			eclipseProcess = DebugPlugin.newProcess(launch, process, "DebugWPP");
+			try (WPPDebugTarget target = new WPPDebugTarget(launch, eclipseProcess, requestPort, eventPort)) {
+				target.getStart();
+				launch.addDebugTarget(target);
+				targetRegistered = true;
+				process.waitFor();
+				int terminateCode = process.exitValue();
+				if (removeTargetAfterCompletion) {
+					launch.removeDebugTarget(target);
+					process.destroy();
+				}
+				return terminateCode;
+			}
+		} catch (Exception e) {
+			if (!targetRegistered) {
+				cleanupStartedDebugProcess(eclipseProcess, process);
+			}
+			throw e;
+		}
 	}
 	
 	public int paLaunch(ILaunchConfiguration configuration, String mode, ILaunch launch) throws CoreException{
@@ -240,27 +249,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 			try {
 				if (mode.equals("debug")){
 					DebugCorePlugin.debugSet.reset();
-					Process process = null;
-					IProcess p = null;
-					boolean targetRegistered = false;
-					try {
-						process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
-						p = DebugPlugin.newProcess(launch, process, "DebugWPP");
-						try(WPPDebugTarget target = new WPPDebugTarget(launch, p, requestPort, eventPort)) {
-							target.getStart();
-							launch.addDebugTarget(target);
-							targetRegistered = true;
-							process.waitFor();
-							terminateCode = process.exitValue();
-							launch.removeDebugTarget(target);
-							process.destroy();
-						}
-					} catch (Exception e) {
-						if (!targetRegistered) {
-							cleanupStartedDebugProcess(p, process);
-						}
-						throw e;
-					}
+					terminateCode = runDebugSession(launch, requestPort, eventPort, true);
 				}else{
 					Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
 					IProcess p = DebugPlugin.newProcess(launch, process, "RunWPP");
