@@ -3,6 +3,7 @@ wrims-engine = "3.0.0-alpha.10"
 commons-io = "2.22.0"
 junit_5 = "6.1.0"
 junit_5_platform = "6.1.0"
+mockito = "5.17.0"
 antlr = "3.5.3"
 itext = "2009.09.21"
 jfreechart = "1.5.6"
@@ -64,6 +65,7 @@ junit-5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "j
 junit-5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit_5" }
 junit-5-platform-engine = { module = "org.junit.platform:junit-platform-engine", version.ref = "junit_5_platform" }
 junit-5-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit_5_platform" }
+mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 antlr = { module = "org.antlr:antlr", version.ref = "antlr" }
 antlr-runtime = { module = "org.antlr:antlr-runtime", version.ref = "antlr" }
 jfreechart = { module = "org.jfree:jfreechart", version.ref = "jfreechart" }
