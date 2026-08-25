@@ -18,9 +18,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.eclipse.debug.core.DebugException;
+import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedConstruction;
+import org.mockito.MockedStatic;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockConstruction;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 
 /** Tests debug startup, socket initialization, JDWP configuration, and cleanup. */
 class DebugInitializationTest {
@@ -129,6 +144,100 @@ class DebugInitializationTest {
 
         assertTrue(process.waitFor(1, java.util.concurrent.TimeUnit.SECONDS));
     }
+
+    @Test
+    /** Verifies a registered debug target is retained for a regular debug session. */
+    void runDebugSessionRegistersTargetAndReturnsProcessExitCode() throws Exception {
+        Method runDebugSession = WPPLaunchDelegate.class.getDeclaredMethod("runDebugSession", ILaunch.class,
+                int.class, int.class, boolean.class);
+        runDebugSession.setAccessible(true);
+        ILaunch launch = mock(ILaunch.class);
+        Runtime runtime = mock(Runtime.class);
+        Process process = mock(Process.class);
+        IProcess eclipseProcess = mock(IProcess.class);
+        when(runtime.exec("WRIMSv3_Engine.bat")).thenReturn(process);
+        when(process.exitValue()).thenReturn(17);
+
+        try (MockedStatic<Runtime> runtimeMock = mockStatic(Runtime.class);
+            MockedStatic<DebugPlugin> debugPluginMock = mockStatic(DebugPlugin.class);
+            MockedConstruction<WPPDebugTarget> targetMock = mockConstruction(WPPDebugTarget.class)) {
+            runtimeMock.when(Runtime::getRuntime).thenReturn(runtime);
+            debugPluginMock.when(() -> DebugPlugin.newProcess(launch, process, "DebugWPP"))
+                .thenReturn(eclipseProcess);
+
+            int exitCode = invokeRunDebugSession(runDebugSession, launch, false);
+
+            assertEquals(17, exitCode);
+            verify(launch).addDebugTarget(targetMock.constructed().get(0));
+            verify(launch, org.mockito.Mockito.never()).removeDebugTarget(any());
+            verify(process).waitFor();
+        }
+    }
+
+    @Test
+    /** Verifies completed sessions remove their target and destroy the engine process. */
+    void runDebugSessionRemovesTargetWhenRequested() throws Exception {
+        Method runDebugSession = WPPLaunchDelegate.class.getDeclaredMethod("runDebugSession", ILaunch.class,
+            int.class, int.class, boolean.class);
+        runDebugSession.setAccessible(true);
+        ILaunch launch = mock(ILaunch.class);
+        Runtime runtime = mock(Runtime.class);
+        Process process = mock(Process.class);
+        IProcess eclipseProcess = mock(IProcess.class);
+        when(runtime.exec("WRIMSv3_Engine.bat")).thenReturn(process);
+        when(process.exitValue()).thenReturn(0);
+
+        try (MockedStatic<Runtime> runtimeMock = mockStatic(Runtime.class);
+            MockedStatic<DebugPlugin> debugPluginMock = mockStatic(DebugPlugin.class);
+            MockedConstruction<WPPDebugTarget> targetMock = mockConstruction(WPPDebugTarget.class)) {
+            runtimeMock.when(Runtime::getRuntime).thenReturn(runtime);
+            debugPluginMock.when(() -> DebugPlugin.newProcess(launch, process, "DebugWPP"))
+                .thenReturn(eclipseProcess);
+
+            assertEquals(0, invokeRunDebugSession(runDebugSession, launch, true));
+
+            verify(launch).removeDebugTarget(targetMock.constructed().get(0));
+            verify(process).destroy();
+        }
+    }
+
+    @Test
+    /** Verifies initialization failure cleans up an unregistered debug process. */
+    void runDebugSessionCleansUpWhenTargetInitializationFails() throws Exception {
+        Method runDebugSession = WPPLaunchDelegate.class.getDeclaredMethod("runDebugSession", ILaunch.class,
+            int.class, int.class, boolean.class);
+        runDebugSession.setAccessible(true);
+        ILaunch launch = mock(ILaunch.class);
+        Runtime runtime = mock(Runtime.class);
+        Process process = mock(Process.class);
+        IProcess eclipseProcess = mock(IProcess.class);
+        when(runtime.exec("WRIMSv3_Engine.bat")).thenReturn(process);
+        when(process.isAlive()).thenReturn(true);
+        when(process.waitFor(5, java.util.concurrent.TimeUnit.SECONDS)).thenReturn(true);
+        when(eclipseProcess.isTerminated()).thenReturn(false);
+
+        try (MockedStatic<Runtime> runtimeMock = mockStatic(Runtime.class);
+            MockedStatic<DebugPlugin> debugPluginMock = mockStatic(DebugPlugin.class);
+            MockedConstruction<WPPDebugTarget> targetMock = mockConstruction(WPPDebugTarget.class,
+                (target, context) -> doThrow(new DebugException(
+                    new Status(IStatus.ERROR, "test", "startup failed"))).when(target).getStart())) {
+            runtimeMock.when(Runtime::getRuntime).thenReturn(runtime);
+            debugPluginMock.when(() -> DebugPlugin.newProcess(launch, process, "DebugWPP"))
+                .thenReturn(eclipseProcess);
+
+            InvocationTargetException failure = assertThrows(InvocationTargetException.class,
+                () -> invokeRunDebugSession(runDebugSession, launch, false));
+
+            assertTrue(failure.getCause() instanceof DebugException);
+            verify(eclipseProcess).terminate();
+            verify(process).destroy();
+            verifyNoInteractions(launch);
+        }
+    }
+
+        private static int invokeRunDebugSession(Method method, ILaunch launch, boolean removeTarget) throws Exception {
+        return (int) method.invoke(new WPPLaunchDelegate(), launch, 1, 2, removeTarget);
+        }
 
     private static String remoteDebugSettings() throws Exception {
         Method method = WPPLaunchDelegate.class.getDeclaredMethod("getRemoteDebugSettings");
