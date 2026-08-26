@@ -39,6 +39,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -47,6 +48,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.IDebugTarget;
@@ -177,14 +179,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		try {
 			if (mode.equals("debug")){
 				DebugCorePlugin.debugSet.reset();
-				Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
-				IProcess p = DebugPlugin.newProcess(launch, process, "DebugWPP");
-				try(WPPDebugTarget target = new WPPDebugTarget(launch, p, requestPort, eventPort)) {
-					target.getStart();
-					launch.addDebugTarget(target);
-					process.waitFor();
-					terminateCode = process.exitValue();
-				}
+				terminateCode = runDebugSession(launch, requestPort, eventPort, false);
 			}else{
 				Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
 				IProcess p = DebugPlugin.newProcess(launch, process, "RunWPP");
@@ -195,8 +190,35 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		} catch (Exception e) {
 			WPPException.handleException(e);
 		}
-		
+
 		return terminateCode;
+	}
+
+	private int runDebugSession(ILaunch launch, int requestPort, int eventPort, boolean removeTargetAfterCompletion) throws Exception {
+		Process process = null;
+		IProcess eclipseProcess = null;
+		boolean targetRegistered = false;
+		try {
+			process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
+			eclipseProcess = DebugPlugin.newProcess(launch, process, "DebugWPP");
+			try (WPPDebugTarget target = new WPPDebugTarget(launch, eclipseProcess, requestPort, eventPort)) {
+				target.getStart();
+				launch.addDebugTarget(target);
+				targetRegistered = true;
+				process.waitFor();
+				int terminateCode = process.exitValue();
+				if (removeTargetAfterCompletion) {
+					launch.removeDebugTarget(target);
+					process.destroy();
+				}
+				return terminateCode;
+			}
+		} catch (Exception e) {
+			if (!targetRegistered) {
+				cleanupStartedDebugProcess(eclipseProcess, process);
+			}
+			throw e;
+		}
 	}
 	
 	public int paLaunch(ILaunchConfiguration configuration, String mode, ILaunch launch) throws CoreException{
@@ -227,16 +249,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 			try {
 				if (mode.equals("debug")){
 					DebugCorePlugin.debugSet.reset();
-					Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
-					IProcess p = DebugPlugin.newProcess(launch, process, "DebugWPP");
-					try(WPPDebugTarget target = new WPPDebugTarget(launch, p, requestPort, eventPort)) {
-						target.getStart();
-						launch.addDebugTarget(target);
-						process.waitFor();
-						terminateCode = process.exitValue();
-						launch.removeDebugTarget(target);
-						process.destroy();
-					}
+					terminateCode = runDebugSession(launch, requestPort, eventPort, true);
 				}else{
 					Process process = Runtime.getRuntime().exec(WPPSettings.WRIMS_ENGINE_BAT);
 					IProcess p = DebugPlugin.newProcess(launch, process, "RunWPP");
@@ -553,7 +566,7 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		}
 		*/
         String javaPath = EclipseUtil.getJreRelativePath().resolve("bin").resolve("java").toString();
-        String remoteDebugSettings = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006";
+        String remoteDebugSettings = getRemoteDebugSettings();
 		if (compileOnly.equalsIgnoreCase("no")){
 			if (mode.equals("debug")){
 				out.println(javaPath +" -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K " + remoteDebugSettings +" -XX:+CreateCoredumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.components.DebugInterface "+requestPort+" "+eventPort+" "+"-config="+configFilePath);
@@ -569,7 +582,15 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 		}
 		out.close();
 	}
-	
+
+	private String getRemoteDebugSettings() {
+		String jdwpPort = System.getProperty("wrims.jdwp.port", "0").trim();
+		if (jdwpPort.equalsIgnoreCase("off") || jdwpPort.equalsIgnoreCase("false")) {
+			return "";
+		}
+		return "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:" + jdwpPort;
+	}
+
 	public String generateConfigFile(ILaunchConfiguration configuration, String mainFileAbsPath){
 		
 		Map<String, String> configMap = new HashMap<String, String>();
@@ -938,6 +959,28 @@ public class WPPLaunchDelegate extends LaunchConfigurationDelegate {
 	 */
 	private void abort(String message, Throwable e) throws CoreException {
 		throw new CoreException(new Status(IStatus.ERROR, DebugCorePlugin.getDefault().getBundle().getSymbolicName(), 0, message, e));
+	}
+
+	private void cleanupStartedDebugProcess(IProcess eclipseProcess, Process javaProcess) {
+		try {
+			if (eclipseProcess != null && !eclipseProcess.isTerminated()) {
+				eclipseProcess.terminate();
+			}
+		} catch (DebugException e) {
+			WPPException.handleException(e);
+		}
+
+		if (javaProcess != null && javaProcess.isAlive()) {
+			javaProcess.destroy();
+			try {
+				if (!javaProcess.waitFor(5, TimeUnit.SECONDS)) {
+					javaProcess.destroyForcibly();
+				}
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				javaProcess.destroyForcibly();
+			}
+		}
 	}
 	
 	/**

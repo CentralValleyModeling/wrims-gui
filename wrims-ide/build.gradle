@@ -32,6 +32,7 @@ dependencies {
 
     windows_x64(libs.javaHeclib){artifact {type = 'zip'}}
     testImplementation(libs.bundles.junit5)
+    testImplementation libs.mockito
 
     // GraalPy
     runtimeOnly(libs.bundles.graalvm.runtime)

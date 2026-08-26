@@ -28,6 +28,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.lang.reflect.InvocationTargetException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -115,6 +116,9 @@ public class WPPDebugTarget extends WPPDebugElement
 	private Vector fEventListeners = new Vector();
 	private final CountDownLatch initialized = new CountDownLatch(1);
 	private volatile Exception initializationFailure;
+	private static final int CONNECT_TIMEOUT_MS = 1000;
+	private static final int CONNECT_RETRY_DELAY_MS = 500;
+	private static final int CONNECT_RETRY_LIMIT_MS = 30000;
 
 	/**
 	 * Listens to events from the WPP VM and fires corresponding 
@@ -191,10 +195,8 @@ public class WPPDebugTarget extends WPPDebugElement
 			fLaunch = launch;
 			fProcess = process;
 			addEventListener(this);
-			// give interpreter a chance to start
-			Thread.sleep(3000);
-			fRequestSocket = new Socket("localhost", requestPort);
-			fEventSocket = new Socket("localhost", eventPort);
+			fRequestSocket = connectSocketWithRetry(requestPort);
+			fEventSocket = connectSocketWithRetry(eventPort);
 			fRequestWriter = new PrintWriter(fRequestSocket.getOutputStream());
 			fRequestReader = new BufferedReader(new InputStreamReader(fRequestSocket.getInputStream()));
 			fEventReader = new BufferedReader(new InputStreamReader(fEventSocket.getInputStream()));
@@ -216,6 +218,33 @@ public class WPPDebugTarget extends WPPDebugElement
 		} finally {
 			initialized.countDown();
 		}
+	}
+
+	private Socket connectSocketWithRetry(int port) throws IOException, InterruptedException {
+		long deadline = System.currentTimeMillis() + CONNECT_RETRY_LIMIT_MS;
+		IOException lastException = null;
+
+		while (System.currentTimeMillis() < deadline) {
+			if (fProcess != null && fProcess.isTerminated()) {
+				throw new IOException("WPP VM process terminated before opening port " + port, lastException);
+			}
+
+			Socket socket = new Socket();
+			try {
+				socket.connect(new InetSocketAddress("localhost", port), CONNECT_TIMEOUT_MS);
+				return socket;
+			} catch (IOException e) {
+				lastException = e;
+				try {
+					socket.close();
+				} catch (IOException closeException) {
+					lastException.addSuppressed(closeException);
+				}
+				Thread.sleep(CONNECT_RETRY_DELAY_MS);
+			}
+		}
+
+		throw new IOException("Timed out waiting for WPP VM port " + port, lastException);
 	}
 
 	private boolean awaitInitialized() throws DebugException {
@@ -250,19 +279,21 @@ public class WPPDebugTarget extends WPPDebugElement
 			fRequestReader.close();
 		}
 	}
-	
-	public void getStart() {
-		String data;
-		try {
-			data=sendRequest("start");
-			DebugCorePlugin.isDebugging=true;
-			
-			data=sendRequest("time:"+DebugCorePlugin.debugYear+"/"+DebugCorePlugin.debugMonth+"/"+DebugCorePlugin.debugDay+"/"+DebugCorePlugin.debugCycle);
-			data=sendRequest("conditional_breakpoint:"+DebugCorePlugin.conditionalBreakpoint);
-			enableRunMenuWithStart();
-		} catch (DebugException e) {
-			WPPException.handleException(e);
+
+	public void getStart() throws DebugException {
+		requireResponse("start");
+		requireResponse("time:"+DebugCorePlugin.debugYear+"/"+DebugCorePlugin.debugMonth+"/"+DebugCorePlugin.debugDay+"/"+DebugCorePlugin.debugCycle);
+		requireResponse("conditional_breakpoint:"+DebugCorePlugin.conditionalBreakpoint);
+		DebugCorePlugin.isDebugging=true;
+		enableRunMenuWithStart();
+	}
+
+	private String requireResponse(String request) throws DebugException {
+		String data = sendRequest(request);
+		if (data == null) {
+			requestFailed("No response for startup request: " + request, null);
 		}
+		return data;
 	}
 	
 	public void processViews(){
