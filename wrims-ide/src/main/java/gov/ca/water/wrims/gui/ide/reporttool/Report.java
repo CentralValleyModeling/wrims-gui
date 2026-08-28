@@ -40,6 +40,7 @@ import java.util.StringJoiner;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -713,9 +714,9 @@ public final class Report implements IRunnableWithProgress {
             if (regex == null || regex.isEmpty()) {
                 continue;
             }
-
+            Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
             String actual = getPathPart(pathname, i + 1);
-            if (!actual.matches(regex)) {
+            if (!pattern.matcher(actual).matches()) {
                 return false;
             }
         }
