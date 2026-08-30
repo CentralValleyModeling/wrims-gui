@@ -71,8 +71,8 @@ public final class Report implements IRunnableWithProgress {
     private static final String S_SEPT = "S_SEPT";
     private static final String IGNORE = "ignore";
 
-    private static final double CFS_TO_TAF_MONTHLY = 1.9834710743801653 / 1000.0;
-    private static final double TAF_TO_CFS_MONTHLY = 1000.0 / 1.9834710743801653;
+    // 1 cfs sustained for 1 day = 1.9834710743801653 acre-feet.
+    private static final double AC_FT_PER_DAY_PER_CFS = 1.9834710743801653;
 
     private final List<String> messages = new ArrayList<>();
     private final InputStream inputStream;
@@ -581,7 +581,11 @@ public final class Report implements IRunnableWithProgress {
         double[] converted = Arrays.copyOf(data.values, data.values.length);
         for (int i = 0; i < converted.length; i++) {
             if (!isMissing(converted[i])) {
-                converted[i] = converted[i] * CFS_TO_TAF_MONTHLY;
+                int daysInMonth = ZonedDateTime.ofInstant(
+                        Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault())
+                    .toLocalDate().lengthOfMonth();
+                // cfs * (ac-ft/day per cfs) * days_in_month / 1000 = TAF for the month
+                converted[i] = converted[i] * AC_FT_PER_DAY_PER_CFS * daysInMonth / 1000.0;
             }
         }
         return data.withValues(converted, "TAF");
@@ -591,7 +595,11 @@ public final class Report implements IRunnableWithProgress {
         double[] converted = Arrays.copyOf(data.values, data.values.length);
         for (int i = 0; i < converted.length; i++) {
             if (!isMissing(converted[i])) {
-                converted[i] = converted[i] * TAF_TO_CFS_MONTHLY;
+                int daysInMonth = ZonedDateTime.ofInstant(
+                        Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault())
+                    .toLocalDate().lengthOfMonth();
+                // TAF * 1000 / (ac-ft/day per cfs * days_in_month) = average cfs for the month
+                converted[i] = converted[i] * 1000.0 / (AC_FT_PER_DAY_PER_CFS * daysInMonth);
             }
         }
         return data.withValues(converted, "CFS");
