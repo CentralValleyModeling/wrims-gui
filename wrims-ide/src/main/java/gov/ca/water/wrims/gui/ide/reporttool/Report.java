@@ -579,11 +579,10 @@ public final class Report implements IRunnableWithProgress {
 
     private DssSeries cfs2taf(DssSeries data) {
         double[] converted = Arrays.copyOf(data.values, data.values.length);
+        ZoneId zone = ZoneId.systemDefault();
         for (int i = 0; i < converted.length; i++) {
             if (!isMissing(converted[i])) {
-                int daysInMonth = ZonedDateTime.ofInstant(
-                        Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault())
-                    .toLocalDate().lengthOfMonth();
+                int daysInMonth = Instant.ofEpochMilli(data.times[i]).atZone(zone).toLocalDate().lengthOfMonth();
                 // cfs * (ac-ft/day per cfs) * days_in_month / 1000 = TAF for the month
                 converted[i] = converted[i] * AC_FT_PER_DAY_PER_CFS * daysInMonth / 1000.0;
             }
@@ -593,11 +592,10 @@ public final class Report implements IRunnableWithProgress {
 
     private DssSeries taf2cfs(DssSeries data) {
         double[] converted = Arrays.copyOf(data.values, data.values.length);
+        ZoneId zone = ZoneId.systemDefault();
         for (int i = 0; i < converted.length; i++) {
             if (!isMissing(converted[i])) {
-                int daysInMonth = ZonedDateTime.ofInstant(
-                        Instant.ofEpochMilli(data.times[i]), ZoneId.systemDefault())
-                    .toLocalDate().lengthOfMonth();
+                int daysInMonth = Instant.ofEpochMilli(data.times[i]).atZone(zone).toLocalDate().lengthOfMonth();
                 // TAF * 1000 / (ac-ft/day per cfs * days_in_month) = average cfs for the month
                 converted[i] = converted[i] * 1000.0 / (AC_FT_PER_DAY_PER_CFS * daysInMonth);
             }
