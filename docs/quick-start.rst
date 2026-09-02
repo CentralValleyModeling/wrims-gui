@@ -18,8 +18,19 @@ after completing this Quick Start.
 1. Download WRIMS 3 GUI
 -----------------------
 
-WRIMS 3 GUI distributions are available from the WRIMS GUI GitHub
-Releases page:
+The Department of Water Resources WRIMS website is the official release
+location for WRIMS GUI:
+
+`Department of Water Resources WRIMS Website
+<https://water.ca.gov/Library/Modeling-and-Analysis/Modeling-Platforms/Water-Resource-Integrated-Modeling-System>`_
+
+.. note::
+
+   The DWR website currently lists WRIMS 2 only. It will be updated to
+   include WRIMS 3 in the future.
+
+Until WRIMS 3 is available from the DWR website, WRIMS 3 GUI
+distributions are also available from the WRIMS GUI GitHub Releases page:
 
 `WRIMS GUI Releases
 <https://github.com/CentralValleyModeling/wrims-gui/releases>`_
