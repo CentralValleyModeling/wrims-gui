@@ -450,8 +450,7 @@ public class GeneralTreeModel extends DefaultTreeModel implements Serializable {
         DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[100];
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            DocumentBuilder builder = XmlUtilities.newDocumentBuilder();
             Document doc = builder.parse(fname);
             Element top = doc.getDocumentElement();
             DocumentTraversal traversal = (DocumentTraversal) doc;
