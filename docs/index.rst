@@ -9,6 +9,7 @@ Site Index
    :caption: Contents:
 
    Home<home>
+   Quick Start<quick-start>
    Overview<overview>
    1. Getting Started<getting-started>
    2. Concepts and Interface<concepts>
@@ -19,3 +20,4 @@ Site Index
    7. Special Executions<special-executions>
    8. DSS Review and Results<dss>
    9. Schematic Workflows<schematic-workflows>
+   10. Troubleshooting<troubleshooting>

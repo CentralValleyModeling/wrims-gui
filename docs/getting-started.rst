@@ -2,7 +2,14 @@
 
 1. Getting Started
 ==================
+.. note::
 
+   If this is your first time using WRIMS 3 GUI, begin with the
+   :doc:`WRIMS 3 GUI Quick Start <quick-start>`.
+
+   The Quick Start explains where to obtain WRIMS 3 GUI, where to place
+   the application and study files, where to obtain a first study, and
+   how to complete an initial study load and run.
 
 .. _11-basic-load-existing-study:
 
@@ -18,14 +25,15 @@ This chapter explains how to import an existing study into the current **WRIMS 3
 
 Before beginning, make sure that:
 
-- **WRIMS 3 GUI** is installed and can be launched from the ``WRIMS2_GUI_x64`` package.
+- **WRIMS 3 GUI** has been downloaded and extracted as described in the
+  :doc:`WRIMS 3 GUI Quick Start <quick-start>`.
 - You have access to an existing study folder that already contains a ``.project`` file.
 - The study is not currently listed in **Project Explorer**.
 
 **Procedure**
 
 
-To launch **WRIMS 3 GUI**, open the ``WRIMS2_GUI_x64`` package folder and double-click ``WRIMS2_GUI_x64``.
+To launch **WRIMS 3 GUI**, open the WRIMS 3 installation folder and double-click ``WRIMS3_GUI_Start.bat``.
 
 .. image:: diagrams/frames/01_Basic_LoadExistingStudy/01_Basic_LoadExistingStudy_720.png
 
@@ -222,9 +230,9 @@ If a launch file is included in the package, it is also available after the stud
 **Notes**
 
 
-- Confirm where the zip file will be extracted before finishing the load operation.
+- WRIMS extracts the study into a folder next to the selected ZIP file. Before using **Load Zip File**, place the ZIP file in the study working directory where you want the extracted study folder to remain.
 - After extraction, verify that the expected study structure appears in **Project Explorer**.
-- If there is no .project file in the zip file, unzip function will only unzip the zip file but not import to WRIMS GUI.
+- If there is no ``.project`` file in the ZIP file, the ZIP loader will extract the study but will not automatically import it into WRIMS 3 GUI.
 
 ** Troubleshooting **
 
