@@ -6,6 +6,14 @@ WRIMS 3 GUI
 .. note::
    This documentation project is under active development.
 
+New to WRIMS 3?
+---------------
+
+If this is your first time using WRIMS 3 GUI, start with the
+:doc:`WRIMS 3 GUI Quick Start <quick-start>`.
+
+The Quick Start explains how to download and start WRIMS 3 GUI, obtain a first study, load the study, begin an initial model run. It also links to troubleshooting guidance for common first-use issues.
+
 GUI Documentation
 -----------------
 
@@ -13,6 +21,7 @@ This site contains documentation for the WRIMS 3 GUI, including interface guidan
 
 Core sections:
 
+- :doc:`quick-start`
 - :doc:`overview`
 - :doc:`getting-started`
 - :doc:`concepts`
@@ -23,6 +32,7 @@ Core sections:
 - :doc:`special-executions`
 - :doc:`dss`
 - :doc:`schematic-workflows`
+- :doc:`troubleshooting`
 
 Other WRIMS Documentation
 -------------------------
