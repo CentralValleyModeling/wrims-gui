@@ -10,6 +10,8 @@ package gov.ca.water.hecdssvue.dts;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
@@ -25,13 +27,28 @@ import org.w3c.dom.traversal.TreeWalker;
 
 public class XmlUtilities {
 
+    /**
+     * Creates an XML document builder with external entity and DTD access disabled.
+     *
+     * @return a securely configured document builder
+     * @throws ParserConfigurationException if the secure parser configuration is unsupported
+     */
+    public static DocumentBuilder newDocumentBuilder() throws ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
+        factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+        factory.setXIncludeAware(false);
+        factory.setExpandEntityReferences(false);
+        return factory.newDocumentBuilder();
+    }
+
     public static Document newDocument() throws IOException {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory
-                .newInstance();
-            factory.setValidating(false);
-            factory.setNamespaceAware(false);
-            return factory.newDocumentBuilder().newDocument();
+            return newDocumentBuilder().newDocument();
         } catch (ParserConfigurationException ex) {
             throw new IOException(ex);
         }
