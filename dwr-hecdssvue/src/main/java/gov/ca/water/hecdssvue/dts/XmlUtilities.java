@@ -27,6 +27,12 @@ import org.w3c.dom.traversal.TreeWalker;
 
 public class XmlUtilities {
 
+    private static final String[] EXTERNAL_ENTITY_FEATURES = {
+        "http://xml.org/sax/features/external-general-entities",
+        "http://xml.org/sax/features/external-parameter-entities",
+        "http://apache.org/xml/features/nonvalidating/load-external-dtd"
+    };
+
     /**
      * Creates an XML document builder with external entity and DTD access disabled.
      *
@@ -36,9 +42,9 @@ public class XmlUtilities {
     public static DocumentBuilder newDocumentBuilder() throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-        factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-        factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-        factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        for (String feature : EXTERNAL_ENTITY_FEATURES) {
+            factory.setFeature(feature, false);
+        }
         factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
         factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
         factory.setXIncludeAware(false);
