@@ -23,5 +23,7 @@ dependencies {
     }
     implementation libs.eclipse.osgi
     implementation libs.eclipse.core.resources
+
+    testImplementation(libs.bundles.junit5)
 }
 
