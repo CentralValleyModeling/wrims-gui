@@ -1,5 +1,27 @@
 @echo off
-cd..
-jre\bin\java -Djava.library.path="lib" -cp "dropins\wrimsv2_plugin_1.0.0.0.jar;lib\xml.jar;lib\xmlbeans-2.3.0.jar;lib\hec.jar;lib\hecData.jar;lib\heclib.jar;lib\rma.jar;batchrun\org.eclipse.core.runtime-3.1.0.jar;plugins\org.apache.commons.io_2.0.1.v201105210651.jar;plugins\org.eclipse.debug.core_3.9.1.v20140805-1629.jar;plugins\org.eclipse.osgi_3.10.2.v20150203-1939.jar;plugins\org.eclipse.equinox.common_3.6.200.v20130402-1505.jar;plugins\org.eclipse.core.resources_3.9.1.v20140825-1431.jar;plugins\org.eclipse.ui.workbench_3.106.2.v20150204-1030.jar;plugins\org.eclipse.swt.win32.win32.x86_64_3.103.2.v20150203-1351.jar;plugins\org.eclipse.jface_3.10.2.v20141021-1035.jar" wrimsv2_plugin.batchrun.BatchRunCmd -p batchrun\LaunchFileGroup.lfg
+cd ..
+
+REM PROJECT SETTINGS: PROJECT_DIR, and LFG_FILE variables as needed.
+set PROJECT_DIR=J:\wrims\projects\example_study
+set LFG_FILE=example.lfg
+
+REM Set the JAVA_HOME environment variable to the path of your java 21 JDK
+set JAVA_HOME="jre"
+
+set temp_wrims2=".\foo"
+
+REM Add the required DLLs to the PATH. Do not change if this if run from the wrims-gui directory.
+set PATH=%PATH%;lib
+
+REM Add the external libraries to the PATH. Do not change.
+set PATH=%PATH%;%PROJECT_DIR%\Run\External
+
+REM Set the main class to run. This is the entry point for the WRIMS application. Do not change when running from wrims-gui.
+set MAIN_CLASS=gov.ca.water.wrims.gui.ide.batchrun.BatchRunCmd
+set LIB_JARS="lib\*"
+set PLUGIN_JARS="plugins\*;batchrun\*"
+
+%JAVA_HOME%\bin\java -Xmx4096m -Xss1024K -Djava.library.path="lib" -Dproject.dir="%PROJECT_DIR%" -cp "%LIB_JARS%;%PLUGIN_JARS%" %MAIN_CLASS% -p %PROJECT_DIR%\%LFG_FILE%
+
 cd batchrun
-echo Simulations Completed 
+pause
