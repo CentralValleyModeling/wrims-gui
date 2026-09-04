@@ -1,3 +1,13 @@
-Z:\CalLite_v47_x64\callite\CalLitev47.launch
-D:\MultiStudyRuns_x64\MultiStudy.launch
-D:\CAM_Plus\PA_OCAPBIOP_CAM_DFT_WRIMS2_NewCAMPlus_DynamicSJR_01012015_x64\CAM_DFT_PA_W2.launch
+!!! This is an example "Launch File Group"       !!!
+!!!                                              !!!
+!!! It specifies a list of launch files that     !!!
+!!! will be used when batch running models
+!!! from the command line. See the WRIMS-GUI     !!!
+!!! documentation for more information.          !!!
+!!! https://wrims-docs.readthedocs.io/projects   !!!
+!!! /wrims-gui/en/latest/special-executions.html !!!
+!!!                                              !!!
+!!!  REMOVE THIS COMMENT BEFORE USING THIS FILE  !!!
+Z:\FOO\BAR\EXAMPLE_1.launch
+Z:\FOO\BAR\EXAMPLE_2.launch
+Z:\FOO\BAR\EXAMPLE_3.launch
