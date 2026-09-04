@@ -25,7 +25,6 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -450,8 +449,7 @@ public class GeneralTreeModel extends DefaultTreeModel implements Serializable {
         DefaultMutableTreeNode[] nodes = new DefaultMutableTreeNode[100];
 
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
+            DocumentBuilder builder = XmlUtilities.newDocumentBuilder();
             Document doc = builder.parse(fname);
             Element top = doc.getDocumentElement();
             DocumentTraversal traversal = (DocumentTraversal) doc;
