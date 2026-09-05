@@ -16,17 +16,26 @@ allprojects {
 }
 
 // This utilizes Git Tag based versioning to set the version of the project based on the current Git Branch or Tag.
-// If a tag is checked out, the version will be the name of the most recent tag on this commit.
+// If a tag is checked out, the version will be the name of the most recent tag.
 // Otherwise, the version will be last version suffixed with a +
 def versionLabel(gitInfo) {
     def branch = gitInfo.branchName // all branches are snapshots, only tags get released
     def tag = gitInfo.lastTag
-    def defaultVersion = tag + ".9999"
+    def defaultVersion = tag
     def isNumericTag = gitInfo.lastTag ==~ /^\d+\.\d+\.\d+.*/
     if(!isNumericTag) {
         defaultVersion = "1.0.0.9999"
+    } else {
+        if (branch != null) {
+            // for branches, append snapshot
+            defaultVersion = tag + ".9999"
+        }
     }
-    // tag is returned as is. Branch may need cleanup
+    // Make version OSGi compliant by replacing dots in qualifier with underscores
+    def parts = defaultVersion.split('\\.')
+    if (parts.length > 3) {
+        defaultVersion = parts[0..2].join('.') + '.' + parts[3..-1].join('_')
+    }
     return branch == null ? tag : defaultVersion
 }
 
@@ -82,4 +91,10 @@ subprojects { p ->
             property "sonar.coverage.jacoco.xmlReportPaths", "$rootDir/build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml"
         }
     }
+}
+
+tasks.register("stageBundles", Copy) {
+    into "wrims-platform/p2-bridge/target/bundles/plugins"
+    from subprojects.findAll {it.plugins.hasPlugin('java')|| it.plugins.hasPlugin('java-library') }
+            .collect { it.tasks.named("jar") }
 }

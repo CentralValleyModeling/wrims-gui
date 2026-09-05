@@ -1,6 +1,6 @@
 Bundle-SymbolicName: xtext-editor;singleton:=true
 Bundle-Name: xtext-editor
-Bundle-Version: 1.0.0.0
+Bundle-Version: ${project.version}
 Bundle-ManifestVersion: 2.0
 Bundle-Vendor: California Department of Water Resources
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -21,7 +21,7 @@ Require-Bundle: \
     org.eclipse.core.runtime,\
     org.eclipse.xtext.xbase.lib,\
     org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,\
-    third-party;bundle-version="1.0.0"
+    third-party;bundle-version="${project.version}"
 
 Import-Package: \
     org.apache.log4j,\
