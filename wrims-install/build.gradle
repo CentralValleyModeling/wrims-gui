@@ -5,11 +5,13 @@ plugins {
 }
 
 configurations {
+    wsidiRuntime
     windows_x64
     graalvm
 }
 
 dependencies {
+    wsidiRuntime(libs.jython.standalone) { transitive = false }
     windows_x64 "gov.ca.dwr:run-libs:0.1.0"
     implementation libs.wrims.core
 }
@@ -238,8 +240,15 @@ tasks.register('copyThirdPartyToLib', Copy) {
 }
 
 //Copies all updated resource files into the installer
-tasks.register('copyResources', Copy) {
+tasks.register('copyWsiDiRuntime', Copy) {
     dependsOn copyThirdPartyToLib
+    from(configurations.wsidiRuntime)
+    into("${buildDir}/installer/${wrimsGuiFolder}/vista/lib")
+    rename { 'jython-standalone.jar' }
+}
+
+tasks.register('copyResources', Copy) {
+    dependsOn copyWsiDiRuntime
     from("src/main/resources/installer")
     into("${buildDir}/installer/${wrimsGuiFolder}")
 }
@@ -273,6 +282,15 @@ tasks.register('buildWrimsInstall', DefaultTask) {
         def releaseDateFile = file("${buildDir}/installer/${wrimsGuiFolder}/releasedate.log")
         releaseDateFile.text = new Date().format('MM/dd/yyyy')
     }
+}
+
+tasks.register('testBatchrunContracts', Exec) {
+    group 'verification'
+    description 'Tests WsiDi batch failure and template contracts using the built Windows installation.'
+    dependsOn buildWrimsInstall
+    workingDir = file("${buildDir}/installer/${wrimsGuiFolder}/WSIDIGenerator")
+    commandLine 'cmd.exe', '/d', '/c', 'call', '..\\vista\\bin\\vscript.bat',
+            file('src/test/python/test_batchrun_contract.py').absolutePath, '-v'
 }
 
 // Task that zips the wrims_gui_x64_${version} folder into a zip file
@@ -379,10 +397,17 @@ tasks.register('copyThirdPartyToPatchLib', Copy) {
     into("${buildDir}/patch/${wrimsPatchFolder}/lib")
 }
 
+tasks.register('copyWsiDiRuntimeToPatch', Copy) {
+    dependsOn copyThirdPartyToPatchLib
+    from(configurations.wsidiRuntime)
+    into("${buildDir}/patch/${wrimsPatchFolder}/vista/lib")
+    rename { 'jython-standalone.jar' }
+}
+
 
 //Copies all updated resource files into the installer
 tasks.register('copyResourcesToPatch', Copy) {
-    dependsOn copyThirdPartyToPatchLib
+    dependsOn copyWsiDiRuntimeToPatch
     from("src/main/resources/installer") {
         exclude "WRIMS3_GUI_Update_and_Start.bat"
     }
@@ -421,6 +446,3 @@ tasks.register('zipWrimsPatch', Zip) {
     archiveFileName = "${wrimsPatchFolder}.zip"
     destinationDirectory = file("${buildDir}/patch")
 }
-
-
-
