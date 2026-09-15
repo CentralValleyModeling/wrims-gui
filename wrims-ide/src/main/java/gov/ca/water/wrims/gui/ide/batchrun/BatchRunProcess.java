@@ -451,8 +451,9 @@ public class BatchRunProcess {
 		*/
 
 		out.println(EclipseUtil.getJreRelativePath()+"\\bin\\java -Xmx"+DebugCorePlugin.xmx+"m -Xss1024K -XX:+CreateMinidumpOnCrash -Duser.timezone=Etc/GMT+8 -Djava.library.path=\"" + externalPath + ";lib\" -cp \""+externalPath+";"+"lib\\external;lib\\*\" gov.ca.water.wrims.engine.core.components.ControllerBatch "+"-config="+configFilePath);
+		out.println("set \"WRIMS_EXIT=%errorlevel%\"");
 		out.println("timeout 10 > NUL");
-		out.println("exit");
+		out.println("exit %WRIMS_EXIT%");
 		out.close();
 	}
 	
