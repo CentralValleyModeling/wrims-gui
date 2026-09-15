@@ -13,12 +13,12 @@ import sys
 from SequentialStudyTab import *
 
 # java class imports - standard
-from java.awt import *
-from java.awt.event import *
-from java.io import *
-from java.util import *
-from javax.swing import *
-from java.lang import *
+# Preserve the existing generator's parameter slots at lines 29-33.
+# These imports were unused; Java package wildcard loading fails in Jython.
+# StudyTab supplies the model execution and curve-generation functions.
+# Parameter slot order: studyDvNames, lookupNames, engineNames,
+# launchNames, offsets. Keep this header length until the generator changes.
+# No Java desktop classes are used by this template.
 
 # Main class
 
@@ -30,6 +30,7 @@ def main():
         lookupNames=[r"WILL BE OVERWRITTEN", r"WILL BE OVERWRITTEN"]
         engineNames=[r"WILL BE OVERWRITTEN", r"WILL BE OVERWRITTEN"]
         launchNames=[r"WILL BE OVERWRITTEN", r"WILL BE OVERWRITTEN"]
+        offsets=[]
     except Exception:
         pass
     # WSI-DI curve labels and DSS pathnames
@@ -41,7 +42,7 @@ def main():
     crvMax = [20000,20000]
 
     s=StudyTab()
-    s.runForWsi(studyDvNames,crvName,crvWsiVar,crvDiVar,crvMax,lookupNames,engineNames,launchNames)
+    s.runForWsi(studyDvNames,crvName,crvWsiVar,crvDiVar,crvMax,lookupNames,engineNames,launchNames,offsets)
     sys.exit()
 
   

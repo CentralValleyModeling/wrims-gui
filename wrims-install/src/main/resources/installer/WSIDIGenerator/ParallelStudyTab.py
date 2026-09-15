@@ -8,6 +8,7 @@
 # python modules
 import shutil
 import os
+import Queue
 import subprocess
 import threading
 
@@ -15,12 +16,7 @@ import threading
 from ParallelWsiDiGen import *
 
 # java class imports - standard
-from java.awt import *
-from java.awt.event import *
-from java.io import *
-from java.util import *
-from javax.swing import *
-from java.lang import *
+from java.io import File
 
 tab = "   "
 
@@ -44,8 +40,7 @@ class StudyTab:
    def execute(self, engineName, k):
       print tab+ "Running Model "+str(k+1)+"\n"
    
-      subprocess.call("cmd.exe /c start "+engineName)
-      return 0
+      return subprocess.call(["cmd.exe", "/d", "/c", "call", engineName])
 
    # run WSI-DI procedure for each study
    def runForWsiStudy(self,k,numRun,wd,studyDvNames,crvName,lookupNames,engineNames,launchNames):
@@ -61,8 +56,10 @@ class StudyTab:
                shutil.copy(tblName,tblNameSave) #copy file
 
          # run CALSIM and check status
-         if(self.execute(engineNames[k], k) !=0):
-            break
+         status = self.execute(engineNames[k], k)
+         if status != 0:
+            raise RuntimeError("WRIMS model failed for study %d, iteration %d, exit code %d" %
+                               (k + 1, i + 1, status))
 
          # load wsi-di data and fit curve
          for j in range(len(crvName)):
@@ -100,7 +97,23 @@ class StudyTab:
       print "finished set parameters"
       
       # run CALSIM and extract wsi-di data points for curve generation
+      errors = Queue.Queue()
+      threads = []
+      def runStudy(k):
+         try:
+            self.runForWsiStudy(k,numRun,wd,studyDvNames,crvName,lookupNames,engineNames,launchNames)
+         except Exception as error:
+            errors.put((k, error))
       for k in range(len(studyDvNames)):
-         t = threading.Thread(target=self.runForWsiStudy, args=(k,numRun,wd,studyDvNames,crvName,lookupNames,engineNames,launchNames))
+         t = threading.Thread(target=runStudy, args=(k,))
+         threads.append(t)
          t.start()
-
+      for t in threads:
+         t.join()
+      failures = []
+      while not errors.empty():
+         failures.append(errors.get())
+      if failures:
+         failures.sort(key=lambda failure: failure[0])
+         messages = ["study %d: %s" % (failure[0] + 1, str(failure[1])) for failure in failures]
+         raise RuntimeError("One or more WsiDi studies failed: " + "; ".join(messages))

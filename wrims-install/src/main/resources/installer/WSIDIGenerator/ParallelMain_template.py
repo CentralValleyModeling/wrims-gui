@@ -13,12 +13,12 @@ import sys
 from ParallelStudyTab import *
 
 # java class imports - standard
-from java.awt import *
-from java.awt.event import *
-from java.io import *
-from java.util import *
-from javax.swing import *
-from java.lang import *
+# Preserve the existing generator's parameter slots at lines 29-33.
+# These imports were unused; Java package wildcard loading fails in Jython.
+# StudyTab supplies the model execution and curve-generation functions.
+# Parameter slot order: studyDvNames, lookupNames, engineNames,
+# launchNames, offsets. Keep this header length until the generator changes.
+# No Java desktop classes are used by this template.
 
 # Main class
 
