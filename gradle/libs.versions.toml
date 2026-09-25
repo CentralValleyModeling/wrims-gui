@@ -23,6 +23,7 @@ coinor = "2021.12.17"
 dsm2-input-model = "2010.03.15"
 jpy = "2010.01.17"
 jpython = "1998.10.30"
+jython = "2.7.4"
 swixml = "2007.03.28"
 jdiagram = "4.3.1"
 hdf = "2.10.0"
@@ -83,6 +84,7 @@ coinor = { module = "org.coinor:coinor", version.ref = "coinor" }
 dsm2-input-model = { module = "gov.ca.dsm2:dsm2-input-model", version.ref = "dsm2-input-model" }
 jpy = { module = "org.jpy:jpy", version.ref = "jpy" }
 jpython = { module = "org.jpython:jpython", version.ref = "jpython" }
+jython-standalone = { module = "org.python:jython-standalone", version.ref = "jython" }
 swixml = { module = "org.swixml:swixml", version.ref = "swixml" }
 jdiagram = { module = "com.mindfusion:jdiagram", version.ref = "jdiagram" }
 jarh5obj = { module = "ncsa.hdf:jarh5obj", version.ref = "hdf5" }
