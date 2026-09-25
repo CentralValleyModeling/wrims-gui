@@ -1,5 +1,25 @@
 @echo off
-cd..
-jre\bin\java -Djava.library.path="lib" -cp "dropins\wrimsv2_plugin_1.0.0.0.jar;lib\xml.jar;lib\xmlbeans-2.3.0.jar;lib\hec.jar;lib\hecData.jar;lib\heclib.jar;lib\rma.jar;batchrun\org.eclipse.core.runtime-3.1.0.jar;plugins\org.apache.commons.io_2.0.1.v201105210651.jar;plugins\org.eclipse.debug.core_3.9.1.v20140805-1629.jar;plugins\org.eclipse.osgi_3.10.2.v20150203-1939.jar;plugins\org.eclipse.equinox.common_3.6.200.v20130402-1505.jar;plugins\org.eclipse.core.resources_3.9.1.v20140825-1431.jar;plugins\org.eclipse.ui.workbench_3.106.2.v20150204-1030.jar;plugins\org.eclipse.swt.win32.win32.x86_64_3.103.2.v20150203-1351.jar;plugins\org.eclipse.jface_3.10.2.v20141021-1035.jar" wrimsv2_plugin.batchrun.BatchRunCmd batchrun\LaunchFileGroup.lfg
-cd batchrun
-echo Simulations Completed 
+setlocal DisableDelayedExpansion
+pushd "%~dp0.." || exit /b 1
+set "WRIMS_JAVA=jre\bin\java.exe"
+for /d %%J in ("plugins\*jre.full*") do if exist "%%~fJ\jre\bin\java.exe" set "WRIMS_JAVA=%%~fJ\jre\bin\java.exe"
+if not exist "%WRIMS_JAVA%" (
+    echo ERROR: Bundled Java is missing. Use the complete WRIMS3 installation. 1>&2
+    popd
+    exit /b 1
+)
+if not exist "batchrun\LaunchFileGroup.lfg" (
+    echo ERROR: Missing batchrun\LaunchFileGroup.lfg. 1>&2
+    popd
+    exit /b 2
+)
+findstr /L /C:"REPLACE_WITH_YOUR_MODEL_FOLDER" "batchrun\LaunchFileGroup.lfg" >nul
+if not errorlevel 1 (
+    echo ERROR: Configure batchrun\LaunchFileGroup.lfg before running. 1>&2
+    popd
+    exit /b 2
+)
+"%WRIMS_JAVA%" -Djava.library.path="lib" -cp "dropins\plugins\*;plugins\*;lib\*" gov.ca.water.wrims.gui.ide.batchrun.BatchRunCmd "batchrun\LaunchFileGroup.lfg"
+set "WRIMS_EXIT=%errorlevel%"
+popd
+exit /b %WRIMS_EXIT%
