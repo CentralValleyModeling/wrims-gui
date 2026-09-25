@@ -14,12 +14,7 @@ import subprocess
 from BatchWsiDiGen import *
 
 # java class imports - standard
-from java.awt import *
-from java.awt.event import *
-from java.io import *
-from java.util import *
-from javax.swing import *
-from java.lang import *
+from java.io import File
 
 tab = "   "
 
@@ -42,8 +37,7 @@ class StudyTab:
    def execute(self, engineName, k):
       print tab+ "Running Model "+str(k+1)+"\n"
    
-      subprocess.call(engineName)
-      return 0
+      return subprocess.call(["cmd.exe", "/d", "/c", "call", engineName])
 
    # run WSI-DI procedure
    def runForWsi(self,studyDvNames,crvName,crvWsiVar,crvDiVar,crvMax,lookupNames,engineNames,launchNames,offsets):
@@ -80,8 +74,10 @@ class StudyTab:
                   shutil.copy(tblName,tblNameSave) #copy file
 
             # run CALSIM and check status
-            if(self.execute(engineNames[k] ,k) !=0):
-               break
+            status = self.execute(engineNames[k], k)
+            if status != 0:
+               raise RuntimeError("WRIMS model failed for study %d, iteration %d, exit code %d" %
+                                  (k + 1, i + 1, status))
 
             # load wsi-di data and fit curve
          

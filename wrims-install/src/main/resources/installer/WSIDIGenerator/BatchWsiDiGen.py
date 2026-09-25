@@ -203,8 +203,7 @@ class WsiDiGenCl:
       # The below imports are depriciated
       # from vista.app import * 
       # from vista.graph import *
-      from vista.set import PathPartPredicate, Pathname, SetUtils
-      from vista.db.dss import DSSUtil
+      from DssSeriesReader import read_series_pair
 
       print(tab + "Loading " + self.wsiVar + " and " + self.diVar)
 
@@ -217,23 +216,7 @@ class WsiDiGenCl:
       dcount = 0
 
       # create a group of the proper file
-      g = DSSUtil.createGroup("local",fname)
-      gWsi = g
-      gDi = g.clone()
-      
-      # get data for wsi and di, check for exceptions
-      gWsi.filterBy(PathPartPredicate("^"+self.wsiVar+"$",Pathname.B_PART),True)
-      if (gWsi.getNumberOfDataReferences()!=1):
-         raise Exception("No WSI Variable '"+ self.wsiVar +"' in DSS File!")
-      gDi.filterBy(PathPartPredicate("^"+self.diVar+"$",Pathname.B_PART),True)
-      if (gDi.getNumberOfDataReferences()!=1):
-         raise Exception("No DI Variable '"+ self.diVar +"' in DSS File!")
-      drWsi = gWsi.getDataReference(0)
-      drDi = gDi.getDataReference(0)
-      dsWsi = drWsi.getData()
-      dsDi = drDi.getData()
-      wsi = SetUtils.createYArray(dsWsi)
-      di = SetUtils.createYArray(dsDi)
+      wsi, di = read_series_pair(fname, self.wsiVar, self.diVar)
       nd = self.countDataPoints(wsi)
 
       # last two wsi and first di elements are removed
