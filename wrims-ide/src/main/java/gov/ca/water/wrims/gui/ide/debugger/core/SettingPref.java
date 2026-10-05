@@ -9,12 +9,83 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
+import java.lang.management.ManagementFactory;
+
+import javax.management.AttributeNotFoundException;
+import javax.management.InstanceNotFoundException;
+import javax.management.MBeanException;
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.management.ReflectionException;
+
 
 public class SettingPref {
 	private static String settingPrefFile="setting.prf";
 	private static String cbcSettingPrefFile="CBCSetting.prf";
 	private static String cbcSettingDefaultFile="CBCSettingDefault.prf";
-	
+
+	public static void loadInitially(){
+        try {
+            File file = new File(DebugCorePlugin.dataDir, settingPrefFile);
+            if (!file.exists()){
+                file.createNewFile();
+                DebugCorePlugin.solver="CBC";
+                DebugCorePlugin.xmx="4096";
+                DebugCorePlugin.outputCycleToDss=false;
+                DebugCorePlugin.outputAllCycles=true;
+                DebugCorePlugin.outputCycles="\'\'";
+                save();
+                return;
+            }
+
+            FileInputStream fs = new FileInputStream(file.getAbsolutePath());
+            BufferedReader br = new BufferedReader(new InputStreamReader(fs));
+            LineNumberReader reader = new LineNumberReader(br);
+
+            DebugCorePlugin.solver=br.readLine();
+
+            String xmx=br.readLine();
+            int maxAM = getMaxAllocatedMemory();
+            if (Integer.parseInt(xmx) > maxAM) {
+                DebugCorePlugin.xmx=String.valueOf(maxAM);
+            }else {
+                DebugCorePlugin.xmx=xmx;
+            }
+
+            String strOutputCycleToDss = br.readLine();
+            if (strOutputCycleToDss.toLowerCase().equals("true")){
+                DebugCorePlugin.outputCycleToDss=true;
+            }else{
+                DebugCorePlugin.outputCycleToDss=false;
+            }
+
+            String strOutputAllCycles = br.readLine();
+            if (strOutputAllCycles.toLowerCase().equals("true")){
+                DebugCorePlugin.outputAllCycles=true;
+            }else{
+                DebugCorePlugin.outputAllCycles=false;
+            }
+
+            DebugCorePlugin.outputCycles=br.readLine();
+
+            fs.close();
+            br.close();
+            reader.close();
+
+        } catch (Exception e) {
+            DebugCorePlugin.solver="CBC";
+            DebugCorePlugin.xmx="4096";
+            DebugCorePlugin.outputCycleToDss=false;
+            DebugCorePlugin.outputAllCycles=true;
+            DebugCorePlugin.outputCycles="\'\'";
+            e.printStackTrace();
+        }
+
+        save();
+        return;
+    }
+
 	public static void load(){
 		try {
 			File file = new File(DebugCorePlugin.dataDir, settingPrefFile);
@@ -202,4 +273,29 @@ public class SettingPref {
 			WPPException.handleException(e);
 		}
 	}
+	public static int getMaxAllocatedMemory() {
+        MBeanServer mBeanServer=ManagementFactory.getPlatformMBeanServer();
+        try {
+            Object attribute = mBeanServer.getAttribute(
+                new ObjectName("java.lang", "type", "OperatingSystem"),
+                "TotalPhysicalMemorySize"
+            );
+
+            long totalPhysicalMemorySize = Long.parseLong(attribute.toString());
+            int maxAllocatedMemory =
+                (int) (0.65 * totalPhysicalMemorySize / 1024. / 1024.);
+
+            return maxAllocatedMemory;
+
+        } catch (InstanceNotFoundException |
+                 AttributeNotFoundException |
+                 MalformedObjectNameException |
+                 ReflectionException |
+                 MBeanException e) {
+
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }
