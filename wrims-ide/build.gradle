@@ -4,7 +4,7 @@ plugins{
     id 'library.jdeps-conventions'
 
     // The following plugin is used to build the OSGI bundle
-    id 'biz.aQute.bnd.builder' version '7.2.3'
+    id 'biz.aQute.bnd.builder' version '7.3.0'
 }
 
 configurations {
