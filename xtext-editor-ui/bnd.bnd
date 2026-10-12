@@ -1,6 +1,6 @@
 Bundle-SymbolicName: xtext-editor-ui;singleton:=true
 Bundle-Name: xtext-editor-ui
-Bundle-Version: 1.0.0.0
+Bundle-Version: ${project.version}
 Bundle-ManifestVersion: 2.0
 Bundle-Vendor: California Department of Water Resources
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -22,7 +22,7 @@ Require-Bundle: \
     org.eclipse.compare,\
     org.eclipse.debug.core,\
     org.eclipse.debug.ui;bundle-version="3.7.0",\
-    third-party;bundle-version="1.0.0"
+    third-party;bundle-version="${project.version}"
 
 Import-Package: \
     org.apache.log4j,\
@@ -55,4 +55,3 @@ Export-Package: \
 -includeresource: \
   plugin.xml = plugin.xml,\
   icons = icons
-

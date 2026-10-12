@@ -6,6 +6,7 @@ include 'jdiagram'
 include 'xtext-editor'
 include 'xtext-editor-ui'
 include 'wrims-install'
+include 'wrims-platform'
 
 /// DEVELOPER IDE BUILDING FROM SOURCE ///
 if(hasProperty('librarySourcesDir')) {
