@@ -21,7 +21,6 @@ public class WelcomeViewListener {
 	private static final String PLUGIN_ID = "gov.ca.water.wrims.gui.ide";
 
     public void addWelcomeViewListener() {
-    	SettingPref.loadInitially();
     	Display.getDefault().syncExec(new Runnable() {
 
 			@Override
@@ -58,6 +57,8 @@ public class WelcomeViewListener {
 		                    	//openPerspective(perspectiveID);
 		                		openPerspective(DebugCorePlugin.wrimsGUIPerspectives[i]);
 		                	}
+		                	SettingPref.loadInitially();
+
 		                }
 		            }
 
