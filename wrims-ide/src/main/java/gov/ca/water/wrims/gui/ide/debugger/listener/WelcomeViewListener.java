@@ -1,6 +1,8 @@
 package gov.ca.water.wrims.gui.ide.debugger.listener;
 
 import gov.ca.water.wrims.gui.ide.debugger.core.DebugCorePlugin;
+import gov.ca.water.wrims.gui.ide.debugger.core.SettingPref;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
@@ -19,7 +21,6 @@ public class WelcomeViewListener {
 	private static final String PLUGIN_ID = "gov.ca.water.wrims.gui.ide";
 
     public void addWelcomeViewListener() {
-    	
     	Display.getDefault().syncExec(new Runnable() {
 
 			@Override
@@ -56,6 +57,8 @@ public class WelcomeViewListener {
 		                    	//openPerspective(perspectiveID);
 		                		openPerspective(DebugCorePlugin.wrimsGUIPerspectives[i]);
 		                	}
+		                	SettingPref.loadInitially();
+
 		                }
 		            }
 
