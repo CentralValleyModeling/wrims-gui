@@ -28,10 +28,11 @@ jobs:
         env:
           PKG_USERNAME: ${{ github.actor }}
           PKG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MINDFUSION_LICENSE_KEY: ${{ secrets.MINDFUSION_LICENSE_KEY }}
         run: |
           ./gradlew clean -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
-          ./gradlew build -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
-          ./gradlew :wrims-install:zipWrimsGui -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"  
+          ./gradlew build -PrequireMindfusionLicenseKey=true -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
+          ./gradlew :wrims-install:zipWrimsGui -PrequireMindfusionLicenseKey=true -PcvmUserId="dwr-wrims-build" -PcvmPassword="${{ secrets.WRIMS_ENGINE_DEPENDENCIES_TOKEN }}"
 
       - name: Upload Installer .zip artifact to Action Workflow
         uses: actions/upload-artifact@v7.0.1

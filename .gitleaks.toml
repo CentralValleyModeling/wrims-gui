@@ -1,0 +1,10 @@
+title = "wrims-gui gitleaks config"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "mindfusion-license-key-literal"
+description = "MindFusion JDiagram license key passed as a string literal; inject it via SchematicLicense instead"
+regex = '''(?i)setLicenseKey\(\s*"[^"\s]{8,}"\s*\)'''
+keywords = ["setlicensekey"]

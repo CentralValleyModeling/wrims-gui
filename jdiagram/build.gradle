@@ -31,5 +31,41 @@ dependencies {
     implementation(libs.eclipse.search) {
         exclude group: "org.eclipse.platform", module: "org.eclipse.swt"
     }
+
+    testImplementation(libs.bundles.junit5)
+}
+
+def licenseKey = (findProperty('mindfusionLicenseKey') ?: System.getenv('MINDFUSION_LICENSE_KEY'))?.toString()?.trim()
+def requireLicenseKey = findProperty('requireMindfusionLicenseKey')?.toString()?.toBoolean() ?: false
+def generatedLicenseDir = layout.buildDirectory.dir('generated/license')
+
+def generateLicenseResource = tasks.register('generateMindfusionLicenseResource') {
+    // The key is deliberately not declared as a task input so it never appears in build scans or cache keys.
+    outputs.dir(generatedLicenseDir)
+    outputs.upToDateWhen { false }
+    doLast {
+        def dir = generatedLicenseDir.get().asFile
+        dir.mkdirs()
+        def file = new File(dir, 'mindfusion-license.properties')
+        if (licenseKey) {
+            def properties = new Properties()
+            properties.setProperty('licenseKey', licenseKey)
+            file.withOutputStream { properties.store(it, null) }
+        } else {
+            file.delete()
+            if (requireLicenseKey) {
+                throw new GradleException('requireMindfusionLicenseKey is set but no key was supplied. Set the ' +
+                        'mindfusionLicenseKey Gradle property or the MINDFUSION_LICENSE_KEY environment variable.')
+            }
+            logger.warn('No MindFusion license key supplied; JDiagram will run unlicensed.')
+        }
+    }
+}
+
+processResources {
+    dependsOn generateMindfusionLicenseResource
+    from(generatedLicenseDir) {
+        include 'mindfusion-license.properties'
+    }
 }
 
