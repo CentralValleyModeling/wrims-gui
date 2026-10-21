@@ -25,6 +25,15 @@ cvmUserId=<userId>
 cvmPassword=<userToken>
 ...
 ``` 
+- (Optional) the MindFusion JDiagram license key, so the schematic views run licensed. Without it the build still succeeds
+  and JDiagram runs in its unlicensed (trial) mode. Get the key from the project's MindFusion account owner and never commit it.
+```
+...
+mindfusionLicenseKey=<licenseKey>
+...
+```
+  Alternatively set the `MINDFUSION_LICENSE_KEY` environment variable. At runtime (for example when launching from an IDE)
+  the `wrims.mindfusion.licenseKey` system property or the same environment variable also works.
 
 ## 1. Pull Source from GitHub
 Clone the repository to your local machine.

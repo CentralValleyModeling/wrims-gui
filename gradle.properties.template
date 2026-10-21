@@ -12,5 +12,9 @@
 
 # sampleBooleanProperty=false
 
+# MindFusion JDiagram license key (optional, never commit a real key). Prefer setting this in ~/.gradle/gradle.properties
+# instead of this file. Without a key the schematic views run unlicensed.
+# mindfusionLicenseKey=
+
 # Set JVM memory settings for Gradle
 org.gradle.jvmargs=-Xms512m -Xmx8g

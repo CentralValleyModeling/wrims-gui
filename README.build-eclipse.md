@@ -32,6 +32,9 @@ cvmUserId=<githubUserId>
 cvmPassword=<githubPersonalAccessToken>
 ...
 ```
+  - Optional: add `mindfusionLicenseKey=<licenseKey>` to the same file (or set the `MINDFUSION_LICENSE_KEY` environment variable, or the
+    `wrims.mindfusion.licenseKey` system property when launching from Eclipse) so the schematic views run licensed. Without it
+    JDiagram runs in its unlicensed (trial) mode. Never commit the key.
 
 The cvmPassword is preferably set to a GitHub personal access token that has been granted access to 
 the CentralValleyModeling GitHub repository with public_repo access and read:packages enabled.<br>

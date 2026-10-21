@@ -26,6 +26,7 @@ import gov.ca.water.hecdssvue.views.DSSTableView;
 import gov.ca.water.jdiagram.Activator;
 import gov.ca.water.jdiagram.FontUtil;
 import gov.ca.water.jdiagram.RectangleZoomBehavior;
+import gov.ca.water.jdiagram.SchematicLicense;
 import gov.ca.water.jdiagram.SchematicPluginCore;
 import gov.ca.water.jdiagram.dialog.DecimalDialog;
 import gov.ca.water.jdiagram.dialog.PDFOptionDialog;
@@ -195,7 +196,7 @@ public abstract class SchematicBase extends ViewPart {
 		//JLayeredPane layeredPane = new JLayeredPane();
 		//contentPane.add(layeredPane);
 		diagramView = new DiagramView(diagram = new Diagram());
-		DiagramView.setLicenseKey("REDACTED_MINDFUSION_KEY");
+		SchematicLicense.apply();
 		diagramView.setAllowInplaceEdit(false);
 		diagramView.setBehavior(Behavior.Pan);
 		getSite().setSelectionProvider(
