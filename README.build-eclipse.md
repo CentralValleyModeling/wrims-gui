@@ -35,6 +35,12 @@ cvmPassword=<githubPersonalAccessToken>
   - Optional: add `mindfusionLicenseKey=<licenseKey>` to the same file (or set the `MINDFUSION_LICENSE_KEY` environment variable, or the
     `wrims.mindfusion.licenseKey` system property when launching from Eclipse) so the schematic views run licensed. Without it
     JDiagram runs in its unlicensed (trial) mode. Never commit the key.
+    - Build time (Gradle bundles the key into the jar): the `mindfusionLicenseKey` Gradle property takes precedence over the
+      `MINDFUSION_LICENSE_KEY` environment variable.
+    - Runtime, highest precedence first: the `wrims.mindfusion.licenseKey` system property, then the `MINDFUSION_LICENSE_KEY`
+      environment variable, then the key bundled into the jar, then none (unlicensed, with a logged warning). A runtime property or
+      environment variable therefore overrides the bundled key.
+    - See [README.build-gradle.md](README.build-gradle.md) for the full precedence table.
 
 The cvmPassword is preferably set to a GitHub personal access token that has been granted access to 
 the CentralValleyModeling GitHub repository with public_repo access and read:packages enabled.<br>

@@ -35,6 +35,18 @@ mindfusionLicenseKey=<licenseKey>
   Alternatively set the `MINDFUSION_LICENSE_KEY` environment variable. At runtime (for example when launching from an IDE)
   the `wrims.mindfusion.licenseKey` system property or the same environment variable also works.
 
+  The key is looked up in two stages, and within each stage the first source that has a non-blank value wins:
+
+  | Stage | Order (highest precedence first) |
+  |---|---|
+  | Build (Gradle `generateMindfusionLicenseResource`, which bundles the key into the jar) | 1. `mindfusionLicenseKey` Gradle property (`-PmindfusionLicenseKey=...` or `gradle.properties`)<br>2. `MINDFUSION_LICENSE_KEY` environment variable |
+  | Runtime (`SchematicLicense.apply()`) | 1. `wrims.mindfusion.licenseKey` system property<br>2. `MINDFUSION_LICENSE_KEY` environment variable<br>3. The key bundled into the jar at build time<br>4. None found: JDiagram runs unlicensed and logs a warning |
+
+  Notes:
+  - A runtime system property or environment variable overrides the key bundled in the jar, so you can test with a different key without rebuilding.
+  - Among Gradle properties, `-P` on the command line overrides `<USER-DIR>\.gradle\gradle.properties`, which overrides the project's `gradle.properties`.
+  - In CI the `MINDFUSION_LICENSE_KEY` repository secret is passed as the environment variable of the same name, so it applies at build time. Release builds also pass `-PrequireMindfusionLicenseKey=true`, which fails the build if no key is found at build time.
+
 ## 1. Pull Source from GitHub
 Clone the repository to your local machine.
 Repository Clone URL: https://github.com/CentralValleyModeling/wrims.git
