@@ -13,6 +13,8 @@ dependencies {
     implementation project(':wrims-ide')
     implementation project(':dwr-hecdssvue')
 
+    implementation libs.bundles.jdiagram
+
     //eclipse libs
     implementation(libs.eclipse.swt) {
         exclude group: "org.eclipse.platform", module: "org.eclipse.swt"

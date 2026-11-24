@@ -1,26 +1,28 @@
 package gov.ca.water.jdiagram.views;
 
-import com.mindfusion.diagramming.DiagramView;
-import com.mindfusion.diagramming.Overview;
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.Panel;
+import javax.swing.JPanel;
 import javax.swing.JRootPane;
-import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+
+import gov.ca.water.jdiagram.swing.views.SchematicPanel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 /**
- * This represents the overview to the schematic being displayed by the
- * SchematicView
- * <p>
+ * This represents the overview to the schematic being displayed by the SchematicView
+ * Eclipse view showing the overview of the schematic displayed by the {@link SchematicView}. It hosts the
+ * jdiagram-swing {@link gov.ca.water.jdiagram.swing.views.SchematicOverview} created by that view's
+ * {@link SchematicPanel}, so zooming in the schematic updates the same overview component.
  */
-
 public class SchematicOverview extends ViewPart {
 
 	/**
@@ -30,63 +32,85 @@ public class SchematicOverview extends ViewPart {
 
 	private Composite swingContainer;
 
-	private Overview overview;
+	/** Accessed on the EDT only. */
+	private JPanel holder;
 
-	/**
-	 * The constructor.
-	 */
-	public SchematicOverview() {
+	/** Overview received before the part control was built. Accessed on the EDT only. */
+	private gov.ca.water.jdiagram.swing.views.SchematicOverview pending;
+
+	@Override
+	public void createPartControl(Composite parent) {
+		swingContainer = new Composite(parent, SWT.BACKGROUND | SWT.EMBEDDED);
+		Frame frame = SWT_AWT.new_Frame(swingContainer);
+
+		// Pick up the overview if the Schematic View already exists; otherwise it is pushed here when created.
+		SchematicPanel schematic = null;
+		IWorkbenchPage page = activePage();
+		if (page != null && page.findView(SchematicView.ID) instanceof SchematicView view) {
+			schematic = view.getSchematic();
+		}
+		final SchematicPanel existing = schematic;
+
+		SwingUtilities.invokeLater(() -> {
+			Panel heavyweight = new Panel(new BorderLayout());
+			JRootPane root = new JRootPane();
+			heavyweight.add(root);
+			frame.add(heavyweight);
+			holder = new JPanel(new BorderLayout());
+			root.getContentPane().add(holder, BorderLayout.CENTER);
+			if (pending != null) {
+				showOverview(pending);
+				pending = null;
+			} else if (existing != null && existing.getOverview() != null) {
+				showOverview(existing.getOverview());
+			}
+			frame.validate();
+		});
 	}
 
 	/**
-	 * This is a callback that will allow us to create the viewer and initialize
-	 * it.
+	 * Displays {@code overview} in this view. May be called from any thread.
 	 */
-	@SuppressWarnings("serial")
-	public void createPartControl(Composite parent) {
-		System.setProperty("sun.awt.noerasebackground", "true");
-		swingContainer = new Composite(parent, SWT.BACKGROUND | SWT.EMBEDDED);
-		Frame frame = SWT_AWT.new_Frame(swingContainer);
-		Panel panel = new Panel(new BorderLayout()) {
-			public void update(java.awt.Graphics g) {
-				paint(g);
-			}
-		};
-		frame.add(panel);
-		JRootPane root = new JRootPane();
-		panel.add(root);
-		java.awt.Container contentPane = root.getContentPane();
-		contentPane.add(new JScrollPane(overview = new Overview()));
-		IWorkbenchPage activePage = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage();
-		if (activePage != null) {
-			IViewPart sview = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage()
-					.findView(SchematicView.ID);
-			if (sview != null) {
-				SchematicView schematicView = (SchematicView) sview;
-				overview.setDiagramView(schematicView.getDiagramView());
-				overview.setBounds(schematicView.getDiagramView().getBounds());
-				overview.setIgnoreRepaint(true);
-				overview.setFitAll(true);
-				overview.setDoubleBuffered(true);
-			}
+	public void setOverview(gov.ca.water.jdiagram.swing.views.SchematicOverview overview) {
+		if (overview != null) {
+			SwingUtilities.invokeLater(() -> showOverview(overview));
 		}
-		frame.pack();
+	}
 
+	private void showOverview(gov.ca.water.jdiagram.swing.views.SchematicOverview overview) {
+		if (holder == null) {
+			// Part control not built yet; createPartControl shows it once the holder exists.
+			pending = overview;
+			return;
+		}
+		holder.removeAll();
+		holder.add(overview, BorderLayout.CENTER);
+		holder.revalidate();
+		holder.repaint();
+	}
+
+	/**
+	 * @return the open overview view in the active page, or null. Must be called on the SWT thread.
+	 */
+	static SchematicOverview find() {
+		IWorkbenchPage page = activePage();
+		if (page == null) {
+			return null;
+		}
+		IViewPart part = page.findView(ID);
+		return part instanceof SchematicOverview overview ? overview : null;
+	}
+
+	private static IWorkbenchPage activePage() {
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		return window == null ? null : window.getActivePage();
 	}
 
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
+	@Override
 	public void setFocus() {
 		swingContainer.setFocus();
-	}
-
-	public void setDiagramView(DiagramView diagramView) {
-		overview.setDiagramView(diagramView);
-		overview.repaint();
-		overview.setBounds(diagramView.getBounds());
-		overview.setFitAll(true);
 	}
 }

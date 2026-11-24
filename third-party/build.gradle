@@ -34,7 +34,7 @@ dependencies {
     api libs.jpython
     api libs.mssql.jdbc
     api libs.swixml
-    api libs.jdiagram
+    api libs.bundles.jdiagram
     api libs.kryo
     api libs.guava
     api libs.linearsolver
