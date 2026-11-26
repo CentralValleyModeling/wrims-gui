@@ -1,4 +1,4 @@
-package gov.ca.water.jdiagram.host;
+package gov.ca.water.jdiagram.utils;
 
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;

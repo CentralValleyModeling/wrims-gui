@@ -26,6 +26,8 @@ import gov.ca.water.jdiagram.swing.PlatformHarness;
 import gov.ca.water.jdiagram.swing.toolbars.ToolBarContributor;
 import gov.ca.water.jdiagram.swing.views.SchematicOverview;
 import gov.ca.water.jdiagram.swing.views.SchematicPanel;
+import gov.ca.water.jdiagram.swing.utils.IconLoad;
+import gov.ca.water.jdiagram.utils.EclipseIconLoader;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
@@ -284,5 +286,10 @@ public final class EclipsePlatformHarness implements PlatformHarness {
 		}
 		String text = editable.getTextToEdit();
 		return text == null ? null : text.toLowerCase();
+	}
+
+	@Override
+	public IconLoad getIconLoader() {
+		return new EclipseIconLoader();
 	}
 }

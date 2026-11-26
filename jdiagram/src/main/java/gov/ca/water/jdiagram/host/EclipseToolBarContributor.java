@@ -14,6 +14,7 @@ import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 
 import gov.ca.water.jdiagram.swing.toolbars.ToolBarContributor;
+import gov.ca.water.jdiagram.utils.SwingActions;
 import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.swt.SWT;
